@@ -93,10 +93,10 @@ Para cada entidade identificada, liste:
 
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
-| ID_Fornecedor | Identificador único do fornecedor adastrado no sistema | Obrigatório, chave primária |
+| ID_Fornecedor | Identificador único do fornecedor adastrado no sistema | Gerada automaticamente pelo sistema |
 | Nome_Fornecedor | Nome fantasia pelo qual o fornecedor é conhecido comercialmente |  |
 | CNPJ | Número de identificação da pessoa jurídica do fornecedor perante a Receita Federal | Obrigatório, único, deve conter 14 dígitos válidos |
-| Razão Social | Nome jurídico oficial da empresa fornecedora, conforme registrado legalmente |  |
+| Razão_Social | Nome jurídico oficial da empresa fornecedora, conforme registrado legalmente |  |
 | Telefone | Número de contato do fornecedor |  |
 | Endereço | Localização física do fornecedor (composto por Rua, Número, Bairro, Cidade, Estado) |  |
 
@@ -104,8 +104,8 @@ Para cada entidade identificada, liste:
 
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
-| ID_Pedido | Identificador único do pedido compra realizado junto ao fornecedor | Chave primária, gerada automaticamente |
-| ID_Fornecedor | Referência ao fornecedor responsável por atender o pedido de compra | Chave estrangeira; deve referenciar um fornecedor cadastrado no sistema |
+| ID_Pedido | Identificador único do pedido compra realizado junto ao fornecedor | Gerada automaticamente pelo sistema |
+| ID_Fornecedor | Referência ao fornecedor responsável por atender o pedido de compra | Deve referenciar um fornecedor cadastrado no sistema |
 | Data | Data em que o pedido de compra foi realizado |  |
 | Hora | Horário em que o pedido de compra foi realizado |  |
 
@@ -114,9 +114,9 @@ Para cada entidade identificada, liste:
 
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
-| ID_Produto | Identificador único interno do produto | Chave primária, gerada automáticamente |
+| ID_Produto | Identificador único interno do produto | Gerada automaticamente pelo sistema |
 | Nome_Produto | Nome completo/comercial do produto |  |
-| ID_Categoria | Referência à categoria à qual o produto pertence | Chave estrangeira; deve referenciar uma categoria registrada |
+| ID_Categoria | Referência à categoria à qual o produto pertence | Deve referenciar uma categoria registrada |
 | Descricao_Gondola | Descrição resumida do produto exibida na etiqueta de prateleira |  |
 | Descricao_Reduzida | Descrição do produto utilizada na emissão de nota fiscal | Deve respeitar o limite de caracteres exigido pela legislação fiscal |
 | Codigo_Barras | Código numérico (EAN/GTIN) atribuído pelo fabricante, utilizado para leitura no caixa e identificação universal do produto | Único |
@@ -125,17 +125,17 @@ Para cada entidade identificada, liste:
 
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
-| ID_Categoria | Identificador único da categoria de produto cadastrada no sistema | Chave primária, gerada automaticamente |
+| ID_Categoria | Identificador único da categoria de produto cadastrada no sistema | Gerada automaticamente pelo sistema |
 | Nome_Categoria | Nome que identifica a categoria à qual produtos pertencem (ex: Hortifruti, Laticínios, Bebidas) |
 
-### Funcionario 
+### Funcionário 
 
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
-| ID_Funcionario | Identificador único do funcionário cadastrado no sistema | Chave primária, gerada automaticamente |
+| ID_Funcionario | Identificador único do funcionário cadastrado no sistema | Gerada automaticamente pelo sistema |
 | Nome_Funcionario | Nome completo do funcionário |  |
 | CPF | Documento de identificação civil do funcionário | Obrigatório, único, deve conter 11 dígitos válidos |
-| Endereço | Localização de residência do funcionário (composto por Número, Bairro, Cidade, Estado) |
+| Endereço | Localização de residência do funcionário (composto por Número, Rua, Bairro, Cidade, Estado) |
 | Função | Cargo/atividade exercida pelo funcionário na empresa (ex: Caixa, Repositor, Gerente) |
 | Telefone | Número de contato do funcionário |  |
 | Data_Admissao | Data em que o funcionário foi contratado pela empresa |  |
@@ -144,9 +144,9 @@ Para cada entidade identificada, liste:
 
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
-| ID_Venda | Identificador único da venda realizada |
-| ID_Funcionario | Referência ao funcionário responsável por registrar a venda | Chave estrangeira; deve referenciar um funcionário cadastrado |
-| ID_Cliente | Referência ao cliente que realizou a compra | Chave estrangeira; deve referenciar um cliente cadastrado |
+| ID_Venda | Identificador único da venda realizada | Gerada automaticamente pelo sistema |
+| ID_Funcionario | Referência ao funcionário responsável por registrar a venda | Deve referenciar um funcionário cadastrado |
+| ID_Cliente | Referência ao cliente que realizou a compra | Deve referenciar um cliente cadastrado |
 | Data | Data em que a venda foi realizada
 | Hora | Horário em que a venda foi realizada
 | Forma_Pagamento | Forma de pagamento utilizada pelo cliente na compra | Valores possíveis: Dinheiro, Cartão de Débito, Cartão de Crédito |
@@ -155,21 +155,16 @@ Para cada entidade identificada, liste:
 
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
-| ID_Cliente | Identificador único do cliente cadastrado no sistema | Chave primária, gerada automaticamente |
+| ID_Cliente | Identificador único do cliente cadastrado no sistema | Gerada automaticamente |
 | Nome_Cliente | Nome completo do cliente |  |
 | CPF | Documento de identificação civil do cliente | Único, deve conter 11 dígitos válidos |
-| Telefone | Número de contato do cliente |
+| Telefone | Número de contato do cliente |  |
 
 
 
 
 
 
-| *nome do atributo* | *o que ele representa* | *se houver alguma regra (obrigatoriedade, valores possíveis, etc.)* |
-
-*Mantenha o dicionário organizado e padronizado (mesmo formato de tabela para todas as entidades).*
-
-**Atenção à privacidade:** se forem usados exemplos de valores para ilustrar os atributos, esses exemplos devem ser **fictícios** — não utilize dados reais de clientes, fiéis, beneficiários, doadores ou funcionários da organização (nomes, CPFs, contatos etc.), mesmo que tenham sido observados durante a pesquisa de campo. Os exemplos devem apenas ser **coerentes com as operações reais** observadas.
 
 ---
 
@@ -177,21 +172,54 @@ Para cada entidade identificada, liste:
 
 
 - **Entidades reconhecidas:**
-- Produto: Representa os produtos comercializados pelo mercado, sendo necessário para controlar informações como nome, tipo, categoria e preço.
-- Categoria_Produto: Permite classificar os produtos em categorias, facilitando sua organização e identificação
-- Item_Venda: Representa cada produto incluído em uma venda, permitindo registrar quantidade e valor unitário vendido
-- Item_Compra: Representa cada produto incluído em um pedido de compra, permitindo registrar quantidade e valor de cada item.
+- Produto: Representa os produtos comercializados pelo mercado, sendo necessário para controlar informações como nome, categoria, código de barras e descrições de identificação (gôndola e nota fiscal).
+- Categoria_Produto: Permite classificar os produtos em categorias, facilitando sua organização e identificação pelo tipo de produto
 - Pedido_Compra: Representa os pedidos de produtos feitos aos fornecedores, permitindo controlar as compras realizadas pelo mercado.
 - Fornecedor: Representa as empresas que fornecem produtos ao mercado, permitindo registrar e relacionar os fornecedores às compras realizadas.
-- Estoque: Representa o controle dos produtos armazenados, permitindo registrar quantidade e informações relacionadas ao armazenamento.
-- Funcionário: Representa os funcionários responsáveis pelas atividades relacionadas às vendas e ao funcionamento do mercado.
-- Venda: Representa as vendas realizadas pelo mercado, permitindo registrar informações da transação e relacioná-la ao cliente e aos produtos vendidos.
+- Funcionário: Representa os colaboradores do mercado responsáveis por registrar as vendas realizadas.
+- Venda: Representa as vendas realizadas pelo mercado, permitindo registrar informações da transação e relacioná-la ao cliente, ao funcionário responsável e aos produtos vendidos.
 - Cliente: Representa as pessoas que realizam compras no mercado, permitindo armazenar seus dados e relacioná-los às vendas realizadas.
-- Lote: Representa cada lote recebido de um produto, permitindo controlar separadamente sua quantidade, data de entrada e data de validade.
+  
 - **Atributos e classificações:**
+
+### Fornecedor 
+
+- ID_Fornecedor - Chave primária
+- Nome_Fornecedor, CNPJ, Razao_Social, Telefone - Simples
+- Endereço - Composto (Rua, Número, Bairro, Cidade, Estado)
+
+- ### Pedido_Compra
+- ID_Pedido - Chave primária
+- ID_Fornecedor - Chave estrangeira
+- Data, Hora - Simples
+
+- ### Categoria_Produto
+- ID_Categoria - Chave primária
+- Nome_Categoria - Simples
+
+- ### Produto
+- ID_Produto - Chave primária
+- ID_Categoria - Chave estrangeira
+- Nome_Produto, Descricao_Gondola, Descricao_Reduzida, Codigo_Barras - Simples
+
+- ### Venda
+- ID_Venda - Chave primária
+- ID_Cliente, ID_Funcionário - Chave estrangeira
+- Data, Hora, Forma_Pagamento - Simples
+
+- ### Cliente
+- ID_Cliente - Chave primária
+- Nome_Cliente, CPF, Telefone - Simples
+
+- ### Funcionario
+- ID_Funcionario - Chave primária
+- Nome_Funcionario, CPF, Função, Telefone, Data_Admissao - simples
+- Endereço - Composto (Rua, Número, Bairro, Cidade, Estado)
+
+- Observação: não foram identificados atributos multivalorados no modelo, uma vez que não houve confirmação, durante o levantamento de requisitos, de campos que admitissem múltiplos valores simultâneos (ex: mais de um telefone nas entidades fornecedor/cliente/funcionário).
 - 
 - 
-- **Relacionamentos pertinentes:** *como as entidades se conectam.*
+- **Relacionamentos pertinentes:** 
 - **Restrições e políticas organizacionais aplicadas ao modelo.**
 
 ---
