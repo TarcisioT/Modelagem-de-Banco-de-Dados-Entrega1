@@ -179,39 +179,42 @@ Para cada entidade identificada, liste:
 - Funcionário: Representa os colaboradores do mercado responsáveis por registrar as vendas realizadas.
 - Venda: Representa as vendas realizadas pelo mercado, permitindo registrar informações da transação e relacioná-la ao cliente, ao funcionário responsável e aos produtos vendidos.
 - Cliente: Representa as pessoas que realizam compras no mercado, permitindo armazenar seus dados e relacioná-los às vendas realizadas.
+
+  
   
 - **Atributos e classificações:**
 
-### Fornecedor 
+#### Fornecedor
 
 - ID_Fornecedor - Chave primária
 - Nome_Fornecedor, CNPJ, Razao_Social, Telefone - Simples
 - Endereço - Composto (Rua, Número, Bairro, Cidade, Estado)
 
-- ### Pedido_Compra
+#### Pedido_Compra
+  
 - ID_Pedido - Chave primária
 - ID_Fornecedor - Chave estrangeira
 - Data, Hora - Simples
 
-- ### Categoria_Produto
+ #### Categoria_Produto
 - ID_Categoria - Chave primária
 - Nome_Categoria - Simples
 
-- ### Produto
+ #### Produto
 - ID_Produto - Chave primária
 - ID_Categoria - Chave estrangeira
 - Nome_Produto, Descricao_Gondola, Descricao_Reduzida, Codigo_Barras - Simples
 
-- ### Venda
+ #### Venda
 - ID_Venda - Chave primária
 - ID_Cliente, ID_Funcionário - Chave estrangeira
 - Data, Hora, Forma_Pagamento - Simples
 
-- ### Cliente
+ #### Cliente
 - ID_Cliente - Chave primária
 - Nome_Cliente, CPF, Telefone - Simples
 
-- ### Funcionario
+ #### Funcionario
 - ID_Funcionario - Chave primária
 - Nome_Funcionario, CPF, Função, Telefone, Data_Admissao - simples
 - Endereço - Composto (Rua, Número, Bairro, Cidade, Estado)
