@@ -220,8 +220,7 @@ Para cada entidade identificada, liste:
 - Endereço - Composto (Rua, Número, Bairro, Cidade, Estado)
 
 - Observação: não foram identificados atributos multivalorados no modelo, uma vez que não houve confirmação, durante o levantamento de requisitos, de campos que admitissem múltiplos valores simultâneos (ex: mais de um telefone nas entidades fornecedor/cliente/funcionário).
-- 
-- 
+  
 - **Relacionamentos pertinentes:**
 
 - Fornecedor(1) - Vende - (N) Pedido_Compra: um fornecedor pode antender vários pedidos de compra, mas cada pedido é feito a um único fornecedor.
