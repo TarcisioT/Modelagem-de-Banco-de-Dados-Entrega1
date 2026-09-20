@@ -228,7 +228,8 @@ Para cada entidade identificada, liste:
 ---
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
-<img width="808" height="757" alt="Captura de tela 2026-09-16 201619" src="https://github.com/user-attachments/assets/6aef4a8c-9599-4efa-ba6e-5c5e4502a59e" />
+<img width="1372" height="1622" alt="DER_Mercado2 drawio" src="https://github.com/user-attachments/assets/8981e419-cbcc-4f57-b08d-447698a92c91" />
+
 
 
 
