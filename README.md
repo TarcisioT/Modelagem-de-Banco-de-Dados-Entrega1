@@ -222,8 +222,23 @@ Para cada entidade identificada, liste:
 - Observação: não foram identificados atributos multivalorados no modelo, uma vez que não houve confirmação, durante o levantamento de requisitos, de campos que admitissem múltiplos valores simultâneos (ex: mais de um telefone nas entidades fornecedor/cliente/funcionário).
 - 
 - 
-- **Relacionamentos pertinentes:** 
+- **Relacionamentos pertinentes:**
+
+- Fornecedor(1) - Vende - (N) Pedido_Compra: um fornecedor pode antender vários pedidos de compra, mas cada pedido é feito a um único fornecedor.
+- Categoria_Produto (1) — Cadastra — (N) Produto: uma categoria pode conter vários produtos, mas cada produto pertence a uma única categoria.
+- Pedido_Compra (N) — Cadastra — (N) Produto: um pedido de compra pode conter vários produtos, e um mesmo produto pode estar presente em vários pedidos diferentes. Esse relacionamento possui os atributos Qntd_Produto e Valor_Unitario, que registram a quantidade e o preço praticado naquele pedido específico.
+- Cliente (1) — Realiza — (N) Venda: um cliente pode realizar várias vendas, mas cada venda é realizada por um único cliente.
+- Funcionario (1) — Registra — (N) Venda: um funcionário pode registrar várias vendas, mas cada venda é registrada por um único funcionário.
+- Produto (N) — Contém — (N) Venda: uma venda pode conter vários produtos, e um mesmo produto pode estar presente em várias vendas diferentes. Esse relacionamento possui os atributos Qntd_Produto e Valor_Unitario, que registram a quantidade e o preço praticado naquela venda específica.
+
+  
 - **Restrições e políticas organizacionais aplicadas ao modelo.**
+
+- Um produto não pode ser vendido após sua data de validade.
+- Um pedido de compra só deve ser realizado para um fornecedor previamente cadastrado
+- um fornecedor só pode ser cadastrado com CNPJ válido e dados completos
+- O valor total de uma venda ou pedido de compra pode ser obtido através da soma (quantidade x valor unitário) de todos os produtos relacionados àquela transação, já que o preço praticado é registrado individualmente em cada relação entre venda/pedido e produto, permitindo manter o histórico de valores, mesmo que o preço de um produto mude ao longo do tempo.
+- A empresa não aceita a forma de pagamento PIX, aceitando apenas Dinheiro, Cartão de Débito e Cartão de Crédito.
 
 ---
 
