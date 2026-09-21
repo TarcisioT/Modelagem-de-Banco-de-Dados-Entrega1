@@ -6,7 +6,7 @@
 - Nicole Xavier (RGM 48329002)
 - Henrique Moura (RGM 47610972)
 - Henrico Saltanian (RGM 46981721)
-### Modelagem de um sistema de gestão de informações para uma organização de pequeno porte
+### Modelagem de um sistema de gestão de informações para uma organização de médio porte
 
 
 ---
@@ -24,7 +24,7 @@
 
 - Fachada do mercado: <img width="1600" height="1200" alt="fachada_mercado" src="https://github.com/user-attachments/assets/96ddf354-d13e-41de-be66-00efc5e769c5" />
 
-- Inteiror do mercado: <img width="1600" height="1200" alt="interior_mercado" src="https://github.com/user-attachments/assets/b969924b-67c7-4e15-8554-971d6f0eec40" />
+- Interior do mercado: <img width="1600" height="1200" alt="interior_mercado" src="https://github.com/user-attachments/assets/b969924b-67c7-4e15-8554-971d6f0eec40" />
 
 - Estoque do mercado: <img width="1600" height="1200" alt="estoque_mercado" src="https://github.com/user-attachments/assets/b0589bb0-c2bd-4588-b628-0f5c1cb43df1" />
 
@@ -56,7 +56,7 @@
 
 
 ### 3.1 Requisitos Funcionais
-- O sistema deve permitir o cadastro de produtos com código único, nome, data de validade, categoria e descrição. A data de validade não pode ser retroativa, a categoria deve vir de lista pré-cadastrado, e o sistema deve impedir código duplicado ou produto sem categoria, permitindo ainda edição e inativação de cadastros.
+- O sistema deve permitir o cadastro de produtos com código único, nome, data de validade, categoria e descrição. A data de validade não pode ser retroativa, a categoria deve vir de lista pré-cadastrada, e o sistema deve impedir código duplicado ou produto sem categoria, permitindo ainda edição e inativação de cadastros.
   
 - O sistema deve atualizar automaticamente a quantidade em estoque de cada produto após a conclusão de uma venda no caixa, dando baixa nas quantidades vendidas. A atualização deve ocorrer em tempo real, refletindo imediatamente nas consultas de estoque.
   
@@ -84,13 +84,13 @@
 
 ### 3.2 Requisitos Não Funcionais
 
-- Desempenho: o sistema deve suportar pelo menos 10 caixas operando simultaneamente, mantendo o tempo de respostas de consultas e registro de vendas inferior a 3 segundos em situações normais de venda.
+- Desempenho: o sistema deve suportar pelo menos 10 caixas operando simultaneamente, mantendo o tempo de resposta de consultas e registro de vendas inferior a 3 segundos em situações normais de venda.
   
-- Disponibilidade: o sistema deve estar dispoínvel durante todo o horário de funcionamento da loja, em caso de queda de internet, o sistema deve continuar permitindo as vendas, sincronizando tudo quando volta.
+- Disponibilidade: o sistema deve estar disponínvel durante todo o horário de funcionamento da loja, em caso de queda de internet, o sistema deve continuar permitindo as vendas, sincronizando tudo quando voltar.
   
-- Segurança: o sistema deve exigir login e senha para acesso as funcionalidades, permitindo que apenas usuários autorizados realizem tarefas de acordo com o nível acesso.
+- Segurança: o sistema deve exigir login e senha para acesso às funcionalidades, permitindo que apenas usuários autorizados realizem tarefas de acordo com o nível de acesso.
   
-- Usabilidade: a interface do sistema do caixa deve manter uma navegação simples e objetiva, permitindo que funcionários novatos aprendam a ultilizar apenas com treinamento básico sem necessidade de conhecimentos técnicos avançados
+- Usabilidade: a interface do sistema do caixa deve manter uma navegação simples e objetiva, permitindo que funcionários novatos aprendam a utilizar apenas com treinamento básico sem necessidade de conhecimentos técnicos avançados
 
 - Recuperação de dados: o sistema deve realizar cópias de segurança periódicas para permitir a recuperação das informações em caso de falha ou perda de dados.
   
@@ -124,7 +124,7 @@ funcionários.
 
 | Entidade | Relaciona-se com | Cardinalidade |
 |----------|------------------|---------------|
-| FORNECEDOR | PEDIDO_COMPRA | 1:N - Um forncedor receb3 vários pedidos. |
+| FORNECEDOR | PEDIDO_COMPRA | 1:N - Um forncedor recebe vários pedidos. |
 | PEDIDO_COMPRA | PRODUTO | N:N - Vários pedidos cadastram vários produtos. |
 | PRODUTO | CATEGORIA_PRODUTO | 1:N - Vários produtos são cadastrados em uma categoria. |
 | VENDA | PRODUTO | 1:1 - Uma venda contém vários produtos. |
@@ -171,15 +171,15 @@ FORNECEDOR = @ID_FORNECEDOR + NM_FORNECEDOR + CNPJ + TELEFONE + RAZAO_SOCIAL + E
 
 | Atributo | Tipo físico | Obrigatório | Significado e relevância |
 |----------|-------------|-------------|--------------------------|
-| ID_FORNCEDOR | integer | Sim (PK) | Código de localização do registro; não sofre operação matemática. |
-| NM_FORNCEDOR | varchar(120) | Sim | Nome fantasia pelo qual o fornecedor é conhecido comercialmente. |
+| ID_FORNECEDOR | integer | Sim (PK) | Código de localização do registro; não sofre operação matemática. |
+| NM_FORNECEDOR | varchar(120) | Sim | Nome fantasia pelo qual o fornecedor é conhecido comercialmente. |
 | CNPJ | integer | Sim | Número de identificação da pessoa jurídica do fornecedor perante a Receita Federal. |
 | RAZAO_SOCIAL | varchar(120) | Sim | Nome oficial da empresa fornecedora, conforme registrado legalmente. |
 | TELEFONE | integer | Sim | Número de contato do fornecedor.
 | ENDERECO | varchar(120) | Sim | Localização física do fornecedor (composto por Rua, Número, Bairro, Cidade, Estado). |
 
 ### PEDIDO_COMPRA  
-PEDIDO_COMPRA = @ID_ PEDIDO_COMPRA + ID_FORNECEDOR + DT_HORA
+PEDIDO_COMPRA = @ID_PEDIDO_COMPRA + ID_FORNECEDOR + DT_HORA
 
 | Atributo | Tipo físico | Obrigatório | Significado e relevância |
 |----------|-------------|-------------|--------------------------|
@@ -200,7 +200,7 @@ PRODUTO = @ID_PRODUTO + ID_CATEGORIA + NM_PRODUTO + DS_GONDOLA + DS_REDUZIDA + C
 | CD_BARRAS | integer | Sim (único) | Código numérico (EAN/GTIN) atribuído pelo fabricante, utilizado para leitura na caixa e identificação universal do produto. |
 
 ###  CATEGORIA_PRODUTO  
-CATEGORIA_PRODUTO = @ID_ CATEGORIA_PRODUTO + NM_CATEGORIA
+CATEGORIA_PRODUTO = @ID_CATEGORIA_PRODUTO + NM_CATEGORIA
 
 | Atributo | Tipo físico | Obrigatório | Significado e relevância |
 |----------|-------------|-------------|--------------------------|
@@ -214,7 +214,7 @@ CATEGORIA_PRODUTO = @ID_ CATEGORIA_PRODUTO + NM_CATEGORIA
 
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
-| ID_Fornecedor | Identificador único do fornecedor adastrado no sistema | Gerada automaticamente pelo sistema |
+| ID_Fornecedor | Identificador único do fornecedor cadastrado no sistema | Gerada automaticamente pelo sistema |
 | Nome_Fornecedor | Nome fantasia pelo qual o fornecedor é conhecido comercialmente |  |
 | CNPJ | Número de identificação da pessoa jurídica do fornecedor perante a Receita Federal | Obrigatório, único, deve conter 14 dígitos válidos |
 | Razão_Social | Nome jurídico oficial da empresa fornecedora, conforme registrado legalmente |  |
@@ -344,7 +344,7 @@ CATEGORIA_PRODUTO = @ID_ CATEGORIA_PRODUTO + NM_CATEGORIA
   
 - **Relacionamentos pertinentes:**
 
-- Fornecedor(1) - Vende - (N) Pedido_Compra: um fornecedor pode antender vários pedidos de compra, mas cada pedido é feito a um único fornecedor.
+- Fornecedor(1) - Vende - (N) Pedido_Compra: um fornecedor pode atender vários pedidos de compra, mas cada pedido é feito a um único fornecedor.
 - Categoria_Produto (1) — Cadastra — (N) Produto: uma categoria pode conter vários produtos, mas cada produto pertence a uma única categoria.
 - Pedido_Compra (N) — Cadastra — (N) Produto: um pedido de compra pode conter vários produtos, e um mesmo produto pode estar presente em vários pedidos diferentes. Esse relacionamento possui os atributos Qntd_Produto e Valor_Unitario, que registram a quantidade e o preço praticado naquele pedido específico.
 - Cliente (1) — Realiza — (N) Venda: um cliente pode realizar várias vendas, mas cada venda é realizada por um único cliente.
@@ -393,22 +393,48 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | **Fontes consultadas e verificadas** | O claude apenas mandou o conhecimento que ele sabia sobre o github no momento. |
 | **Trechos rejeitados ou corrigidos** | Não houve necessidade de ajuste. |
 | **Justificativa da escolha final** | Decidimos manter o uso do Claude nessa etapa por atender todas as nossas dúvidas sobre o github. |
-| **Reflexão crítica** | Um pequeno erro foi identificado por algumas informações estarem desatualizadas, na primeira vez o claude estava ensiando a usar o github na versão anterior, mas depois de explicamos que o github poderia estar numa versão mais atual no momento. |
+| **Reflexão crítica** | Um pequeno erro foi identificado por algumas informações estarem desatualizadas, na primeira vez o claude estava ensinando a usar o github na versão anterior, mas depois de explicarmos que o github poderia estar numa versão mais atual no momento. |
 
 - Registro 2
 
 | Item | O que registrar |
 |------|------------------|
 | **Ferramenta e etapa** | Gemini - Usado no nosso primeiro DER.|
-| **Motivação** | PreferÊncia do grupo |
+| **Motivação** | Preferência geral do grupo.|
 | **Prompt(s) utilizados** | "Crie um DER de supermercado de acordo com as informações que eu irei fornecer" |
 | **Resposta recebida** | <img width="956" height="810" alt="DER_GEMINI" src="https://github.com/user-attachments/assets/9d7f158a-0c4b-453b-87c3-7e557162456b" /> |
 | **Fontes consultadas e verificadas** | Não houve fontes consultadas pelo Gemini. |
 | **Trechos rejeitados ou corrigidos** | O primeiro modelo inteiro foi rejeitado por nós, porque depois do feedback do professor, estudamos melhor nosso DER e vimos que apresentava muitas inconsistências. |
-| **Justificativa da escolha final** | Não aproveitamos nada do que o Gemini nos retornou e optamos refazer do zero por ela não atender corretamente os critérios do trabalho, então construímos um DER na mão pelo draw.io. |
-| **Reflexão crítica** | o Gemini apresentou um limite de excesso de detalhamento, o DER gerado incluía atributos desnecessarios dentro de cada entidade, que não agregavam ao nosso projeto. |
+| **Justificativa da escolha final** | Não aproveitamos nada do que o Gemini nos retornou e optamos por refazer do zero por ela não atender corretamente os critérios do trabalho, então construímos um DER na mão pelo draw.io. |
+| **Reflexão crítica** | o Gemini apresentou um limite de excesso de detalhamento, o DER gerado incluía atributos desnecessários dentro de cada entidade, que não agregavam ao nosso projeto. |
 
 - Registro 3
+
+| Item | O que registrar |
+|------|------------------|
+| **Ferramenta e etapa** | Claude - Revisão ortográfica no documento README.|
+| **Motivação** | Preferência geral do grupo |
+| **Prompt(s) utilizados** | "Revise pra mim todos os erros de ortográfia dentro desse arquivo README e me passe para eu corrigir manualmente." |
+| **Resposta recebida** | Lista com 21 erros de ortografia e pequenos 2 erros de inconsistência no trabalho apresentado.|
+| **Fontes consultadas e verificadas** | Não houve fontes citadas. |
+| **Trechos rejeitados ou corrigidos** | Não houve trechos rejeitados ou corrigidos. |
+| **Justificativa da escolha final** | O grupo decidiu manter o uso por ela atender às nossas necessidades. |
+| **Reflexão crítica** | Não houve limites, vieses ou erros identificados nessa etapa. |
+
+- Resgistro 4
+
+| Item | O que registrar |
+|------|------------------|
+| **Ferramenta e etapa** |  |
+| **Motivação** |  |
+| **Prompt(s) utilizados** |  |
+| **Resposta recebida** | |
+| **Fontes consultadas e verificadas** |  |
+| **Trechos rejeitados ou corrigidos** | |
+| **Justificativa da escolha final** |  |
+| **Reflexão crítica** |
+
+
 
 
 
