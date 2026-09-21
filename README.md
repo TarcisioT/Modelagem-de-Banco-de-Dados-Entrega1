@@ -72,7 +72,15 @@
   
 - O sistema deve gerar automaticamente o valor total da venda, somando o valor de cada produto pela quantidade vendida. O valor total deve ser recalculado sempre que houver alteração nos itens da venda.
   
-- O sistema deve permitir cancelar uma venda já registrada, devolvendo os itens vendidos ao estoque. 
+- O sistema deve permitir cancelar uma venda já registrada, devolvendo os itens vendidos ao estoque.
+  
+- O sistema deve permitir consultar os lotes vencidos e os lotes próximos do vencimento, apresentando o produto, o número do lote, a quantidade disponível e a data de validade.
+
+- O sistema deve emitir um alerta quando um lote estiver próximo da data de vencimento, considerando um período previamente definido pela organização.
+
+- O sistema deve impedir a venda de produtos pertencentes a lotes vencidos.
+
+- O sistema deve priorizar, durante a baixa do estoque, os lotes válidos com a data de vencimento mais próxima.
 
 ### 3.2 Requisitos Não Funcionais
 
@@ -83,6 +91,9 @@
 - Segurança: o sistema deve exigir login e senha para acesso as funcionalidades, permitindo que apenas usuários autorizados realizem tarefas de acordo com o nível acesso.
   
 - Usabilidade: a interface do sistema do caixa deve manter uma navegação simples e objetiva, permitindo que funcionários novatos aprendam a ultilizar apenas com treinamento básico sem necessidade de conhecimentos técnicos avançados
+
+- Recuperação de dados: o sistema deve realizar cópias de segurança periódicas para permitir a recuperação das informações em caso de falha ou perda de dados.
+  
 ---
 
 ## 4. Regras de Negócio
