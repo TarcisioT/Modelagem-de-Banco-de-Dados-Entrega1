@@ -382,16 +382,34 @@ Usamos essas entidades e atributos porque foram os dados que nos apresentaram du
 
 Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc.) em qualquer parte do trabalho, registre **para cada uso relevante**:
 
+- Registro 1
+
 | Item | O que registrar |
 |------|------------------|
-| **Ferramenta e etapa** |  Claude: Usado para auxiliar no aprendizado do github, porque ninguém do grupo era familiarizado com essa ferramenta. Gemini: Usado na criação do DER.  |
-| **Motivação** | Claude: porque de acordo com as nossas pesquisas, concluímos que seria a melhor opção dentre as outras IA's, por ser mais técnico. Gemini: foi apenas uma escolha por preferência. |
-| **Prompt(s) utilizados** |  Claude: sucessivas perguntas de como funciona o github. Por exemplo: "como adicionar um colaborador ao github", "como salvar as alterações feitas dentro do arquivo Readme". |
-| **Resposta recebida** | Resposta do Claude: Vá até o repositório no GitHub onde você quer adicionar o colaborador. Clique na aba Settings no menu superior — você precisa ser dono do repositório ou ter permissão de administrador para ver essa opção. No menu lateral esquerdo, clique em Collaborators and teams (ou apenas Collaborators). Clique no botão Add people (pode pedir para confirmar sua senha). Digite o nome de usuário do GitHub, nome completo ou e-mail da pessoa que você quer convidar, e escolha o nível de permissão dela: Read, Triage, Write, Maintain ou Admin. Por fim, clique em Add [nome] to this repository. A pessoa vai receber um convite por e-mail ou notificação no GitHub, que ela precisa aceitar para ter acesso.  |
-| **Fontes consultadas e verificadas** |  |
-| **Trechos rejeitados ou corrigidos** |  |
-| **Justificativa da escolha final** | Decidimos manter as IA's escolhidas por atingir um nível bom de satisfação e coerência nas respostas geradas por elas. |
-| **Reflexão crítica** |  |
+| **Ferramenta e etapa** |  Claude - Auxílio no aprendizado do Github.  |
+| **Motivação** | Como ninguém do grupo era familiarizado com a rede social/ferramenta, optamos usar o Claude por saber que ele poderia ser mais técnico e direto ao mesmo tempo. |
+| **Prompt(s) utilizados** | "Preciso criar um arquivo readme dentro do github, aprender a editar e adicionar colaboradores para que o meu grupo também tenha acesso, como eu faço isso?" |
+| **Resposta recebida** | Resumo de 7 tópicos na sequência de como usar o git hub -  1) Crie (ou acesse) o repositório, 2) Crie o arquivo README, 3) Escreve e formate o conteúdo, 4) Salve as alterações (commit), 5) Edite o README depois de criado, 6) Adicione colaboradores ao grupo, 7) Defina permissões (opcional). |
+| **Fontes consultadas e verificadas** | O claude apenas mandou o conhecimento que ele sabia sobre o github no momento. |
+| **Trechos rejeitados ou corrigidos** | Não houve necessidade de ajuste. |
+| **Justificativa da escolha final** | Decidimos manter o uso do Claude nessa etapa por atender todas as nossas dúvidas sobre o github. |
+| **Reflexão crítica** | Um pequeno erro foi identificado por algumas informações estarem desatualizadas, na primeira vez o claude estava ensiando a usar o github na versão anterior, mas depois de explicamos que o github poderia estar numa versão mais atual no momento. |
+
+- Registro 2
+
+| Item | O que registrar |
+|------|------------------|
+| **Ferramenta e etapa** | Gemini - Usado no nosso primeiro DER.|
+| **Motivação** | PreferÊncia do grupo |
+| **Prompt(s) utilizados** | "Crie um DER de supermercado de acordo com as informações que eu irei fornecer" |
+| **Resposta recebida** | <img width="956" height="810" alt="DER_GEMINI" src="https://github.com/user-attachments/assets/9d7f158a-0c4b-453b-87c3-7e557162456b" /> |
+| **Fontes consultadas e verificadas** | Não houve fontes consultadas pelo Gemini. |
+| **Trechos rejeitados ou corrigidos** | O primeiro modelo inteiro foi rejeitado por nós, porque depois do feedback do professor, estudamos melhor nosso DER e vimos que apresentava muitas inconsistências. |
+| **Justificativa da escolha final** | Não aproveitamos nada do que o Gemini nos retornou e optamos refazer do zero por ela não atender corretamente os critérios do trabalho, então construímos um DER na mão pelo draw.io. |
+| **Reflexão crítica** | o Gemini apresentou um limite de excesso de detalhamento, o DER gerado incluía atributos desnecessarios dentro de cada entidade, que não agregavam ao nosso projeto. |
+
+- Registro 3
+
 
 
 
