@@ -56,35 +56,55 @@
 
 
 ### 3.1 Requisitos Funcionais
-- O sistema deve permitir cadastrar produtos contendo código, nome, data de validade, categoria e descrição
-- O sistema deve atualizar automaticamente a quantidade em estoque após cada venda efetuada no caixa
-- O sistema deve permitir consultar a quantidade disponível de um produto
-- O sistema deve permitir cadastrar fornecedores apenas por CNPJ
-- O sistema deve permitir associar produtos aos fornecedores que os fornecem
-- O sistema deve permitir registrar pedidos de compra feitos a um forncedor
-- O sistema deve permitir registrar uma venda com um ou mais produtos
-- O sistema deve calcular automaticamente o valor total da venda
-- O sistema deve permitr cancelar uma venda e devolver os itens ao estoque
+- O sistema deve permitir o cadastro de produtos com código único, nome, data de validade, categoria e descrição. A data de validade não pode ser retroativa, a categoria deve vir de lista pré-cadastrado, e o sistema deve impedir código duplicado ou produto sem categoria, permitindo ainda edição e inativação de cadastros.
+  
+- O sistema deve atualizar automaticamente a quantidade em estoque de cada produto após a conclusão de uma venda no caixa, dando baixa nas quantidades vendidas. A atualização deve ocorrer em tempo real, refletindo imediatamente nas consultas de estoque.
+  
+- O sistema deve permitir consultar a quantidade disponível de um produto em estoque, a partir do código ou nome do produto. A consulta deve exibir a quantidade atual e indicar quando o estoque estiver abaixo de um limite mínimo pré-definido.
+  
+- O sistema deve permitir o cadastro de fornecedores, identificados obrigatoriamente por CNPJ. O CNPJ deve ser único (sem duplicidade) e ter seus dígitos validados no momento do cadastro.
+  
+- O sistema deve permitir associar um ou mais produtos a um ou mais fornecedores que os fornecem. Um produto pode ter mais de um fornecedor, e um fornecedor pode fornecer mais de um produto.
+  
+- O sistema deve permitir registrar pedidos de compra feitos a um fornecedor, contendo fornecedor, produto, quantidade e data/hora do pedido.
+  
+- O sistema deve permitir registrar uma venda contendo um ou mais produtos, com suas respectivas quantidades. Cada produto vendido deve ter estoque suficiente disponível no momento do registro, com baixa automática no estoque.
+  
+- O sistema deve gerar automaticamente o valor total da venda, somando o valor de cada produto pela quantidade vendida. O valor total deve ser recalculado sempre que houver alteração nos itens da venda.
+  
+- O sistema deve permitir cancelar uma venda já registrada, devolvendo os itens vendidos ao estoque. 
 
 ### 3.2 Requisitos Não Funcionais
 
-- Desempenho: o sistema deve suportar multiplos caixas operando simultaneamente, mantendo o tempo de respostas de consultas e registro de vendas inferior a 3 segundos em situações normais de venda.
+- Desempenho: o sistema deve suportar pelo menos 10 caixas operando simultaneamente, mantendo o tempo de respostas de consultas e registro de vendas inferior a 3 segundos em situações normais de venda.
+  
 - Disponibilidade: o sistema deve estar dispoínvel durante todo o horário de funcionamento da loja, em caso de queda de internet, o sistema deve continuar permitindo as vendas, sincronizando tudo quando volta.
+  
 - Segurança: o sistema deve exigir login e senha para acesso as funcionalidades, permitindo que apenas usuários autorizados realizem tarefas de acordo com o nível acesso.
+  
 - Usabilidade: a interface do sistema do caixa deve manter uma navegação simples e objetiva, permitindo que funcionários novatos aprendam a ultilizar apenas com treinamento básico sem necessidade de conhecimentos técnicos avançados
 ---
 
 ## 4. Regras de Negócio
 
 - **Regras operacionais:**
-- Um produto não pode ser vendido após a data de validade.
-- Estoque: a reposição de estoque só pode ser registrada mediante a nota fiscal do fornecedor
-- Fornecedor: Um pedido de compra só deve ser realizado para um fornecedor cadastrado, Um fornecedor só pode ser cadastrado com CNPJ válido e dados completos.
-- Vendas: uma venda cancelada deve devolver automaticamente os itens ao estoque.
-- **Restrições organizacionais:** Exigência legal: Obrigadatoriedade da emissão de notas fiscais das vendas por exigência tributária, produtos perecíveis devem ter a data  de validade em dia por exigência da vigilância sanitária.
+- Um produto não pode ser vendido após sua data de validade. O sistema deve impedir o registro da venda caso a data de validade do produto seja anterior à data atual, bloqueando o item ou a venda até que ele seja removido do estoque.
+  
+- A entrada de estoque só pode ser registrada mediante nota fiscal do fornecedor. O sistema deve exigir a informação da nota fiscal correspondente para validar e concluir o registro de entrada, não sendo permitida a atualização do estoque sem essa comprovação.
+  
+- Um pedido de compra só pode ser realizado para um fornecedor previamente cadastrado no sistema. Não é permitido registrar pedidos de compra para fornecedores inexistentes ou não cadastrados.
+  
+- Um fornecedor só pode ser cadastrado mediante CNPJ válido e preenchimento completo dos dados obrigatórios. O sistema deve validar o formato/dígitos verificadores do CNPJ e impedir o cadastro caso haja campos obrigatórios em branco.
+  
+- Uma venda cancelada deve devolver automaticamente os itens vendidos ao estoque. A devolução deve ocorrer no momento do cancelamento, restabelecendo as quantidades correspondentes sem necessidade de ação manual do usuário.
+  
+- **Restrições organizacionais:**
+- Emissão Obrigatória de Nota Fiscal: O sistema deve garantir a emissão de nota fiscal para toda venda realizada, em atendimento à exigência tributária vigente. Vendas não podem ser finalizadas sem a respectiva emissão fiscal.
+  
+- Controle de Validade de Produtos Perecíveis: Produtos perecíveis devem ter sua data de validade mantida em dia e monitorada pelo sistema, em atendimento às exigências da vigilância sanitária. Produtos vencidos não podem permanecer disponíveis para venda.
 ---
 
-## 5. Dicionário de Dados Conceitual (Preliminar)
+## 5. Dicionário de Dados Conceitual
 
 
 Para cada entidade identificada, liste:
