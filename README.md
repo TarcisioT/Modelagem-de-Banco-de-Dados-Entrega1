@@ -386,14 +386,14 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 
 | Item | O que registrar |
 |------|------------------|
-| **Ferramenta e etapa** |  Claude - Auxílio no aprendizado do Github.  |
+| **Ferramenta e etapa** |  Claude - Auxílio no aprendizado do GitHub.  |
 | **Motivação** | Como ninguém do grupo era familiarizado com a rede social/ferramenta, optamos usar o Claude por saber que ele poderia ser mais técnico e direto ao mesmo tempo. |
 | **Prompt(s) utilizados** | "Preciso criar um arquivo readme dentro do github, aprender a editar e adicionar colaboradores para que o meu grupo também tenha acesso, como eu faço isso?" |
-| **Resposta recebida** | Resumo de 7 tópicos na sequência de como usar o git hub -  1) Crie (ou acesse) o repositório, 2) Crie o arquivo README, 3) Escreve e formate o conteúdo, 4) Salve as alterações (commit), 5) Edite o README depois de criado, 6) Adicione colaboradores ao grupo, 7) Defina permissões (opcional). |
-| **Fontes consultadas e verificadas** | O claude apenas mandou o conhecimento que ele sabia sobre o github no momento. |
+| **Resposta recebida** | Resumo de 7 tópicos na sequência de como usar o GitHub -  1) Crie (ou acesse) o repositório, 2) Crie o arquivo README, 3) Escreve e formate o conteúdo, 4) Salve as alterações (commit), 5) Edite o README depois de criado, 6) Adicione colaboradores ao grupo, 7) Defina permissões (opcional). |
+| **Fontes consultadas e verificadas** | O Claude apenas mandou o conhecimento que ele sabia sobre o GitHub no momento. |
 | **Trechos rejeitados ou corrigidos** | Não houve necessidade de ajuste. |
 | **Justificativa da escolha final** | Decidimos manter o uso do Claude nessa etapa por atender todas as nossas dúvidas sobre o github. |
-| **Reflexão crítica** | Um pequeno erro foi identificado por algumas informações estarem desatualizadas, na primeira vez o claude estava ensinando a usar o github na versão anterior, mas depois de explicarmos que o github poderia estar numa versão mais atual no momento. |
+| **Reflexão crítica** | Um pequeno erro foi identificado por algumas informações estarem desatualizadas, na primeira vez o claude estava ensinando a usar o github na versão anterior, mas depois de explicarmos que o GitHub poderia estar numa versão mais atual no momento. |
 
 - Registro 2
 
@@ -405,8 +405,8 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | **Resposta recebida** | <img width="956" height="810" alt="DER_GEMINI" src="https://github.com/user-attachments/assets/9d7f158a-0c4b-453b-87c3-7e557162456b" /> |
 | **Fontes consultadas e verificadas** | Não houve fontes consultadas pelo Gemini. |
 | **Trechos rejeitados ou corrigidos** | O primeiro modelo inteiro foi rejeitado por nós, porque depois do feedback do professor, estudamos melhor nosso DER e vimos que apresentava muitas inconsistências. |
-| **Justificativa da escolha final** | Não aproveitamos nada do que o Gemini nos retornou e optamos por refazer do zero por ela não atender corretamente os critérios do trabalho, então construímos um DER na mão pelo draw.io. |
-| **Reflexão crítica** | o Gemini apresentou um limite de excesso de detalhamento, o DER gerado incluía atributos desnecessários dentro de cada entidade, que não agregavam ao nosso projeto. |
+| **Justificativa da escolha final** | Não aproveitamos nada do que o Gemini nos retornou e optamos por refazer do zero por ela não atender corretamente aos critérios do trabalho, então construímos um DER na mão pelo draw.io. |
+| **Reflexão crítica** | O Gemini apresentou um limite de excesso de detalhamento, o DER gerado incluía atributos desnecessários dentro de cada entidade, que não agregavam ao nosso projeto. |
 
 - Registro 3
 
@@ -419,20 +419,20 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | **Fontes consultadas e verificadas** | Não houve fontes citadas. |
 | **Trechos rejeitados ou corrigidos** | Não houve trechos rejeitados ou corrigidos. |
 | **Justificativa da escolha final** | O grupo decidiu manter o uso por ela atender às nossas necessidades. |
-| **Reflexão crítica** | Não houve limites, vieses ou erros identificados nessa etapa. |
+| **Reflexão crítica** | A IA trouxe apenas os erros mais relevantes inicialmente, sendo necessário pedir novamente para que ela listasse todos os erros encontrados no documento, os incluindo os de menor destaque. |
 
 - Resgistro 4
 
 | Item | O que registrar |
 |------|------------------|
-| **Ferramenta e etapa** |  |
-| **Motivação** |  |
-| **Prompt(s) utilizados** |  |
-| **Resposta recebida** | |
-| **Fontes consultadas e verificadas** |  |
-| **Trechos rejeitados ou corrigidos** | |
-| **Justificativa da escolha final** |  |
-| **Reflexão crítica** |
+| **Ferramenta e etapa** | Claude - Auxílio na organização e redação da documentação do modelo conceitual (item 6 do esqueleto de entrega). |
+| **Motivação** | Preferência do grupo. |
+| **Prompt(s) utilizados** | *Mandei uma print mostrando as 4 coisas que o tópico do item 6 do esqueleto pedia e enviei a imagem do nosso DER* - "de acordo com essas instruções do esqueleto de entrega, como eu posso colocar as informações de uma maneira organizada?" |
+| **Resposta recebida** | Dicas de como estruturar os 4 tópicos do que o item 6 do esqueleto pedia, exemplo: 1. Entidades reconhecidas — não basta listar o nome, tem que justificar por que ela existe no modelo. Para cada entidade (Fornecedor, Pedido_Compra, Categoria_Produto, Produto, Cliente, Venda, Funcionário), explique em 1-2 frases: o que ela representa no negócio e por que era necessária capturar esses dados. Você já tem isso relativamente bem no README — o ponto de atenção é sempre conectar com a necessidade real levantada na entrevista, não só descrever o óbvio. |
+| **Fontes consultadas e verificadas** | Não houve fontes consultadas. |
+| **Trechos rejeitados ou corrigidos** | Foi corrigido apenas a ordem da estrutura sugerida pela IA, mantendo a sequência que estava dentro do esqueleto de entrega. |
+| **Justificativa da escolha final** | Mantivemos a estrutura sugeridada pela IA porque batia com o que estava presente nos slides fornecidos na matéria. |
+| **Reflexão crítica** | Não houve limites, vieses ou erros identificados. |
 
 
 
