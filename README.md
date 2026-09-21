@@ -105,9 +105,99 @@
 ---
 
 ## 5. Dicionário de Dados Conceitual
+### Modelo conceitual 
+Este modelo representa um mercado no qual cada produto é fornecido por um fornecedor 
+e cadastrado por categoria. Quando necessário e solicitado, os produtos são comprados 
+via pedido de compra e vendidos aos clientes por meio de vendas registradas pelos 
+funcionários.
+
+| Entidade | Relaciona-se com | Cardinalidade |
+|----------|------------------|---------------|
+| FORNECEDOR | PEDIDO_COMPRA | 1:N - Um forncedor receb3 vários pedidos. |
+| PEDIDO_COMPRA | PRODUTO | N:N - Vários pedidos cadastram vários produtos. |
+| PRODUTO | CATEGORIA_PRODUTO | 1:N - Vários produtos são cadastrados em uma categoria. |
+| VENDA | PRODUTO | 1:1 - Uma venda contém vários produtos. |
+| CLIENTE | VENDA | 1:1 - Um cliente realiza várias vendas. |
+| FUNCIONARIO | VENDA | 1:N - Um funcionario registra várias vendas. |
+
+###  Fluxo de dados (visão de DFD)
+O mercado solicita o PEDIDO_COMPRA para o FORNECEDOR que fornece os 
+produtos → o PEDIDO_COMPRA é cadastrado no PRODUTO que armazena a 
+quantidade e o preço de custo dos produtos → o PRODUTO é cadastrado e 
+classificado na CATEGORIA_PRODUTO → o CLIENTE chega ao mercado e realiza a 
+compra que gera uma VENDA → a VENDA feita pelo CLIENTE é registrada pelo 
+FUNCIONARIO → o CLIENTE finaliza a sua compra.
+
+### Convenções do dicionário
+SGBD: MySQL 8, mecanismo de armazenamento InnoDB — cuida da persistência dos 
+arquivos de dados, do log de transações (redo/undo) e mantém o índice primário 
+clusterizado por chave.  
+Codificação de caracteres: utf8mb4 com collation utf8mb4_0900_ai_ci. Escolhida em vez de 
+latin1 por cobrir acentuação do português sem perda em campos de nome e texto livre, e 
+por ser compatível com qualquer caractere Unicode que apareça em observações 
+clínicas.  
+Notação formal (símbolos usados neste dicionário):
+
+| Símbolo | Significado |
+|---------|-------------|
+| = | é composto de |
+| + | e (conecta elementos obrigatórios) |
+| () | opcional |
+| { }, n{ }m | iteração, com limite mínimo n e máximo m |  
+| [ \ ]  | escolha obrigatória entre alternativas | 
+| // | rótulo de um grupo repetitivo |  
+| @ | identificador (chave primária) |  
+| ** | comentário, fora da estrutura formal | 
+
+Prefixos: NM_ nome, DT_ data, ID_ identificador (não sofre operação matemática), CD_ 
+código de domínio, QT_ quantidade, TP_ tipo (categorização), IN_ indicador booleano. 
+Este caso também usa DS_ (descrição/texto livre) — não está entre os sete prefixos
+padrão, mas segue o mesmo princípio e já aparece no estudo de caso de referência 
+(DS_OBSERVACAO).
+
+### FORNECEDOR
+FORNECEDOR = @ID_FORNECEDOR + NM_FORNECEDOR + CNPJ + TELEFONE + RAZAO_SOCIAL + ENDERECO
+
+| Atributo | Tipo físico | Obrigatório | Significado e relevância |
+|----------|-------------|-------------|--------------------------|
+| ID_FORNCEDOR | integer | Sim (PK) | Código de localização do registro; não sofre operação matemática. |
+| NM_FORNCEDOR | varchar(120) | Sim | Nome fantasia pelo qual o fornecedor é conhecido comercialmente. |
+| CNPJ | integer | Sim | Número de identificação da pessoa jurídica do fornecedor perante a Receita Federal. |
+| RAZAO_SOCIAL | varchar(120) | Sim | Nome oficial da empresa fornecedora, conforme registrado legalmente. |
+| TELEFONE | integer | Sim | Número de contato do fornecedor.
+| ENDERECO | varchar(120) | Sim | Localização física do fornecedor (composto por Rua, Número, Bairro, Cidade, Estado). |
+
+### PEDIDO_COMPRA  
+PEDIDO_COMPRA = @ID_ PEDIDO_COMPRA + ID_FORNECEDOR + DT_HORA
+
+| Atributo | Tipo físico | Obrigatório | Significado e relevância |
+|----------|-------------|-------------|--------------------------|
+| ID_ PEDIDO  | integer | Sim (PK) | Identificador único do pedido de compra realizado junto ao fornecedor. |
+| ID_FORNCEDOR | integer | Sim (FK, único) | Referência ao fornecedor responsável por atender o pedido de compra. |
+| DT_HORA | datetime | Sim | Data e o horário em que o pedido de compra foi realizado. |
+
+### PRODUTO
+PRODUTO = @ID_PRODUTO + ID_CATEGORIA + NM_PRODUTO + DS_GONDOLA + DS_REDUZIDA + CD_BARRAS
+
+| Atributo | Tipo físico | Obrigatório | Significado e relevância |
+|----------|-------------|-------------|--------------------------|
+| ID_PRODUTO | integer | Sim (PK) | Identificador do produto. |
+| ID_CATEGORIA | integer | Sim (FK) | Referência à categoria de qual produto pertence. |
+| NM_PRODUTO | varchar(120) | Sim | Nome completo/comercial do produto. |
+| DS_GONDOLA | varchar(120) | Sim | Descrição resumida do produto exibido na etiqueta de prateleira. |
+| DS_REDUZIDA | varchar(120) | Sim | Descrição do produto utilizado na emissão de nota fiscal.
+| CD_BARRAS | integer | Sim (único) | Código numérico (EAN/GTIN) atribuído pelo fabricante, utilizado para leitura na caixa e identificação universal do produto. |
+
+###  CATEGORIA_PRODUTO  
+CATEGORIA_PRODUTO = @ID_ CATEGORIA_PRODUTO + NM_CATEGORIA
+
+| Atributo | Tipo físico | Obrigatório | Significado e relevância |
+|----------|-------------|-------------|--------------------------|
+| ID_CATEGORIA  | integer | Sim (PK) | Identificador único da categoria de produto cadastrado no sistema. |
+| NM_CATEGORIA | varchar(120) | Sim | Nome que identifica a categoria a qual produto pertence (ex: Hortifruti, Laticínios, Bebidas). |
 
 
-Para cada entidade identificada, liste:
+
 
 ### Fornecedor
 
