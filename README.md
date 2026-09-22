@@ -196,7 +196,7 @@ PRODUTO = @ID_PRODUTO + ID_CATEGORIA + NM_PRODUTO + DS_GONDOLA + DS_REDUZIDA + C
 | ID_CATEGORIA | integer | Sim (FK) | Referência à categoria de qual produto pertence. |
 | NM_PRODUTO | varchar(120) | Sim | Nome completo/comercial do produto. |
 | DS_GONDOLA | varchar(120) | Sim | Descrição resumida do produto exibido na etiqueta de prateleira. |
-| DS_REDUZIDA | varchar(120) | Sim | Descrição do produto utilizado na emissão de nota fiscal.
+| DS_REDUZIDA | varchar(120) | Sim | Descrição do produto utilizado na emissão de nota fiscal. |
 | CD_BARRAS | integer | Sim (único) | Código numérico (EAN/GTIN) atribuído pelo fabricante, utilizado para leitura na caixa e identificação universal do produto. |
 
 ###  CATEGORIA_PRODUTO  
@@ -207,79 +207,53 @@ CATEGORIA_PRODUTO = @ID_CATEGORIA_PRODUTO + NM_CATEGORIA
 | ID_CATEGORIA  | integer | Sim (PK) | Identificador único da categoria de produto cadastrado no sistema. |
 | NM_CATEGORIA | varchar(120) | Sim | Nome que identifica a categoria a qual produto pertence (ex: Hortifruti, Laticínios, Bebidas). |
 
+### VENDA
+VENDA = @ID_VENDA + ID_FUNCIONARIO + ID_CLIENTE + DT_HORA + FORMA_PAGAMENTO
+
+| Atributo | Tipo físico | Obrigatório | Significado e relevância |
+|----------|-------------|-------------|--------------------------|
+| ID_VENDA | integer | Sim (PK) | Identificador único da venda realizada. |
+| ID_FUNCIONARIO | integer | Sim (FK) | Referência ao funcionário responsável por registrar a venda. |
+| ID_CLIENTE | integer | Sim (FK) | Referência ao cliente que realizou a compra. |
+| DT_HORA | datetime | Sim | Data e o horário em que a venda foi realizada. |
+| FORMA_PAGAMENTO | varchar(60) | Sim | Forma de pagamento utilizada pelo cliente na compra. |
+
+### FUNCIONARIO
+FUNCIONARIO = @ID_FUNCIONARIO + NM_FUNCIONARIO + CPF + ENDERECO + FUNCAO + TELEFONE + DT_ADMISSAO
+
+| Atributo | Tipo físico | Obrigatório | Significado e relevância |
+|----------|-------------|-------------|--------------------------|
+| ID_FUNCIONARIO | integer | Sim (PK) | Identificador único do funcionário cadastrado no sistema. |
+| NM_FUNCIONARIO | varchar(120) | Sim | Nome completo do funcionário. |
+| CPF | integer | Sim (único) | Documento de identificação civil do funcionário. |
+| ENDERECO | varchar(120) | Sim | Localização de residência do funcionário (composto por Número, Rua, Bairro, Cidade, Estado). |
+| FUNCAO | varchar(120) | Sim | Carga/atividade exercida pelo funcionário na empresa (ex: Caixa, Repositor, Gerente). |
+| TELEFONE | integer | Sim | Número de contato do funcionário. |
+| DT_ADMISSAO | date | Sim | Data em que o funcionário foi contratado pela empresa. |
+
+### CLIENTE
+CLIENTE = @ID_CLIENTE + NM_CLIENTE + CPF + TELEFONE
+
+| Atributo | Tipo físico | Obrigatório | Significado e relevância |
+|----------|-------------|-------------|--------------------------|
+| ID_CLIENTE | integer | Sim (PK) | Identificador único do cliente cadastrado no sistema. |
+| NM_CLIENTE | varchar(120) | Sim | Nome completo do cliente. |
+| CPF | integer | Sim (único) | Documento de identificação civil do cliente. |
+| TELEFONE | integer | Não | Número de contato do cliente. |
+
+### Acesso por operação e conformidade com a LGPD 
+
+| Tabela | LER | INSERIR | ATUALIZAR | APAGAR |
+|--------|-----|---------|-----------|--------|
+| FORNECEDOR | Administrativo/RH | Administrativo/RH | Administrativo/RH | Nenhum papel |
+| PEDIDO_COMPRA | Administrativo/ RH, Funcionário | Administrativo, Funcionário | Administrativo, Funcionário | Nenhum Papel |
+| PRODUTO | Administrativo, Funcionário | Administrativo, Funcionário | Funcionário | Nenhum papel |
+| CATEGORIA_ PRODUTO | Administrativo, Funcionário | Administrativo, Funcionário| Funcionário | Nenhum papel |
+| VENDA | Administrativo, Funcionário | Administrativo/RH, Funcionário | Funcionário | Nenhum papel
+| CLIENTE | Administrativo/RH, Funcionário | Administrativo/RH, Funcionário | Funcionário | Nenhum papel
+| FUNCIONARIO | Administrativo/RH | Administrativo/RH | Administrativo/RH | Administrativo/RH (desligamento)
 
 
-
-### Fornecedor
-
-| Atributo | Descrição | Regra de negócio associada |
-|----------|-----------|------------------------------|
-| ID_Fornecedor | Identificador único do fornecedor cadastrado no sistema | Gerada automaticamente pelo sistema |
-| Nome_Fornecedor | Nome fantasia pelo qual o fornecedor é conhecido comercialmente |  |
-| CNPJ | Número de identificação da pessoa jurídica do fornecedor perante a Receita Federal | Obrigatório, único, deve conter 14 dígitos válidos |
-| Razão_Social | Nome jurídico oficial da empresa fornecedora, conforme registrado legalmente |  |
-| Telefone | Número de contato do fornecedor |  |
-| Endereço | Localização física do fornecedor (composto por Rua, Número, Bairro, Cidade, Estado) |  |
-
-### Pedido_Compra
-
-| Atributo | Descrição | Regra de negócio associada |
-|----------|-----------|------------------------------|
-| ID_Pedido | Identificador único do pedido compra realizado junto ao fornecedor | Gerada automaticamente pelo sistema |
-| ID_Fornecedor | Referência ao fornecedor responsável por atender o pedido de compra | Deve referenciar um fornecedor cadastrado no sistema |
-| Data | Data em que o pedido de compra foi realizado |  |
-| Hora | Horário em que o pedido de compra foi realizado |  |
-
-
-### Produto
-
-| Atributo | Descrição | Regra de negócio associada |
-|----------|-----------|------------------------------|
-| ID_Produto | Identificador único interno do produto | Gerada automaticamente pelo sistema |
-| Nome_Produto | Nome completo/comercial do produto |  |
-| ID_Categoria | Referência à categoria à qual o produto pertence | Deve referenciar uma categoria registrada |
-| Descricao_Gondola | Descrição resumida do produto exibida na etiqueta de prateleira |  |
-| Descricao_Reduzida | Descrição do produto utilizada na emissão de nota fiscal | Deve respeitar o limite de caracteres exigido pela legislação fiscal |
-| Codigo_Barras | Código numérico (EAN/GTIN) atribuído pelo fabricante, utilizado para leitura no caixa e identificação universal do produto | Único |
-
-### Categoria_Produto
-
-| Atributo | Descrição | Regra de negócio associada |
-|----------|-----------|------------------------------|
-| ID_Categoria | Identificador único da categoria de produto cadastrada no sistema | Gerada automaticamente pelo sistema |
-| Nome_Categoria | Nome que identifica a categoria à qual produtos pertencem (ex: Hortifruti, Laticínios, Bebidas) |
-
-### Funcionário 
-
-| Atributo | Descrição | Regra de negócio associada |
-|----------|-----------|------------------------------|
-| ID_Funcionario | Identificador único do funcionário cadastrado no sistema | Gerada automaticamente pelo sistema |
-| Nome_Funcionario | Nome completo do funcionário |  |
-| CPF | Documento de identificação civil do funcionário | Obrigatório, único, deve conter 11 dígitos válidos |
-| Endereço | Localização de residência do funcionário (composto por Número, Rua, Bairro, Cidade, Estado) |
-| Função | Cargo/atividade exercida pelo funcionário na empresa (ex: Caixa, Repositor, Gerente) |
-| Telefone | Número de contato do funcionário |  |
-| Data_Admissao | Data em que o funcionário foi contratado pela empresa |  |
-
-### Venda
-
-| Atributo | Descrição | Regra de negócio associada |
-|----------|-----------|------------------------------|
-| ID_Venda | Identificador único da venda realizada | Gerada automaticamente pelo sistema |
-| ID_Funcionario | Referência ao funcionário responsável por registrar a venda | Deve referenciar um funcionário cadastrado |
-| ID_Cliente | Referência ao cliente que realizou a compra | Deve referenciar um cliente cadastrado |
-| Data | Data em que a venda foi realizada
-| Hora | Horário em que a venda foi realizada
-| Forma_Pagamento | Forma de pagamento utilizada pelo cliente na compra | Valores possíveis: Dinheiro, Cartão de Débito, Cartão de Crédito |
-
-### Cliente
-
-| Atributo | Descrição | Regra de negócio associada |
-|----------|-----------|------------------------------|
-| ID_Cliente | Identificador único do cliente cadastrado no sistema | Gerada automaticamente |
-| Nome_Cliente | Nome completo do cliente |  |
-| CPF | Documento de identificação civil do cliente | Único, deve conter 11 dígitos válidos |
-| Telefone | Número de contato do cliente |  |
 
 
 
