@@ -369,20 +369,8 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | **Justificativa da escolha final** | Decidimos manter o uso do Claude nessa etapa por atender todas as nossas dúvidas sobre o github. |
 | **Reflexão crítica** | Um pequeno erro foi identificado por algumas informações estarem desatualizadas, na primeira vez o claude estava ensinando a usar o github na versão anterior, mas depois de explicarmos que o GitHub poderia estar numa versão mais atual no momento. |
 
+
 - Registro 2
-
-| Item | O que registrar |
-|------|------------------|
-| **Ferramenta e etapa** | Gemini - Usado no nosso primeiro DER.|
-| **Motivação** | Preferência geral do grupo.|
-| **Prompt(s) utilizados** | "Crie um DER de supermercado de acordo com as informações que eu irei fornecer" |
-| **Resposta recebida** | <img width="956" height="810" alt="DER_GEMINI" src="https://github.com/user-attachments/assets/9d7f158a-0c4b-453b-87c3-7e557162456b" /> |
-| **Fontes consultadas e verificadas** | Não houve fontes consultadas pelo Gemini. |
-| **Trechos rejeitados ou corrigidos** | O primeiro modelo inteiro foi rejeitado por nós, porque depois do feedback do professor, estudamos melhor nosso DER e vimos que apresentava muitas inconsistências. |
-| **Justificativa da escolha final** | Não aproveitamos nada do que o Gemini nos retornou e optamos por refazer do zero por ela não atender corretamente aos critérios do trabalho, então construímos um DER na mão pelo draw.io. |
-| **Reflexão crítica** | O Gemini apresentou um limite de excesso de detalhamento, o DER gerado incluía atributos desnecessários dentro de cada entidade, que não agregavam ao nosso projeto. |
-
-- Registro 3
 
 | Item | O que registrar |
 |------|------------------|
@@ -395,7 +383,7 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | **Justificativa da escolha final** | O grupo decidiu manter o uso por ela atender às nossas necessidades. |
 | **Reflexão crítica** | A IA trouxe apenas os erros mais relevantes inicialmente, sendo necessário pedir novamente para que ela listasse todos os erros encontrados no documento, os incluindo os de menor destaque. |
 
-- Resgistro 4
+- Resgistro 3
 
 | Item | O que registrar |
 |------|------------------|
