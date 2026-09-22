@@ -22,6 +22,9 @@
 - Número de contato: (11)99317-0906
 - Nome do responsável/entrevistado: Guilherme Takemoto
 
+- Foto com o entrevistado: <img width="947" height="1600" alt="WhatsApp Image 2026-09-22 at 16 22 22" src="https://github.com/user-attachments/assets/7f8d7d4a-3fba-40b8-b748-63b353422e62" />
+
+
 - Fachada do mercado: <img width="1600" height="1200" alt="fachada_mercado" src="https://github.com/user-attachments/assets/96ddf354-d13e-41de-be66-00efc5e769c5" />
 
 - Interior do mercado: <img width="1600" height="1200" alt="interior_mercado" src="https://github.com/user-attachments/assets/b969924b-67c7-4e15-8554-971d6f0eec40" />
