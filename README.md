@@ -399,6 +399,21 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | **Justificativa da escolha final** | Mantivemos a estrutura sugeridada pela IA porque batia com o que estava presente nos slides fornecidos na matéria. |
 | **Reflexão crítica** | Não houve limites, vieses ou erros identificados. |
 
+- Registro 4
+
+| Item | O que registrar |
+|------|------------------|
+| **Ferramenta e etapa** | Claude - Correção geral do DER criado. |
+| **Motivação** | Preferência geral do grupo no uso do Claude. |
+| **Prompt(s) utilizados** | "Revise para mim as informações dentro desse DER, e veja se está coerente com tudo que apresentei, e dê uma atenção maior às cardinalidades." |
+| **Resposta recebida** | *DER revisado* - cardinalidades corrigidas. |
+| **Fontes consultadas e verificadas** | Não houve fontes consultadas ou verificadas. |
+| **Trechos rejeitados ou corrigidos** |  |
+| **Justificativa da escolha final** |  |
+| **Reflexão crítica** | 
+
+
+
 
 
 
