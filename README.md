@@ -317,7 +317,8 @@ CLIENTE = @ID_CLIENTE + NM_CLIENTE + CPF + TELEFONE
 ---
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
-<img width="1372" height="1622" alt="DER_Mercado2 drawio" src="https://github.com/user-attachments/assets/8981e419-cbcc-4f57-b08d-447698a92c91" />
+<img width="990" height="650" alt="modelo_conceitual" src="https://github.com/user-attachments/assets/bca25a27-49a4-47a5-a846-4e61050a4d8c" />
+
 
 
 
