@@ -127,20 +127,15 @@ funcionários.
 
 | Entidade | Relaciona-se com | Cardinalidade |
 |----------|------------------|---------------|
-| FORNECEDOR | PEDIDO_COMPRA | 1:N - Um forncedor recebe vários pedidos. |
-| PEDIDO_COMPRA | PRODUTO | N:N - Vários pedidos cadastram vários produtos. |
-| PRODUTO | CATEGORIA_PRODUTO | 1:N - Vários produtos são cadastrados em uma categoria. |
-| VENDA | PRODUTO | 1:1 - Uma venda contém vários produtos. |
+| FORNECEDOR | PRODUTO | 1:N - Um forncedor fornece vários produtos. |
+| PRODUTO | CATEGORIA_PRODUTO | 1:N - Uma categoria tem vários produtos. |
+| VENDA | PRODUTO | 1:N - Uma venda contém vários produtos. |
 | CLIENTE | VENDA | 1:1 - Um cliente realiza várias vendas. |
 | FUNCIONARIO | VENDA | 1:N - Um funcionario registra várias vendas. |
 
 ###  Fluxo de dados (visão de DFD)
-O mercado solicita o PEDIDO_COMPRA para o FORNECEDOR que fornece os 
-produtos → o PEDIDO_COMPRA é cadastrado no PRODUTO que armazena a 
-quantidade e o preço de custo dos produtos → o PRODUTO é cadastrado e 
-classificado na CATEGORIA_PRODUTO → o CLIENTE chega ao mercado e realiza a 
-compra que gera uma VENDA → a VENDA feita pelo CLIENTE é registrada pelo 
-FUNCIONARIO → o CLIENTE finaliza a sua compra.
+O FORNECEDOR fornece o PRODUTO para o mercado → o PRODUTO é cadastrado e classificado na CATEGORIA_PRODUTO → o CLIENTE chega ao mercado e realiza a 
+compra que gera uma VENDA → a VENDA feita pelo CLIENTE é registrada pelo FUNCIONARIO → o CLIENTE finaliza a sua compra.
 
 ### Convenções do dicionário
 SGBD: MySQL 8, mecanismo de armazenamento InnoDB — cuida da persistência dos 
@@ -181,15 +176,6 @@ FORNECEDOR = @ID_FORNECEDOR + NM_FORNECEDOR + CNPJ + TELEFONE + RAZAO_SOCIAL + E
 | TELEFONE | integer | Sim | Número de contato do fornecedor.
 | ENDERECO | varchar(120) | Sim | Localização física do fornecedor (composto por Rua, Número, Bairro, Cidade, Estado). |
 
-### PEDIDO_COMPRA  
-PEDIDO_COMPRA = @ID_PEDIDO_COMPRA + ID_FORNECEDOR + DT_HORA
-
-| Atributo | Tipo físico | Obrigatório | Significado e relevância |
-|----------|-------------|-------------|--------------------------|
-| ID_ PEDIDO  | integer | Sim (PK) | Identificador único do pedido de compra realizado junto ao fornecedor. |
-| ID_FORNCEDOR | integer | Sim (FK, único) | Referência ao fornecedor responsável por atender o pedido de compra. |
-| DT_HORA | datetime | Sim | Data e o horário em que o pedido de compra foi realizado. |
-
 ### PRODUTO
 PRODUTO = @ID_PRODUTO + ID_CATEGORIA + NM_PRODUTO + DS_GONDOLA + DS_REDUZIDA + CD_BARRAS
 
@@ -197,6 +183,7 @@ PRODUTO = @ID_PRODUTO + ID_CATEGORIA + NM_PRODUTO + DS_GONDOLA + DS_REDUZIDA + C
 |----------|-------------|-------------|--------------------------|
 | ID_PRODUTO | integer | Sim (PK) | Identificador do produto. |
 | ID_CATEGORIA | integer | Sim (FK) | Referência à categoria de qual produto pertence. |
+| ID_VENDA | integer | Sim (FK) | Referência à venda realizada |
 | NM_PRODUTO | varchar(120) | Sim | Nome completo/comercial do produto. |
 | DS_GONDOLA | varchar(120) | Sim | Descrição resumida do produto exibido na etiqueta de prateleira. |
 | DS_REDUZIDA | varchar(120) | Sim | Descrição do produto utilizado na emissão de nota fiscal. |
@@ -249,7 +236,6 @@ CLIENTE = @ID_CLIENTE + NM_CLIENTE + CPF + TELEFONE
 | Tabela | LER | INSERIR | ATUALIZAR | APAGAR |
 |--------|-----|---------|-----------|--------|
 | FORNECEDOR | Administrativo/RH | Administrativo/RH | Administrativo/RH | Nenhum papel |
-| PEDIDO_COMPRA | Administrativo/ RH, Funcionário | Administrativo, Funcionário | Administrativo, Funcionário | Nenhum Papel |
 | PRODUTO | Administrativo, Funcionário | Administrativo, Funcionário | Funcionário | Nenhum papel |
 | CATEGORIA_ PRODUTO | Administrativo, Funcionário | Administrativo, Funcionário| Funcionário | Nenhum papel |
 | VENDA | Administrativo, Funcionário | Administrativo/RH, Funcionário | Funcionário | Nenhum papel
@@ -272,7 +258,6 @@ CLIENTE = @ID_CLIENTE + NM_CLIENTE + CPF + TELEFONE
 - **Entidades reconhecidas:**
 - Produto: Representa os produtos comercializados pelo mercado, sendo necessário para controlar informações como nome, categoria, código de barras e descrições de identificação (gôndola e nota fiscal).
 - Categoria_Produto: Permite classificar os produtos em categorias, facilitando sua organização e identificação pelo tipo de produto
-- Pedido_Compra: Representa os pedidos de produtos feitos aos fornecedores, permitindo controlar as compras realizadas pelo mercado.
 - Fornecedor: Representa as empresas que fornecem produtos ao mercado, permitindo registrar e relacionar os fornecedores às compras realizadas.
 - Funcionário: Representa os colaboradores do mercado responsáveis por registrar as vendas realizadas.
 - Venda: Representa as vendas realizadas pelo mercado, permitindo registrar informações da transação e relacioná-la ao cliente, ao funcionário responsável e aos produtos vendidos.
@@ -288,19 +273,13 @@ CLIENTE = @ID_CLIENTE + NM_CLIENTE + CPF + TELEFONE
 - Nome_Fornecedor, CNPJ, Razao_Social, Telefone - Simples
 - Endereço - Composto (Rua, Número, Bairro, Cidade, Estado)
 
-#### Pedido_Compra
-  
-- ID_Pedido - Chave primária
-- ID_Fornecedor - Chave estrangeira
-- Data, Hora - Simples
-
  #### Categoria_Produto
 - ID_Categoria - Chave primária
 - Nome_Categoria - Simples
 
  #### Produto
 - ID_Produto - Chave primária
-- ID_Categoria - Chave estrangeira
+- ID_Categoria, ID_Venda - Chave estrangeira
 - Nome_Produto, Descricao_Gondola, Descricao_Reduzida, Codigo_Barras - Simples
 
  #### Venda
@@ -319,17 +298,15 @@ CLIENTE = @ID_CLIENTE + NM_CLIENTE + CPF + TELEFONE
 
 - Observação: não foram identificados atributos multivalorados no modelo, uma vez que não houve confirmação, durante o levantamento de requisitos, de campos que admitissem múltiplos valores simultâneos (ex: mais de um telefone nas entidades fornecedor/cliente/funcionário).
   
-- **Relacionamentos pertinentes:**
+### Relacionamentos pertinentes:
 
-- Fornecedor(1) - Vende - (N) Pedido_Compra: um fornecedor pode atender vários pedidos de compra, mas cada pedido é feito a um único fornecedor.
-- Categoria_Produto (1) — Cadastra — (N) Produto: uma categoria pode conter vários produtos, mas cada produto pertence a uma única categoria.
-- Pedido_Compra (N) — Cadastra — (N) Produto: um pedido de compra pode conter vários produtos, e um mesmo produto pode estar presente em vários pedidos diferentes. Esse relacionamento possui os atributos Qntd_Produto e Valor_Unitario, que registram a quantidade e o preço praticado naquele pedido específico.
-- Cliente (1) — Realiza — (N) Venda: um cliente pode realizar várias vendas, mas cada venda é realizada por um único cliente.
-- Funcionario (1) — Registra — (N) Venda: um funcionário pode registrar várias vendas, mas cada venda é registrada por um único funcionário.
-- Produto (N) — Contém — (N) Venda: uma venda pode conter vários produtos, e um mesmo produto pode estar presente em várias vendas diferentes. Esse relacionamento possui os atributos Qntd_Produto e Valor_Unitario, que registram a quantidade e o preço praticado naquela venda específica.
-
+- Fornecedor(1) - Fornece - (N) Produto: Um forncedor pode forncer vários produtos, e um produto pode ser fornecido por vários fornecedores.
+- Categoria_Produto (1) — Cadastra — (N) Produto: Uma categoria pode conter vários produtos, mas cada produto pertence a uma única categoria.
+- Cliente (1) — Realiza — (N) Venda: Um cliente pode realizar várias vendas, mas cada venda é realizada por um único cliente.
+- Funcionario (1) — Registra — (N) Venda: Um funcionário pode registrar várias vendas, mas cada venda é registrada por um único funcionário.
+- Produto (1) — Contém — (N) Venda: Uma venda pode conter vários produtos, mas cada produto pertence a uma venda.
   
-- **Restrições e políticas organizacionais aplicadas ao modelo.**
+### Restrições e políticas organizacionais aplicadas ao modelo.
 
 - Um produto não pode ser vendido após sua data de validade.
 - Um pedido de compra só deve ser realizado para um fornecedor previamente cadastrado
