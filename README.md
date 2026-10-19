@@ -89,50 +89,51 @@ Dados envolvidos: identificação da venda, valor total, forma de pagamento, dat
 <img src="fluxoograma_estoque.png" alt="Fluxograma de estoque" width="400">
 ---
 
-## 3. Requisitos do Sistema
+#### Requisitos do Sistema
 
-### 3.1 Requisitos Funcionais
-- O sistema deve permitir o cadastro de produtos com código único, nome, data de validade, categoria e descrição. A data de validade não pode ser retroativa, a categoria deve vir de lista pré-cadastrada, e o sistema deve impedir código duplicado ou produto sem categoria, permitindo ainda edição e inativação de cadastros.
-  
-- O sistema deve atualizar automaticamente a quantidade em estoque de cada produto após a conclusão de uma venda no caixa, dando baixa nas quantidades vendidas. A atualização deve ocorrer em tempo real, refletindo imediatamente nas consultas de estoque.
-  
-- O sistema deve permitir consultar a quantidade disponível de um produto em estoque, a partir do código ou nome do produto. A consulta deve exibir a quantidade atual e indicar quando o estoque estiver abaixo de um limite mínimo pré-definido.
-  
-- O sistema deve permitir o cadastro de fornecedores, identificados obrigatoriamente por CNPJ. O CNPJ deve ser único (sem duplicidade) e ter seus dígitos validados no momento do cadastro.
-  
-- O sistema deve permitir associar um ou mais produtos a um ou mais fornecedores que os fornecem. Um produto pode ter mais de um fornecedor, e um fornecedor pode fornecer mais de um produto.
-  
-- O sistema deve permitir registrar pedidos de compra feitos a um fornecedor, contendo fornecedor, produto, quantidade e data/hora do pedido.
-  
-- O sistema deve permitir registrar uma venda contendo um ou mais produtos, com suas respectivas quantidades. Cada produto vendido deve ter estoque suficiente disponível no momento do registro, com baixa automática no estoque.
-  
-- O sistema deve gerar automaticamente o valor total da venda, somando o valor de cada produto pela quantidade vendida. O valor total deve ser recalculado sempre que houver alteração nos itens da venda.
-  
-- O sistema deve permitir cancelar uma venda já registrada, devolvendo os itens vendidos ao estoque.
-  
-- O sistema deve permitir consultar os lotes vencidos e os lotes próximos do vencimento, apresentando o produto, o número do lote, a quantidade disponível e a data de validade.
+##### Requisitos Funcionais 
 
-- O sistema deve emitir um alerta quando um lote estiver próximo da data de vencimento, considerando um período previamente definido pela organização.
-
-- O sistema deve impedir a venda de produtos pertencentes a lotes vencidos.
-
-- O sistema deve priorizar, durante a baixa do estoque, os lotes válidos com a data de vencimento mais próxima.
-
-### 3.2 Requisitos Não Funcionais
-
-- Desempenho: o sistema deve suportar pelo menos 10 caixas operando simultaneamente, mantendo o tempo de resposta de consultas e registro de vendas inferior a 3 segundos em situações normais de venda.
+- **RF01 —** O sistema deve permitir o cadastro de produtos com código único, nome, data de validade, categoria e descrição. A data de validade não pode ser retroativa, a categoria deve vir de lista pré-cadastrada, e o sistema deve impedir código duplicado ou produto sem categoria, permitindo ainda edição e inativação de cadastros.
   
-- Disponibilidade: o sistema deve estar disponínvel durante todo o horário de funcionamento da loja, em caso de queda de internet, o sistema deve continuar permitindo as vendas, sincronizando tudo quando voltar.
+-  **RF02 —** O sistema deve atualizar automaticamente a quantidade em estoque de cada produto após a conclusão de uma venda no caixa, dando baixa nas quantidades vendidas. A atualização deve ocorrer em tempo real, refletindo imediatamente nas consultas de estoque.
   
-- Segurança: o sistema deve exigir login e senha para acesso às funcionalidades, permitindo que apenas usuários autorizados realizem tarefas de acordo com o nível de acesso.
+-  **RF03 —** O sistema deve permitir consultar a quantidade disponível de um produto em estoque, a partir do código ou nome do produto. A consulta deve exibir a quantidade atual e indicar quando o estoque estiver abaixo de um limite mínimo pré-definido.
   
-- Usabilidade: a interface do sistema do caixa deve manter uma navegação simples e objetiva, permitindo que funcionários novatos aprendam a utilizar apenas com treinamento básico sem necessidade de conhecimentos técnicos avançados
+-  **RF04 —** O sistema deve permitir o cadastro de fornecedores, identificados obrigatoriamente por CNPJ. O CNPJ deve ser único (sem duplicidade) e ter seus dígitos validados no momento do cadastro.
+  
+- **RF05 —** O sistema deve permitir associar um ou mais produtos a um ou mais fornecedores que os fornecem. Um produto pode ter mais de um fornecedor, e um fornecedor pode fornecer mais de um produto.
+  
+- **RF06 —** O sistema deve permitir registrar pedidos de compra feitos a um fornecedor, contendo fornecedor, produto, quantidade e data/hora do pedido.
+  
+- **RF07 —** O sistema deve permitir registrar uma venda contendo um ou mais produtos, com suas respectivas quantidades. Cada produto vendido deve ter estoque suficiente disponível no momento do registro, com baixa automática no estoque.
+  
+- **RF08 —** O sistema deve gerar automaticamente o valor total da venda, somando o valor de cada produto pela quantidade vendida. O valor total deve ser recalculado sempre que houver alteração nos itens da venda.
+  
+- **RF09 —** O sistema deve permitir cancelar uma venda já registrada, devolvendo os itens vendidos ao estoque.
+  
+- **RF10 —** O sistema deve permitir consultar os lotes vencidos e os lotes próximos do vencimento, apresentando o produto, o número do lote, a quantidade disponível e a data de validade.
 
-- Recuperação de dados: o sistema deve realizar cópias de segurança periódicas para permitir a recuperação das informações em caso de falha ou perda de dados.
+- **RF11 —** O sistema deve emitir um alerta quando um lote estiver próximo da data de vencimento, considerando um período previamente definido pela organização.
+
+- **RF12 —** O sistema deve impedir a venda de produtos pertencentes a lotes vencidos.
+
+- **RF13 —** O sistema deve priorizar, durante a baixa do estoque, os lotes válidos com a data de vencimento mais próxima.
+
+##### Requisitos Não Funcionais
+
+- **RNF01 —** Desempenho: o sistema deve suportar pelo menos 10 caixas operando simultaneamente, mantendo o tempo de resposta de consultas e registro de vendas inferior a 3 segundos em situações normais de venda.
+  
+- **RNF02 —** Disponibilidade: o sistema deve estar disponínvel durante todo o horário de funcionamento da loja, em caso de queda de internet, o sistema deve continuar permitindo as vendas, sincronizando tudo quando voltar.
+  
+- **RNF03 —** Segurança: o sistema deve exigir login e senha para acesso às funcionalidades, permitindo que apenas usuários autorizados realizem tarefas de acordo com o nível de acesso.
+  
+- **RNF04 —** Usabilidade: a interface do sistema do caixa deve manter uma navegação simples e objetiva, permitindo que funcionários novatos aprendam a utilizar apenas com treinamento básico sem necessidade de conhecimentos técnicos avançados
+
+- **RNF05 —** Recuperação de dados: o sistema deve realizar cópias de segurança periódicas para permitir a recuperação das informações em caso de falha ou perda de dados.
   
 ---
 
-## 4. Regras de Negócio
+#### Regras de Negócio
 
 - **Regras operacionais:**
 - Um produto não pode ser vendido após sua data de validade. O sistema deve impedir o registro da venda caso a data de validade do produto seja anterior à data atual, bloqueando o item ou a venda até que ele seja removido do estoque.
