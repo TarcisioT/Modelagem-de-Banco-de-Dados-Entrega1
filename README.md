@@ -136,20 +136,30 @@ Dados envolvidos: identificação da venda, valor total, forma de pagamento, dat
 #### Regras de Negócio
 
 - **Regras operacionais:**
-- Um produto não pode ser vendido após sua data de validade. O sistema deve impedir o registro da venda caso a data de validade do produto seja anterior à data atual, bloqueando o item ou a venda até que ele seja removido do estoque.
+- **RN01 —** Um produto não pode ser vendido após sua data de validade. O sistema deve impedir o registro da venda caso a data de validade do produto seja anterior à data atual, bloqueando o item ou a venda até que ele seja removido do estoque.
   
-- A entrada de estoque só pode ser registrada mediante nota fiscal do fornecedor. O sistema deve exigir a informação da nota fiscal correspondente para validar e concluir o registro de entrada, não sendo permitida a atualização do estoque sem essa comprovação.
+- **RN02 —** A entrada de estoque só pode ser registrada mediante nota fiscal do fornecedor. O sistema deve exigir a informação da nota fiscal correspondente para validar e concluir o registro de entrada, não sendo permitida a atualização do estoque sem essa comprovação.
   
-- Um pedido de compra só pode ser realizado para um fornecedor previamente cadastrado no sistema. Não é permitido registrar pedidos de compra para fornecedores inexistentes ou não cadastrados.
+- **RN03 —** Um pedido de compra só pode ser realizado para um fornecedor previamente cadastrado no sistema. Não é permitido registrar pedidos de compra para fornecedores inexistentes ou não cadastrados.
   
-- Um fornecedor só pode ser cadastrado mediante CNPJ válido e preenchimento completo dos dados obrigatórios. O sistema deve validar o formato/dígitos verificadores do CNPJ e impedir o cadastro caso haja campos obrigatórios em branco.
+- **RN04 —** Um fornecedor só pode ser cadastrado mediante CNPJ válido e preenchimento completo dos dados obrigatórios. O sistema deve validar o formato/dígitos verificadores do CNPJ e impedir o cadastro caso haja campos obrigatórios em branco.
   
-- Uma venda cancelada deve devolver automaticamente os itens vendidos ao estoque. A devolução deve ocorrer no momento do cancelamento, restabelecendo as quantidades correspondentes sem necessidade de ação manual do usuário.
+- **RN05 —** Uma venda cancelada deve devolver automaticamente os itens vendidos ao estoque. A devolução deve ocorrer no momento do cancelamento, restabelecendo as quantidades correspondentes sem necessidade de ação manual do usuário.
+
+- **RN06 —** Estoque mínimo e reposição: Cada produto deve ter uma quantidade mínima de estoque definida. Quando a quantidade disponível ficar abaixo desse limite, o sistema deve mostrar um alerta para que o responsável possa verificar a necessidade de comprar mais mercadorias. Esse limite poderá variar conforme o produto e a necessidade do mercado.
+
+ - **RN07 —** Controle de perdas por vencimento: Quando um produto passar da data de validade, ele não poderá mais ser vendido. O sistema deve permitir registrar a quantidade perdida, o lote do produto, a data e o motivo da perda, para que o mercado consiga acompanhar os prejuízos causados por mercadorias vencidas.
   
 - **Restrições organizacionais:**
-- Emissão Obrigatória de Nota Fiscal: O sistema deve garantir a emissão de nota fiscal para toda venda realizada, em atendimento à exigência tributária vigente. Vendas não podem ser finalizadas sem a respectiva emissão fiscal.
+- **RN08 —** Emissão Obrigatória de Nota Fiscal: O sistema deve garantir a emissão de nota fiscal para toda venda realizada, em atendimento à exigência tributária vigente. Vendas não podem ser finalizadas sem a respectiva emissão fiscal.
   
-- Controle de Validade de Produtos Perecíveis: Produtos perecíveis devem ter sua data de validade mantida em dia e monitorada pelo sistema, em atendimento às exigências da vigilância sanitária. Produtos vencidos não podem permanecer disponíveis para venda.
+- **RN09 —** Controle de Validade de Produtos Perecíveis: Produtos perecíveis devem ter sua data de validade mantida em dia e monitorada pelo sistema, em atendimento às exigências da vigilância sanitária. Produtos vencidos não podem permanecer disponíveis para venda.
+
+ - **RN10 —** Permissões dos funcionários: Cada funcionário deve ter acesso apenas às funções do sistema relacionadas ao seu cargo. Atividades como cancelamento de vendas já finalizadas, alteração de preços e ajustes manuais no estoque devem ter acesso restrito aos funcionários autorizados. O sistema deve registrar quem realizou essas alterações para permitir a conferência quando necessário.
+
+ - **RN11 —** Pesagem de produtos a granel: Os produtos vendidos por peso devem ter sua quantidade registrada em quilogramas, conforme a pesagem realizada. O valor da compra deve ser calculado com base no peso e no preço por quilo do produto. As balanças utilizadas precisam estar de acordo com as exigências do Inmetro.
+
+ **RN12 —** — Proteção de dados pessoais (LGPD): O sistema deve proteger os dados pessoais dos funcionários e de outras pessoas cadastradas, como nome, CPF e telefone. Essas informações só poderão ser acessadas por funcionários autorizados e utilizadas quando forem necessárias para as atividades do mercado. Os dados também devem ser armazenados com segurança, seguindo as regras da Lei Geral de Proteção de Dados (LGPD).
 ---
 
 ## 5. Dicionário de Dados Conceitual
