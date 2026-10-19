@@ -1,9 +1,8 @@
-# Entrega 1 — Modelo Conceitual (DER)
+# Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 
 ### Nomes dos Integrantes:
 - Tarcisio Santos (RGM 47913061)
 - Gabriela Porfirio (RGM 48017698)
-- Nicole Xavier (RGM 48329002)
 - Henrique Moura (RGM 47610972)
 - Henrico Saltanian (RGM 46981721)
 ### Modelagem de um sistema de gestão de informações para uma organização de médio porte
@@ -11,7 +10,11 @@
 
 ---
 
-## 1. Caracterização da Organização
+## 1. Relatório Técnico Final
+
+### 1.1 Revisão do Modelo Conceitual
+
+#### Caracterização da Organização
 
 - **Nome e natureza da organização:** Hortifruti União - Tatuapé, empresa privada, com fins lucrativos do ramo de comércio varejista alimentício.
 - **Contexto e porte:** empresa com fins lucrativos de médio porte, 110 funcionários, com um faturamento de 5 milhões/mês (aproximadamente).
