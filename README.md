@@ -40,7 +40,33 @@
 
 #### Processos de Negócio
 
-- **Principais processos mapeados:** Controle de estoque e vendas
+**Principais processos mapeados:**
+
+##### 1. Processo de vendas no caixa
+
+O processo de vendas do Hortifruti União começa quando o cliente leva os produtos ao caixa. O funcionário realiza a identificação dos produtos por meio da leitura do código de barras, permitindo que o sistema consulte as informações cadastradas.
+
+Caso o cliente solicite o cancelamento de algum item, este deve ser retirado da operação sem gerar uma baixa indevida no estoque.
+
+No sistema proposto, após a identificação dos produtos, deverão ser registradas as quantidades e os preços praticados. O sistema calculará o valor total da compra e registrará a forma de pagamento utilizada.
+
+Após a conclusão da venda, o estoque será atualizado automaticamente, descontando as quantidades comercializadas.
+
+Dados envolvidos: identificação da venda, produtos, quantidades, preços, data, horário, funcionário responsável e forma de pagamento.
+
+##### 2. Processo de recebimento e controle de estoque
+
+O processo de recebimento de mercadorias do Hortifruti União envolve a solicitação de produtos aos fornecedores, a conferência das mercadorias recebidas e a organização dos itens no estoque.
+
+Conforme o fluxograma desenvolvido pelo grupo, o processo inicia com a realização de um pedido ao fornecedor. Após a entrega, as mercadorias são conferidas com as informações do pedido e da nota fiscal, verificando-se as quantidades recebidas e as condições dos produtos.
+
+Durante a conferência, também é verificada a validade dos lotes. Caso sejam identificadas divergências entre o pedido e as mercadorias recebidas, o problema deverá ser registrado para tratamento.
+
+Quando as mercadorias estiverem de acordo com o pedido, serão liberadas para armazenamento.
+
+No sistema proposto, deverão ser registrados os produtos recebidos, suas quantidades, os fornecedores, os lotes e as respectivas datas de validade. Essas informações permitirão acompanhar o estoque e identificar produtos próximos do vencimento.
+
+Dados envolvidos: identificação do produto, fornecedor, pedido de compra, nota fiscal, quantidade recebida, lote, data de validade e situação da conferência.
   
 - **Fluxogramas:**
   - (fluxograma vendas)
