@@ -38,24 +38,17 @@
 
 ---
 
-## 2. Processos de Negócio
-
+#### Processos de Negócio
 
 - **Principais processos mapeados:** Controle de estoque e vendas
   
 - **Fluxogramas:**
   - (fluxograma vendas)
-  <img width="565" height="857" alt="fluxograma venda" src="https://github.com/user-attachments/assets/df8b9e98-4f99-426c-a255-53805583e70a" />
-
-
-
+<img src="fluxograma_vendas.png" alt="Fluxograma de vendas" width="450">
 
 
   - (fluxograma estoque)
-  <img width="454" height="885" alt="fluxograma estoque" src="https://github.com/user-attachments/assets/ae68a1f7-b61f-4a3c-a188-dd305fa9f004" />
-
-
-
+<img src="fluxoograma_estoque.png" alt="Fluxograma de estoque" width="400">
 ---
 
 ## 3. Requisitos do Sistema
