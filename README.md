@@ -67,6 +67,18 @@ Quando as mercadorias estiverem de acordo com o pedido, serão liberadas para ar
 No sistema proposto, deverão ser registrados os produtos recebidos, suas quantidades, os fornecedores, os lotes e as respectivas datas de validade. Essas informações permitirão acompanhar o estoque e identificar produtos próximos do vencimento.
 
 Dados envolvidos: identificação do produto, fornecedor, pedido de compra, nota fiscal, quantidade recebida, lote, data de validade e situação da conferência.
+
+##### 3. Processo de pagamentos e cancelamentos
+   
+No Hortifruti União, depois que os produtos são registrados no caixa, o cliente realiza o pagamento da compra. O estabelecimento aceita dinheiro, cartão de débito e crédito, mas não trabalha com Pix.
+
+No sistema proposto, deverão ser registrados o valor total da venda, a forma de pagamento utilizada, a data e o horário da operação e o funcionário responsável.
+
+O sistema também deverá permitir o cancelamento de itens durante o atendimento no caixa. Caso o cliente desista de um produto antes da conclusão da venda, o item deverá ser retirado da operação, sem gerar baixa no estoque.
+
+Nos casos de cancelamento de uma venda já concluída, o sistema deverá registrar a ocorrência e realizar os ajustes necessários no estoque, preservando o histórico da operação. As condições e permissões para esse tipo de cancelamento deverão ser confirmadas com o responsável pelo estabelecimento.
+
+Dados envolvidos: identificação da venda, valor total, forma de pagamento, data, horário, funcionário responsável, situação da venda, produtos cancelados e quantidades.
   
 - **Fluxogramas:**
   - (fluxograma vendas)
@@ -78,7 +90,6 @@ Dados envolvidos: identificação do produto, fornecedor, pedido de compra, nota
 ---
 
 ## 3. Requisitos do Sistema
-
 
 ### 3.1 Requisitos Funcionais
 - O sistema deve permitir o cadastro de produtos com código único, nome, data de validade, categoria e descrição. A data de validade não pode ser retroativa, a categoria deve vir de lista pré-cadastrada, e o sistema deve impedir código duplicado ou produto sem categoria, permitindo ainda edição e inativação de cadastros.
