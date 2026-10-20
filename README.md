@@ -155,41 +155,46 @@ Dados envolvidos: identificação da venda, valor total, forma de pagamento, dat
   
 - **RN09 —**Controle de validade dos produtos perecíveis: O sistema deverá acompanhar a validade de cada lote cadastrado e avisar quando algum estiver próximo do vencimento. O prazo para esses alertas poderá ser definido pelo mercado. Produtos de lotes vencidos não poderão ficar disponíveis para venda.
 
- - **RN10 — Permissões dos funcionários:** Cada funcionário terá acesso às funções do sistema de acordo com seu cargo. O cancelamento de vendas já finalizadas, a alteração de preços e os ajustes manuais no estoque só poderão ser feitos por gerentes ou funcionários autorizados. O sistema também deverá registrar quem realizou essas alterações.
+ - **RN10 — Permissões dos funcionários:** O cancelamento de vendas deverá ser realizado apenas pelo gerente ou pela fiscal de caixa, conforme o funcionamento informado pelo Hortifruti União. O sistema proposto deverá registrar quem realizou o cancelamento, garantindo maior controle sobre essa operação.
 
  - **RN11 —** Pesagem de produtos a granel: Os produtos vendidos por peso devem ter sua quantidade registrada em quilogramas, conforme a pesagem realizada. O valor da compra deve ser calculado com base no peso e no preço por quilo do produto. As balanças utilizadas precisam estar de acordo com as exigências do Inmetro.
 
  **RN12 —** — Proteção de dados pessoais (LGPD): O sistema deve proteger os dados pessoais dos funcionários e de outras pessoas cadastradas, como nome, CPF e telefone. Essas informações só poderão ser acessadas por funcionários autorizados e utilizadas quando forem necessárias para as atividades do mercado. Os dados também devem ser armazenados com segurança, seguindo as regras da Lei Geral de Proteção de Dados (LGPD).
 
- - **RN13 —**Pedidos de compra: O sistema poderá salvar pedidos como rascunho, mesmo sem produtos. Porém, para confirmar um pedido, será necessário incluir pelo menos um item. Cada item deve representar um único produto e pertencer a um único pedido.
+- **RN13 — Pedidos de compra:** Todo pedido de compra deverá conter pelo menos um item. Cada item deverá representar um produto e estar associado a um único pedido. O pedido também deverá estar vinculado a um fornecedor cadastrado no sistema.
 
- - **RN14 — Saída de produtos por lote:** Quando uma venda for realizada, o sistema deverá registrar de quais lotes os produtos saíram e a quantidade retirada de cada um. Os lotes válidos com vencimento mais próximo terão prioridade na saída, para ajudar a evitar perdas por vencimento.
+- **RN14 — Controle de saída por lote (proposta de melhoria):** No sistema proposto, cada produto vendido deverá ter sua quantidade retirada de um ou mais lotes cadastrados. O sistema deverá dar prioridade aos lotes válidos com vencimento mais próximo, seguindo o método FEFO (primeiro que vence, primeiro que sai), para reduzir o desperdício de mercadorias.
 
  - **RN15 — Formas de pagamento:** O Hortifruti União aceita pagamentos em dinheiro, cartão de débito e cartão de crédito, mas não trabalha com Pix. No sistema proposto, o cliente poderá dividir o pagamento entre essas formas, desde que a soma dos valores seja igual ao total da venda.
 
    - **RN16 — Cadastro de categorias:** O sistema poderá cadastrar categorias mesmo que ainda não tenham produtos associados. Porém, todo produto deverá pertencer a uma categoria já cadastrada no sistema.
 
-   - **RN17 — Registro de perdas:** O sistema deverá permitir registrar perdas de produtos por outros motivos além do vencimento, como mercadorias danificadas ou estragadas. Cada perda deverá informar o lote, a quantidade, a data e o motivo, descontando essa quantidade do estoque.
+  - **RN17 — Registro de perdas (proposta de melhoria):** Atualmente, parte das perdas do Hortifruti União é anotada em papel, enquanto outras são registradas apenas como baixa no estoque. O sistema proposto deverá permitir o registro digital das perdas, informando o produto, o lote, a quantidade, a data e o motivo, para facilitar o acompanhamento do desperdício e a atualização do estoque.
 ---
 
 ## 5. Dicionário de Dados Conceitual
 ### Modelo conceitual 
-Este modelo representa um mercado no qual cada produto é fornecido por um fornecedor 
-e cadastrado por categoria. Quando necessário e solicitado, os produtos são comprados 
-via pedido de compra e vendidos aos clientes por meio de vendas registradas pelos 
-funcionários.
+Este modelo representa o funcionamento do Hortifruti União e as melhorias propostas para o controle de estoque. Os produtos são organizados por categorias e podem ser fornecidos por diferentes fornecedores. Os pedidos de compra são registrados com seus respectivos itens, enquanto as vendas são realizadas pelos funcionários, sem a necessidade de cadastro dos clientes. O sistema proposto também inclui o controle de lotes, validade dos produtos, pagamentos e registro de perdas, buscando melhorar a organização do estoque e reduzir o desperdício.
 
-| Entidade | Relaciona-se com | Cardinalidade |
-|----------|------------------|---------------|
-| FORNECEDOR | PRODUTO | 1:N - Um forncedor fornece vários produtos. |
-| PRODUTO | CATEGORIA_PRODUTO | 1:N - Uma categoria tem vários produtos. |
-| VENDA | PRODUTO | 1:N - Uma venda contém vários produtos. |
-| CLIENTE | VENDA | 1:1 - Um cliente realiza várias vendas. |
-| FUNCIONARIO | VENDA | 1:N - Um funcionario registra várias vendas. |
+| Entidade 1 | Relacionamento | Entidade 2 | Cardinalidade |
+|---|---|---|---|
+| FORNECEDOR | Fornece | PRODUTO | N:N |
+| CATEGORIA_PRODUTO | Classifica | PRODUTO | 1:N |
+| PRODUTO | Possui | LOTE | 1:N |
+| FORNECEDOR | Recebe | PEDIDO_COMPRA | 1:N |
+| PEDIDO_COMPRA | Contém | ITEM_PEDIDO_COMPRA | 1:N |
+| PRODUTO | É solicitado em | ITEM_PEDIDO_COMPRA | 1:N |
+| FUNCIONARIO | Registra | VENDA | 1:N |
+| VENDA | Contém | ITEM_VENDA | 1:N |
+| PRODUTO | É vendido em | ITEM_VENDA | 1:N |
+| ITEM_VENDA | Utiliza | LOTE | N:N |
+| VENDA | Possui | PAGAMENTO | 1:N |
+| LOTE | Tem | PERDA | 1:N |
+| FUNCIONARIO | Registra | PERDA | 1:N |
 
 ###  Fluxo de dados (visão de DFD)
-O FORNECEDOR fornece o PRODUTO para o mercado → o PRODUTO é cadastrado e classificado na CATEGORIA_PRODUTO → o CLIENTE chega ao mercado e realiza a 
-compra que gera uma VENDA → a VENDA feita pelo CLIENTE é registrada pelo FUNCIONARIO → o CLIENTE finaliza a sua compra.
+
+O fornecedor disponibiliza os produtos ao Hortifruti União, que registra os pedidos de compra e as entradas no estoque. Cada produto é cadastrado em uma categoria, e o sistema proposto controla seus lotes e datas de validade. Durante uma compra, o funcionário registra a venda e os produtos vendidos. O sistema identifica os lotes utilizados, atualiza as quantidades em estoque e registra as formas de pagamento. Quando há perdas, o sistema permite registrar o motivo e a quantidade, atualizando o estoque correspondente.
 
 ### Convenções do dicionário
 SGBD: MySQL 8, mecanismo de armazenamento InnoDB — cuida da persistência dos 
