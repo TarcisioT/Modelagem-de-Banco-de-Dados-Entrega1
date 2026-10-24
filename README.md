@@ -111,58 +111,102 @@ Após a correção da Entrega 1 e a revisão do levantamento, o grupo decidiu:
 
 - **Levantamento completo:** [levantamento/levantamento.md](levantamento/levantamento.md)
 
-
 ---
 
 #### Processos de Negócio
 
-**Principais processos mapeados:**
+Os processos abaixo foram indentificados com base nas entrevistas, observações diretas e sugestões do grupo, foram identificados os processos atuais. Se uma funcionalidade descrita não corresponde ao que a organização faz hoje, ela faz parte do sistema que estamos propondo.
 
-##### 1. Processo de vendas no caixa
+##### 1. Processo de venda no caixa
 
-O processo de vendas do Hortifruti União começa quando o cliente leva os produtos ao caixa. O funcionário realiza a identificação dos produtos por meio da leitura do código de barras, permitindo que o sistema consulte as informações cadastradas.
+O processo começa quando o cliente apresenta os produtos no caixa. O funcionário identifica cada produto por meio da leitura do código de barras, e o sistema consulta as informações cadastradas, como nome, preço e disponibilidade no estoque.
 
-Caso o cliente solicite o cancelamento de algum item, este deve ser retirado da operação sem gerar uma baixa indevida no estoque.
+Para cada item, são registradas a quantidade e o preço praticado. Depois da inclusão dos produtos, o sistema calcula o valor total da compra e registra a forma de pagamento utilizada.
 
-No sistema proposto, após a identificação dos produtos, deverão ser registradas as quantidades e os preços praticados. O sistema calculará o valor total da compra e registrará a forma de pagamento utilizada.
+Quando a venda é concluída, seus dados são enviados ao servidor e armazenados no banco de dados. Como o estoque é integrado ao sistema de vendas, as quantidades vendidas são automaticamente retiradas do estoque.
 
-Após a conclusão da venda, o estoque será atualizado automaticamente, descontando as quantidades comercializadas.
+**Dados envolvidos:** identificação da venda, data e horário, funcionário responsável, produtos, quantidades, preços unitários, valor total, forma de pagamento e situação da venda.
 
-Dados envolvidos: identificação da venda, produtos, quantidades, preços, data, horário, funcionário responsável e forma de pagamento.
+##### 2. Processo de pedido e recebimento de mercadorias
 
-##### 2. Processo de recebimento e controle de estoque
+No sistema proposto, o pedido de compra deverá ser registrado e vinculado a um fornecedor cadastrado. Cada pedido deverá possuir pelo menos um item, contendo o produto solicitado, a quantidade e o valor unitário.
 
-O processo de recebimento de mercadorias do Hortifruti União envolve a solicitação de produtos aos fornecedores, a conferência das mercadorias recebidas e a organização dos itens no estoque.
+No recebimento das mercadorias, os produtos deverão ser conferidos com o pedido e com a nota fiscal do fornecedor. Também deverão ser verificadas as quantidades recebidas, as condições dos produtos, os números dos lotes e suas datas de validade.
 
-Conforme o fluxograma desenvolvido pelo grupo, o processo inicia com a realização de um pedido ao fornecedor. Após a entrega, as mercadorias são conferidas com as informações do pedido e da nota fiscal, verificando-se as quantidades recebidas e as condições dos produtos.
+Se houver divergências entre o pedido e a mercadoria recebida, a ocorrência deverá ser registrada. Quando as informações estiverem corretas, os produtos serão liberados para entrada no estoque.
 
-Durante a conferência, também é verificada a validade dos lotes. Caso sejam identificadas divergências entre o pedido e as mercadorias recebidas, o problema deverá ser registrado para tratamento.
+**Dados envolvidos:** pedido de compra, fornecedor, data e horário do pedido, produtos, quantidades solicitadas, quantidades recebidas, valores unitários, nota fiscal, lote, data de validade e situação do recebimento.
 
-Quando as mercadorias estiverem de acordo com o pedido, serão liberadas para armazenamento.
+##### 3. Processo de controle de estoque, lotes e validade
 
-No sistema proposto, deverão ser registrados os produtos recebidos, suas quantidades, os fornecedores, os lotes e as respectivas datas de validade. Essas informações permitirão acompanhar o estoque e identificar produtos próximos do vencimento.
+O estoque é atualizado automaticamente após a conclusão das vendas. No sistema proposto, um mesmo produto poderá possuir diferentes lotes, cada um com sua própria data de validade e quantidade disponível.
 
-Dados envolvidos: identificação do produto, fornecedor, pedido de compra, nota fiscal, quantidade recebida, lote, data de validade e situação da conferência.
+O sistema deverá permitir a consulta do estoque pelo código de barras ou pelo nome do produto. Também deverá identificar produtos abaixo da quantidade mínima e lotes próximos do vencimento.
 
-##### 3. Processo de pagamentos e cancelamentos
-   
-No Hortifruti União, depois que os produtos são registrados no caixa, o cliente realiza o pagamento da compra. O estabelecimento aceita dinheiro, cartão de débito e crédito, mas não trabalha com Pix.
+Para reduzir as perdas, o sistema deverá priorizar a retirada dos lotes válidos com a data de vencimento mais próxima. Produtos pertencentes a lotes vencidos não poderão ser vendidos.
 
-No sistema proposto, deverão ser registrados o valor total da venda, a forma de pagamento utilizada, a data e o horário da operação e o funcionário responsável.
+Quando ocorrer uma perda, o sistema deverá registrar o produto, o lote, a quantidade, a data, o motivo e o funcionário responsável. A quantidade perdida deverá ser retirada do estoque.
 
-O sistema também deverá permitir o cancelamento de itens durante o atendimento no caixa. Caso o cliente desista de um produto antes da conclusão da venda, o item deverá ser retirado da operação, sem gerar baixa no estoque.
+**Dados envolvidos:** produto, lote, número do lote, data de entrada, data de validade, quantidade recebida, quantidade disponível, estoque mínimo, quantidade perdida, motivo da perda e funcionário responsável.
 
-Nos casos de cancelamento de uma venda já concluída, o sistema deverá registrar a ocorrência e realizar os ajustes necessários no estoque, preservando o histórico da operação. As condições e permissões para esse tipo de cancelamento deverão ser confirmadas com o responsável pelo estabelecimento.
+##### 4. Processo de pagamento
 
-Dados envolvidos: identificação da venda, valor total, forma de pagamento, data, horário, funcionário responsável, situação da venda, produtos cancelados e quantidades.
-  
-- **Fluxogramas:**
-  - (fluxograma vendas)
-<img src="fluxograma_vendas.png" alt="Fluxograma de vendas" width="450">
+Após o registro dos produtos, o cliente realiza o pagamento da venda. O estabelecimento aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix.
 
+O sistema deverá registrar a forma de pagamento e o valor pago. Quando for utilizado mais de um meio de pagamento, a soma dos valores deverá corresponder ao total da venda.
 
-  - (fluxograma estoque)
-<img src="fluxoograma_estoque.png" alt="Fluxograma de estoque" width="400">
+**Dados envolvidos:** venda, forma de pagamento, valor pago, data, horário e situação do pagamento.
+
+##### 5. Processo de cancelamento
+
+Se o cliente desistir de um produto antes da conclusão da venda, o item deverá ser retirado da operação sem provocar baixa no estoque.
+
+Quando uma venda já concluída for cancelada, o sistema deverá preservar seu histórico, registrar o funcionário responsável, a data, o horário e o motivo do cancelamento. As quantidades deverão retornar aos lotes de origem quando os produtos estiverem em condições de voltar ao estoque.
+
+O controle de acesso deverá impedir que funcionários sem a permissão necessária realizem o cancelamento.
+
+**Dados envolvidos:** venda, itens cancelados, lotes de origem, quantidades, motivo, data e horário do cancelamento, funcionário responsável e situação da venda.
+
+##### 6. Processo de alteração de preços e emissão de etiquetas
+
+Conforme informado pelo entrevistado, a alteração do preço de um produto pode ser realizada somente pelos líderes de setor, pelo gerente ou pelos proprietários.
+
+O sistema deverá registrar o preço anterior, o novo preço, a data e o horário da alteração e o funcionário responsável. Dessa forma, será possível consultar o histórico de preços de cada produto.
+
+A consulta do código dos produtos e a emissão de novas etiquetas podem ser realizadas pelos funcionários que utilizam os computadores disponíveis para essa atividade.
+
+**Dados envolvidos:** produto, código de barras, preço anterior, novo preço, data e horário da alteração, funcionário responsável e dados utilizados na etiqueta.
+
+##### 7. Processo de controle de acesso
+
+Cada usuário deverá acessar o sistema por meio de login e senha. As funcionalidades disponíveis dependerão do perfil de acesso associado ao funcionário.
+
+As alterações de preços serão permitidas aos líderes de setor, ao gerente e aos proprietários. As informações financeiras ficarão disponíveis somente para o setor administrativo, para o gerente e para os proprietários.
+
+As operações consideradas importantes deverão registrar o usuário responsável, a data e o horário em que foram executadas.
+
+**Dados envolvidos:** funcionário, usuário, senha protegida, perfil de acesso, funcionalidade permitida, data e horário da operação.
+
+##### Processos não incluídos
+
+Alguns processos comuns em estabelecimentos varejistas não foram incluídos porque não foram suficientemente detalhados durante o levantamento:
+
+- contas a pagar aos fornecedores;
+- elaboração da escala de funcionários;
+- controle de jornada e ponto;
+- abertura e fechamento de caixa.
+
+Esses processos poderão ser incluídos futuramente caso sejam confirmados com a organização. Eles não serão apresentados como procedimentos atuais sem confirmação do responsável.
+
+##### Fluxogramas
+
+**Fluxograma do processo de venda:**
+
+<img src="fluxograma_vendas.png" alt="Fluxograma do processo de venda" width="450">
+
+**Fluxograma do processo de estoque:**
+
+<img src="fluxograma_estoque.png" alt="Fluxograma do processo de estoque" width="450">
 ---
 
 #### Requisitos do Sistema
