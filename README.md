@@ -61,7 +61,7 @@
 
 - **Comprovação da visita:** a visita presencial foi documentada por meio das fotografias da fachada, do interior e do estoque apresentadas na seção de evidências da organização.
 
-**O que foi levantado:** 
+**O que foi levantado:** [Levantamento completo](levantamento/levantamento.md)
 
 ---
 
