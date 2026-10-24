@@ -115,11 +115,11 @@ Após a correção da Entrega 1 e a revisão do levantamento, o grupo decidiu:
 
 #### Processos de Negócio
 
-Os processos abaixo foram indentificados com base nas entrevistas, observações diretas e sugestões do grupo, foram identificados os processos atuais. Se uma funcionalidade descrita não corresponde ao que a organização faz hoje, ela faz parte do sistema que estamos propondo.
+Os processos abaixo foram identificados com base na entrevista, na observação presencial e nas sugestões do grupo. As funcionalidades propostas como melhorias são diferenciadas dos procedimentos atuais informados pela organização.
 
 ##### 1. Processo de venda no caixa
 
-O processo começa quando o cliente apresenta os produtos no caixa. O funcionário identifica cada produto por meio da leitura do código de barras, e o sistema consulta as informações cadastradas, como nome, preço e disponibilidade no estoque.
+O processo começa quando o cliente apresenta os produtos no caixa. O funcionário identifica cada produto por meio da leitura do código de barras, e o sistema consulta as informações cadastradas, como nome e preço.
 
 Para cada item, são registradas a quantidade e o preço praticado. Depois da inclusão dos produtos, o sistema calcula o valor total da compra e registra a forma de pagamento utilizada.
 
