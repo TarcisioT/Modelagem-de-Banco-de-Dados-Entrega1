@@ -22,17 +22,17 @@
 
 - **Nome e natureza da organização:** Hortifruti União – Tatuapé, empresa privada com fins lucrativos, pertencente ao ramo de comércio varejista alimentício.
 
-- **Contexto e porte:** O Hortifruti União – Tatuapé é uma empresa de médio porte, com aproximadamente 110 funcionários e faturamento mensal estimado em R$ 5 milhões.
-  
+- **Contexto e porte:** o Hortifruti União – Tatuapé é uma empresa de médio porte, com aproximadamente 110 funcionários, 7 caixas e faturamento mensal estimado em R$ 5 milhões.
+
 - **Problemas e necessidades identificados:**
 
-- **P1 — Controle da validade dos lotes:** Para dar conta de tantos produtos diferentes, os funcionários precisam acompanhar constantemente as datas de validade. O sistema que pensamos vai ajudar a controlar os lotes e suas datas de vencimento. Assim, ficará mais fácil identificar os produtos próximos do vencimento e evitar a venda de produtos vencidos.
+  - **P1 — Controle da validade dos lotes:** dada a grande quantidade e diversidade de produtos em um mercado, controlar as datas de validade é um desafio. Produtos próximos do vencimento ou já vencidos podem permanecer nas prateleiras por mais tempo do que o ideal, resultando em perdas e na necessidade de os funcionários verificarem as datas manualmente com frequência. O mercado já utiliza um sistema ERP em nuvem (VR Software) para gerenciar suas operações, mas a dificuldade reside no acompanhamento da validade dos produtos. O modelo proposto registra a data de validade por lote, possibilita a consulta de lotes próximos do vencimento, emite alertas sobre eles e impede a venda de produtos vencidos.
 
-- **P2 — Controle de acesso:** É preciso que as funções do sistema tenham níveis de acesso diferentes. Por exemplo, mudar preços e consultar informações financeiras não pode ser liberado para todos os funcionários da empresa.
+  - **P2 — Controle de acesso às funções do sistema:** o entrevistado explicou que apenas os líderes de setor, o gerente e os proprietários podem alterar preços. As informações financeiras também são acessíveis apenas a esses grupos, além do setor administrativo. Para garantir que essas restrições sejam respeitadas e que as ações dos funcionários possam ser verificadas, é necessário que o sistema registre os perfis de cada pessoa e as operações que realizam.
 
-- **Escopo do sistema:** O sistema que pensamos deverá registrar produtos, categorias, fornecedores, funcionários, usuários e seus níveis de acesso. Também permitirá controlar preços, lotes, datas de validade e quantidades disponíveis no estoque. Além disso, registrará vendas, notas fiscais e alterações de preços, além de permitir a emissão de etiquetas e manter a identificação dos funcionários responsáveis pelas operações mais importantes.
-  
-- **Justificativa da escolha:** A empresa foi selecionada porque Tarcisio Santos possui contato próximo com Guilherme Takemoto, um dos proprietários do estabelecimento. Esse vínculo permitiu a realização da entrevista e da visita ao local para observação. Além disso, a empresa possui processos de vendas, controle de estoque, validade de produtos, emissão de notas fiscais e controle de acesso que são adequados ao projeto de modelagem de banco de dados.
+- **Escopo do sistema:** o sistema precisa registrar informações sobre produtos, categorias, fornecedores, pedidos de compra e o recebimento das mercadorias. Além disso, deve gerenciar lotes, datas de validade e a quantidade de cada item em estoque. Vendas e seus respectivos itens, pagamentos, notas fiscais, perdas, fechamento de caixa, mudanças de preço, dados de funcionários, usuários e os perfis de acesso também devem ser registrados. O sistema também tem a função de gerar etiquetas e identificar qual funcionário realizou as operações consideradas importantes.
+
+- **Justificativa da escolha:** a empresa foi selecionada porque Tarcisio Santos de Oliveira tem contato próximo com Guilherme Takemoto, um dos proprietários do estabelecimento. Esse vínculo permitiu a realização da entrevista e da visita ao local para observação, mas não substitui a comprovação da entrevista, apresentada neste relatório. Além disso, a empresa possui processos de vendas, controle de estoque, validade de produtos, emissão de notas fiscais e controle de acesso que são adequados ao projeto de modelagem de banco de dados.
 
 - **Evidências da organização:**
 
@@ -40,7 +40,7 @@
   - Endereço: Rua Filipe Camarão, nº 67, Tatuapé, São Paulo.
   - Número de contato: (11) 99317-0906.
   - Responsável entrevistado: Guilherme Takemoto, um dos proprietários.
-    
+
 ![Fotografia da fachada](imagens/evidencias/fachada_mercado.jpeg)
 
 ![Fotografia do interior](imagens/evidencias/interior_mercado.jpeg)
@@ -51,34 +51,40 @@
 
 - **Quem:** Guilherme Takemoto, um dos proprietários do Hortifruti União – Tatuapé, foi entrevistado por Tarcisio Santos de Oliveira. Tarcisio também foi responsável pela observação presencial do estabelecimento e pelo registro das evidências.
 
-- **Quando e onde:** A entrevista foi realizada por videochamada pelo WhatsApp em 22/09/2026, com duração aproximada de uma hora. Posteriormente, Tarcisio realizou uma visita presencial ao estabelecimento em 30/09/2026, na Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, para observar o ambiente e sua rotina.
+- **Quando e onde:** a entrevista foi realizada por videochamada pelo WhatsApp em 22/09/2026, com duração aproximada de uma hora. Posteriormente, Tarcisio realizou uma visita presencial ao estabelecimento em 30/09/2026, na Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, para observar o local e sua rotina.
 
-- **Limitação do levantamento:** Não foi possível realizar uma nova entrevista presencial com o responsável. Por esse motivo, o grupo separou as informações fornecidas durante a videochamada dos achados obtidos durante a observação presencial.
+- **Limitação do levantamento:** não foi possível realizar uma nova entrevista presencial com o responsável. Por esse motivo, o grupo separou as informações fornecidas durante a videochamada dos achados obtidos durante a observação presencial. Pontos complementares (pedidos por e-mail, nota fiscal nas entradas, pagamento dividido e fechamento de caixa) foram confirmados com o responsável em contato posterior.
 
-- **Comprovação da entrevista:** A entrevista por videochamada foi registrada por meio de uma captura de tela com o entrevistado.
+- **Comprovação da entrevista:** a entrevista por videochamada foi registrada por meio de uma captura de tela com o entrevistado.
 
 <img src="imagens/evidencias/entrevista_videochamada.jpeg" alt="Entrevista por videochamada com Guilherme Takemoto" width="400">
 
-- **Comprovação da visita:** A visita presencial foi documentada por meio das fotografias da fachada, do interior e do estoque apresentadas na seção de evidências da organização.
+- **Comprovação da visita:** a visita presencial foi documentada por meio das fotografias da fachada, do interior e do estoque apresentadas na seção de evidências da organização.
 
 ##### Informações fornecidas pelo entrevistado
 
 Durante a entrevista, foram levantadas as seguintes informações:
 
-- O estabelecimento utiliza um banco de dados para armazenar as informações de suas operações.
+- O estabelecimento utiliza um banco de dados para armazenar as informações de suas operações, por meio de um sistema ERP em nuvem (VR Software).
 - Quando um produto passa pelo caixa, os dados da venda são enviados ao servidor e armazenados no banco de dados.
 - O estoque é integrado ao sistema de vendas. Quando uma venda é concluída, a quantidade correspondente é automaticamente baixada do estoque.
+- O estabelecimento possui 7 caixas.
+- Os pedidos aos fornecedores são feitos por e-mail, e toda entrada de mercadoria vem acompanhada de nota fiscal.
+- O estabelecimento aceita dinheiro, cartão de débito e cartão de crédito, não aceita Pix, e o pagamento de uma compra pode ser dividido entre essas formas.
 - A alteração do preço de um produto pode ser realizada somente pelos líderes de setor, pelo gerente ou pelos proprietários.
 - As informações financeiras podem ser acessadas somente pelos funcionários do setor administrativo, pelo gerente e pelos proprietários.
 - A consulta de códigos de produtos e a geração de etiquetas podem ser realizadas pelos funcionários que utilizam os computadores disponíveis para essa atividade.
+- O cancelamento de uma venda é feito pelo gerente ou pelo fiscal de caixa.
+- Ao final do dia, é feito o fechamento do caixa: o operador faz a conferência inicial, contando o dinheiro físico e comparando com o saldo esperado em dinheiro pelo sistema, e o fiscal de caixa ou o gerente valida o fechamento. A comparação não usa o total vendido, porque parte das vendas é paga com cartão.
+- Os cargos do estabelecimento são: dono, gerente, administrativo, fiscal de caixa, caixa, repositor, líderes de setor (mercearia, hortifruti, açougue, padaria e confeitaria), padeiro, confeiteiro, açougueiro, segurança, serviços gerais e limpeza.
 - O estabelecimento realiza o lançamento de notas fiscais em razão de suas obrigações fiscais.
-- Produtos vencidos não podem ser disponibilizados para venda.
+- Produtos vencidos não podem ser disponibilizados para venda, pois isso é considerado crime.
 
 ##### Achados da observação presencial
 
 Durante a visita ao Hortifruti União – Tatuapé, Tarcisio observou a estrutura física do estabelecimento, incluindo a área de vendas e o estoque. A visita permitiu confirmar que a organização trabalha com quantidade e variedade significativas de mercadorias, tornando necessário o controle organizado dos produtos, do estoque e das datas de validade.
 
-A observação presencial foi utilizada em conjunto com as respostas fornecidas pelo proprietário durante a videochamada. Informações que não foram confirmadas pelo entrevistado nem observadas no local foram tratadas como propostas de melhoria do grupo.
+A observação presencial foi utilizada em conjunto com as respostas fornecidas pelo entrevistado. Informações que não foram confirmadas pelo entrevistado nem observadas no local foram tratadas como propostas de melhoria do grupo.
 
 ##### Propostas de melhoria elaboradas pelo grupo
 
@@ -92,24 +98,24 @@ Com base nos problemas identificados, o grupo propõe que o sistema:
 - mantenha o histórico das alterações de preços;
 - registre o funcionário responsável pelas operações relevantes;
 - controle as permissões conforme o cargo do funcionário;
-- registre as perdas de estoque e seus respectivos motivos.
+- registre as perdas de estoque e seus respectivos motivos;
+- registre o fundo de caixa e a diferença apurada no fechamento do caixa;
+- faça cópia de segurança diária dos dados.
 
 Essas funcionalidades são propostas técnicas do grupo e não são apresentadas como procedimentos atualmente realizados pela organização.
 
 ##### Mudanças em relação à Entrega 1
 
-Após a correção da Entrega 1 e a revisão do levantamento, o grupo decidiu:
-
-- representar separadamente os produtos e seus lotes;
-- vincular a data de validade ao lote, e não diretamente ao produto;
-- acrescentar o controle de permissões dos funcionários;
-- acrescentar o histórico das operações relevantes;
-- detalhar os itens das vendas e dos pedidos de compra;
-- acrescentar o registro de perdas;
-- revisar as cardinalidades do modelo conceitual;
-- distinguir os processos atuais das melhorias propostas pelo grupo.
-
-- **Levantamento completo:** [levantamento/levantamento.md](levantamento/levantamento.md)
+| Apontamento da correção | O que mudou | Por quê |
+| :---- | :---- | :---- |
+| Fotos da entrevista e das evidências hospedadas fora do repositório | As fotos passaram a ser arquivos JPEG dentro do repositório, em `imagens/evidencias` | Só são consideradas as imagens que estão no repositório |
+| Entrevista sem relato do levantamento | Relato com quem, quando, onde e comprovação, separando as respostas do entrevistado da observação presencial | Permite distinguir o que foi dito do que foi observado |
+| Porte descrito sem números | Informados 110 funcionários, 7 caixas e faturamento mensal estimado | Os números justificam o tamanho do modelo e da massa de dados |
+| Problema declarado sem solução no modelo | Problemas numerados (P1 e P2), cada um ligado a requisitos e regras | Todo problema declarado precisa ser resolvido pelo modelo |
+| Processos com cobertura parcial | Oito processos, com os dados envolvidos em cada um, e lista dos não incluídos | Os processos sustentam os requisitos e as regras |
+| Requisitos incompletos e genéricos | RF01 a RF22 e RNF01 a RNF09, com os dados envolvidos e a ligação com as regras | Cobrem os processos e os problemas declarados |
+| Regras de negócio com cobertura parcial | RN01 a RN21, indicando a origem (entrevista ou proposta do grupo) | Evita apresentar propostas como procedimentos da organização |
+| Validade ligada ao produto | A data de validade passou a pertencer ao lote | Um mesmo produto tem lotes com validades diferentes |
 
 ---
 
@@ -123,19 +129,19 @@ O processo começa quando o cliente apresenta os produtos no caixa. O funcionár
 
 Para cada item, são registradas a quantidade e o preço praticado. Depois da inclusão dos produtos, o sistema calcula o valor total da compra e registra a forma de pagamento utilizada.
 
-Quando a venda é concluída, seus dados são enviados ao servidor e armazenados no banco de dados. Como o estoque é integrado ao sistema de vendas, as quantidades vendidas são automaticamente retiradas do estoque.
+Quando a venda é concluída, seus dados são enviados ao servidor e armazenados no banco de dados. Como o estoque é integrado ao sistema de vendas, as quantidades vendidas são automaticamente retiradas do estoque. Toda venda tem nota fiscal emitida.
 
-**Dados envolvidos:** identificação da venda, data e horário, funcionário responsável, produtos, quantidades, preços unitários, valor total, forma de pagamento e situação da venda.
+**Dados envolvidos:** identificação da venda, caixa, data e horário, funcionário responsável, produtos, quantidades, preços unitários, valor total, nota fiscal, forma de pagamento e situação da venda.
 
 ##### 2. Processo de pedido e recebimento de mercadorias
 
-No sistema proposto, o pedido de compra deverá ser registrado e vinculado a um fornecedor cadastrado. Cada pedido deverá possuir pelo menos um item, contendo o produto solicitado, a quantidade e o valor unitário.
+Os pedidos aos fornecedores são feitos por e-mail. No sistema proposto, o pedido de compra deverá ser registrado e vinculado a um fornecedor cadastrado. Cada pedido deverá possuir pelo menos um item, contendo o produto solicitado, a quantidade e o valor unitário.
 
-No recebimento das mercadorias, os produtos deverão ser conferidos com o pedido e com a nota fiscal do fornecedor. Também deverão ser verificadas as quantidades recebidas, as condições dos produtos, os números dos lotes e suas datas de validade.
+No recebimento das mercadorias, que sempre vêm acompanhadas de nota fiscal, os produtos são conferidos com o pedido e com a nota fiscal do fornecedor. Também são verificadas as quantidades recebidas, as condições dos produtos, os números dos lotes e suas datas de validade.
 
 Se houver divergências entre o pedido e a mercadoria recebida, a ocorrência deverá ser registrada. Quando as informações estiverem corretas, os produtos serão liberados para entrada no estoque.
 
-**Dados envolvidos:** pedido de compra, fornecedor, data e horário do pedido, produtos, quantidades solicitadas, quantidades recebidas, valores unitários, nota fiscal, lote, data de validade e situação do recebimento.
+**Dados envolvidos:** pedido de compra, fornecedor (razão social, CNPJ e e-mail), data e horário do pedido, produtos, quantidades solicitadas, quantidades recebidas, valores unitários, nota fiscal, lote, data de validade e situação do recebimento.
 
 ##### 3. Processo de controle de estoque, lotes e validade
 
@@ -151,9 +157,9 @@ Quando ocorrer uma perda, o sistema deverá registrar o produto, o lote, a quant
 
 ##### 4. Processo de pagamento
 
-Após o registro dos produtos, o cliente realiza o pagamento da venda. O estabelecimento aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix.
+Após o registro dos produtos, o cliente realiza o pagamento da venda. O estabelecimento aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix. O pagamento pode ser dividido entre essas formas.
 
-O sistema deverá registrar a forma de pagamento e o valor pago. Quando for utilizado mais de um meio de pagamento, a soma dos valores deverá corresponder ao total da venda.
+O sistema deverá registrar cada forma de pagamento e o valor pago. Quando for utilizado mais de um meio de pagamento, a soma dos valores deverá corresponder ao total da venda.
 
 **Dados envolvidos:** venda, forma de pagamento, valor pago, data, horário e situação do pagamento.
 
@@ -161,9 +167,7 @@ O sistema deverá registrar a forma de pagamento e o valor pago. Quando for util
 
 Se o cliente desistir de um produto antes da conclusão da venda, o item deverá ser retirado da operação sem provocar baixa no estoque.
 
-Quando uma venda já concluída for cancelada, o sistema deverá preservar seu histórico, registrar o funcionário responsável, a data, o horário e o motivo do cancelamento. As quantidades deverão retornar aos lotes de origem quando os produtos estiverem em condições de voltar ao estoque.
-
-O controle de acesso deverá impedir que funcionários sem a permissão necessária realizem o cancelamento.
+O cancelamento de uma venda já concluída só pode ser feito pelo gerente ou pelo fiscal de caixa. O sistema deverá preservar o histórico da venda, registrar o funcionário responsável, a data, o horário e o motivo do cancelamento. As quantidades deverão retornar aos lotes de origem quando os produtos estiverem em condições de voltar ao estoque.
 
 **Dados envolvidos:** venda, itens cancelados, lotes de origem, quantidades, motivo, data e horário do cancelamento, funcionário responsável e situação da venda.
 
@@ -179,13 +183,21 @@ A consulta do código dos produtos e a emissão de novas etiquetas podem ser rea
 
 ##### 7. Processo de controle de acesso
 
-Cada usuário deverá acessar o sistema por meio de login e senha. As funcionalidades disponíveis dependerão do perfil de acesso associado ao funcionário.
+Cada usuário deverá acessar o sistema por meio de login e senha. As funcionalidades disponíveis dependerão do cargo e do perfil de acesso associado ao funcionário.
 
-As alterações de preços serão permitidas aos líderes de setor, ao gerente e aos proprietários. As informações financeiras ficarão disponíveis somente para o setor administrativo, para o gerente e para os proprietários.
+As alterações de preços serão permitidas aos líderes de setor, ao gerente e aos proprietários. As informações financeiras ficarão disponíveis somente para o setor administrativo, para o gerente e para os proprietários. O cancelamento de vendas e a validação do fechamento de caixa serão permitidos ao gerente e ao fiscal de caixa.
 
 As operações consideradas importantes deverão registrar o usuário responsável, a data e o horário em que foram executadas.
 
-**Dados envolvidos:** funcionário, usuário, senha protegida, perfil de acesso, funcionalidade permitida, data e horário da operação.
+**Dados envolvidos:** funcionário, cargo, usuário, senha protegida, perfil de acesso, funcionalidade permitida, data e horário da operação.
+
+##### 8. Processo de fechamento de caixa
+
+Ao final do dia, o mercado faz o fechamento do caixa. O operador do caixa faz a conferência inicial, contando o dinheiro físico e comparando com o saldo esperado em dinheiro calculado pelo sistema. O fiscal de caixa ou o gerente valida o fechamento. A comparação não usa o total vendido, porque parte das vendas é paga com cartão.
+
+No sistema proposto, o caixa começa o dia com um fundo de caixa, valor inicial em dinheiro para troco, que não é receita de vendas. O saldo esperado será o fundo de caixa mais os pagamentos em dinheiro do dia.
+
+**Dados envolvidos:** caixa, data, operador, validador, fundo de caixa, saldo esperado, valor contado, diferença e situação (conferido ou validado).
 
 ##### Processos não incluídos
 
@@ -193,8 +205,7 @@ Alguns processos comuns em estabelecimentos varejistas não foram incluídos por
 
 - contas a pagar aos fornecedores;
 - elaboração da escala de funcionários;
-- controle de jornada e ponto;
-- abertura e fechamento de caixa.
+- controle de jornada e ponto.
 
 Esses processos poderão ser incluídos futuramente caso sejam confirmados com a organização. Eles não serão apresentados como procedimentos atuais sem confirmação do responsável.
 
@@ -207,6 +218,7 @@ Esses processos poderão ser incluídos futuramente caso sejam confirmados com a
 **Fluxograma do processo de estoque:**
 
 <img src="fluxograma_estoque.png" alt="Fluxograma do processo de estoque" width="450">
+
 ---
 
 #### Requisitos do Sistema
@@ -216,7 +228,7 @@ Esses processos poderão ser incluídos futuramente caso sejam confirmados com a
 - **RF01 — Cadastro de produtos:** o sistema deve permitir cadastrar produtos com código único, nome, código de barras, descrição de gôndola, descrição reduzida (nota fiscal), categoria, unidade de medida (unidade ou quilo), preço de venda e estoque mínimo. Deve impedir código duplicado e produto sem categoria, e permitir edição e inativação.
 
 - **RF02 — Cadastro de categorias:** o sistema deve permitir cadastrar categorias de produto com nome (por exemplo, fruta, verdura, laticínios). A categoria deve ser cadastrada antes dos produtos que a utilizam (RN16).
-  
+
 - **RF03 — Cadastro de fornecedores:** o sistema deve permitir cadastrar fornecedores com razão social, CNPJ, telefone e e-mail (obrigatório). O CNPJ deve ser único e ter os dígitos validados (RN04).
 
 - **RF04 — Produtos por fornecedor:** o sistema deve permitir associar um ou mais produtos a um ou mais fornecedores, vinculando o código do produto ao CNPJ do fornecedor, sem repetir a mesma dupla.
@@ -233,7 +245,7 @@ Esses processos poderão ser incluídos futuramente caso sejam confirmados com a
 
 - **RF10 — Cancelamento de item:** o sistema deve permitir retirar um item da venda antes de sua conclusão, informando o produto e a quantidade retirada, sem gerar baixa no estoque. O item retirado não faz parte do total da venda.
 
-- **RF11 — Cancelamento de venda:** o sistema deve permitir cancelar uma venda concluída, restrito ao gerente ou fiscal de caixa, registrando data e responsável e devolvendo os itens ao lote de origem. Lote vencido não volta a ficar disponível (RN05, RN10).
+- **RF11 — Cancelamento de venda:** o sistema deve permitir cancelar uma venda concluída, restrito ao gerente ou fiscal de caixa, registrando data, hora, motivo e responsável e devolvendo os itens ao lote de origem. Lote vencido não volta a ficar disponível (RN05, RN10).
 
 - **RF12 — Pagamento:** o sistema deve permitir registrar o pagamento da venda em uma ou mais formas (dinheiro, débito ou crédito), com valor, data e hora de cada pagamento, e soma igual ao total da venda (RN15).
 
@@ -249,15 +261,15 @@ Esses processos poderão ser incluídos futuramente caso sejam confirmados com a
 
 - **RF18 — Registro de perdas:** o sistema deve permitir registrar perdas (vencimento, dano ou estrago) com lote, quantidade, data, motivo e funcionário, descontando a quantidade do lote (RN07, RN17).
 
-- **RF19 — Alteração de preço:** o sistema deve permitir alterar o preço de um produto apenas a líderes de setor, gerente e dono, registrando quem alterou e quando (RN10).
+- **RF19 — Alteração de preço:** o sistema deve permitir alterar o preço de um produto apenas a líderes de setor, gerente e dono, registrando o preço anterior, o novo preço, a data e hora e o funcionário (RN10).
 
 - **RF20 — Consulta de código e etiqueta:** o sistema deve permitir a qualquer funcionário consultar o código de um produto e gerar uma nova etiqueta com nome (gôndola), código de barras e preço de venda.
 
-- **RF21 — Funcionários e perfis:** o sistema deve permitir cadastrar funcionários com nome, CPF, telefone, cargo e data de admissão, e definir o perfil de acesso de cada um. Dados financeiros ficam restritos ao administrativo, gerente e dono (RN10).
+- **RF21 — Funcionários e usuários:** o sistema deve permitir cadastrar funcionários com nome, CPF, telefone, cargo e data de admissão, e criar o usuário de acesso (login e senha) com o perfil correspondente. Dados financeiros ficam restritos ao administrativo, gerente e dono (RN10).
 
 - **RF22 — Fechamento de caixa:** o sistema deve permitir o fechamento do caixa ao final do dia em duas etapas. No início do dia, o sistema registra o fundo de caixa, que é o valor inicial em dinheiro usado para dar troco. Ao final do dia, o operador do caixa registra a conferência inicial, informando o valor em dinheiro contado. O sistema calcula o saldo esperado em dinheiro, somando o fundo de caixa aos pagamentos em dinheiro registrados no dia, e mostra a diferença entre o valor contado e o esperado. Em seguida, o fiscal de caixa ou o gerente valida o fechamento. O registro guarda a data, o caixa, o operador, o validador, o fundo de caixa, o saldo esperado, o valor contado, a diferença e a situação (conferido ou validado). As vendas pagas em cartão não entram nesse saldo (RN21).
 
-**Requisitos típicos não incluídos:** cadastro de clientes e programa de fidelidade (o mercado não cadastra clientes) e pagamento por Pix (não aceito). Contas a pagar e escala de funcionários não foram levantados na entrevista e não estão ligados ao problema declarado (P1, controle de validade). Ficam como evolução futura, a confirmar com o responsável.
+**Requisitos típicos não incluídos:** cadastro de clientes e programa de fidelidade (o mercado não cadastra clientes) e pagamento por Pix (não aceito). Contas a pagar e escala de funcionários não foram levantados na entrevista e não estão ligados aos problemas declarados (P1 e P2). Ficam como evolução futura, a confirmar com o responsável.
 
 ##### Requisitos Não Funcionais
 
@@ -310,7 +322,7 @@ Esses processos poderão ser incluídos futuramente caso sejam confirmados com a
 - **RN15 — Formas de pagamento [Entrevista]:** o mercado aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix. O pagamento de uma venda pode ser dividido entre essas formas, desde que a soma seja igual ao total da venda.
 
 - **RN16 — Categoria do produto [Proposta]:** todo produto pertence a uma única categoria, que deve estar cadastrada antes do produto. Uma categoria pode ter vários produtos (por exemplo, a categoria fruta com banana e pera).
-  
+
 - **RN17 — Perdas por outros motivos [Proposta]:** perdas por dano, estrago ou outros motivos também são registradas com lote, quantidade, data, motivo e funcionário responsável, e descontadas do estoque do lote. A proposta é registrar todas as perdas digitalmente.
 
 - **RN18 — Quantidade vendida [Proposta]:** não é permitido vender quantidade maior que a disponível nos lotes válidos do produto.
@@ -340,9 +352,10 @@ Esses processos poderão ser incluídos futuramente caso sejam confirmados com a
 - **RN12 — Proteção de dados pessoais, LGPD [Proposta]:** o sistema deve proteger os dados pessoais de funcionários e de contatos de fornecedores, como nome, CPF e telefone. Só funcionários autorizados podem acessá-los, e o armazenamento deve seguir a Lei Geral de Proteção de Dados.
 
 **Regras comuns não incluídas**
+
 - Cadastro de clientes e programa de fidelidade: o mercado não cadastra clientes.
 - Pagamento por Pix: o mercado não o aceita.
-- Normas sanitárias, contas a pagar e escala de funcionários: não foram levantadas na entrevista e não estão ligadas ao problema declarado (P1). Ficam como evolução futura, a confirmar com o responsável.
+- Normas sanitárias, contas a pagar e escala de funcionários: não foram levantadas na entrevista e não estão ligadas aos problemas declarados (P1 e P2). Ficam como evolução futura, a confirmar com o responsável.
   
 ---
 
