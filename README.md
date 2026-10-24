@@ -211,85 +211,139 @@ Esses processos poderão ser incluídos futuramente caso sejam confirmados com a
 
 #### Requisitos do Sistema
 
-##### Requisitos Funcionais 
+##### Requisitos Funcionais
 
-- **RF01 —** O sistema deve permitir o cadastro de produtos com código único, nome, data de validade, categoria e descrição. A data de validade não pode ser retroativa, a categoria deve vir de lista pré-cadastrada, e o sistema deve impedir código duplicado ou produto sem categoria, permitindo ainda edição e inativação de cadastros.
-  
--  **RF02 —** O sistema deve atualizar automaticamente a quantidade em estoque de cada produto após a conclusão de uma venda no caixa, dando baixa nas quantidades vendidas. A atualização deve ocorrer em tempo real, refletindo imediatamente nas consultas de estoque.
-  
--  **RF03 —** O sistema deve permitir consultar a quantidade disponível de um produto em estoque, a partir do código ou nome do produto. A consulta deve exibir a quantidade atual e indicar quando o estoque estiver abaixo de um limite mínimo pré-definido.
-  
--  **RF04 —** O sistema deve permitir o cadastro de fornecedores, identificados obrigatoriamente por CNPJ. O CNPJ deve ser único (sem duplicidade) e ter seus dígitos validados no momento do cadastro.
-  
-- **RF05 —** O sistema deve permitir associar um ou mais produtos a um ou mais fornecedores que os fornecem. Um produto pode ter mais de um fornecedor, e um fornecedor pode fornecer mais de um produto.
-  
-- **RF06 —** O sistema deve permitir registrar pedidos de compra feitos a um fornecedor, contendo fornecedor, produto, quantidade e data/hora do pedido.
-  
-- **RF07 —** O sistema deve permitir registrar uma venda contendo um ou mais produtos, com suas respectivas quantidades. Cada produto vendido deve ter estoque suficiente disponível no momento do registro, com baixa automática no estoque.
-  
-- **RF08 —** O sistema deve gerar automaticamente o valor total da venda, somando o valor de cada produto pela quantidade vendida. O valor total deve ser recalculado sempre que houver alteração nos itens da venda.
-  
-- **RF09 —** O sistema deve permitir cancelar uma venda já registrada, devolvendo os itens vendidos ao estoque.
-  
-- **RF10 —** O sistema deve permitir consultar os lotes vencidos e os lotes próximos do vencimento, apresentando o produto, o número do lote, a quantidade disponível e a data de validade.
+- **RF01 — Cadastro de produtos:** o sistema deve permitir cadastrar produtos com código único, nome, código de barras, descrição de gôndola, descrição reduzida (nota fiscal), categoria, unidade de medida (unidade ou quilo), preço de venda e estoque mínimo. Deve impedir código duplicado e produto sem categoria, e permitir edição e inativação.
 
-- **RF11 —** O sistema deve emitir um alerta quando um lote estiver próximo da data de vencimento, considerando um período previamente definido pela organização.
+- **RF02 — Cadastro de categorias:** o sistema deve permitir cadastrar categorias de produto com nome (por exemplo, fruta, verdura, laticínios). A categoria deve ser cadastrada antes dos produtos que a utilizam (RN16).
+  
+- **RF03 — Cadastro de fornecedores:** o sistema deve permitir cadastrar fornecedores com razão social, CNPJ, telefone e e-mail (obrigatório). O CNPJ deve ser único e ter os dígitos validados (RN04).
 
-- **RF12 —** O sistema deve impedir a venda de produtos pertencentes a lotes vencidos.
+- **RF04 — Produtos por fornecedor:** o sistema deve permitir associar um ou mais produtos a um ou mais fornecedores, vinculando o código do produto ao CNPJ do fornecedor, sem repetir a mesma dupla.
 
-- **RF13 —** O sistema deve priorizar, durante a baixa do estoque, os lotes válidos com a data de vencimento mais próxima.
+- **RF05 — Pedido de compra:** o sistema deve permitir registrar pedidos a um fornecedor cadastrado (RN03), com um ou mais itens (produto, quantidade e preço de compra), data e situação do pedido (RN13). O pedido é enviado ao fornecedor por e-mail, por isso o e-mail é obrigatório no cadastro do fornecedor (RF03).
+
+- **RF06 — Recebimento de mercadorias:** o sistema deve permitir registrar a entrada de mercadorias com número da nota fiscal, produto, lote, quantidade recebida e data de validade, vinculando o recebimento ao pedido de compra e registrando divergências encontradas na conferência (RN02).
+
+- **RF07 — Consulta de estoque:** o sistema deve permitir consultar a quantidade disponível por produto e por lote, a partir do código, do nome ou do código de barras, e indicar quando o estoque estiver abaixo do mínimo (RN06).
+
+- **RF08 — Registro de venda:** o sistema deve permitir registrar uma venda com um ou mais produtos, identificados por leitura de código de barras, com quantidade (em quilos para produtos a granel, RN11), caixa utilizado, funcionário responsável, data e hora. A venda não exige cadastro de cliente.
+
+- **RF09 — Valor da venda:** o sistema deve calcular automaticamente o subtotal de cada item (quantidade × preço praticado) e o valor total da venda, recalculando a cada alteração dos itens.
+
+- **RF10 — Cancelamento de item:** o sistema deve permitir retirar um item da venda antes de sua conclusão, informando o produto e a quantidade retirada, sem gerar baixa no estoque. O item retirado não faz parte do total da venda.
+
+- **RF11 — Cancelamento de venda:** o sistema deve permitir cancelar uma venda concluída, restrito ao gerente ou fiscal de caixa, registrando data e responsável e devolvendo os itens ao lote de origem. Lote vencido não volta a ficar disponível (RN05, RN10).
+
+- **RF12 — Pagamento:** o sistema deve permitir registrar o pagamento da venda em uma ou mais formas (dinheiro, débito ou crédito), com valor, data e hora de cada pagamento, e soma igual ao total da venda (RN15).
+
+- **RF13 — Emissão fiscal:** o sistema deve emitir a nota fiscal de toda venda, registrando o número da nota, a data e hora de emissão e os itens e valores da venda, e impedir a conclusão da venda sem ela (RN08).
+
+- **RF14 — Baixa automática por lote:** ao concluir a venda, o sistema deve dar baixa no estoque em tempo real, retirando dos lotes válidos de vencimento mais próximo (FEFO) e registrando o lote e a quantidade de cada retirada (RN14, RN19).
+
+- **RF15 — Bloqueio de vencidos:** o sistema deve impedir a venda de produtos de lotes com data de validade anterior à data da venda (RN01) e de quantidade maior que a soma disponível nos lotes válidos do produto (RN18), informando ao operador o motivo do bloqueio.
+
+- **RF16 — Consulta de validade:** o sistema deve permitir consultar lotes vencidos e próximos do vencimento, com produto, lote, quantidade disponível e data de validade.
+
+- **RF17 — Alerta de vencimento:** o sistema deve alertar, por produto e lote, quando a data de validade estiver dentro do prazo de alerta definido pelo mercado, exibindo produto, lote, quantidade disponível e dias restantes (RN09).
+
+- **RF18 — Registro de perdas:** o sistema deve permitir registrar perdas (vencimento, dano ou estrago) com lote, quantidade, data, motivo e funcionário, descontando a quantidade do lote (RN07, RN17).
+
+- **RF19 — Alteração de preço:** o sistema deve permitir alterar o preço de um produto apenas a líderes de setor, gerente e dono, registrando quem alterou e quando (RN10).
+
+- **RF20 — Consulta de código e etiqueta:** o sistema deve permitir a qualquer funcionário consultar o código de um produto e gerar uma nova etiqueta com nome (gôndola), código de barras e preço de venda.
+
+- **RF21 — Funcionários e perfis:** o sistema deve permitir cadastrar funcionários com nome, CPF, telefone, cargo e data de admissão, e definir o perfil de acesso de cada um. Dados financeiros ficam restritos ao administrativo, gerente e dono (RN10).
+
+- **RF22 — Fechamento de caixa:** o sistema deve permitir o fechamento do caixa ao final do dia em duas etapas. No início do dia, o sistema registra o fundo de caixa, que é o valor inicial em dinheiro usado para dar troco. Ao final do dia, o operador do caixa registra a conferência inicial, informando o valor em dinheiro contado. O sistema calcula o saldo esperado em dinheiro, somando o fundo de caixa aos pagamentos em dinheiro registrados no dia, e mostra a diferença entre o valor contado e o esperado. Em seguida, o fiscal de caixa ou o gerente valida o fechamento. O registro guarda a data, o caixa, o operador, o validador, o fundo de caixa, o saldo esperado, o valor contado, a diferença e a situação (conferido ou validado). As vendas pagas em cartão não entram nesse saldo (RN21).
+
+**Requisitos típicos não incluídos:** cadastro de clientes e programa de fidelidade (o mercado não cadastra clientes) e pagamento por Pix (não aceito). Contas a pagar e escala de funcionários não foram levantados na entrevista e não estão ligados ao problema declarado (P1, controle de validade). Ficam como evolução futura, a confirmar com o responsável.
 
 ##### Requisitos Não Funcionais
 
-- **RNF01 —** Desempenho: o sistema deve suportar pelo menos 10 caixas operando simultaneamente, mantendo o tempo de resposta de consultas e registro de vendas inferior a 3 segundos em situações normais de venda.
-  
-- **RNF02 —** Disponibilidade: o sistema deve estar disponínvel durante todo o horário de funcionamento da loja, em caso de queda de internet, o sistema deve continuar permitindo as vendas, sincronizando tudo quando voltar.
-  
-- **RNF03 —** Segurança: o sistema deve exigir login e senha para acesso às funcionalidades, permitindo que apenas usuários autorizados realizem tarefas de acordo com o nível de acesso.
-  
-- **RNF04 —** Usabilidade: a interface do sistema do caixa deve manter uma navegação simples e objetiva, permitindo que funcionários novatos aprendam a utilizar apenas com treinamento básico sem necessidade de conhecimentos técnicos avançados
+- **RNF01 — Desempenho:** o sistema deve suportar os 7 caixas do mercado operando simultaneamente, com resposta inferior a 3 segundos na consulta de produtos e no registro de vendas.
 
-- **RNF05 —** Recuperação de dados: o sistema deve realizar cópias de segurança periódicas para permitir a recuperação das informações em caso de falha ou perda de dados.
-  
+- **RNF02 — Disponibilidade:** o sistema deve estar disponível durante todo o horário de funcionamento da loja. Como proposta, em caso de queda de internet o caixa continua registrando vendas e sincroniza com o servidor quando a conexão voltar.
+
+- **RNF03 — Segurança:** o acesso exige login e senha, com permissões por perfil conforme a RN10. As senhas devem ser armazenadas criptografadas.
+
+- **RNF04 — Usabilidade:** a interface do caixa deve ser simples e objetiva, de modo que um funcionário novo aprenda a usá-la com treinamento básico, sem conhecimentos técnicos avançados.
+
+- **RNF05 — Recuperação de dados:** o sistema deve fazer cópia de segurança diária dos dados, para recuperar as informações em caso de falha ou perda (proposta do grupo).
+
+- **RNF06 — Integridade:** o registro da venda e a baixa do estoque devem ocorrer na mesma transação, de forma que ou ambos são gravados ou nenhum, e o estoque de um lote não pode ficar negativo.
+
+- **RNF07 — Auditoria:** o sistema deve registrar quem realizou cancelamentos, alterações de preço, registros de perdas, ajustes de estoque e fechamentos de caixa (conferência e validação), com data e hora.
+
+- **RNF08 — Conformidade legal:** o sistema deve atender à exigência de emissão de nota fiscal (RN08) e à LGPD no tratamento de dados pessoais (RN12).
+
+- **RNF09 — Integração:** os caixas devem enviar as vendas a um servidor central com banco de dados único, que hoje fica em nuvem no ERP do mercado (VR Software), mantendo o estoque integrado entre todos os pontos de venda.
+
 ---
 
 #### Regras de Negócio
 
-- **Regras operacionais:**
-- **RN01 — Bloqueio de venda de produtos vencidos:** O sistema não deve permitir a venda de produtos de lotes que já passaram da data de validade. Antes de finalizar a venda, deverá verificar a validade dos lotes utilizados e impedir a saída de mercadorias vencidas.
+**Origem das regras:** as marcadas com **[Entrevista]** foram informadas pelo responsável, Guilherme Takemoto. As marcadas com **[Proposta]** foram elaboradas pelo grupo a partir dos processos mapeados e de regras típicas de supermercados e hortifrutis, levantadas com apoio de IA (ver a seção Uso de Inteligência Artificial), e ainda não foram validadas individualmente com o responsável.
+
+**Regras operacionais**
+
+- **RN01 — Bloqueio de venda de produtos vencidos [Entrevista]:** o sistema não deve permitir a venda de produto cujo lote tenha data de validade anterior à data da venda. Segundo o responsável, vender produto vencido é crime.
+
+- **RN02 — Entrada de estoque com nota fiscal [Entrevista]:** toda entrada de mercadoria deve ser registrada com a nota fiscal do fornecedor, informando também lote, quantidade recebida e data de validade. Sem a nota fiscal, o sistema não permite registrar a entrada.
+
+- **RN03 — Pedido só a fornecedor cadastrado [Proposta]:** um pedido de compra só pode ser feito a um fornecedor previamente cadastrado.
+
+- **RN04 — Fornecedor com CNPJ válido [Proposta]:** o fornecedor só pode ser cadastrado com CNPJ válido e único, razão social, telefone e e-mail preenchidos.
+
+- **RN05 — Cancelamento de venda [Proposta]:** ao cancelar uma venda, os itens voltam ao lote de origem. Lote vencido não volta a ficar disponível para venda. O cancelamento registra data e funcionário responsável, e a mesma quantidade não pode ser devolvida mais de uma vez.
+
+- **RN06 — Estoque mínimo [Proposta]:** cada produto tem uma quantidade mínima de estoque. Quando a quantidade disponível fica abaixo dela, o sistema alerta para avaliar a reposição.
+
+- **RN07 — Perdas por vencimento [Proposta]:** quando um lote vence, ele não pode mais ser vendido. A perda é registrada com lote, quantidade, data, motivo "vencimento" e funcionário responsável, e descontada do estoque do lote.
+
+- **RN09 — Alerta de vencimento [Proposta]:** o sistema avisa quando um lote está próximo do vencimento, em prazo definido pelo mercado.
+
+- **RN13 — Pedido de compra com itens [Proposta]:** todo pedido de compra contém ao menos um item. Cada item representa um produto e pertence a um único pedido.
+
+- **RN14 — Saída por lote, FEFO [Proposta]:** cada produto vendido tem sua quantidade retirada de um ou mais lotes válidos, com prioridade para o vencimento mais próximo (primeiro que vence, primeiro que sai), registrando lote e quantidade retirada.
+
+- **RN15 — Formas de pagamento [Entrevista]:** o mercado aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix. O pagamento de uma venda pode ser dividido entre essas formas, desde que a soma seja igual ao total da venda.
+
+- **RN16 — Categoria do produto [Proposta]:** todo produto pertence a uma única categoria, que deve estar cadastrada antes do produto. Uma categoria pode ter vários produtos (por exemplo, a categoria fruta com banana e pera).
   
-- **RN02 —** A entrada de estoque só pode ser registrada mediante nota fiscal do fornecedor. O sistema deve exigir a informação da nota fiscal correspondente para validar e concluir o registro de entrada, não sendo permitida a atualização do estoque sem essa comprovação.
+- **RN17 — Perdas por outros motivos [Proposta]:** perdas por dano, estrago ou outros motivos também são registradas com lote, quantidade, data, motivo e funcionário responsável, e descontadas do estoque do lote. A proposta é registrar todas as perdas digitalmente.
+
+- **RN18 — Quantidade vendida [Proposta]:** não é permitido vender quantidade maior que a disponível nos lotes válidos do produto.
+
+- **RN19 — Baixa automática de estoque [Entrevista]:** o estoque é integrado ao caixa. Ao concluir uma venda, o sistema dá baixa automática nas quantidades vendidas.
+
+- **RN20 — Histórico preservado [Proposta]:** vendas, cancelamentos, pagamentos e perdas não são apagados. Ficam registrados no histórico, com a situação atualizada.
+
+- **RN21 — Fechamento de caixa [Entrevista]:** ao final do dia, o operador do caixa faz a conferência inicial contando o dinheiro físico e comparando com o saldo esperado pelo sistema. O fiscal de caixa ou o gerente valida o fechamento. A comparação é feita com o saldo esperado em dinheiro, e não com o total vendido, porque parte das vendas é paga com cartão.
+  - O caixa começa o dia com um fundo de caixa, valor inicial em dinheiro para dar troco, que não é receita de vendas. O saldo esperado é o fundo de caixa mais os pagamentos em dinheiro do dia [Proposta].
+  - O sistema registra operador, validador, fundo de caixa, saldo esperado, valor contado, diferença e situação, e o fechamento validado não é apagado nem alterado [Proposta].
+
+**Restrições organizacionais e legais**
+
+- **RN08 — Nota fiscal em toda venda [Entrevista]:** o mercado deve seguir a exigência do governo sobre o lançamento de notas fiscais. O sistema deve garantir a emissão fiscal de toda venda, e nenhuma venda é concluída sem ela.
+
+- **RN10 — Permissões por função [Entrevista]:** o acesso ao sistema depende do cargo do funcionário. Os cargos do mercado são dono, gerente, administrativo, fiscal de caixa, caixa, repositor, líderes de setor (mercearia, hortifruti, açougue, padaria e confeitaria), padeiro, confeiteiro, açougueiro, segurança, serviços gerais e limpeza.
+  - Alterar o preço de um produto: líderes de setor, gerente e dono.
+  - Acessar dados financeiros: administrativo, gerente e dono.
+  - Consultar o código de um produto e gerar uma nova etiqueta: qualquer funcionário.
+  - Cancelar uma venda: gerente ou fiscal de caixa.
+  - Validar o fechamento de caixa: fiscal de caixa ou gerente. A conferência inicial é feita pelo operador do caixa.
+  - O sistema registra o funcionário e a data de cada cancelamento e alteração de preço [Proposta].
+
+- **RN11 — Produtos a granel [Proposta]:** produtos vendidos por peso têm a quantidade registrada em quilos e o valor calculado pelo preço por quilo. As balanças devem atender às exigências do Inmetro.
+
+- **RN12 — Proteção de dados pessoais, LGPD [Proposta]:** o sistema deve proteger os dados pessoais de funcionários e de contatos de fornecedores, como nome, CPF e telefone. Só funcionários autorizados podem acessá-los, e o armazenamento deve seguir a Lei Geral de Proteção de Dados.
+
+**Regras comuns não incluídas**
+- Cadastro de clientes e programa de fidelidade: o mercado não cadastra clientes.
+- Pagamento por Pix: o mercado não o aceita.
+- Normas sanitárias, contas a pagar e escala de funcionários: não foram levantadas na entrevista e não estão ligadas ao problema declarado (P1). Ficam como evolução futura, a confirmar com o responsável.
   
-- **RN03 —** Um pedido de compra só pode ser realizado para um fornecedor previamente cadastrado no sistema. Não é permitido registrar pedidos de compra para fornecedores inexistentes ou não cadastrados.
-  
-- **RN04 —** Um fornecedor só pode ser cadastrado mediante CNPJ válido e preenchimento completo dos dados obrigatórios. O sistema deve validar o formato/dígitos verificadores do CNPJ e impedir o cadastro caso haja campos obrigatórios em branco.
-  
-- **RN05 — Cancelamento de vendas:** Quando uma venda for cancelada, o sistema deverá devolver as quantidades ao lote de onde os produtos foram retirados, desde que estejam em condições de voltar ao estoque. O cancelamento deverá ser registrado para evitar que a mesma quantidade seja devolvida mais de uma vez.
-  
-- **RN06 —** Estoque mínimo e reposição: Cada produto deve ter uma quantidade mínima de estoque definida. Quando a quantidade disponível ficar abaixo desse limite, o sistema deve mostrar um alerta para que o responsável possa verificar a necessidade de comprar mais mercadorias. Esse limite poderá variar conforme o produto e a necessidade do mercado.
-
- - **RN07 — Controle de perdas por vencimento:** Quando um produto vencer, ele não poderá mais ser vendido. O sistema deverá registrar o lote, a quantidade perdida, a data e o motivo da perda. Essa quantidade deverá ser descontada do estoque do lote correspondente, permitindo que o mercado acompanhe os produtos descartados e os prejuízos causados pelo vencimento.
-  
-- **Restrições organizacionais:**
-- **RN08 —** Emissão Obrigatória de Nota Fiscal: O sistema deve garantir a emissão de nota fiscal para toda venda realizada, em atendimento à exigência tributária vigente. Vendas não podem ser finalizadas sem a respectiva emissão fiscal.
-  
-- **RN09 —**Controle de validade dos produtos perecíveis: O sistema deverá acompanhar a validade de cada lote cadastrado e avisar quando algum estiver próximo do vencimento. O prazo para esses alertas poderá ser definido pelo mercado. Produtos de lotes vencidos não poderão ficar disponíveis para venda.
-
- - **RN10 — Permissões dos funcionários:** O cancelamento de vendas deverá ser realizado apenas pelo gerente ou pela fiscal de caixa, conforme o funcionamento informado pelo Hortifruti União. O sistema proposto deverá registrar quem realizou o cancelamento, garantindo maior controle sobre essa operação.
-
- - **RN11 —** Pesagem de produtos a granel: Os produtos vendidos por peso devem ter sua quantidade registrada em quilogramas, conforme a pesagem realizada. O valor da compra deve ser calculado com base no peso e no preço por quilo do produto. As balanças utilizadas precisam estar de acordo com as exigências do Inmetro.
-
- **RN12 —** — Proteção de dados pessoais (LGPD): O sistema deve proteger os dados pessoais dos funcionários e de outras pessoas cadastradas, como nome, CPF e telefone. Essas informações só poderão ser acessadas por funcionários autorizados e utilizadas quando forem necessárias para as atividades do mercado. Os dados também devem ser armazenados com segurança, seguindo as regras da Lei Geral de Proteção de Dados (LGPD).
-
-- **RN13 — Pedidos de compra:** Todo pedido de compra deverá conter pelo menos um item. Cada item deverá representar um produto e estar associado a um único pedido. O pedido também deverá estar vinculado a um fornecedor cadastrado no sistema.
-
-- **RN14 — Controle de saída por lote (proposta de melhoria):** No sistema proposto, cada produto vendido deverá ter sua quantidade retirada de um ou mais lotes cadastrados. O sistema deverá dar prioridade aos lotes válidos com vencimento mais próximo, seguindo o método FEFO (primeiro que vence, primeiro que sai), para reduzir o desperdício de mercadorias.
-
- - **RN15 — Formas de pagamento:** O Hortifruti União aceita pagamentos em dinheiro, cartão de débito e cartão de crédito, mas não trabalha com Pix. No sistema proposto, o cliente poderá dividir o pagamento entre essas formas, desde que a soma dos valores seja igual ao total da venda.
-
-   - **RN16 — Cadastro de categorias:** O sistema poderá cadastrar categorias mesmo que ainda não tenham produtos associados. Porém, todo produto deverá pertencer a uma categoria já cadastrada no sistema.
-
-  - **RN17 — Registro de perdas (proposta de melhoria):** Atualmente, parte das perdas do Hortifruti União é anotada em papel, enquanto outras são registradas apenas como baixa no estoque. O sistema proposto deverá permitir o registro digital das perdas, informando o produto, o lote, a quantidade, a data e o motivo, para facilitar o acompanhamento do desperdício e a atualização do estoque.
 ---
 
 ## 5. Dicionário de Dados Conceitual
