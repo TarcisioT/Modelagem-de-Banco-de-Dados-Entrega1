@@ -1,12 +1,16 @@
 # Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 
-### Nomes dos Integrantes:
-- Tarcisio Santos (RGM 47913061)
-- Gabriela Porfirio (RGM 48017698)
-- Henrique Moura (RGM 47610972)
-- Henrico Saltanian (RGM 46981721)
-### Modelagem de um sistema de gestão de informações para uma organização de médio porte
+### Integrantes
 
+| Nome completo do aluno | RGM | Usuário do GitHub |
+| :---- | :---- | :---- |
+| Tarcisio Santos de Oliveira | 47913061 | TarcisioT |
+| Gabriela Porfírio da Silva | 48017698 | porfiriogabis |
+| Henrique Moura de Oliveira | 47610972 | Bkrusher666 |
+| Victor Hugo dos Santos Maciel | 48037630 | vhugosm |
+| Guilherme Damasceno dos Santos | 48491683 | damascenogs |
+
+### Modelagem de um sistema de gestão de informações para uma organização de médio porte
 
 ---
 
@@ -16,24 +20,96 @@
 
 #### Caracterização da Organização
 
-- **Nome e natureza da organização:** Hortifruti União - Tatuapé, empresa privada, com fins lucrativos do ramo de comércio varejista alimentício.
-- **Contexto e porte:** empresa com fins lucrativos de médio porte, 110 funcionários, com um faturamento de 5 milhões/mês (aproximadamente).
-- **Problemas e necessidades identificados:** o levantamento feito no Hortifruti União, notamos um problema com o controle de validade dos produtos. Como o mercado trabalha com muita quantidade e variedade de mercadorias, acompanhar as datas de vencimento acaba sendo complicado. Por isso, itens perto de vencer ou já vencidos podem ficar nas prateleiras mais tempo do que deveriam, o que gera perdas e exige mais atenção dos funcionários na hora de conferir. Com base nisso, vimos a necessidade de um sistema para registrar e acompanhar as datas de validade dos produtos. Assim, dá para consultar quais estão perto de vencer, o que ajuda a retirar ou dar prioridade a esses itens e contribui para reduzir as perdas.*
-- **Justificativa da escolha:** escolhemos essa organização porque um dos integrantes do grupo tem contato com um dos responsáveis pelo estabelecimento, o que abriu caminho para acessar o local e fazer a pesquisa de campo. O Hortifruti União também tem processos que interessam à disciplina de Modelagem de Banco de Dados, como controle de estoque, acompanhamento da validade dos produtos, compras de fornecedores e registro de vendas. Esses processos oferecem dados e regras de negócio suficientes para montar um modelo conceitual consistente.
-- **Evidências da organização:**  https://www.google.com/maps/@-23.5357427,-46.5791203,747a,86.7y,87.54h,101.01t/data=!3m7!1e1!3m5!1swJUlDJQ1_PRKkzMQx4lZhg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-11.012688400441263%26panoid%3DwJUlDJQ1_PRKkzMQx4lZhg%26yaw%3D87.54143764466257!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwNi4wIKXMDSoASAFQAw%3D%3D (Google Maps)
-- Endereço: Rua Filipe Camarão, 67 Tatuapé, São Paulo.
-- Número de contato: (11)99317-0906
-- Nome do responsável/entrevistado: Guilherme Takemoto
+- **Nome e natureza da organização:** Hortifruti União – Tatuapé, empresa privada com fins lucrativos, pertencente ao ramo de comércio varejista alimentício.
 
-- Foto com o entrevistado: <img width="947" height="1600" alt="WhatsApp Image 2026-09-22 at 16 22 22" src="https://github.com/user-attachments/assets/7f8d7d4a-3fba-40b8-b748-63b353422e62" />
+- **Contexto e porte:** O Hortifruti União – Tatuapé é uma empresa de médio porte, com aproximadamente 110 funcionários e faturamento mensal estimado em R$ 5 milhões.
+  
+- **Problemas e necessidades identificados:**
 
+- **P1 — Controle da validade dos lotes:** Para dar conta de tantos produtos diferentes, os funcionários precisam acompanhar constantemente as datas de validade. O sistema que pensamos vai ajudar a controlar os lotes e suas datas de vencimento. Assim, ficará mais fácil identificar os produtos próximos do vencimento e evitar a venda de produtos vencidos.
 
-- Fachada do mercado: <img width="1600" height="1200" alt="fachada_mercado" src="https://github.com/user-attachments/assets/96ddf354-d13e-41de-be66-00efc5e769c5" />
+- **P2 — Controle de acesso:** É preciso que as funções do sistema tenham níveis de acesso diferentes. Por exemplo, mudar preços e consultar informações financeiras não pode ser liberado para todos os funcionários da empresa.
 
-- Interior do mercado: <img width="1600" height="1200" alt="interior_mercado" src="https://github.com/user-attachments/assets/b969924b-67c7-4e15-8554-971d6f0eec40" />
+- **Escopo do sistema:** O sistema que pensamos deverá registrar produtos, categorias, fornecedores, funcionários, usuários e seus níveis de acesso. Também permitirá controlar preços, lotes, datas de validade e quantidades disponíveis no estoque. Além disso, registrará vendas, notas fiscais e alterações de preços, além de permitir a emissão de etiquetas e manter a identificação dos funcionários responsáveis pelas operações mais importantes.
+  
+- **Justificativa da escolha:** A empresa foi selecionada porque Tarcisio Santos possui contato próximo com Guilherme Takemoto, um dos proprietários do estabelecimento. Esse vínculo permitiu a realização da entrevista e da visita ao local para observação. Além disso, a empresa possui processos de vendas, controle de estoque, validade de produtos, emissão de notas fiscais e controle de acesso que são adequados ao projeto de modelagem de banco de dados.
 
-- Estoque do mercado: <img width="1600" height="1200" alt="estoque_mercado" src="https://github.com/user-attachments/assets/b0589bb0-c2bd-4588-b628-0f5c1cb43df1" />
+- **Evidências da organização:**
 
+  - [Localização no Google Maps](https://www.google.com/maps/search/?api=1&query=Rua+Filipe+Camar%C3%A3o%2C+67%2C+Tatuap%C3%A9%2C+S%C3%A3o+Paulo)
+  - Endereço: Rua Filipe Camarão, nº 67, Tatuapé, São Paulo.
+  - Número de contato: (11) 99317-0906.
+  - Responsável entrevistado: Guilherme Takemoto, um dos proprietários.
+    
+![Fotografia da fachada](imagens/evidencias/fachada_mercado.jpeg)
+
+![Fotografia do interior](imagens/evidencias/interior_mercado.jpeg)
+
+![Fotografia do estoque](imagens/evidencias/estoque_mercado.jpeg)
+
+#### Relato da entrevista
+
+- **Quem:** Guilherme Takemoto, um dos proprietários do Hortifruti União – Tatuapé, foi entrevistado por Tarcisio Santos de Oliveira. Tarcisio também foi responsável pela observação presencial do estabelecimento e pelo registro das evidências.
+
+- **Quando e onde:** A entrevista foi realizada por videochamada pelo WhatsApp em 22/09/2026, com duração aproximada de uma hora. Posteriormente, Tarcisio realizou uma visita presencial ao estabelecimento em 30/09/2026, na Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, para observar o ambiente e sua rotina.
+
+- **Limitação do levantamento:** Não foi possível realizar uma nova entrevista presencial com o responsável. Por esse motivo, o grupo separou as informações fornecidas durante a videochamada dos achados obtidos durante a observação presencial.
+
+- **Comprovação da entrevista:** A entrevista por videochamada foi registrada por meio de uma captura de tela com o entrevistado.
+
+<img src="imagens/evidencias/entrevista_videochamada.jpeg" alt="Entrevista por videochamada com Guilherme Takemoto" width="400">
+
+- **Comprovação da visita:** A visita presencial foi documentada por meio das fotografias da fachada, do interior e do estoque apresentadas na seção de evidências da organização.
+
+##### Informações fornecidas pelo entrevistado
+
+Durante a entrevista, foram levantadas as seguintes informações:
+
+- O estabelecimento utiliza um banco de dados para armazenar as informações de suas operações.
+- Quando um produto passa pelo caixa, os dados da venda são enviados ao servidor e armazenados no banco de dados.
+- O estoque é integrado ao sistema de vendas. Quando uma venda é concluída, a quantidade correspondente é automaticamente baixada do estoque.
+- A alteração do preço de um produto pode ser realizada somente pelos líderes de setor, pelo gerente ou pelos proprietários.
+- As informações financeiras podem ser acessadas somente pelos funcionários do setor administrativo, pelo gerente e pelos proprietários.
+- A consulta de códigos de produtos e a geração de etiquetas podem ser realizadas pelos funcionários que utilizam os computadores disponíveis para essa atividade.
+- O estabelecimento realiza o lançamento de notas fiscais em razão de suas obrigações fiscais.
+- Produtos vencidos não podem ser disponibilizados para venda.
+
+##### Achados da observação presencial
+
+Durante a visita ao Hortifruti União – Tatuapé, Tarcisio observou a estrutura física do estabelecimento, incluindo a área de vendas e o estoque. A visita permitiu confirmar que a organização trabalha com quantidade e variedade significativas de mercadorias, tornando necessário o controle organizado dos produtos, do estoque e das datas de validade.
+
+A observação presencial foi utilizada em conjunto com as respostas fornecidas pelo proprietário durante a videochamada. Informações que não foram confirmadas pelo entrevistado nem observadas no local foram tratadas como propostas de melhoria do grupo.
+
+##### Propostas de melhoria elaboradas pelo grupo
+
+Com base nos problemas identificados, o grupo propõe que o sistema:
+
+- registre os diferentes lotes de cada produto;
+- armazene a data de validade e a quantidade disponível de cada lote;
+- emita alertas sobre lotes próximos do vencimento;
+- impeça a venda de lotes vencidos;
+- priorize a saída dos lotes válidos com vencimento mais próximo;
+- mantenha o histórico das alterações de preços;
+- registre o funcionário responsável pelas operações relevantes;
+- controle as permissões conforme o cargo do funcionário;
+- registre as perdas de estoque e seus respectivos motivos.
+
+Essas funcionalidades são propostas técnicas do grupo e não são apresentadas como procedimentos atualmente realizados pela organização.
+
+##### Mudanças em relação à Entrega 1
+
+Após a correção da Entrega 1 e a revisão do levantamento, o grupo decidiu:
+
+- representar separadamente os produtos e seus lotes;
+- vincular a data de validade ao lote, e não diretamente ao produto;
+- acrescentar o controle de permissões dos funcionários;
+- acrescentar o histórico das operações relevantes;
+- detalhar os itens das vendas e dos pedidos de compra;
+- acrescentar o registro de perdas;
+- revisar as cardinalidades do modelo conceitual;
+- distinguir os processos atuais das melhorias propostas pelo grupo.
+
+- **Levantamento completo:** [levantamento/levantamento.md](levantamento/levantamento.md)
 
 
 ---
