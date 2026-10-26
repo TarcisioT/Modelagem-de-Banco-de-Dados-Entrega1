@@ -434,7 +434,7 @@ A delimitação busca concentrar o desenvolvimento nas funcionalidades essenciai
 
 **Relacionamentos → Chaves:** Os relacionamentos entre as entidades foram analisados para definir as chaves estrangeiras. Por exemplo, cada lote pertence a um produto, por isso a tabela LOTE deve conter a chave estrangeira codigo_produto, referenciando a tabela PRODUTO.
 
-**Cardinalidades:** Nos relacionamentos 1:N, a chave estrangeira fica na tabela do lado N. Nos relacionamentos N:N, é necessária uma tabela associativa, como FORNECE, que relaciona fornecedores e produtos. As tabelas ITEM_PEDIDO_COMPRA, ITEM_VENDA e SAIDA_LOTE também permitem representar os itens e as movimentações relacionados às operações do mercado.
+**Cardinalidades:** nos relacionamentos 1:N, a chave estrangeira é inserida na tabela do lado N. Nos relacionamentos N:N, é necessária uma tabela associativa. No modelo conceitual, o relacionamento FORNECE liga as entidades FORNECEDOR e PRODUTO, ambas com cardinalidade (0,N). Na conversão para o modelo lógico, esse relacionamento é representado pela tabela associativa FORNECEDOR_PRODUTO, cuja chave primária é composta por `codigo_fornecedor` e `codigo_produto`. As tabelas ITEM_PEDIDO_COMPRA, ITEM_VENDA e SAIDA_LOTE também permitem representar os itens e as movimentações relacionados às operações do mercado.
 
 **Generalização/especialização:** Não foram utilizados relacionamentos de generalização ou especialização no modelo conceitual, pois as entidades identificadas não exigiram esse tipo de estrutura para representar o escopo definido pelo grupo.
 
