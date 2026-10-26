@@ -514,7 +514,7 @@ A delimitação busca concentrar o desenvolvimento nas funcionalidades essenciai
 
 ![Modelo lógico](diagramas/modelo_logico.png)
 
-O diagrama apresenta tabelas, colunas com tipos de dados, chaves primárias, chaves estrangeiras e cardinalidades já convertidas. As demais restrições (`NOT NULL`, `UNIQUE`, `CHECK`, `DEFAULT`) estão no [Dicionário de Dados](docs/dicionario_de_dados.html) e no [script SQL](docs/script.sql).
+O modelo lógico relacional está em processo de revisão para representar todas as entidades, colunas, tipos de dados, chaves primárias, chaves estrangeiras e cardinalidades do sistema proposto. As demais restrições de integridade, como `NOT NULL`, `UNIQUE`, `CHECK` e `DEFAULT`, serão documentadas no arquivo `Dicionario_Dados.md` e implementadas no script `docs/script.sql` após a conclusão e validação do modelo lógico.
 
 ---
 
