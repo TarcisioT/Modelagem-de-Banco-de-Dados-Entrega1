@@ -220,7 +220,7 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RF09 — Valor da venda:** o sistema deve calcular automaticamente o subtotal de cada item (quantidade × preço praticado) e o valor total da venda, recalculando a cada alteração dos itens.
 
-- **RF10 — Cancelamento de item:** o sistema deve permitir retirar um item da venda antes de sua conclusão, informando o produto e a quantidade retirada, sem gerar baixa no estoque. O item retirado não faz parte do total da venda.
+- **RF10 — Retirada de item antes da conclusão da venda:** o sistema proposto deverá permitir retirar um produto da operação enquanto a venda ainda estiver em andamento. O item removido não deverá compor o valor total da venda nem provocar baixa definitiva no estoque. Na implementação SQL desta entrega, serão demonstrados o registro dos itens efetivamente confirmados e o cálculo do valor total da venda, sem desenvolvimento de uma interface de caixa.
 
 - **RF11 — Cancelamento de venda:** o sistema deve permitir cancelar uma venda concluída, restrito ao gerente ou fiscal de caixa, registrando data, hora, motivo e responsável e devolvendo os itens ao lote de origem. Lote vencido não volta a ficar disponível (RN05, RN10).
 
