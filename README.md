@@ -444,6 +444,8 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 
 ### 1.3 Definição de Chaves Primárias e Estrangeiras
 
+**Situação da definição de chaves:** a relação de chaves primárias e estrangeiras apresentada abaixo corresponde à versão anterior do modelo lógico e está em processo de revisão. A versão final será atualizada após a validação do DER conceitual simplificado, incluindo a entidade RECEBIMENTO e os relacionamentos efetivamente definidos. As chaves estrangeiras serão estabelecidas conforme as cardinalidades e as regras de integridade do modelo final.
+
 | Tabela | Chave primária (PK) | Chaves estrangeiras (FK) |
 |---|---|---|
 | PRODUTO | codigo_produto | codigo_categoria → CATEGORIA_PRODUTO |
