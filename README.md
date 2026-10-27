@@ -398,7 +398,6 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 |---|---|---|---|
 | PRODUTO | POSSUI | LOTE | (0,N) / (1,1) |
 | CATEGORIA_PRODUTO | CLASSIFICA | PRODUTO | (0,N) / (1,1) |
-| FORNECEDOR | FORNECE | PRODUTO | (0,N) / (0,N) |
 | FORNECEDOR | RECEBE | PEDIDO_COMPRA | (0,N) / (1,1) |
 | PEDIDO_COMPRA | CONTÉM | ITEM_PEDIDO_COMPRA | (1,N) / (1,1) |
 | PRODUTO | SOLICITADO | ITEM_PEDIDO_COMPRA | (0,N) / (1,1) |
