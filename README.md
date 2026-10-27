@@ -390,7 +390,8 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 
 ![DER conceitual revisado](diagramas/der_conceitual.png)
 
-**Situação do DER conceitual:** o modelo foi elaborado no brModelo e está em processo de ampliação para contemplar o controle de acesso e a rastreabilidade das operações (P2). Após a conclusão das alterações, a imagem revisada será disponibilizada na pasta `diagramas/` do repositório, com o nome `der_conceitual.png`.
+**Situação do DER conceitual:** o modelo conceitual está sendo revisado no brModelo 3.2.0 para representar os principais processos do Hortifruti União, com foco no controle de validade e rastreabilidade dos lotes (P1). As entidades, os atributos, os relacionamentos e as cardinalidades serão definidos de acordo com os requisitos revisados e as informações confirmadas no levantamento. Após a conclusão e validação do DER, sua imagem será disponibilizada na pasta `diagramas/` do repositório, com o nome `der_conceitual.png`.
+
 **Resumo das entidades e relacionamentos do DER revisado:**
 
 | Entidade 1 | Relacionamento | Entidade 2 | Cardinalidade |
