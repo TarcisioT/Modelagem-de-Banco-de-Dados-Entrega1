@@ -432,7 +432,7 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 
 **Entidades → Tabelas:** as entidades identificadas no DER conceitual foram convertidas em 13 tabelas no modelo lógico relacional: PRODUTO, CATEGORIA_PRODUTO, FORNECEDOR, PEDIDO_COMPRA, ITEM_PEDIDO_COMPRA, RECEBIMENTO, LOTE, FUNCIONARIO, VENDA, ITEM_VENDA, PAGAMENTO, PERDA e SAIDA_LOTE. A estrutura foi implementada e testada no MySQL 8.0, contendo 13 chaves primárias e 17 chaves estrangeiras. Cada tabela representa informações necessárias aos processos incluídos no escopo acadêmico, com prioridade para o controle de validade e a rastreabilidade dos lotes (P1).
 
-**Atributos → Colunas:** Os atributos de cada entidade foram transformados em colunas das respectivas tabelas. Por exemplo, os atributos codigo_produto, nome_produto, preco_unitario e unidade_medida passaram a compor a tabela PRODUTO. Os atributos identificadores deram origem às chaves primárias.
+**Atributos → Colunas:** os atributos de cada entidade foram transformados em colunas das respectivas tabelas. Por exemplo, os atributos `codigo_produto`, `nome_produto`, `preco_venda` e `unidade_medida` compõem a tabela PRODUTO. Os atributos identificadores deram origem às chaves primárias, enquanto os campos de referência às demais tabelas foram utilizados como chaves estrangeiras.
 
 **Relacionamentos → Chaves:** Os relacionamentos entre as entidades foram analisados para definir as chaves estrangeiras. Por exemplo, cada lote pertence a um produto, por isso a tabela LOTE deve conter a chave estrangeira codigo_produto, referenciando a tabela PRODUTO.
 
