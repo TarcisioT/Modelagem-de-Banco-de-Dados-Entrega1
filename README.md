@@ -409,6 +409,9 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 | FUNCIONARIO | REGISTRA | PERDA | (0,N) / (1,1) |
 | ITEM_VENDA | POSSUI | SAIDA_LOTE | (1,N) / (1,1) |
 | LOTE | ORIGINA | SAIDA_LOTE | (0,N) / (1,1) |
+| PEDIDO_COMPRA | GERA | RECEBIMENTO | (0,N) / (1,1) |
+| RECEBIMENTO | REGISTRA | LOTE | (0,N) / (1,1) |
+| ITEM_PEDIDO_COMPRA | ORIGINA | LOTE | (0,N) / (1,1) |
 
 *As cardinalidades estão apresentadas na ordem das entidades indicadas em cada linha.*
 
