@@ -504,14 +504,15 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 
 **Rastreabilidade:**
 
-| Problema ou indicador | Tabelas envolvidas | Consulta SQL planejada |
+| Problema ou indicador | Tabelas envolvidas | Consulta SQL testada |
 |---|---|---|
-| P1 — Controle da validade dos lotes | PRODUTO, LOTE, PERDA | G01 — Lotes próximos do vencimento |
-| Valor das perdas por vencimento | LOTE, PRODUTO, PERDA e dados de custo | G03 — Perdas por vencimento |
+| P1 — Lotes próximos do vencimento | PRODUTO, LOTE | G01 — Lotes próximos do vencimento |
+| P1 — Lotes vencidos com saldo | PRODUTO, LOTE | G02 — Lotes vencidos |
+| P1 — Valor financeiro das perdas | PERDA, LOTE, PRODUTO | G03 — Valor financeiro das perdas |
 | Produtos abaixo do estoque mínimo | PRODUTO, LOTE | G04 — Estoque abaixo do mínimo |
-| Faturamento por período | VENDA | G05 — Faturamento por período |
+| Faturamento por período | VENDA, PAGAMENTO | G05 — Faturamento por período |
 
-*As consultas apresentadas serão desenvolvidas e testadas durante a implementação SQL. O indicador financeiro de perdas dependerá do registro do custo dos produtos, e as consultas gerenciais e de auditoria serão elaboradas com base nas entidades e regras de negócio efetivamente implementadas, com prioridade para o controle de validade e rastreabilidade dos lotes (P1).*
+*As consultas gerenciais G01 a G05 foram executadas e verificadas no MySQL 8.0, utilizando dados fictícios do Hortifruti União. Elas permitem identificar lotes próximos do vencimento, lotes vencidos, valores financeiros de perdas, produtos abaixo do estoque mínimo e faturamento por período. Também foram realizadas consultas de auditoria para verificar a consistência dos relacionamentos e das movimentações registradas. Os resultados demonstram as funcionalidades testadas, sem representar dados reais ou garantir a automatização completa de todas as regras de negócio propostas.*
 
 ---
 
