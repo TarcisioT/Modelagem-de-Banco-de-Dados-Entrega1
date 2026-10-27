@@ -432,7 +432,7 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 
 ### 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
 
-**Entidades → Tabelas:** As 12 entidades identificadas no modelo conceitual foram convertidas em tabelas no modelo lógico: PRODUTO, CATEGORIA_PRODUTO, FORNECEDOR, PEDIDO_COMPRA, ITEM_PEDIDO_COMPRA, LOTE, FUNCIONARIO, VENDA, ITEM_VENDA, PAGAMENTO, PERDA e SAIDA_LOTE.
+**Entidades → Tabelas:** o modelo conceitual está sendo revisado com base nos requisitos atualizados e nas informações obtidas durante o levantamento do Hortifruti União. A proposta simplificada considera as entidades PRODUTO, CATEGORIA_PRODUTO, FORNECEDOR, PEDIDO_COMPRA, ITEM_PEDIDO_COMPRA, RECEBIMENTO, LOTE, FUNCIONARIO, VENDA, ITEM_VENDA, PAGAMENTO, PERDA e SAIDA_LOTE. A quantidade definitiva de entidades e tabelas será confirmada após a validação do DER conceitual e sua conversão para o modelo lógico relacional.
 
 **Atributos → Colunas:** Os atributos de cada entidade foram transformados em colunas das respectivas tabelas. Por exemplo, os atributos codigo_produto, nome_produto, preco_unitario e unidade_medida passaram a compor a tabela PRODUTO. Os atributos identificadores deram origem às chaves primárias.
 
