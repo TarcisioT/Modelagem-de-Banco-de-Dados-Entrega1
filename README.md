@@ -47,7 +47,7 @@
 
   O projeto não prevê integração automática com o ERP existente, emissão fiscal oficial ou desenvolvimento de uma interface completa para os operadores.
 
-- **Justificativa da escolha:** a empresa foi selecionada porque Tarcisio Santos de Oliveira tem contato próximo com Guilherme Takemoto, um dos proprietários do estabelecimento. Esse vínculo permitiu a realização da entrevista e da visita ao local para observação, mas não substitui a comprovação da entrevista, apresentada neste relatório. Além disso, a empresa possui processos de vendas, controle de estoque, validade de produtos, emissão de notas fiscais e controle de acesso que são adequados ao projeto de modelagem de banco de dados.
+- **Justificativa da escolha:** o Hortifruti União foi selecionado por ser uma organização real, com processos de compras, recebimento de mercadorias, armazenamento, vendas e controle de estoque. O contato do integrante Tarcisio Santos de Oliveira com Guilherme Takemoto, um dos responsáveis pelo estabelecimento, possibilitou a realização do levantamento de informações e da visita ao local. Durante a pesquisa, foi identificada uma dificuldade relacionada ao uso do controle de validade e à identificação individual dos lotes, tornando esse processo o foco principal da proposta de modelagem do banco de dados.
 
 - **Evidências da organização:**
 
