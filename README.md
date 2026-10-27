@@ -532,7 +532,20 @@ O diagrama será disponibilizado no repositório no arquivo `diagramas/modelo_lo
 
 ## 3. Script SQL Completo
 
-procure ## 3. Script SQL Completo
+**SGBD escolhido:** MySQL 8.0.
+
+**Arquivo de entrega:** `docs/script.sql`.
+
+O banco de dados do Hortifruti União foi implementado em ambiente de testes MySQL, com 13 tabelas e 17 chaves estrangeiras, utilizando dados fictícios.
+
+Foram executados comandos `CREATE DATABASE`, `CREATE TABLE`, `INSERT`, `SELECT`, `JOIN`, `UPDATE` e `DELETE`, além de cinco consultas gerenciais (G01 a G05), quatro consultas de auditoria (A01 a A04) e um teste de integridade referencial (A05).
+
+Os testes demonstraram consultas sobre lotes próximos do vencimento, lotes vencidos, valor financeiro das perdas, estoque mínimo e faturamento por período.
+
+O arquivo consolidado será disponibilizado em `docs/script.sql` após a verificação de sua execução completa desde um banco vazio.
+
+**Limitações:** a escolha automática do lote pelo método FEFO, a autorização por perfil de funcionário e todas as validações transacionais de estoque não foram implementadas integralmente. Essas funcionalidades permanecem identificadas como limitações ou melhorias futuras.
+
 ---
 
 ## 4. Massa de Dados
