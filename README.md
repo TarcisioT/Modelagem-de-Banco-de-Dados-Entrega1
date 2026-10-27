@@ -528,23 +528,7 @@ O modelo lógico relacional está em processo de revisão para representar todas
 
 ## 3. Script SQL Completo
 
-**SGBD escolhido:** MySQL.
-
-**Arquivo previsto:** `docs/script.sql`
-
-O script SQL será desenvolvido a partir do modelo lógico revisado. Ele deverá conter a criação do banco de dados e das tabelas, incluindo chaves primárias, chaves estrangeiras e restrições necessárias para manter a integridade das informações.
-
-A implementação também incluirá comandos para inserir, consultar, atualizar e excluir dados, além de consultas gerenciais relacionadas aos problemas identificados no Hortifruti União.
-
-**Comandos previstos:**
-- `CREATE DATABASE` e `CREATE TABLE`: criação do banco e das tabelas.
-- `INSERT INTO`: inserção de dados fictícios.
-- `SELECT` e `JOIN`: consultas entre tabelas.
-- `UPDATE` e `DELETE`: atualização e exclusão controlada de dados.
-- **G01 a G05:** consultas gerenciais propostas na seção 1.6.
-- **A01 e A02:** consultas de auditoria, caso as estruturas necessárias sejam implementadas.
-
-Os comandos serão testados no MySQL, e os resultados relevantes serão documentados antes da entrega final.
+procure ## 3. Script SQL Completo
 ---
 
 ## 4. Massa de Dados
