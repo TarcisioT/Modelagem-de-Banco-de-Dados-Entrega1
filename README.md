@@ -533,18 +533,34 @@ procure ## 3. Script SQL Completo
 
 ## 4. Massa de Dados
 
-**Arquivo previsto:** `docs/massa_de_dados.sql`, podendo ser integrado ao arquivo `docs/script.sql`.
+**Arquivo de entrega:** `docs/script.sql`. Os comandos de inserção dos dados fictícios serão disponibilizados junto ao script de criação do banco.
 
-A massa de dados será composta por registros fictícios, criados exclusivamente para testar o funcionamento do banco de dados. Não serão utilizados dados pessoais reais de funcionários, fornecedores ou clientes do Hortifruti União.
+A massa de dados foi preparada para representar situações de compras, recebimento de mercadorias, controle de validade, perdas, vendas e pagamentos do Hortifruti União. Todos os registros utilizados nos testes são fictícios e foram criados exclusivamente para fins acadêmicos.
 
-**Justificativa do volume:** considerando o porte informado da organização, com aproximadamente 110 funcionários, 7 caixas e 2.400 transações diárias, os testes deverão utilizar uma quantidade de registros suficiente para representar diferentes situações do funcionamento do mercado. Não será necessário reproduzir todo o volume real de movimentações.
+**Dados cadastrados e testados no MySQL:**
 
-**Variedade dos dados:** serão incluídos registros fictícios de produtos de diferentes categorias, fornecedores, pedidos de compra, recebimentos de mercadorias, lotes com datas de validade distintas, vendas com vários itens, pagamentos divididos e perdas por diferentes motivos. Também serão considerados produtos abaixo do estoque mínimo e lotes vencidos ou próximos do vencimento, permitindo testar as consultas SQL relacionadas ao problema P1 — Controle de validade e rastreabilidade dos lotes.
+| Tipo de registro | Quantidade |
+|---|---:|
+| Categorias de produtos | 4 |
+| Fornecedores | 4 |
+| Funcionários | 5 |
+| Produtos | 8 |
+| Pedidos de compra | 4 |
+| Itens de pedido de compra | 8 |
+| Recebimentos | 3 |
+| Lotes de produtos | 8 |
+| Perdas registradas | 1 |
+| Vendas | 1 |
+| Itens de venda | 2 |
+| Pagamentos | 1 |
+| Saídas de lote | 2 |
+| **Total** | **51** |
 
-**Objetivo dos testes:** verificar os relacionamentos entre as tabelas, o funcionamento das chaves estrangeiras, as restrições de integridade e os resultados das consultas SQL. Os dados também servirão para demonstrar indicadores gerenciais relacionados ao controle de estoque, vendas, perdas e rastreabilidade das operações.
+**Variedade dos dados:** foram incluídos produtos de diferentes categorias, pedidos recebidos e pendentes, dois lotes de banana com validades distintas, lotes próximos do vencimento, um lote vencido, uma perda por vencimento, uma venda com dois produtos, um pagamento e saídas de estoque vinculadas aos lotes de origem.
 
-**Situação atual:** a massa de dados ainda será criada e validada após a conclusão do modelo lógico e do script SQL. A quantidade final de registros e os resultados dos testes serão documentados antes da entrega.
+**Testes realizados:** a massa de dados foi utilizada para executar as consultas gerenciais G01 a G05 e as consultas de auditoria A01 a A04. Também foi realizado um teste de integridade referencial, no qual o MySQL rejeitou uma venda associada a um funcionário inexistente.
 
+**Limitação da amostra:** os 51 registros representam uma massa de dados pequena e controlada para demonstrar os relacionamentos e as operações básicas. Eles não reproduzem o volume real de movimentações do Hortifruti União, nem comprovam desempenho em ambiente de produção.
 ---
 
 ### 5. Repositório GitHub
