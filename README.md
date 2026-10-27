@@ -318,7 +318,7 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
   Neste projeto acadêmico, o fechamento de caixa será documentado como um processo existente na organização, mas não será implementado um módulo próprio para abertura, fechamento, conferência e validação. O banco de dados proposto armazenará os registros de vendas e pagamentos, permitindo consultas aos valores recebidos por forma de pagamento, sem substituir o sistema de controle de caixa utilizado pelo estabelecimento.
 
-  - **Limite da implementação:** nesta entrega, o fechamento será representado por estruturas de dados e exemplos de consultas SQL. Não será desenvolvida uma interface operacional de caixa nem integração com equipamentos de pagamento. O registro de outras movimentações em dinheiro dependerá das estruturas efetivamente incluídas no modelo.
+Neste projeto acadêmico, o fechamento de caixa será documentado como um processo existente na organização, mas não será implementado um módulo próprio para abertura, fechamento, conferência e validação. O banco de dados proposto armazenará os registros de vendas e pagamentos, permitindo consultas aos valores recebidos por forma de pagamento, sem substituir o sistema de controle de caixa utilizado pelo estabelecimento.
 
 **Restrições organizacionais e legais**
 
