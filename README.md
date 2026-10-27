@@ -490,13 +490,13 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 
 **Indicadores e métricas gerenciais (KPIs):**
 
-| Indicador | Como calcular | Período |
-|---|---|---|
-| Valor das perdas por vencimento | Soma da quantidade perdida por vencimento multiplicada pelo custo unitário correspondente | Mensal |
-| Percentual de perdas sobre as vendas | (Valor total das perdas ÷ valor total das vendas) × 100 | Mensal |
-| Quantidade de lotes próximos do vencimento | Contagem dos lotes com estoque disponível e validade dentro do prazo de alerta | Diário |
-| Produtos abaixo do estoque mínimo | Contagem dos produtos cuja quantidade disponível está abaixo do estoque mínimo cadastrado | Diário |
-| Faturamento por período | Soma dos valores das vendas concluídas, descontando os cancelamentos conforme o tratamento definido | Diário e mensal |
+| Indicador | Como calcular | Período | Consulta SQL |
+|---|---|---|---|
+| Lotes próximos do vencimento | Contagem dos lotes com saldo positivo e validade dentro dos próximos 7 dias | Diário | G01 |
+| Lotes vencidos com saldo | Contagem dos lotes cuja validade já passou e que ainda possuem quantidade disponível | Diário | G02 |
+| Valor financeiro das perdas | Soma da quantidade perdida multiplicada pelo custo unitário de cada lote | Por período, conforme filtro aplicado | G03 |
+| Produtos abaixo do estoque mínimo | Comparação entre o estoque mínimo cadastrado e a soma das quantidades disponíveis por produto | Diário | G04 |
+| Faturamento por período | Soma dos pagamentos associados às vendas concluídas, agrupada pela data da venda | Diário | G05 |
 
 **Potencial dos dados para BI:** Os dados poderão ser utilizados para construir painéis com gráficos de vendas, evolução das perdas, produtos mais vendidos e situação dos estoques. O gerente poderá consultar esses indicadores para acompanhar o desempenho do mercado e identificar produtos que precisam de maior atenção.
 
