@@ -476,7 +476,7 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 
 ### 1.5 Justificativas Técnicas das Decisões
 
-**Chaves primárias:** Cada tabela possui uma chave primária para identificar seus registros de maneira única. Foram utilizados códigos identificadores, como `codigo_produto`, `codigo_lote` e `codigo_venda`. Na tabela associativa `FORNECEDOR_PRODUTO`, foi definida uma chave primária composta por `codigo_fornecedor` e `codigo_produto`, impedindo que a mesma associação seja cadastrada duas vezes.
+**Chaves primárias:** cada uma das 13 tabelas do modelo possui uma chave primária simples, formada por um único atributo identificador. Foram utilizados códigos como `codigo_produto`, `codigo_lote`, `codigo_venda` e `codigo_item_pedido`, permitindo identificar individualmente cada registro. As tabelas ITEM_PEDIDO_COMPRA, ITEM_VENDA e SAIDA_LOTE também possuem identificadores próprios e utilizam chaves estrangeiras para estabelecer os relacionamentos com as demais tabelas. Essa estrutura facilita a identificação dos registros e a aplicação das restrições de integridade referencial no MySQL.
 
 **Chaves estrangeiras e relacionamentos:** As chaves estrangeiras representam as ligações entre as tabelas e ajudam a manter a integridade dos dados. Por exemplo, `PEDIDO_COMPRA` utiliza `codigo_fornecedor` para identificar o fornecedor responsável, enquanto `ITEM_PEDIDO_COMPRA` utiliza `codigo_pedido` e `codigo_produto` para relacionar cada item ao pedido e ao produto solicitado. Já `SAIDA_LOTE` utiliza `codigo_item_venda` e `codigo_lote` para registrar de quais lotes saíram as quantidades vendidas.
 
