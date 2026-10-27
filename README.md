@@ -284,7 +284,11 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN04 — Fornecedor com CNPJ válido [Proposta]:** o fornecedor só pode ser cadastrado com CNPJ válido e único, razão social, telefone e e-mail preenchidos.
 
-- **RN05 — Cancelamento de venda [Proposta]:** o cancelamento de uma venda concluída deverá ser realizado somente pelo gerente ou fiscal de caixa, conforme as permissões estabelecidas na RN10. O registro deverá preservar a venda original e armazenar o motivo do cancelamento, a data, o horário e o usuário responsável. As quantidades dos produtos cancelados poderão retornar aos respectivos lotes de origem somente quando estiverem em condições adequadas para comercialização e dentro do prazo de validade. Produtos vencidos, danificados ou impróprios para venda não deverão retornar ao estoque disponível. O sistema deverá impedir que a mesma quantidade seja devolvida mais de uma vez, mantendo a rastreabilidade das movimentações.
+- **RN05 — Cancelamento de venda [Proposta / Implementação simplificada]:** uma venda concluída poderá ser cancelada mediante autorização operacional do gerente ou fiscal de caixa, conforme a RN10. O banco de dados deverá preservar o registro original da venda e armazenar sua situação, o motivo do cancelamento, a data, o horário e a identificação do funcionário responsável.
+
+  Na implementação SQL, será demonstrada a atualização da situação da venda e a consulta ao histórico de cancelamentos. A eventual devolução de produtos ao estoque deverá considerar os lotes originalmente utilizados, suas datas de validade e as condições de comercialização, impedindo a devolução duplicada de quantidades.
+
+  A verificação automática das permissões dos funcionários e a execução completa da reposição de estoque em cancelamentos não fazem parte da implementação prática desta entrega. Essas limitações serão identificadas na documentação, sem apresentar tais controles como funcionalidades implementadas.
   
 - **RN06 — Estoque mínimo [Entrevista]:** cada produto tem uma quantidade mínima de estoque. Quando a quantidade disponível fica abaixo dela, o sistema alerta para avaliar a reposição. O comprador é o principal responsável por definir (parametrizar) o estoque mínimo, com apoio do ERP e supervisão do gerente de compras.
 
