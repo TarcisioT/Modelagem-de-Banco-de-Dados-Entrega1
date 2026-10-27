@@ -518,11 +518,15 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 
 ## 2. Modelo Lógico Relacional
 
-**Software utilizado:** brModelo. O modelo lógico foi gerado a partir do DER conceitual e está em processo de revisão, especialmente das chaves estrangeiras e dos relacionamentos entre as tabelas.
+**Software utilizado:** brModelo 3.2.0.
 
-![Modelo lógico](diagramas/modelo_logico.png)
+O modelo lógico relacional do Hortifruti União foi desenvolvido no brModelo a partir do DER conceitual revisado. Ele contém **13 tabelas**, com atributos, tipos de dados, chaves primárias, chaves estrangeiras e relacionamentos.
 
-O modelo lógico relacional está em processo de revisão para representar todas as entidades, colunas, tipos de dados, chaves primárias, chaves estrangeiras e cardinalidades do sistema proposto. As demais restrições de integridade, como `NOT NULL`, `UNIQUE`, `CHECK` e `DEFAULT`, serão documentadas no arquivo `Dicionario_Dados.md` e implementadas no script `docs/script.sql` após a conclusão e validação do modelo lógico.
+A estrutura foi implementada no MySQL 8.0, onde foram verificadas **17 restrições de chave estrangeira**. Também foram realizados testes com dados fictícios, consultas gerenciais e verificações de integridade referencial.
+
+As regras de negócio que exigem validações adicionais, como a aplicação automática do método FEFO, o controle de permissões e a consistência das movimentações de estoque, serão documentadas com suas limitações. A existência das chaves estrangeiras não garante, isoladamente, todas essas regras.
+
+O diagrama será disponibilizado no repositório no arquivo `diagramas/modelo_logico.png`, e as definições detalhadas das tabelas e colunas serão apresentadas no `Dicionario_Dados.md`.
 
 ---
 
