@@ -39,7 +39,13 @@
 
   - **Como o modelo resolve:** registra cada lote com identificação própria, produto, data de validade e quantidade disponível. Permite consultar os lotes próximos do vencimento e registrar perdas, apoiando decisões de reposição e redução de desperdícios. A solução complementa os procedimentos físicos de organização das mercadorias.
 
-- **Escopo do sistema:** o projeto propõe um banco de dados relacional para organizar informações sobre produtos, categorias, fornecedores, pedidos de compra, recebimento de mercadorias, lotes, datas de validade, estoque, vendas, pagamentos e perdas. Também contempla o cadastro de funcionários, usuários, perfis de acesso e o registro de operações relevantes, como alterações de preços e cancelamentos. O fechamento de caixa será representado de forma simplificada. O banco permitirá consultar as informações necessárias à geração de etiquetas e registrar dados fiscais básicos associados às vendas, sem implementar a impressão física de etiquetas nem a emissão fiscal real. A integração com o ERP utilizado pelo estabelecimento e o desenvolvimento de interfaces completas permanecerão fora do escopo desta entrega.
+- **Escopo do sistema:** o projeto propõe um banco de dados relacional para organizar as informações dos principais processos do Hortifruti União, incluindo cadastro de produtos, categorias, fornecedores e funcionários; pedidos de compra e recebimento de mercadorias; controle de lotes, datas de validade, quantidades em estoque e perdas; além do registro de vendas, itens vendidos e pagamentos.
+
+  A prioridade da solução será melhorar a rastreabilidade dos lotes e apoiar a identificação de produtos próximos do vencimento, conforme o problema P1 identificado no levantamento.
+
+  Os processos de alterações de preços, cancelamentos, fechamento de caixa, produção própria e atividades administrativas serão documentados conforme o levantamento realizado. Sua implementação será delimitada na revisão dos requisitos e do modelo conceitual, evitando acrescentar estruturas sem justificativa.
+
+  O projeto não prevê integração automática com o ERP existente, emissão fiscal oficial ou desenvolvimento de uma interface completa para os operadores.
 
 - **Justificativa da escolha:** a empresa foi selecionada porque Tarcisio Santos de Oliveira tem contato próximo com Guilherme Takemoto, um dos proprietários do estabelecimento. Esse vínculo permitiu a realização da entrevista e da visita ao local para observação, mas não substitui a comprovação da entrevista, apresentada neste relatório. Além disso, a empresa possui processos de vendas, controle de estoque, validade de produtos, emissão de notas fiscais e controle de acesso que são adequados ao projeto de modelagem de banco de dados.
 
