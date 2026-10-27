@@ -318,8 +318,6 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
   
 - **RN21 — Fechamento de caixa [Entrevista / Fora da implementação prática]:** conforme informado pelo responsável pelo Hortifruti União, o fechamento do caixa é realizado ao final do período de operação. O operador confere inicialmente o dinheiro físico, e o fiscal de caixa ou gerente realiza a validação. A conferência considera o fundo inicial, os recebimentos em dinheiro e as demais movimentações em espécie, sem incluir os pagamentos realizados por cartão no saldo físico.
 
-  Neste projeto acadêmico, o fechamento de caixa será documentado como um processo existente na organização, mas não será implementado um módulo próprio para abertura, fechamento, conferência e validação. O banco de dados proposto armazenará os registros de vendas e pagamentos, permitindo consultas aos valores recebidos por forma de pagamento, sem substituir o sistema de controle de caixa utilizado pelo estabelecimento.
-
 Neste projeto acadêmico, o fechamento de caixa será documentado como um processo existente na organização, mas não será implementado um módulo próprio para abertura, fechamento, conferência e validação. O banco de dados proposto armazenará os registros de vendas e pagamentos, permitindo consultas aos valores recebidos por forma de pagamento, sem substituir o sistema de controle de caixa utilizado pelo estabelecimento.
 
 **Restrições organizacionais e legais**
