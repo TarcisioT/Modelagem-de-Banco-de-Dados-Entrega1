@@ -300,6 +300,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN13 — Pedido de compra com itens [Proposta]:** todo pedido de compra contém ao menos um item. Cada item representa um produto e pertence a um único pedido.
 
+- **RN22 — Consistência entre pedido, recebimento e lote [Proposta]:** cada lote recebido deverá estar associado a um recebimento e a um item de pedido de compra. O recebimento e o item comprado deverão pertencer ao mesmo pedido, e o produto associado ao lote deverá ser o mesmo produto registrado no item de compra. Essa consistência será verificada na implementação do modelo lógico e por meio de restrições ou consultas SQL de validação.
+
 - **RN14 — Saída por lote, FEFO [Proposta]:** cada produto vendido tem sua quantidade retirada de um ou mais lotes válidos, com prioridade para o vencimento mais próximo (primeiro que vence, primeiro que sai), registrando lote e quantidade retirada.
 
 - **RN15 — Formas de pagamento [Entrevista]:** o mercado aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix. O pagamento de uma venda pode ser dividido entre essas formas, desde que a soma seja igual ao total da venda.
