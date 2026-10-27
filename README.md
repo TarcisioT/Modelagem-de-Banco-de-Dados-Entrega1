@@ -320,13 +320,9 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN08 — Obrigatoriedade fiscal e registro de informações da nota [Entrevista / Implementação limitada]:** o Hortifruti União deve cumprir as obrigações fiscais aplicáveis às suas vendas, conforme informado pelo responsável. Na solução proposta, o banco de dados deverá permitir o armazenamento de informações fiscais básicas associadas às vendas, como número da nota, data e horário de emissão, quando disponibilizadas. A emissão, autorização e transmissão de documentos fiscais aos órgãos competentes não serão implementadas nesta entrega, permanecendo como atividades realizadas pelo sistema fiscal utilizado pelo estabelecimento. O banco de dados desenvolvido para o projeto não substituirá esse sistema.
   
-- **RN10 — Permissões por função [Entrevista]:** o acesso ao sistema depende do cargo do funcionário. Os cargos do mercado são dono, gerente, administrativo, fiscal de caixa, caixa, repositor, líderes de setor (mercearia, hortifruti, açougue, padaria e confeitaria), padeiro, confeiteiro, açougueiro, segurança, serviços gerais e limpeza.
-   - Alterar o preço de um produto: líderes de setor, gerente e dono.
-  - Acessar dados financeiros: administrativo, gerente e dono.
-  - Consultar o código, o código de barras, o nome e o preço de um produto: qualquer funcionário. A geração e a impressão de etiquetas ficarão fora da implementação prática desta entrega.
-  - Cancelar uma venda: gerente ou fiscal de caixa.
-  - Validar o fechamento de caixa: fiscal de caixa ou gerente. A conferência inicial é realizada pelo operador do caixa.
-  - Registrar o responsável por cancelamentos e alterações de preço: o sistema proposto deverá armazenar o usuário responsável, a data e o horário de cada operação [Proposta].
+- **RN10 — Permissões por função [Entrevista / Implementação limitada]:** conforme informado pelo responsável pelo Hortifruti União, determinadas operações do sistema atual possuem restrições de acesso de acordo com a função exercida pelo funcionário. Alterações de preços são realizadas por líderes de setor, gerente e proprietários; cancelamentos de vendas e validações de fechamento de caixa são autorizados ao gerente ou fiscal de caixa; e informações financeiras são acessadas por funcionários autorizados da administração e gestão.
+
+  No projeto acadêmico, essas restrições serão documentadas como regras existentes na organização. A implementação de login, autenticação e gerenciamento de perfis e permissões ficará fora do escopo prático. O banco de dados proposto registrará a identificação dos funcionários responsáveis pelas operações efetivamente modeladas, sem afirmar que essa identificação, isoladamente, garante a autorização de acesso.
     
 - **RN11 — Produtos a granel [Proposta]:** produtos vendidos por peso têm a quantidade registrada em quilos e o valor calculado pelo preço por quilo. As balanças devem atender às exigências do Inmetro.
 
