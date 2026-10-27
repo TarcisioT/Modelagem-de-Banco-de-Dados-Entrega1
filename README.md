@@ -382,7 +382,7 @@ Essas funcionalidades poderão ser consideradas em evoluções futuras do projet
 
 **Limites da implementação:** o projeto será demonstrado por meio do modelo lógico relacional, scripts SQL, dados fictícios e consultas realizadas no MySQL. As regras de autorização, a estratégia FEFO e as operações de estoque serão representadas e testadas na medida em que forem implementadas no banco de dados, sem pressupor a existência de uma aplicação completa.
 
-A delimitação busca concentrar o desenvolvimento nas funcionalidades essenciais para os problemas P1 e P2, mantendo a coerência entre o levantamento de requisitos, os diagramas e a implementação SQL.
+A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — Controle de validade e rastreabilidade dos lotes, mantendo o registro dos dados essenciais dos demais processos da organização. Dessa forma, o grupo pretende garantir a coerência entre o levantamento de requisitos, o DER conceitual, o modelo lógico e a implementação SQL, sem acrescentar funcionalidades desnecessárias.
 
 #### DER Conceitual Revisado
 
