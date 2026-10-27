@@ -310,8 +310,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN18 — Controle de quantidade vendida [Proposta]:** no banco de dados acadêmico proposto, a quantidade retirada dos lotes não deverá ultrapassar o estoque disponível, e lotes vencidos não deverão ser utilizados para atender vendas. Essa é uma melhoria em relação à situação relatada na entrevista, pois o sistema atualmente utilizado pelo Hortifruti União pode apresentar estoque negativo. A aplicação dessa regra dependerá de validações e operações de atualização consistentes na implementação SQL.
   
-- **RN19 — Baixa automática de estoque [Entrevista]:** o estoque é integrado ao caixa. Ao concluir uma venda, o sistema dá baixa automática nas quantidades vendidas.
-
+- **RN19 — Baixa de estoque e rastreabilidade por lote [Entrevista / Proposta]:** conforme relatado na entrevista, o sistema atual do Hortifruti União realiza a baixa automática do estoque quando uma venda é concluída. Como melhoria proposta neste projeto acadêmico, cada quantidade vendida deverá ser associada ao lote de origem por meio da entidade SAIDA_LOTE, permitindo rastrear a validade e a quantidade retirada. A atualização da quantidade disponível de cada lote deverá ocorrer de forma consistente, sem permitir saldo negativo. A seleção do lote e a aplicação dessa regra dependerão das operações implementadas no SQL.
+  
 - **RN20 — Histórico preservado [Proposta]:** vendas, cancelamentos, pagamentos e perdas não são apagados. Ficam registrados no histórico, com a situação atualizada.
 
 - **RN21 — Fechamento de caixa [Entrevista / Fora da implementação prática]:** conforme informado pelo responsável pelo Hortifruti União, o fechamento do caixa é realizado ao final do período de operação. O operador confere inicialmente o dinheiro físico, e o fiscal de caixa ou gerente realiza a validação. A conferência considera o fundo inicial, os recebimentos em dinheiro e as demais movimentações em espécie, sem incluir os pagamentos realizados por cartão no saldo físico.
