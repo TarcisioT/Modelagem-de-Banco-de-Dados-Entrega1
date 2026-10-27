@@ -390,7 +390,7 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 
 ![DER conceitual revisado](diagramas/der_conceitual.png)
 
-**Situação do DER conceitual:** o modelo conceitual está sendo revisado no brModelo 3.2.0 para representar os principais processos do Hortifruti União, com foco no controle de validade e rastreabilidade dos lotes (P1). As entidades, os atributos, os relacionamentos e as cardinalidades serão definidos de acordo com os requisitos revisados e as informações confirmadas no levantamento. Após a conclusão e validação do DER, sua imagem será disponibilizada na pasta `diagramas/` do repositório, com o nome `der_conceitual.png`.
+**Situação do DER conceitual:** o Diagrama Entidade-Relacionamento (DER) conceitual do Hortifruti União foi elaborado no brModelo 3.2.0, considerando os processos de cadastro, compras, recebimento, controle de lotes, perdas e vendas, com prioridade para o problema P1 — Controle de validade e rastreabilidade dos lotes. O diagrama contém as entidades, os atributos, os identificadores, os relacionamentos e as cardinalidades definidos pelo grupo. Sua representação será disponibilizada na pasta `diagramas/`, no arquivo `der_conceitual.png`, após a conferência final de correspondência com o modelo lógico implementado.
 
 **Resumo das entidades e relacionamentos do DER revisado:**
 
