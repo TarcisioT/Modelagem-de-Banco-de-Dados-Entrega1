@@ -238,8 +238,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RF18 — Registro de perdas:** o sistema deve permitir registrar perdas (vencimento, dano ou estrago) com lote, quantidade, data, motivo e funcionário, descontando a quantidade do lote (RN07, RN17).
 
-- **RF19 — Alteração de preço:** o sistema deve permitir alterar o preço de um produto apenas a líderes de setor, gerente e dono, registrando o preço anterior, o novo preço, a data e hora e o funcionário (RN10).
-
+- **RF19 — Alteração de preços (implementação simplificada):** conforme informado pelo responsável pelo Hortifruti União, o sistema atualmente utilizado já permite registrar alterações de preços, identificando o horário e o login do funcionário responsável. No banco de dados proposto, será mantido o preço de venda atualizado de cada produto. O processo de alteração de preços será documentado no levantamento, mas a implementação de um módulo próprio de histórico de alterações e controle de permissões ficará fora do escopo prático desta entrega.
+    
 - **RF20 — Consulta de produtos e informações para etiquetas (implementação limitada):** o banco de dados deverá permitir consultar o código do produto, código de barras, nome utilizado na gôndola e preço de venda atualizado. Essas informações poderão ser utilizadas futuramente para gerar etiquetas. A criação de interfaces de impressão e a comunicação com impressoras não fazem parte da implementação prática desta entrega.
   
 - **RF21 — Funcionários e usuários:** o sistema deve permitir cadastrar funcionários com nome, CPF, telefone, cargo e data de admissão, e criar o usuário de acesso (login e senha) com o perfil correspondente. Dados financeiros ficam restritos ao administrativo, gerente e dono (RN10).
