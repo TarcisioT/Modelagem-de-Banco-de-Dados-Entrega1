@@ -268,7 +268,7 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
   
 - **RNF09 — Integração e centralização dos dados (implementação limitada):** o banco de dados proposto deverá organizar de forma centralizada as informações de produtos, fornecedores, compras, lotes, estoque, vendas e pagamentos, mantendo os relacionamentos necessários para garantir a integridade dos registros. Embora o Hortifruti União utilize atualmente o ERP VR Software, a integração automática com esse sistema não será desenvolvida nesta entrega. A possibilidade de comunicação entre os sistemas ficará prevista como evolução futura, dependendo de análise técnica e disponibilidade de mecanismos de integração.
 
-**Requisitos típicos não incluídos:** cadastro de clientes e programa de fidelidade (o mercado não cadastra clientes) e pagamento por Pix (não aceito). Contas a pagar e escala de funcionários não foram levantados na entrevista e não estão ligados aos problemas declarados (P1 e P2). Ficam como evolução futura, a confirmar com o responsável.
+**Requisitos típicos não incluídos:** cadastro de clientes e programa de fidelidade (o mercado não cadastra clientes) e pagamento por Pix (não aceito). Contas a pagar e escala de funcionários não foram levantados na entrevista e não estão ligados aos problema principal (P1) Ficam como evolução futura, a confirmar com o responsável.
 
 ---
 
@@ -336,7 +336,7 @@ Neste projeto acadêmico, o fechamento de caixa será documentado como um proces
 
 - Cadastro de clientes e programa de fidelidade: o mercado não cadastra clientes.
 - Pagamento por Pix: o mercado não o aceita.
-- Normas sanitárias, contas a pagar e escala de funcionários: não foram levantadas na entrevista e não estão ligadas aos problemas declarados (P1 e P2). Ficam como evolução futura, a confirmar com o responsável.
+- Normas sanitárias, contas a pagar e escala de funcionários: não foram levantadas na entrevista e não estão ligadas ao problema principal (P1). Ficam como evolução futura, a confirmar com o responsável.
 
 ---
 
