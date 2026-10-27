@@ -434,29 +434,33 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 
 **Relacionamentos → Chaves:** Os relacionamentos entre as entidades foram analisados para definir as chaves estrangeiras. Por exemplo, cada lote pertence a um produto, por isso a tabela LOTE deve conter a chave estrangeira codigo_produto, referenciando a tabela PRODUTO.
 
-**Cardinalidades:** nos relacionamentos 1:N, a chave estrangeira é inserida na tabela do lado N. Nos relacionamentos N:N, é necessária uma tabela associativa. No modelo conceitual, o relacionamento FORNECE liga as entidades FORNECEDOR e PRODUTO, ambas com cardinalidade (0,N). Na conversão para o modelo lógico, esse relacionamento é representado pela tabela associativa FORNECEDOR_PRODUTO, cuja chave primária é composta por `codigo_fornecedor` e `codigo_produto`. As tabelas ITEM_PEDIDO_COMPRA, ITEM_VENDA e SAIDA_LOTE também permitem representar os itens e as movimentações relacionados às operações do mercado.
+**Cardinalidades:** nos relacionamentos 1:N, a chave estrangeira é inserida na tabela do lado N. Em relacionamentos N:N, normalmente é necessária uma tabela associativa para representar todas as combinações possíveis entre as entidades.
+
+Na implementação acadêmica desta entrega, a relação entre fornecedores e produtos é identificada indiretamente pelas tabelas PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Assim, é possível consultar quais produtos foram solicitados a cada fornecedor, sem criar uma tabela FORNECEDOR_PRODUTO. Essa decisão simplifica o modelo para os processos efetivamente implementados, mas não representa um cadastro independente de produtos fornecidos por cada fornecedor.
 
 **Generalização/especialização:** Não foram utilizados relacionamentos de generalização ou especialização no modelo conceitual, pois as entidades identificadas não exigiram esse tipo de estrutura para representar o escopo definido pelo grupo.
 
 ### 1.3 Definição de Chaves Primárias e Estrangeiras
 
-**Situação da definição de chaves:** a relação de chaves primárias e estrangeiras apresentada abaixo corresponde à versão anterior do modelo lógico e está em processo de revisão. A versão final será atualizada após a validação do DER conceitual simplificado, incluindo a entidade RECEBIMENTO e os relacionamentos efetivamente definidos. As chaves estrangeiras serão estabelecidas conforme as cardinalidades e as regras de integridade do modelo final.
+**Definição das chaves:** o modelo lógico do Hortifruti União possui 13 tabelas, com chaves primárias para identificação dos registros e 17 chaves estrangeiras para representar os relacionamentos. A estrutura foi implementada e testada no MySQL 8.0.
 
 | Tabela | Chave primária (PK) | Chaves estrangeiras (FK) |
 |---|---|---|
-| PRODUTO | codigo_produto | codigo_categoria → CATEGORIA_PRODUTO |
-| CATEGORIA_PRODUTO | codigo_categoria | Não possui |
-| FORNECEDOR | codigo_fornecedor | Não possui |
-| FORNECEDOR_PRODUTO | codigo_fornecedor + codigo_produto (PK composta) | codigo_fornecedor → FORNECEDOR; codigo_produto → PRODUTO |
-| PEDIDO_COMPRA | codigo_pedido | codigo_fornecedor → FORNECEDOR |
-| ITEM_PEDIDO_COMPRA | codigo_item_pedido | codigo_pedido → PEDIDO_COMPRA; codigo_produto → PRODUTO |
-| LOTE | codigo_lote | codigo_produto → PRODUTO |
-| FUNCIONARIO | codigo_funcionario | Não possui |
-| VENDA | codigo_venda | codigo_funcionario → FUNCIONARIO |
-| ITEM_VENDA | codigo_item_venda | codigo_venda → VENDA; codigo_produto → PRODUTO |
-| PAGAMENTO | codigo_pagamento | codigo_venda → VENDA |
-| PERDA | codigo_perda | codigo_lote → LOTE; codigo_funcionario → FUNCIONARIO |
-| SAIDA_LOTE | codigo_saida_lote | codigo_item_venda → ITEM_VENDA; codigo_lote → LOTE |
+| FORNECEDOR | `codigo_fornecedor` | Não possui |
+| CATEGORIA_PRODUTO | `codigo_categoria` | Não possui |
+| FUNCIONARIO | `codigo_funcionario` | Não possui |
+| PRODUTO | `codigo_produto` | `codigo_categoria` → CATEGORIA_PRODUTO |
+| PEDIDO_COMPRA | `codigo_pedido` | `codigo_fornecedor` → FORNECEDOR |
+| ITEM_PEDIDO_COMPRA | `codigo_item_pedido` | `codigo_pedido` → PEDIDO_COMPRA; `codigo_produto` → PRODUTO |
+| RECEBIMENTO | `codigo_recebimento` | `codigo_pedido` → PEDIDO_COMPRA |
+| LOTE | `codigo_lote` | `codigo_produto` → PRODUTO; `codigo_item_pedido` → ITEM_PEDIDO_COMPRA; `codigo_recebimento` → RECEBIMENTO |
+| PERDA | `codigo_perda` | `codigo_lote` → LOTE; `codigo_funcionario` → FUNCIONARIO |
+| VENDA | `codigo_venda` | `codigo_funcionario` → FUNCIONARIO; `codigo_funcionario_cancelamento` → FUNCIONARIO |
+| ITEM_VENDA | `codigo_item_venda` | `codigo_venda` → VENDA; `codigo_produto` → PRODUTO |
+| PAGAMENTO | `codigo_pagamento` | `codigo_venda` → VENDA |
+| SAIDA_LOTE | `codigo_saida_lote` | `codigo_lote` → LOTE; `codigo_item_venda` → ITEM_VENDA |
+
+**Observação:** o relacionamento direto entre FORNECEDOR e PRODUTO não foi implementado como uma tabela associativa nesta versão. A identificação do fornecedor ocorre por meio do pedido de compra. Essa simplificação deverá ser refletida também na descrição do DER conceitual.
 
 ### 1.4 Processo de Normalização (1FN, 2FN e 3FN)
 
