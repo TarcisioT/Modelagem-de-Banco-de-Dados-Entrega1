@@ -503,12 +503,11 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 | Problema ou indicador | Tabelas envolvidas | Consulta SQL planejada |
 |---|---|---|
 | P1 — Controle da validade dos lotes | PRODUTO, LOTE, PERDA | G01 — Lotes próximos do vencimento |
-| P2 — Controle de acesso às funções do sistema | FUNCIONARIO e tabelas de usuários, permissões e auditoria a definir | G02 — Operações por funcionário |
 | Valor das perdas por vencimento | LOTE, PRODUTO, PERDA e dados de custo | G03 — Perdas por vencimento |
 | Produtos abaixo do estoque mínimo | PRODUTO, LOTE | G04 — Estoque abaixo do mínimo |
 | Faturamento por período | VENDA | G05 — Faturamento por período |
 
-*As consultas apresentadas serão desenvolvidas e testadas na etapa de implementação SQL. O indicador financeiro de perdas dependerá do registro do custo dos produtos, e a análise de controle de acesso dependerá das estruturas de usuários e auditoria previstas para o sistema.*
+*As consultas apresentadas serão desenvolvidas e testadas durante a implementação SQL. O indicador financeiro de perdas dependerá do registro do custo dos produtos, e as consultas gerenciais e de auditoria serão elaboradas com base nas entidades e regras de negócio efetivamente implementadas, com prioridade para o controle de validade e rastreabilidade dos lotes (P1).*
 
 ---
 
