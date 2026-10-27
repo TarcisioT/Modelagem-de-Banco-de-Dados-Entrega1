@@ -550,7 +550,7 @@ A massa de dados será composta por registros fictícios, criados exclusivamente
 
 **Justificativa do volume:** considerando o porte informado da organização, com aproximadamente 110 funcionários, 7 caixas e 2.400 transações diárias, os testes deverão utilizar uma quantidade de registros suficiente para representar diferentes situações do funcionamento do mercado. Não será necessário reproduzir todo o volume real de movimentações.
 
-**Variedade dos dados:** serão incluídos produtos de diferentes categorias, fornecedores, pedidos de compra, lotes com datas de validade distintas, vendas com vários itens, pagamentos divididos e perdas por diferentes motivos. Também serão considerados exemplos de produtos abaixo do estoque mínimo, lotes vencidos ou próximos do vencimento, alterações de preços, operações de usuários com perfis diferentes e vendas canceladas.
+**Variedade dos dados:** serão incluídos registros fictícios de produtos de diferentes categorias, fornecedores, pedidos de compra, recebimentos de mercadorias, lotes com datas de validade distintas, vendas com vários itens, pagamentos divididos e perdas por diferentes motivos. Também serão considerados produtos abaixo do estoque mínimo e lotes vencidos ou próximos do vencimento, permitindo testar as consultas SQL relacionadas ao problema P1 — Controle de validade e rastreabilidade dos lotes.
 
 **Objetivo dos testes:** verificar os relacionamentos entre as tabelas, o funcionamento das chaves estrangeiras, as restrições de integridade e os resultados das consultas SQL. Os dados também servirão para demonstrar indicadores gerenciais relacionados ao controle de estoque, vendas, perdas e rastreabilidade das operações.
 
