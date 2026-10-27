@@ -342,37 +342,32 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 #### Delimitação do Escopo da Implementação
 
-A implementação do banco de dados do Hortifruti União terá como prioridade atender aos dois problemas principais identificados durante o levantamento:
+A implementação do banco de dados do Hortifruti União terá como prioridade atender ao problema principal identificado durante o levantamento:
 
-- **P1 — Controle da validade dos lotes:** permitir o registro dos lotes, suas datas de validade, quantidades disponíveis, movimentações de estoque e perdas, possibilitando a identificação de produtos vencidos ou próximos do vencimento.
-- **P2 — Controle de acesso e rastreabilidade:** permitir a identificação dos usuários, a associação de funcionários a perfis de acesso e o registro de operações relevantes, como alterações de preços e cancelamentos de vendas.
+- **P1 — Controle de validade e rastreabilidade dos lotes:** registrar os lotes de produtos, suas datas de validade, quantidades disponíveis e perdas, permitindo identificar mercadorias vencidas ou próximas do vencimento e apoiar o controle de estoque.
 
-#### Ampliação do Modelo Conceitual para o Problema P2
+A solução também contemplará os dados essenciais dos processos de cadastro de produtos, fornecedores, compras, recebimentos e vendas, mantendo a coerência com as operações da organização.
 
-Para atender ao problema P2 — Controle de acesso às funções do sistema, o grupo definiu a necessidade de ampliar o modelo conceitual com entidades relacionadas à identificação de usuários e à rastreabilidade de operações.
+#### Revisão do Modelo Conceitual e Simplificação do Escopo
 
-As novas entidades planejadas são:
+Após novas informações fornecidas pelo responsável pelo Hortifruti União, o grupo decidiu concentrar a solução no problema P1 — Controle de validade e rastreabilidade dos lotes.
 
-- **USUARIO:** representa as credenciais de acesso vinculadas a um funcionário.
-- **PERFIL_ACESSO:** identifica o perfil atribuído ao usuário, como operador de caixa, fiscal de caixa ou gerente.
-- **AUDITORIA:** registra operações relevantes, incluindo o usuário responsável, a data, o horário e o tipo de ação realizada.
-- **ALTERACAO_PRECO:** registra o produto alterado, o preço anterior, o novo preço e o responsável pela alteração.
+Foi confirmado que o sistema atualmente utilizado pela empresa já registra alterações de preços, incluindo o horário e o login do responsável. Por esse motivo, o controle de acesso e o histórico de alterações de preços deixaram de ser tratados como um segundo problema principal.
 
-Essas entidades complementarão o modelo existente, que já contempla produtos, fornecedores, compras, vendas, pagamentos, lotes e perdas.
+O modelo conceitual será revisado para representar os dados necessários aos principais processos da organização, priorizando produtos, fornecedores, compras, recebimentos, lotes, perdas e vendas.
 
-A ampliação ainda será representada e validada no DER conceitual e posteriormente convertida para o modelo lógico relacional. As permissões específicas de cada perfil também deverão ser definidas para que o controle de acesso esteja coerente com as regras de negócio do projeto.
+As funcionalidades complementares serão avaliadas de acordo com os requisitos e as informações levantadas, evitando a inclusão de entidades sem justificativa suficiente.
 
 **Funcionalidades incluídas no escopo:**
 
 - Cadastro de produtos, categorias, fornecedores e funcionários.
 - Registro de pedidos de compra e seus itens.
-- Controle de lotes, estoque, validade e perdas.
+- Registro do recebimento de mercadorias e das informações da nota fiscal de entrada.
+- Controle de lotes, datas de validade, quantidades disponíveis e perdas.
 - Registro de vendas, itens vendidos e pagamentos.
 - Registro das saídas de produtos por lote, considerando a estratégia FEFO.
-- Cadastro de usuários e perfis de acesso.
-- Histórico de alterações de preços e cancelamentos.
-- Registro simplificado do fechamento de caixa, com valores conferidos e identificação dos responsáveis.
-- Consultas SQL para demonstrar as operações do banco de dados e gerar indicadores gerenciais.
+- Consultas SQL para identificar lotes próximos do vencimento, produtos abaixo do estoque mínimo e perdas registradas.
+- Consultas gerenciais para apoiar o acompanhamento do estoque e das vendas.
 
 **Funcionalidades fora do escopo da implementação prática:**
 
