@@ -308,8 +308,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN17 — Perdas por outros motivos [Proposta]:** perdas por dano, estrago ou outros motivos também são registradas com lote, quantidade, data, motivo e funcionário responsável, e descontadas do estoque do lote. A proposta é registrar todas as perdas digitalmente.
 
-- **RN18 — Quantidade vendida [Proposta]:** não é permitido vender quantidade maior que a disponível nos lotes válidos do produto.
-
+- **RN18 — Controle de quantidade vendida [Proposta]:** no banco de dados acadêmico proposto, a quantidade retirada dos lotes não deverá ultrapassar o estoque disponível, e lotes vencidos não deverão ser utilizados para atender vendas. Essa é uma melhoria em relação à situação relatada na entrevista, pois o sistema atualmente utilizado pelo Hortifruti União pode apresentar estoque negativo. A aplicação dessa regra dependerá de validações e operações de atualização consistentes na implementação SQL.
+  
 - **RN19 — Baixa automática de estoque [Entrevista]:** o estoque é integrado ao caixa. Ao concluir uma venda, o sistema dá baixa automática nas quantidades vendidas.
 
 - **RN20 — Histórico preservado [Proposta]:** vendas, cancelamentos, pagamentos e perdas não são apagados. Ficam registrados no histórico, com a situação atualizada.
