@@ -512,13 +512,9 @@ O grupo já tinha relatado testes no MySQL 8.0 com 13 tabelas, 74 colunas, 17 FK
 
 ![Modelo lógico relacional do Hortifruti União](diagramas/modelo_logico.png)
 
-O modelo lógico relacional do Hortifruti União foi desenvolvido no brModelo a partir do DER conceitual revisado. Ele contém **13 tabelas**, com atributos, tipos de dados, chaves primárias, chaves estrangeiras e relacionamentos.
+O diagrama tem 13 tabelas, com colunas, tipos, PKs, FKs e cardinalidades já convertidas. Na cópia do SQL usada na conferência há 17 FKs, todas anuláveis. Obrigatoriedade, unicidade e valores permitidos vão no [Dicionário de Dados](Dicionario_Dados.md) e no [script SQL](docs/script.sql); nessa cópia as restrições a mais ainda não estão. A conferência final precisa comparar o PNG, o dicionário e o SQL que será publicado.
 
-A estrutura foi implementada no MySQL 8.0, onde foram verificadas **17 restrições de chave estrangeira**. Também foram realizados testes com dados fictícios, consultas gerenciais e verificações de integridade referencial.
-
-As limitações relacionadas à seleção automática de lotes pelo método FEFO, ao controle de permissões, à atualização dos saldos de estoque e às demais validações das regras de negócio estão documentadas na seção 1.5 e no Dicionário de Dados. As chaves estrangeiras, isoladamente, não garantem a execução integral dessas regras.
-
-**Situação dos arquivos do modelo lógico:** o modelo lógico relacional foi elaborado e revisado no brModelo 3.2.0, contemplando as 13 tabelas do projeto. As imagens do DER conceitual e do modelo lógico foram enviadas à pasta `diagramas/` do repositório GitHub. O arquivo `Dicionario_Dados.md` foi concluído e revisado, documentando as 74 colunas e seus relacionamentos. O script `docs/script.sql` foi executado no MySQL 8.0, utilizando a base independente `hortifruti_uniao_entrega2`. Foram confirmadas as 13 tabelas, as 17 chaves estrangeiras e os 51 registros fictícios, além da execução das consultas gerenciais G01 a G05 e dos testes de auditoria A01 a A05. As verificações demonstram os cenários testados, sem garantir a automatização integral de todas as regras de negócio.
+Arquivos: `diagramas/der_conceitual.png`, `diagramas/modelo_logico.png`, `Dicionario_Dados.md` (74 colunas), `docs/script.sql` (base `hortifruti_uniao_entrega2`).
 
 ---
 
