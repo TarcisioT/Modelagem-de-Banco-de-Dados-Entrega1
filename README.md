@@ -520,33 +520,38 @@ Arquivos: `diagramas/der_conceitual.png`, `diagramas/modelo_logico.png`, `Dicion
 
 ## 3. Script SQL Completo
 
-**SGBD escolhido:** MySQL 8.0.
+**SGBD:** MySQL 8.0. **Arquivo exigido na branch `main`:** [docs/script.sql](docs/script.sql).
 
-**Arquivo de entrega:** `docs/script.sql`.
+O esqueleto pede um `.sql` que rode numa base vazia, nesta ordem: `CREATE DATABASE`, `CREATE TABLE` e restrições, `INSERT`, `SELECT` com `JOIN`, `UPDATE`, `DELETE`, consultas gerenciais e auditoria. Vale usar transação com `ROLLBACK` no `UPDATE`/`DELETE` para não estragar a massa. **No SQL que vimos, `UPDATE` e `DELETE` estavam depois das auditorias;** o certo, pela ordem do esqueleto, é colocá-los antes das G/A.
 
-O banco de dados do Hortifruti União foi implementado em ambiente de testes MySQL, com 13 tabelas e 17 chaves estrangeiras, utilizando dados fictícios.
+**Consultas identificadas na cópia usada na conferência:**
 
-O script contém comandos `CREATE DATABASE`, `CREATE TABLE`, `INSERT`, `SELECT` e consultas com `JOIN`, além de operações demonstrativas `UPDATE` em PRODUTO e `DELETE` em PAGAMENTO executadas dentro de uma transação revertida (`ROLLBACK`). Não há demonstração de `UPDATE` em LOTE nem de cancelamento de venda. Também foram incluídas cinco consultas gerenciais (G01 a G05), quatro auditorias (A01 a A04) e um teste de integridade referencial (A05) com tratamento do erro por procedimento SQL.
+| Código | Pergunta da consulta | O que atende |
+|---|---|---|
+| G01 | Quais lotes têm saldo e vencem nos próximos 7 dias? | P1 — prevenção de vencimento |
+| G02 | Quais lotes vencidos ainda têm saldo? | P1 — identificação de risco |
+| G03 | Qual o custo de cada perda registrada? | P1 — registro financeiro de perdas; falta totalização no SQL |
+| G04 | Quais produtos estão abaixo do estoque mínimo? | RN06 — risco de ruptura |
+| G05 | Quanto foi registrado em pagamentos de vendas concluídas por dia? | Indicador de recebimentos vinculados a vendas |
+| A01 | Existe referência não nula de lote a produto inexistente? | Integridade referencial, com a limitação de FKs nulas |
+| A02 | O produto e o pedido vinculados ao lote coincidem? | RN22, parcialmente |
+| A03 | A saída por lote corresponde ao produto do item vendido? | RN14/RN19, parcialmente |
+| A04 | A soma das retiradas por lote é igual à quantidade vendida? | RN18, parcialmente |
+| A05 | O banco rejeita venda vinculada a funcionário inexistente? | FK de `VENDA.codigo_funcionario` |
 
-Os testes demonstraram consultas sobre lotes próximos do vencimento, lotes vencidos, valor financeiro das perdas, estoque mínimo e faturamento por período.
+Cada consulta precisa ter, no próprio `.sql`, um cabeçalho com código, pergunta em português e RN/KPI atendido. As listas de G01, G02 e G04 e o detalhamento de perdas de G03 são úteis para a gestão. **Para atender aos KPIs definidos na seção 1.6, ainda precisamos acrescentar as contagens e totalizações correspondentes**, sem retirar essas listas. As auditorias ainda não cobrem venda sem pagamento, pagamento diferente do total, quantidade inválida e lote vencido vendido. Regras que envolvem várias linhas precisam de validações nas operações, não apenas de um `CHECK`.
 
-**Situação da implementação SQL:** o arquivo `docs/script.sql` foi consolidado e executado no MySQL 8.0, utilizando o banco de demonstração independente `hortifruti_uniao_entrega2`. A execução permitiu criar as 13 tabelas, confirmar as 17 chaves estrangeiras e inserir os 51 registros fictícios. As consultas gerenciais G01 a G05 foram executadas e apresentaram resultados compatíveis com os cenários de demonstração. As auditorias A01 a A04 não identificaram inconsistências nos registros analisados, e o teste A05 confirmou que uma chave estrangeira impede o registro de uma venda associada a um funcionário inexistente. Esses resultados validam os cenários testados, sem representar uma garantia de implementação integral de todas as regras de negócio.
+A cópia conferida do SQL **não** faz sozinha: FEFO, baixa de saldo, cancelamento, permissão por cargo e conferência da soma dos pagamentos com o total da venda. Também não vimos `NOT NULL` nas FKs obrigatórias, `UNIQUE` além das PKs nem `CHECK` de quantidade e forma de pagamento.
 
-**Limitações:** a escolha automática do lote pelo método FEFO, a autorização por perfil de funcionário e todas as validações transacionais de estoque não foram implementadas integralmente. Essas funcionalidades permanecem identificadas como limitações ou melhorias futuras.
-
-**Revalidação da versão corrigida:** o script atualizado foi executado novamente em banco de testes em 28/10/2026. Foram confirmados 13 tabelas, 17 chaves estrangeiras, 51 registros, o saldo de 69,000 do lote TOM-001, os resultados G01 a G05 e as auditorias A01 a A05. As consultas de auditoria verificam os cenários fictícios apresentados e não asseguram a automatização de todas as regras de negócio.
+Para fechar esta parte, falta alinhar README, dicionário e `docs/script.sql`, confirmar no arquivo final o saldo de `TOM-001` descrito na seção 1.6 e testar essa mesma versão numa base vazia. Mudar o texto do README não substitui executar o script no banco.
 
 ---
 
 ## 4. Massa de Dados
 
-**Arquivo de entrega:** `docs/script.sql`. A massa de dados fictícia foi incluída no mesmo script de criação e testes do banco de dados, por meio de comandos `INSERT`. O arquivo consolidado foi executado no MySQL 8.0, utilizando o banco independente `hortifruti_uniao_entrega2`. A execução confirmou a criação das 13 tabelas, das 17 chaves estrangeiras e a inserção dos 51 registros fictícios. As consultas gerenciais G01 a G05 e os testes de auditoria A01 a A05 também foram executados e verificados, considerando os cenários demonstrados.
+**Arquivo:** massa fictícia em [docs/script.sql](docs/script.sql), por `INSERT`. **Não são dados internos reais** do hortifruti.
 
-A massa de dados foi preparada para representar situações de compras, recebimento de mercadorias, controle de validade, perdas, vendas e pagamentos do Hortifruti União. Todos os registros utilizados nos testes são fictícios e foram criados exclusivamente para fins acadêmicos.
-
-**Dados cadastrados e testados no MySQL:**
-
-| Tipo de registro | Quantidade |
+| Tipo de registro | Quantidade na versão analisada |
 |---|---:|
 | Categorias de produtos | 4 |
 | Fornecedores | 4 |
@@ -555,19 +560,23 @@ A massa de dados foi preparada para representar situações de compras, recebime
 | Pedidos de compra | 4 |
 | Itens de pedido de compra | 8 |
 | Recebimentos | 3 |
-| Lotes de produtos | 8 |
-| Perdas registradas | 1 |
+| Lotes | 8 |
+| Perdas | 1 |
 | Vendas | 1 |
 | Itens de venda | 2 |
 | Pagamentos | 1 |
 | Saídas de lote | 2 |
 | **Total** | **51** |
 
-**Variedade dos dados:** foram incluídos produtos de diferentes categorias, pedidos recebidos e pendentes, dois lotes de banana com validades distintas, lotes próximos do vencimento, um lote vencido, uma perda por vencimento, uma venda com dois produtos, um pagamento e saídas de estoque vinculadas aos lotes de origem.
+Os `INSERT` são **fictícios**. Em relação ao tamanho real (28 mil SKUs, ~2.400 vendas/dia), 8 produtos e 1 venda são **massa de teste**, não amostra estatística. Dá para G01–G05 não voltarem vazios, mas não “representa o movimento”. A exigência de volume e variedade do esqueleto fica **parcial**.
 
-**Testes realizados:** a massa de dados foi utilizada para executar as consultas gerenciais G01 a G05 e as consultas de auditoria A01 a A04. Também foi realizado um teste de integridade referencial, no qual o MySQL rejeitou uma venda associada a um funcionário inexistente.
+O que a massa já tem: pedidos recebidos e um pendente; dois lotes de banana com validades diferentes; lote vencido com saldo; uma perda por vencimento; produtos abaixo do mínimo; uma venda com dois itens.
 
-**Limitação da amostra:** os 51 registros representam uma massa de dados pequena e controlada para demonstrar os relacionamentos e as operações básicas. Eles não reproduzem o volume real de movimentações do Hortifruti União, nem comprovam desempenho em ambiente de produção.
+O que ainda falta demonstrar: mais de uma venda (datas diferentes), as três formas de pagamento, pagamento dividido, venda cancelada com motivo e responsável, perda por avaria, e, se couber, item saindo de mais de um lote. Tudo fictício. **Esses cenários ainda não aparecem na massa usada nesta conferência.**
+
+Saldo: `BAN-001` (38 depois de vender 2) e `ALF-001` (30 depois de perder 10) fecham na massa descrita. No caso de `TOM-001`, 70,000 recebidos menos 1,000 vendido dão **69,000**. A cópia conferida ainda tinha 70,000, enquanto o grupo relatou a correção para 69,000. A conferência da versão final continua pendente, como explicado na seção 1.6.
+
+O uso de IA na massa está na seção 6. A descrição dessa ajuda ainda precisa ser conferida com os pedidos realmente feitos, principalmente para esclarecer a participação na escrita dos `INSERTs` e em uma possível ampliação da massa.
 
 ---
 
