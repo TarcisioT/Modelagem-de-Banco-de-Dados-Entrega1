@@ -727,6 +727,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 | **Reflexão crítica** | O ChatGPT auxiliou no aprendizado e na revisão técnica, mas suas sugestões exigiram conferência prática. A execução do SQL permitiu distinguir funcionalidades demonstradas de regras que ainda dependem de automatização adicional. |
 
 As atividades de apoio do ChatGPT à implementação do banco de dados, à organização da massa de dados fictícia, à elaboração das consultas SQL e à interpretação dos testes no MySQL estão documentadas no Registro 6. As orientações fornecidas pela ferramenta foram confrontadas com o modelo lógico, o Dicionário de Dados e os resultados das execuções, permitindo identificar limitações da implementação e realizar correções na documentação.
+
 ---
 
 ## 7. Apresentação Corporativa Final
