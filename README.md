@@ -709,7 +709,18 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 | **Justificativa da escolha final** | O grupo aproveitou as explicações e sugestões consideradas coerentes com o projeto, realizando as alterações manualmente no README e nos diagramas. |
 | **Reflexão crítica** | O uso do ChatGPT ajudou na compreensão dos conceitos e na organização da Entrega 2, mas mostrou a importância de conferir as respostas. Nem todas as sugestões estavam corretas inicialmente, sendo necessário comparar as orientações com as regras do projeto e revisar algumas decisões. |
 
-**Registro complementar de uso de IA:** As ferramentas de inteligência artificial também foram utilizadas como apoio à análise dos processos de negócio, à elaboração de propostas de regras para o Hortifruti União e à organização da documentação da Entrega 2. As sugestões não foram consideradas automaticamente corretas: foram comparadas com as informações obtidas no levantamento e com os requisitos definidos pelo grupo.
+### Registro 6 — ChatGPT: Apoio à implementação e validação SQL
+
+| Item | Descrição |
+|---|---|
+| **Ferramenta e etapa** | ChatGPT — apoio à organização do script SQL, criação da massa de dados fictícia, elaboração de consultas e interpretação dos testes no MySQL 8.0, durante a Entrega 2. |
+| **Motivação** | O grupo precisava transformar o modelo lógico em uma estrutura relacional executável, compreender os comandos SQL e conferir se os resultados correspondiam aos requisitos e relacionamentos definidos. |
+| **Exemplos de solicitações realizadas** | Orientações para criar e executar o arquivo `script.sql`; conferir as tabelas criadas no MySQL; interpretar erros de execução; validar consultas gerenciais e conferir a integridade dos relacionamentos. |
+| **Respostas recebidas** | Explicações sobre os comandos SQL, sugestões de estruturação do script, orientações de execução no MySQL e apoio à interpretação das consultas gerenciais G01 a G05 e dos testes de auditoria A01 a A05. |
+| **Verificações realizadas pelo grupo** | O script foi executado no MySQL 8.0. Foram confirmadas 13 tabelas, 17 chaves estrangeiras e 51 registros fictícios. As consultas G01 a G05 retornaram resultados compatíveis com os cenários preparados; as auditorias A01 a A04 não identificaram inconsistências nos registros analisados, e o teste A05 demonstrou a rejeição de uma referência a funcionário inexistente. |
+| **Sugestões aceitas e limitações identificadas** | Foram aproveitadas as orientações compatíveis com o modelo lógico e confirmadas pela execução dos comandos. O grupo também identificou que a existência de chaves estrangeiras não garante automaticamente todas as regras de negócio, como a seleção FEFO, a validação de pagamentos e o bloqueio de vendas de lotes vencidos. Por isso, essas funcionalidades foram descritas como limitações ou melhorias futuras. |
+| **Justificativa das decisões** | As decisões finais foram fundamentadas na estrutura efetivamente criada no MySQL, no Dicionário de Dados e nos resultados dos testes, e não apenas nas respostas da IA. |
+| **Reflexão crítica** | O ChatGPT auxiliou no aprendizado e na revisão técnica, mas suas sugestões exigiram conferência prática. A execução do SQL permitiu distinguir funcionalidades demonstradas de regras que ainda dependem de automatização adicional. |
 
 O grupo também utilizou o ChatGPT como apoio à organização da massa de dados fictícia, elaboração e revisão das consultas SQL G01 a G05 e A01 a A05, interpretação dos resultados no MySQL e revisão dos textos da documentação. As sugestões foram conferidas por meio de execuções e capturas de tela, com correções quando ocorreram divergências entre as orientações e as tabelas efetivamente criadas. Antes da entrega, o grupo deverá complementar o registro com exemplos reais dos prompts utilizados, das respostas aceitas e rejeitadas e das decisões tomadas, sem atribuir à IA testes que não foram executados.
 
