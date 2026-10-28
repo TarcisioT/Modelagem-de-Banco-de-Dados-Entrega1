@@ -513,7 +513,7 @@ As consultas G01 a G05 foram executadas no MySQL 8.0, utilizando a massa de 51 r
 | G04 | Produtos abaixo do estoque mínimo | 2 produtos: Arroz 5 kg (estoque 5,000; mínimo 10,000) e Cenoura (estoque 0,000; mínimo 10,000) |
 | G05 | Faturamento das vendas concluídas | R$ 19,47, referente a 1 venda concluída em 28/10/2026 |
 
-### Resultados das auditorias SQL — Validação em 28/10/2026
+**Resultados das auditorias SQL — Validação em 28/10/2026**
 
 As auditorias A01 a A05 foram executadas no MySQL 8.0, utilizando o banco de demonstração `hortifruti_uniao_entrega2`, com 13 tabelas e 51 registros fictícios.
 
