@@ -495,6 +495,20 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 | Produtos abaixo do estoque mínimo | Comparação entre o estoque mínimo cadastrado e a soma das quantidades disponíveis por produto | Diário | G04 |
 | Faturamento por período | Soma dos pagamentos associados às vendas concluídas, agrupada pela data da venda | Diário | G05 |
 
+**Resultados das consultas gerenciais — Validação em 28/10/2026**
+
+As consultas G01 a G05 foram executadas no MySQL 8.0, utilizando a massa de 51 registros fictícios do banco `hortifruti_uniao_entrega2`.
+
+| Consulta | Indicador | Resultado obtido |
+|---|---|---|
+| G01 | Lotes próximos do vencimento, considerando os próximos 7 dias | 3 lotes: Maçã (MAC-001), Banana prata (BAN-001) e Tomate (TOM-001) |
+| G02 | Lotes vencidos com estoque disponível | 1 lote: Alface crespa (ALF-001), com saldo de 30,000 |
+| G03 | Valor financeiro das perdas registradas | R$ 20,00, referentes à perda de 10,000 unidades de Alface crespa |
+| G04 | Produtos abaixo do estoque mínimo | 2 produtos: Arroz 5 kg (estoque 5,000; mínimo 10,000) e Cenoura (estoque 0,000; mínimo 10,000) |
+| G05 | Faturamento das vendas concluídas | R$ 19,47, referente a 1 venda concluída em 28/10/2026 |
+
+**Observação:** os valores apresentados correspondem exclusivamente aos dados fictícios utilizados na demonstração acadêmica e não representam indicadores reais do Hortifruti União. Os resultados das consultas de validade dependem da data de execução, pois utilizam `CURDATE()`. A demonstração confirma o funcionamento das consultas nos cenários testados, sem implementar automaticamente alertas, bloqueios de venda ou reposição de estoque.
+
 **Potencial dos dados para BI:** Os dados poderão ser utilizados para construir painéis com gráficos de vendas, evolução das perdas, produtos mais vendidos e situação dos estoques. O gerente poderá consultar esses indicadores para acompanhar o desempenho do mercado e identificar produtos que precisam de maior atenção.
 
 **Aplicações analíticas e de IA:** Futuramente, técnicas de inteligência artificial poderão ser utilizadas para prever a demanda de produtos, identificar mercadorias com maior risco de vencimento e sugerir quantidades de reposição. Essas análises dependerão da existência de dados históricos suficientes e de registros confiáveis de vendas, estoque e perdas.
