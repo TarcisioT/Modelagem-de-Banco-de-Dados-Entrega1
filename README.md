@@ -527,7 +527,7 @@ A estrutura foi implementada no MySQL 8.0, onde foram verificadas **17 restriç�
 
 As regras de negócio que exigem validações adicionais, como a aplicação automática do método FEFO, o controle de permissões e a consistência das movimentações de estoque, serão documentadas com suas limitações. A existência das chaves estrangeiras não garante, isoladamente, todas essas regras.
 
-O diagrama será disponibilizado no repositório no arquivo `diagramas/modelo_logico.png`, e as definições detalhadas das tabelas e colunas serão apresentadas no `Dicionario_Dados.md`.
+**Situação dos arquivos do modelo lógico:** o modelo lógico relacional foi desenvolvido no brModelo 3.2.0, com 13 tabelas e seus relacionamentos. A estrutura correspondente foi implementada e testada no MySQL 8.0, com 17 chaves estrangeiras verificadas. A imagem final do modelo lógico ainda precisa ser conferida e exportada para `diagramas/modelo_logico.png`. O arquivo `Dicionario_Dados.md` também precisa ser revisado para garantir que os nomes das colunas, tipos de dados, chaves e restrições correspondam exatamente à implementação SQL.
 
 ---
 
