@@ -20,16 +20,16 @@
 
 #### Caracterização da Organização
 
-- **Nome e natureza da organização:** Hortifruti União – Tatuapé, empresa privada com fins lucrativos, pertencente ao ramo de comércio varejista alimentício.
+- **Nome e natureza da organização:** Hortifruti União – Tatuapé, empresa privada com fins lucrativos, do comércio varejista alimentício.
 
-- **Contexto e porte:** o Hortifruti União – Tatuapé é uma empresa privada com fins lucrativos, pertencente ao comércio varejista alimentício e com funcionamento diário. Para fins deste trabalho acadêmico, o estabelecimento é caracterizado como uma organização de médio porte, considerando a complexidade de suas operações e as informações obtidas no levantamento. Essa caracterização não representa uma classificação formal de porte empresarial segundo critérios fiscais ou legais. Os dados operacionais abaixo foram informados pelo responsável entrevistado:
+- **Contexto e dimensão operacional:** o mercado abre todos os dias. Os números abaixo são o que o responsável nos passou na conversa; não saíram de relatório do ERP nem de auditoria:
 
-  - **Pessoas:** aproximadamente 110 funcionários e 7 caixas.
-  - **Vendas:** média de 2.400 transações por dia (cerca de 72.000 por mês), com ticket médio de R$ 70 e faturamento de aproximadamente R$ 5,04 milhões por mês.
-  - **Produtos:** 28 mil SKUs cadastrados, entre produtos ativos e inativos.
-  - **Fornecedores:** 650 cadastrados, dos quais cerca de 350 tiveram movimentação nos últimos 90 dias.
-  - **Recebimento:** cerca de 1.200 lotes recebidos por semana, considerando como lote a combinação de produto, fornecedor e identificação de lote no recebimento.
-  - **Perdas:** cerca de R$ 75 mil por mês, equivalentes a aproximadamente 1,5% do faturamento, incluindo vencimentos, avarias, quebras e deterioração.
+  - **Pessoas:** uns 110 funcionários e 7 caixas.
+  - **Vendas:** em média 2.400 transações por dia (cerca de 72.000 no mês), ticket médio de R$ 70 e faturamento perto de R$ 5,04 milhões por mês.
+  - **Produtos:** 28 mil SKUs no cadastro, entre ativos e inativos.
+  - **Fornecedores:** 650 cadastrados; uns 350 tiveram movimentação nos últimos 90 dias.
+  - **Recebimento:** cerca de 1.200 lotes por semana (lote = produto + fornecedor + identificação no recebimento).
+  - **Perdas:** cerca de R$ 75 mil por mês (em torno de 1,5% do faturamento), somando vencimento, avaria, quebra e produto estragado.
 
 - **Problemas e necessidades identificados:**
 
