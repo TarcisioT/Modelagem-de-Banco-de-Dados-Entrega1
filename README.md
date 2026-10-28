@@ -302,8 +302,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN22 — Consistência entre pedido, recebimento e lote [Proposta]:** cada lote recebido deverá estar associado a um recebimento e a um item de pedido de compra. O recebimento e o item comprado deverão pertencer ao mesmo pedido, e o produto associado ao lote deverá ser o mesmo produto registrado no item de compra. Essa consistência será verificada na implementação do modelo lógico e por meio de restrições ou consultas SQL de validação.
 
-- **RN14 — Saída por lote, FEFO [Proposta]:** cada produto vendido tem sua quantidade retirada de um ou mais lotes válidos, com prioridade para o vencimento mais próximo (primeiro que vence, primeiro que sai), registrando lote e quantidade retirada.
-
+- **RN14 — Saída por lote e estratégia FEFO [Proposta / Implementação simplificada]:** cada item vendido poderá ser associado a um ou mais lotes por meio da tabela SAIDA_LOTE, registrando a quantidade retirada de cada lote. A estratégia FEFO (*First Expire, First Out*) estabelece a prioridade de utilização dos lotes válidos com vencimento mais próximo. Nesta implementação acadêmica, a rastreabilidade das saídas foi demonstrada por meio de registros e consultas SQL, mas a seleção automática dos lotes conforme o FEFO não foi implementada integralmente.
+  
 - **RN15 — Formas de pagamento [Entrevista]:** o mercado aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix. O pagamento de uma venda pode ser dividido entre essas formas, desde que a soma seja igual ao total da venda.
 
 - **RN16 — Categoria do produto [Proposta]:** todo produto pertence a uma única categoria, que deve estar cadastrada antes do produto. Uma categoria pode ter vários produtos (por exemplo, a categoria fruta com banana e pera).
