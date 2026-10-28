@@ -610,7 +610,6 @@ Os diagramas, scripts e demais arquivos serão adicionados conforme sua conclus�
 
 ## 6. Uso de Inteligência Artificial
 
-Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc.) em qualquer parte do trabalho, registre **para cada uso relevante**:
 **Registros históricos da Entrega 1:** os Registros 1 a 4 documentam usos de inteligência artificial realizados durante a preparação da primeira entrega e as revisões iniciais do modelo conceitual. Por essa razão, podem mencionar entidades e relacionamentos de versões anteriores, como CLIENTE e associações diretas N:N. Essas referências foram preservadas como histórico do processo de aprendizagem e não representam a estrutura final da Entrega 2.
 
 - Registro 1
@@ -683,8 +682,6 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 **Registro complementar de uso de IA:** As ferramentas de inteligência artificial também foram utilizadas como apoio à análise dos processos de negócio, à elaboração de propostas de regras para o Hortifruti União e à organização da documentação da Entrega 2. As sugestões não foram consideradas automaticamente corretas: foram comparadas com as informações obtidas no levantamento e com os requisitos definidos pelo grupo.
 
 O grupo também utilizou o ChatGPT como apoio à organização da massa de dados fictícia, elaboração e revisão das consultas SQL G01 a G05 e A01 a A05, interpretação dos resultados no MySQL e revisão dos textos da documentação. As sugestões foram conferidas por meio de execuções e capturas de tela, com correções quando ocorreram divergências entre as orientações e as tabelas efetivamente criadas. Antes da entrega, o grupo deverá complementar o registro com exemplos reais dos prompts utilizados, das respostas aceitas e rejeitadas e das decisões tomadas, sem atribuir à IA testes que não foram executados.
-
-*Uso de IA observado e não declarado será penalizado.*
 
 ---
 
