@@ -43,7 +43,7 @@
 
   A prioridade da solução será melhorar a rastreabilidade dos lotes e apoiar a identificação de produtos próximos do vencimento, conforme o problema P1 identificado no levantamento.
 
-  Os processos de alterações de preços, cancelamentos, fechamento de caixa, produção própria e atividades administrativas serão documentados conforme o levantamento realizado. Sua implementação será delimitada na revisão dos requisitos e do modelo conceitual, evitando acrescentar estruturas sem justificativa.
+Os processos de alterações de preços, cancelamentos de vendas, fechamento de caixa, produção própria e atividades administrativas foram considerados durante a revisão do escopo. O projeto acadêmico contempla o registro simplificado de cancelamentos de vendas, enquanto os demais processos são apresentados como parte do levantamento ou como possibilidades de evolução futura, sem implementação de módulos específicos. Essa delimitação permite concentrar a solução no controle de validade e na rastreabilidade dos lotes, conforme o problema principal P1.
 
   O projeto não prevê integração automática com o ERP existente, emissão fiscal oficial ou desenvolvimento de uma interface completa para os operadores.
 
