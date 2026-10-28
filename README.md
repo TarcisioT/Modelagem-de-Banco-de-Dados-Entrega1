@@ -50,7 +50,7 @@ Os processos de alterações de preços, cancelamentos de vendas, fechamento de 
 - **Evidências da organização:**
 
    - [Localização no Google Maps](https://www.google.com/maps/search/?api=1&query=Rua+Filipe+Camar%C3%A3o%2C+67%2C+Tatuap%C3%A9%2C+S%C3%A3o+Paulo)
-  - **Perfil comercial no Google:** o vínculo com um perfil específico no Google Business Profile ainda deverá ser confirmado pelo grupo.
+  - **Perfil comercial no Google:** [Consultar perfil do Hortifruti União no Google](https://share.google/LWFseN2UxnhQwKsNh).
   - **Endereço:** Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, CEP 03065-000.
   - **Número de contato:** (11) 99317-0906.
   - **Responsável entrevistado:** Guilherme Takemoto, um dos proprietários.
