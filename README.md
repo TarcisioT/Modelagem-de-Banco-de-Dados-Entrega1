@@ -419,7 +419,7 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 | Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
 |---|---|---|
 | Processos de negócio incompletos | Foram detalhados os processos de vendas, compras, recebimento, estoque, pagamentos, cancelamentos, alterações de preços, controle de acesso e fechamento de caixa. | Para apresentar melhor o funcionamento do mercado e as melhorias propostas. |
-| Fluxogramas apenas como anexos do GitHub | Os fluxogramas foram organizados como arquivos do repositório. | Para permitir que o professor visualize os arquivos diretamente pelo projeto. |
+| Fluxogramas apenas como anexos do GitHub | Os fluxogramas dos processos de venda e controle de estoque foram incorporados diretamente ao README, na seção de Processos de Negócio, por meio de imagens. | Para atender à observação da Entrega 1 e permitir que o professor visualize os fluxos no próprio relatório, sem precisar abrir arquivos separados. |
 | Regras de negócio incompletas | Foram acrescentadas regras sobre validade, estoque mínimo, FEFO, perdas, pagamentos, permissões, produtos a granel e LGPD. | Para deixar o modelo mais completo e coerente com os processos. |
 | Inconsistência no cadastro de clientes | A entidade CLIENTE foi retirada do modelo proposto. | O mercado não realiza cadastro de clientes para registrar as vendas. |
 | Cardinalidades e relacionamentos incorretos | Foram revisadas as cardinalidades e criadas entidades para representar itens de compra, itens de venda, lotes, pagamentos e perdas. | Para representar corretamente as relações entre os dados. |
