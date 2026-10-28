@@ -278,8 +278,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 **Regras operacionais**
 
-- **RN01 — Bloqueio de venda de produtos vencidos [Entrevista]:** o sistema não deve permitir a venda de produto cujo lote tenha data de validade anterior à data da venda. Segundo o responsável, vender produto vencido é crime.
-
+- **RN01 — Bloqueio de venda de produtos vencidos [Entrevista / Implementação simplificada]:** conforme informado pelo responsável pelo Hortifruti União, o sistema utilizado atualmente pelo estabelecimento possui regras para impedir a comercialização de produtos vencidos. No banco de dados acadêmico, a data de validade é registrada individualmente para cada lote, e consultas SQL permitem identificar lotes vencidos que ainda apresentam quantidade disponível. Entretanto, a implementação desenvolvida não garante automaticamente o bloqueio de todas as vendas envolvendo lotes vencidos. Essa proteção permanece como regra de negócio a ser implementada integralmente em uma evolução futura, conforme a RF15. 
+  
 - **RN02 — Entrada de estoque com nota fiscal [Entrevista]:** toda entrada de mercadoria deve ser registrada com a nota fiscal do fornecedor, informando também lote, quantidade recebida e data de validade. Sem a nota fiscal, o sistema não permite registrar a entrada.
 
 - **RN03 — Pedido só a fornecedor cadastrado [Proposta]:** um pedido de compra só pode ser feito a um fornecedor previamente cadastrado.
