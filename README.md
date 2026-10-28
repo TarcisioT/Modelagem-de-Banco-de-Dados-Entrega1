@@ -129,7 +129,7 @@ Na solução proposta, cada pagamento será registrado com a respectiva forma e 
 
 O registro deverá permitir a consulta dos valores recebidos por forma de pagamento e apoiar a conferência do caixa.
 
-**Dados envolvidos:** venda, forma de pagamento, valor pago, data e horário, situação do pagamento e identificação do registro de pagamento.
+**Dados envolvidos:** identificação do pagamento, venda associada, forma de pagamento, valor pago e data e horário do pagamento. A implementação acadêmica não possui um campo específico para a situação do pagamento; a situação geral da operação é registrada na tabela VENDA.
 
 ##### 5. Processo de cancelamento
 
