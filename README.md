@@ -593,8 +593,7 @@ O projeto da Entrega 2 do Hortifruti União está sendo organizado no GitHub, na
 | `Dicionario_Dados.md` | Definição das tabelas, colunas, tipos de dados, chaves e restrições |
 | `diagramas/` | DER conceitual revisado e modelo lógico relacional |
 | `imagens/evidencias/` | Fotografias e outras evidências do levantamento |
-| `docs/script.sql` | Criação do banco de dados, operações e consultas SQL |
-| `docs/massa_de_dados.sql` | Dados fictícios para testar o banco, caso sejam mantidos em arquivo separado |
+| `docs/script.sql` | Script único com criação das 13 tabelas, inserção dos dados fictícios, operações SQL, consultas gerenciais e testes de auditoria |
 | `apresentacao/` | Slides da apresentação final |
 
 O repositório também permitirá acompanhar as contribuições do grupo por meio do histórico de commits. Cada integrante deverá utilizar sua própria conta do GitHub para registrar as alterações realizadas.
