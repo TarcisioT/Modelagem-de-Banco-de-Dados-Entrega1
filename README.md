@@ -386,7 +386,7 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 
 ![DER conceitual revisado](diagramas/der_conceitual.png)
 
-**Situação do DER conceitual:** o Diagrama Entidade-Relacionamento (DER) conceitual do Hortifruti União foi elaborado no brModelo 3.2.0, contemplando as 13 entidades do escopo acadêmico e seus relacionamentos. O modelo prioriza o controle de validade e a rastreabilidade dos lotes, conforme o problema P1. A correspondência entre as cardinalidades do diagrama, o resumo apresentado neste relatório e as chaves estrangeiras da implementação SQL ainda precisa ser conferida. Após essa conferência, a imagem final deverá ser exportada e incluída no caminho `diagramas/der_conceitual.png` do repositório.
+**Situação do DER conceitual:** o Diagrama Entidade-Relacionamento (DER) conceitual do Hortifruti União foi elaborado e revisado no brModelo 3.2.0, contemplando as 13 entidades e os 17 relacionamentos do escopo acadêmico. As cardinalidades e os relacionamentos foram analisados em conjunto com o modelo lógico e a implementação SQL, considerando as limitações das regras de obrigatoriedade que não são integralmente garantidas pelas chaves estrangeiras. A imagem final deverá estar disponível no repositório no caminho `diagramas/der_conceitual.png`.
 
 **Resumo das entidades e relacionamentos do DER revisado:**
 
