@@ -133,3 +133,25 @@ As descrições e os tipos de dados apresentados neste documento seguem a estrut
 **Restrições verificadas:** chave primária em `codigo_item_pedido` e duas chaves estrangeiras, ambas com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais ou `CHECK`.
 
 **Limitações:** os campos `quantidade_solicitada`, `preco_compra`, `codigo_pedido` e `codigo_produto` permitem `NULL`. Portanto, o banco não impede automaticamente o cadastro de itens sem pedido, sem produto ou sem quantidade informada. Também não existem restrições `CHECK` para garantir quantidades e preços positivos. A obrigatoriedade prevista na RN13 não é integralmente garantida pela estrutura SQL atual.
+
+#### 3.7 RECEBIMENTO
+
+**Finalidade:** armazenar as informações dos recebimentos de mercadorias do Hortifruti União, incluindo a data de entrada, os dados da nota fiscal do fornecedor, a situação do recebimento e eventuais divergências identificadas durante a conferência.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_recebimento` | INT | PK | Não | Identificador único do recebimento. |
+| `data_recebimento` | DATE | — | Sim | Data em que as mercadorias foram recebidas. |
+| `numero_nota_fiscal` | VARCHAR(20) | — | Sim | Número da nota fiscal de entrada emitida pelo fornecedor. |
+| `serie_nota_fiscal` | VARCHAR(10) | — | Sim | Série da nota fiscal de entrada. |
+| `situacao_recebimento` | VARCHAR(30) | — | Sim | Situação do recebimento, como registrado, conferido ou concluído. |
+| `observacao_divergencia` | VARCHAR(255) | — | Sim | Observações sobre diferenças identificadas na conferência das mercadorias. |
+| `codigo_pedido` | INT | FK | Sim | Identificador do pedido de compra relacionado ao recebimento. |
+
+**Relacionamentos:**
+- `codigo_pedido` referencia `PEDIDO_COMPRA.codigo_pedido`.
+- A tabela RECEBIMENTO é referenciada por `LOTE.codigo_recebimento`, permitindo identificar em qual recebimento cada lote foi registrado.
+
+**Restrições verificadas:** chave primária em `codigo_recebimento` e chave estrangeira em `codigo_pedido`, com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais nem `CHECK`.
+
+**Limitações:** os campos `data_recebimento`, `numero_nota_fiscal`, `serie_nota_fiscal`, `situacao_recebimento` e `codigo_pedido` permitem `NULL`. Portanto, embora a RN02 estabeleça a necessidade de nota fiscal e a vinculação dos recebimentos aos pedidos, o banco atual não impede automaticamente registros sem essas informações. O campo `observacao_divergencia` é opcional, pois nem todo recebimento apresenta divergências. A correspondência entre recebimento, item de compra e produto do lote depende das verificações adicionais descritas na RN22.
