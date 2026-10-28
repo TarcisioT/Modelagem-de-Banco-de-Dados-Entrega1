@@ -101,108 +101,75 @@
 
 #### Processos de Negócio
 
-Os processos apresentados a seguir foram identificados com base na entrevista com o responsável pelo Hortifruti União, na observação presencial e nas melhorias propostas pelo grupo. Para diferenciar o funcionamento atual da solução que estamos desenvolvendo, as funcionalidades propostas são indicadas ao longo das descrições.
+Os processos abaixo saíram da entrevista, da visita e, quando estiver escrito, de melhoria que o **grupo** propôs. Processos típicos de hortifruti foram checados com o responsável ou justificados quando ficaram de fora. O uso de IA para listar o que é comum no ramo está na seção 6. **Proposta nossa não é a mesma coisa que o responsável confirmou.**
 
 ##### 1. Processo de venda no caixa
 
-O processo de venda começa quando o cliente apresenta os produtos no caixa. O funcionário identifica cada produto por meio da leitura do código de barras, permitindo a consulta de suas informações cadastrais, como nome e preço.
+O cliente apresenta os produtos no caixa. O funcionário identifica cada produto pelo código de barras e consulta nome e preço.
 
-Para cada item da venda, devem ser registrados o produto, a quantidade e o preço unitário praticado. Após a inclusão dos itens, é calculado o valor total da compra e registrada a forma de pagamento utilizada pelo cliente.
+Para cada item registram-se produto, quantidade e preço unitário praticado. Calcula-se o total e registra-se a forma (ou as formas) de pagamento.
 
-Na implementação acadêmica, o banco armazena os dados da venda, seus itens, valores e funcionário responsável. A tabela SAIDA_LOTE registra quais lotes foram associados aos itens vendidos e as respectivas quantidades retiradas. Os saldos disponíveis são armazenados na tabela LOTE e foram definidos na massa de dados fictícia. O script apresentado não demonstra uma operação específica de atualização do saldo após a venda nem implementa a baixa automática do estoque. A integração com o sistema fiscal do estabelecimento também está fora do escopo prático.
+No banco acadêmico: `VENDA` (data/hora, funcionário, valor total, situação), `ITEM_VENDA` (produto, quantidade, preço praticado, subtotal), `PAGAMENTO` e `SAIDA_LOTE` (lotes e quantidades retiradas). O saldo disponível fica em `LOTE`. O script **não demonstra** `UPDATE` automático desse saldo após a venda. Identificação do caixa físico, leitura de código de barras em interface e documento fiscal oficial ficam no sistema do estabelecimento.
 
-A emissão e o registro oficial dos documentos fiscais são realizados pelo sistema utilizado pelo estabelecimento e não foram implementados neste banco acadêmico.
-
-Dados envolvidos: identificação da venda, data e horário, funcionário responsável, produtos vendidos, quantidades, preços unitários, valor total, formas de pagamento e situação da venda. A identificação do caixa físico faz parte do processo operacional do estabelecimento, mas não foi implementada como atributo no banco de dados acadêmico.
+**Dados:** identificação da venda, data e horário, funcionário, produtos, quantidades, preços unitários, subtotais, valor total, formas de pagamento e situação da venda.
 
 ##### 2. Processo de pedido e recebimento de mercadorias
 
-Atualmente, os pedidos aos fornecedores são realizados por e-mail, conforme informado no levantamento. Na solução proposta, cada pedido de compra deverá ser registrado no sistema e vinculado a um fornecedor previamente cadastrado.
+Pedidos aos fornecedores são feitos por e-mail. Na solução proposta, cada pedido é registrado e vinculado a um fornecedor cadastrado (`PEDIDO_COMPRA`, `ITEM_PEDIDO_COMPRA`: produto, quantidade solicitada, valor unitário previsto).
 
-O pedido deverá conter sua identificação, data, fornecedor e os itens solicitados. Para cada item, serão registrados o produto, a quantidade solicitada e o valor unitário previsto.
+No recebimento, as mercadorias vêm com nota fiscal e são conferidas (produtos, quantidades, condições, lotes e validades). Divergências ficam em `RECEBIMENTO.observacao_divergencia`. Lotes aceitos entram em `LOTE`. Recebimento parcial e recusa detalhada não foram especificados o bastante na entrevista e não têm fluxo próprio nesta entrega.
 
-No recebimento, as mercadorias são acompanhadas de nota fiscal e devem ser conferidas em relação ao pedido e ao documento fiscal. A conferência deverá considerar os produtos recebidos, as quantidades, as condições das mercadorias, os lotes e as respectivas datas de validade.
-
-Caso sejam identificadas divergências, como quantidades diferentes das solicitadas ou produtos em condições inadequadas, a ocorrência deverá ser registrada. Após a conferência e a validação das informações, os produtos aceitos poderão ser liberados para entrada no estoque.
-
-O tratamento detalhado de recebimentos parciais e mercadorias recusadas não foi especificado suficientemente durante o levantamento e, por isso, não integra as funcionalidades implementadas nesta entrega acadêmica. O modelo contempla o registro de recebimentos vinculados aos pedidos de compra, a identificação dos lotes e a documentação de divergências encontradas na conferência. Regras adicionais para aceitação parcial e devolução de mercadorias dependerão de levantamento complementar.
-
-**Dados envolvidos:** pedido de compra, fornecedor, razão social, CNPJ, e-mail, data do pedido, produtos, quantidades solicitadas e recebidas, valores unitários, nota fiscal do fornecedor, lote, data de validade, divergências identificadas (campo `RECEBIMENTO.observacao_divergencia`) e situação do recebimento.
+**Dados:** pedido, fornecedor (razão social, CNPJ, e-mail), data, produtos, quantidades solicitadas e recebidas, valores unitários, número e série da NF, lote, validade, divergência e situação do recebimento.
 
 ##### 3. Processo de controle de estoque, lotes e validade
 
-O controle de estoque deve considerar as quantidades disponíveis de cada produto e as movimentações de entrada, venda e perda. Na implementação acadêmica, a tabela LOTE armazena a quantidade disponível informada para cada lote, enquanto SAIDA_LOTE e PERDA registram movimentações específicas. O script não garante automaticamente a atualização desses saldos a partir de todas as movimentações, sendo necessárias operações adicionais para manter a consistência do estoque.
+O estoque considera quantidades por produto e movimentações de entrada, venda e perda. Um produto pode ter vários lotes, cada um com número, validade e quantidade disponível. A data de recebimento está em `RECEBIMENTO.data_recebimento`, não em coluna `data_entrada` de `LOTE`.
 
-Na solução proposta, um mesmo produto poderá estar associado a diferentes lotes, cada um com identificação própria, data de entrada, data de validade e quantidade disponível. O sistema deverá permitir a consulta do estoque pelo código de barras ou pelo nome do produto, além de identificar produtos abaixo da quantidade mínima definida e lotes próximos do vencimento.
+Consulta-se estoque por código, nome ou código de barras; identificam-se produtos abaixo do mínimo (`PRODUTO.estoque_minimo`, consulta G04) e lotes próximos do vencimento (G01) ou vencidos (G02). A estratégia FEFO é regra proposta (RN14); a seleção automática do lote **não** está no script. Perdas (`PERDA`) registram lote, quantidade, data, motivo e funcionário; a baixa automática do saldo **não** é executada pelo script.
 
-Para reduzir perdas, propõe-se a utilização da estratégia FEFO (*First Expire, First Out*), priorizando a saída dos lotes válidos cuja data de vencimento esteja mais próxima. Produtos pertencentes a lotes vencidos não poderão ser disponibilizados para venda.
-
-Quando ocorrer uma perda, o sistema deverá registrar o produto, o lote afetado, a quantidade, a data, o motivo e o funcionário responsável. A quantidade perdida deverá ser descontada do estoque disponível, mantendo o histórico da movimentação.
-
-**Dados envolvidos:** produto, código de barras, lote, número do lote, data de entrada, data de validade, quantidade recebida, quantidade disponível, estoque mínimo, movimentações de entrada e saída, quantidade perdida, motivo da perda e funcionário responsável.
+**Dados:** produto, código de barras, lote, número do lote, data de recebimento, validade, quantidade recebida, quantidade disponível, estoque mínimo, saídas, quantidade perdida, motivo e funcionário.
 
 ##### 4. Processo de pagamento
 
-Após o registro dos produtos, o cliente realiza o pagamento da compra. Conforme informado no levantamento, o Hortifruti União aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix. Uma mesma venda pode ser paga utilizando mais de uma dessas formas de pagamento.
+Aceita-se dinheiro, débito e crédito; não se aceita Pix. Uma venda pode ter mais de um pagamento; a soma deve igualar o total (RN15). O banco não tem campo de situação do pagamento; a situação da operação está em `VENDA`. A massa atual tem **um** pagamento; pagamento dividido **não** foi demonstrado no script.
 
-Na solução proposta, cada pagamento será registrado com a respectiva forma e o valor pago. Quando uma venda utilizar mais de um meio de pagamento, a soma dos valores registrados deverá corresponder ao valor total da venda para que o pagamento seja considerado completo.
-
-O registro deverá permitir a consulta dos valores recebidos por forma de pagamento e apoiar a conferência do caixa.
-
-**Dados envolvidos:** identificação do pagamento, venda associada, forma de pagamento, valor pago e data e horário do pagamento. A implementação acadêmica não possui um campo específico para a situação do pagamento; a situação geral da operação é registrada na tabela VENDA.
+**Dados:** identificação do pagamento, venda, forma, valor, data e horário.
 
 ##### 5. Processo de cancelamento
 
-Quando o cliente desistir de um produto antes da conclusão da venda, o item deverá ser retirado da operação. Como a venda ainda não foi concluída, essa ação não deverá provocar uma baixa definitiva no estoque.
+Retirada de item antes de concluir a venda não deve baixar estoque em definitivo. Cancelamento de venda já concluída depende de gerente ou fiscal de caixa (RN10). O banco tem campos para situação, motivo, data/hora e funcionário do cancelamento; o script **não executa** um cancelamento. Devolução ao lote de origem não foi demonstrada.
 
-O cancelamento de uma venda já concluída deverá ser realizado somente por usuários autorizados, conforme informado: gerente ou fiscal de caixa. O sistema proposto deverá preservar o histórico da venda e registrar o motivo do cancelamento, a data, o horário e o funcionário responsável.
-
-Quando os produtos cancelados forem devolvidos e estiverem em condições de comercialização, as respectivas quantidades deverão retornar ao estoque, preferencialmente aos lotes de origem, mantendo a rastreabilidade. Produtos danificados ou impróprios para venda deverão receber o tratamento correspondente, sem retorno automático ao estoque disponível.
-
-**Dados envolvidos:** venda, itens cancelados, produtos, lotes de origem, quantidades, motivo do cancelamento, data e horário, funcionário responsável e situação da venda.
+**Dados:** venda, itens, produtos, lotes, quantidades, motivo, data/hora, funcionário e situação.
 
 ##### 6. Processo de alteração de preços e emissão de etiquetas
 
-Conforme informado pelo entrevistado, a alteração do preço de um produto é permitida somente aos líderes de setor, ao gerente e aos proprietários.
+Alteração de preço: líderes de setor, gerente e proprietários. O ERP já guarda histórico (horário e usuário). O banco acadêmico mantém só o preço atual. Etiquetas e impressão ficam fora da implementação prática.
 
-Conforme o levantamento, o sistema atualmente utilizado pelo Hortifruti União já mantém o histórico de alterações de preços, com identificação de horário e usuário responsável. No banco acadêmico será mantido apenas o preço de venda atual do produto, sem tabela própria de histórico de alterações, emissão de etiquetas ou validação automática de permissões. Esses procedimentos são documentados como processos reais do estabelecimento, mas não compõem a implementação prática.
-
-A consulta dos códigos dos produtos e a emissão de novas etiquetas poderão ser disponibilizadas aos funcionários autorizados a utilizar os computadores destinados a essa atividade, respeitando as permissões definidas pela organização.
-
-**Dados envolvidos:** produto, código de barras, preço anterior, novo preço, data e horário da alteração, funcionário responsável e informações utilizadas na emissão da etiqueta.
+**Dados consultáveis:** código do produto, código de barras, nome de gôndola e preço atual (`PRODUTO`).
 
 ##### 7. Processo de controle de acesso
 
-O sistema atual do estabelecimento aplica permissões conforme a função do funcionário. No projeto acadêmico, a tabela FUNCIONARIO identifica os responsáveis por operações modeladas, como vendas e perdas. O banco não implementa credenciais de login, armazenamento de senhas, perfis de acesso nem autenticação. A relação de um funcionário com uma operação não comprova, por si só, que ele tinha permissão para realizá-la.
+O ERP aplica permissão por função. `FUNCIONARIO` identifica quem realizou venda ou perda. Não há login, senha, perfil nem auditoria de usuário neste banco. Identificar o funcionário na operação **não prova** que ele tinha permissão.
 
-As alterações de preços serão permitidas aos líderes de setor, ao gerente e aos proprietários. As informações financeiras ficarão disponíveis somente ao setor administrativo, ao gerente e aos proprietários. O cancelamento de vendas e a validação do fechamento de caixa serão permitidos ao gerente e ao fiscal de caixa, conforme as permissões informadas no levantamento.
-
-As operações relevantes deverão manter registros de auditoria contendo o usuário responsável, a data, o horário e a operação realizada. As senhas deverão ser armazenadas de forma segura, sem exposição em texto puro.
-
-**Dados envolvidos:** funcionário, cargo, usuário, senha protegida, perfil de acesso, permissões por funcionalidade, data e horário da operação e registro de auditoria.
+**Dados (propostos para evolução, não implementados):** usuário, senha protegida, perfil, permissão e log de auditoria.
 
 ##### 8. Processo de fechamento de caixa
 
-Ao final do dia, é realizado o fechamento do caixa. O operador faz a conferência inicial, contando o dinheiro físico e comparando o valor encontrado com o saldo esperado em dinheiro calculado pelo sistema. O fiscal de caixa ou o gerente valida o fechamento.
+Ao final do dia, o operador confere o dinheiro físico com o saldo esperado em espécie (fundo + entradas − saídas em dinheiro). Fiscal de caixa ou gerente valida. Cartões não entram na contagem física.
 
-A conferência deverá considerar somente as movimentações em dinheiro, e não o total geral das vendas, pois parte dos pagamentos é realizada com cartão de débito ou crédito.
+Não há módulo de abertura, fundo, contagem, diferença e validação. O banco guarda vendas e pagamentos para consulta, sem substituir o caixa do ERP.
 
-O fechamento de caixa foi documentado como processo existente no Hortifruti União, porém não foi implementado um módulo próprio de abertura, fundo de caixa, contagem, diferença e validação. O banco acadêmico contém informações de vendas e pagamentos para consultas gerenciais, sem substituir o controle de caixa do sistema já utilizado pela organização.
-
-O saldo esperado em dinheiro será calculado a partir do fundo inicial e das entradas e saídas em dinheiro registradas durante o período. A diferença de caixa será calculada pela subtração do saldo esperado do valor efetivamente contado. O fechamento deverá registrar o resultado da conferência e a validação realizada pelo responsável autorizado.
-
-**Dados envolvidos:** caixa, data, operador responsável, validador, fundo de caixa, entradas e saídas em dinheiro, saldo esperado, valor contado, diferença e situação do fechamento.
+**Dados (processo real, sem tabelas próprias):** caixa, data, operador, validador, fundo, entradas e saídas em dinheiro, saldo esperado, valor contado, diferença e situação.
 
 ##### Processos não incluídos no escopo atual
 
-Durante o levantamento, alguns processos comuns em estabelecimentos varejistas não foram detalhados suficientemente para serem modelados com segurança. Por esse motivo, não serão tratados como procedimentos confirmados nem implementados no escopo atual sem validação adicional com a organização.
+- **Contas a pagar:** vencimentos, parcelas e situação financeira não foram levantados com segurança.
+- **Escala de funcionários:** não detalhada.
+- **Jornada e ponto:** não detalhados.
 
-- **Contas a pagar aos fornecedores:** não foram obtidas informações suficientes sobre o controle de vencimentos, parcelas, pagamentos e situação financeira das obrigações.
-- **Elaboração da escala de funcionários:** não foram detalhados os procedimentos de definição, alteração e consulta das escalas de trabalho.
-- **Controle de jornada e ponto:** não foram levantadas informações suficientes sobre os registros de entrada, saída, intervalos e apuração da jornada.
+Poderão entrar depois se o responsável confirmar regras e dados. Ficaram de fora por **falta de levantamento**, não porque o grupo diga que esses processos não existem.
 
-Esses processos poderão ser incorporados em uma etapa futura, caso sua existência, suas regras e os dados necessários sejam confirmados com o responsável pela organização. A ausência desses processos no escopo atual decorre da insuficiência de informações levantadas, e não de uma afirmação de que eles não existem.
-
+Também ficam de fora: cadastro de cliente e fidelidade (o mercado não cadastra cliente na venda) e Pix (não aceito).
 
 ##### Fluxogramas
 
