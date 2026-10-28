@@ -93,7 +93,7 @@ Na implementação acadêmica, o banco armazena os dados da venda, seus itens, v
 
 A emissão e o registro oficial dos documentos fiscais são realizados pelo sistema utilizado pelo estabelecimento e não foram implementados neste banco acadêmico.
 
-**Dados envolvidos:** identificação da venda, caixa, data e horário, funcionário responsável, produtos vendidos, quantidades, preços unitários, valor total, formas de pagamento e situação da venda.
+**Dados envolvidos:** identificação da venda, data e horário, funcionário responsável, produtos vendidos, quantidades, preços unitários, valor total, formas de pagamento e situação da venda. A identificação do caixa físico faz parte do processo operacional do estabelecimento, mas não foi implementada como atributo no banco de dados acadêmico.
 
 ##### 2. Processo de pedido e recebimento de mercadorias
 
