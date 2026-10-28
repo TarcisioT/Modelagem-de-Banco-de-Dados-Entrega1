@@ -280,8 +280,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN01 — Bloqueio de venda de produtos vencidos [Entrevista / Implementação simplificada]:** conforme informado pelo responsável pelo Hortifruti União, o sistema utilizado atualmente pelo estabelecimento possui regras para impedir a comercialização de produtos vencidos. No banco de dados acadêmico, a data de validade é registrada individualmente para cada lote, e consultas SQL permitem identificar lotes vencidos que ainda apresentam quantidade disponível. Entretanto, a implementação desenvolvida não garante automaticamente o bloqueio de todas as vendas envolvendo lotes vencidos. Essa proteção permanece como regra de negócio a ser implementada integralmente em uma evolução futura, conforme a RF15. 
   
-- **RN02 — Entrada de estoque com nota fiscal [Entrevista]:** toda entrada de mercadoria deve ser registrada com a nota fiscal do fornecedor, informando também lote, quantidade recebida e data de validade. Sem a nota fiscal, o sistema não permite registrar a entrada.
-
+- **RN02 — Entrada de estoque com nota fiscal [Entrevista / Implementação simplificada]:** conforme informado pelo responsável pelo Hortifruti União, o recebimento de mercadorias deve estar acompanhado da nota fiscal do fornecedor, com identificação dos produtos, lotes, quantidades recebidas e respectivas datas de validade. Na implementação acadêmica, a tabela RECEBIMENTO permite registrar o número e a série da nota fiscal, enquanto a tabela LOTE armazena os dados das mercadorias recebidas. Entretanto, os campos fiscais permitem `NULL`, e não foram implementadas restrições que impeçam automaticamente o registro de recebimentos sem nota fiscal. A obrigatoriedade e a validação desses dados permanecem como regras operacionais a serem garantidas integralmente em uma implementação futura.
+  
 - **RN03 — Pedido só a fornecedor cadastrado [Proposta]:** um pedido de compra só pode ser feito a um fornecedor previamente cadastrado.
 
 - **RN04 — Fornecedor com CNPJ válido [Proposta]:** o fornecedor só pode ser cadastrado com CNPJ válido e único, razão social, telefone e e-mail preenchidos.
