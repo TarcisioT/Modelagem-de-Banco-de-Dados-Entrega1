@@ -264,11 +264,11 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
   O histórico de alterações de preços e o controle de permissões de usuários, já existentes no sistema utilizado pela organização, serão documentados no levantamento, mas não terão um módulo próprio de auditoria implementado neste projeto acadêmico.
   
-- **RNF08 — Conformidade legal (implementação limitada):** o projeto deverá considerar a proteção dos dados pessoais de funcionários e fornecedores, conforme os princípios aplicáveis da Lei Geral de Proteção de Dados (LGPD), incluindo controle de acesso às informações. A obrigatoriedade de emissão de documentos fiscais será reconhecida e documentada, mas a emissão, autorização e transmissão de notas fiscais não serão implementadas nesta entrega. O banco de dados poderá armazenar informações fiscais básicas associadas às vendas, sem substituir o sistema fiscal utilizado pelo estabelecimento.
+- **RNF08 — Conformidade legal (implementação limitada):** o projeto reconhece a necessidade de proteção dos dados pessoais de funcionários e contatos de fornecedores, conforme os princípios aplicáveis da Lei Geral de Proteção de Dados (LGPD). O grupo deverá utilizar dados fictícios para os testes e limitar o acesso ao ambiente de banco de dados. O cumprimento das obrigações fiscais continua sendo responsabilidade da organização e de seu sistema fiscal. O banco acadêmico não implementa emissão, autorização, transmissão ou armazenamento específico de notas fiscais de saída na tabela VENDA.
   
 - **RNF09 — Integração e centralização dos dados (implementação limitada):** o banco de dados proposto deverá organizar de forma centralizada as informações de produtos, fornecedores, compras, lotes, estoque, vendas e pagamentos, mantendo os relacionamentos necessários para garantir a integridade dos registros. Embora o Hortifruti União utilize atualmente o ERP VR Software, a integração automática com esse sistema não será desenvolvida nesta entrega. A possibilidade de comunicação entre os sistemas ficará prevista como evolução futura, dependendo de análise técnica e disponibilidade de mecanismos de integração.
 
-**Requisitos típicos não incluídos:** cadastro de clientes e programa de fidelidade (o mercado não cadastra clientes) e pagamento por Pix (não aceito). Contas a pagar e escala de funcionários não foram levantados na entrevista e não estão ligados aos problema principal (P1) Ficam como evolução futura, a confirmar com o responsável.
+**Requisitos típicos não incluídos:** cadastro de clientes e programa de fidelidade (não utilizados no registro das vendas conforme o levantamento), além de pagamento por Pix (não aceito pelo estabelecimento). Contas a pagar, elaboração de escalas e controle de ponto não foram detalhados suficientemente para implementação nesta entrega e não integram o problema principal P1. Permanecem como possibilidades de evolução futura, conforme novo levantamento.
 
 ---
 
@@ -354,9 +354,7 @@ Após novas informações fornecidas pelo responsável pelo Hortifruti União, o
 
 Foi confirmado que o sistema atualmente utilizado pela empresa já registra alterações de preços, incluindo o horário e o login do responsável. Por esse motivo, o controle de acesso e o histórico de alterações de preços deixaram de ser tratados como um segundo problema principal.
 
-O modelo conceitual será revisado para representar os dados necessários aos principais processos da organização, priorizando produtos, fornecedores, compras, recebimentos, lotes, perdas e vendas.
-
-As funcionalidades complementares serão avaliadas de acordo com os requisitos e as informações levantadas, evitando a inclusão de entidades sem justificativa suficiente.
+> O modelo conceitual foi revisado para representar os principais processos incluídos na entrega, priorizando produtos, fornecedores, compras, recebimentos, lotes, perdas e vendas. As funcionalidades complementares foram delimitadas de acordo com os requisitos e informações levantados, evitando a criação de estruturas sem justificativa para o escopo acadêmico.
 
 **Funcionalidades incluídas no escopo:**
 
