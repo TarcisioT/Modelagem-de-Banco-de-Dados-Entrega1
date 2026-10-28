@@ -722,8 +722,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 | **Justificativa das decisões** | As decisões finais foram fundamentadas na estrutura efetivamente criada no MySQL, no Dicionário de Dados e nos resultados dos testes, e não apenas nas respostas da IA. |
 | **Reflexão crítica** | O ChatGPT auxiliou no aprendizado e na revisão técnica, mas suas sugestões exigiram conferência prática. A execução do SQL permitiu distinguir funcionalidades demonstradas de regras que ainda dependem de automatização adicional. |
 
-O grupo também utilizou o ChatGPT como apoio à organização da massa de dados fictícia, elaboração e revisão das consultas SQL G01 a G05 e A01 a A05, interpretação dos resultados no MySQL e revisão dos textos da documentação. As sugestões foram conferidas por meio de execuções e capturas de tela, com correções quando ocorreram divergências entre as orientações e as tabelas efetivamente criadas. Antes da entrega, o grupo deverá complementar o registro com exemplos reais dos prompts utilizados, das respostas aceitas e rejeitadas e das decisões tomadas, sem atribuir à IA testes que não foram executados.
-
+As atividades de apoio do ChatGPT à implementação do banco de dados, à organização da massa de dados fictícia, à elaboração das consultas SQL e à interpretação dos testes no MySQL estão documentadas no Registro 6. As orientações fornecidas pela ferramenta foram confrontadas com o modelo lógico, o Dicionário de Dados e os resultados das execuções, permitindo identificar limitações da implementação e realizar correções na documentação.
 ---
 
 ## 7. Apresentação Corporativa Final
