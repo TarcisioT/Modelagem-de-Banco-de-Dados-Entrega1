@@ -646,7 +646,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 
 **Registros históricos da Entrega 1:** os Registros 1 a 4 documentam usos de inteligência artificial realizados durante a preparação da primeira entrega e as revisões iniciais do modelo conceitual. Por essa razão, podem mencionar entidades e relacionamentos de versões anteriores, como CLIENTE e associações diretas N:N. Essas referências foram preservadas como histórico do processo de aprendizagem e não representam a estrutura final da Entrega 2.
 
-- Registro 1
+### Registro 1 — Claude: Aprendizado do GitHub
 
 | Item | O que registrar |
 |------|------------------|
@@ -659,7 +659,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 | **Justificativa da escolha final** | Decidimos manter o uso do Claude nessa etapa por atender todas as nossas dúvidas sobre o github. |
 | **Reflexão crítica** | Um pequeno erro foi identificado por algumas informações estarem desatualizadas, na primeira vez o claude estava ensinando a usar o github na versão anterior, mas depois de explicarmos que o GitHub poderia estar numa versão mais atual no momento, a IA atualizou as informações. |
 
-- Registro 2
+### Registro 2 — Claude: Revisão ortográfica do README
 
 | Item | O que registrar |
 |------|------------------|
@@ -672,7 +672,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 | **Justificativa da escolha final** | O grupo decidiu manter as correções do Claude porque ele identificou a inconsistência principal: o título dizia "informação de uma empresa de pequeno porte", mas a documentação deixa claro que é uma empresa de médio porte. Os erros de ortografia também foram aceitos, pois eram apenas erros de digitação. |
 | **Reflexão crítica** | A IA trouxe apenas os erros mais relevantes inicialmente, sendo necessário pedir novamente para que ela listasse todos os erros encontrados no documento, incluindo os de menor destaque. |
 
-- Registro 3
+### Registro 3 — Claude: Organização da documentação
 
 | Item | O que registrar |
 |------|------------------|
@@ -685,7 +685,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 | **Justificativa da escolha final** | Mantivemos a estrutura sugerida pela IA porque batia com o que estava presente nos slides fornecidos na matéria. |
 | **Reflexão crítica** | Observamos apenas um erro de ordem: a IA sugeriu os tópicos numa sequência diferente da que pedimos, e ajustamos manualmente. |
 
-- Registro 4
+### Registro 4 — Claude: Revisão do DER conceitual
 
 | Item | O que registrar |
 |------|------------------|
