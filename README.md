@@ -354,7 +354,7 @@ Após novas informações fornecidas pelo responsável pelo Hortifruti União, o
 
 Foi confirmado que o sistema atualmente utilizado pela empresa já registra alterações de preços, incluindo o horário e o login do responsável. Por esse motivo, o controle de acesso e o histórico de alterações de preços deixaram de ser tratados como um segundo problema principal.
 
-> O modelo conceitual foi revisado para representar os principais processos incluídos na entrega, priorizando produtos, fornecedores, compras, recebimentos, lotes, perdas e vendas. As funcionalidades complementares foram delimitadas de acordo com os requisitos e informações levantados, evitando a criação de estruturas sem justificativa para o escopo acadêmico.
+O modelo conceitual foi revisado para representar os principais processos incluídos na entrega, priorizando produtos, fornecedores, compras, recebimentos, lotes, perdas e vendas. As funcionalidades complementares foram delimitadas de acordo com os requisitos e informações levantados, evitando a criação de estruturas sem justificativa para o escopo acadêmico.
 
 **Funcionalidades incluídas no escopo:**
 
