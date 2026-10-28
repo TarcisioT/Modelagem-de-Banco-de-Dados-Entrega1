@@ -717,6 +717,8 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 
 ### Registro 7 — Claude: Revisão dos fluxogramas e consistência da documentação SQL
 
+| **Sugestão da IA identificada para correção** | Ao comparar o `script.sql` com o README, o Claude identificou uma divergência entre a documentação e o código: o relatório afirmava que as consultas de validade utilizavam `CURDATE()`, enquanto o script analisado utilizava a data fixa `DATE('2026-10-28')`. O grupo identificou a necessidade de corrigir essa descrição e também recebeu apontamentos sobre saldos de estoque e operações SQL não demonstradas. Esses apontamentos serão verificados na versão final do script antes de sua resolução. |
+
 | Item | Descrição |
 |---|---|
 | **Ferramenta e etapa** | Claude — revisão dos fluxogramas e comparação entre o script SQL e o Dicionário de Dados da Entrega 2. |
