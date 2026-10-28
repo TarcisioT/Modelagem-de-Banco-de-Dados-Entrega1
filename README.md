@@ -1,8 +1,8 @@
-# Modelagem de um Sistema de Gestão de Informações para uma Organização de Médio Porte
+# Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 
----
+### Modelagem de um sistema de gestão de informações — Hortifruti União (Tatuapé)
 
-## 1. Relatório Técnico Final
+**Relatório Técnico Final — Entrega 2.** Continuamos com o Hortifruti União (Tatuapé), a mesma organização da Entrega 1. Os números de movimento vieram da entrevista; não conferimos porte jurídico nem fiscal. O esqueleto fala em “organização de pequeno porte”, mas o mercado tem cerca de 110 funcionários e um volume alto de vendas. Se o professor pedir, ajustamos essa classificação com ele.
 
 ### Integrantes
 
