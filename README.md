@@ -595,6 +595,9 @@ O projeto da Entrega 2 do Hortifruti União está sendo organizado no GitHub, na
 | `imagens/evidencias/` | Fotografias e outras evidências do levantamento |
 | `docs/script.sql` | Script único com criação das 13 tabelas, inserção dos dados fictícios, operações SQL, consultas gerenciais e testes de auditoria |
 | `apresentacao/` | Slides da apresentação final |
+| `levantamento/levantamento.md` | Levantamento de informações, entrevista e processos do Hortifruti União |
+| `fluxograma_vendas.png` | Fluxograma do processo de venda |
+| `fluxograma_estoque.png` | Fluxograma do processo de controle de estoque |
 
 O repositório também permitirá acompanhar as contribuições do grupo por meio do histórico de commits. Cada integrante deverá utilizar sua própria conta do GitHub para registrar as alterações realizadas.
 
