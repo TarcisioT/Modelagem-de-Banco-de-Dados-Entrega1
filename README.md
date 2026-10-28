@@ -548,6 +548,8 @@ As auditorias A01 a A05 foram executadas no MySQL 8.0, utilizando o banco de dem
 
 **Software utilizado:** brModelo 3.2.0.
 
+![Modelo lógico relacional do Hortifruti União](diagramas/modelo_logico.png)
+
 O modelo lógico relacional do Hortifruti União foi desenvolvido no brModelo a partir do DER conceitual revisado. Ele contém **13 tabelas**, com atributos, tipos de dados, chaves primárias, chaves estrangeiras e relacionamentos.
 
 A estrutura foi implementada no MySQL 8.0, onde foram verificadas **17 restrições de chave estrangeira**. Também foram realizados testes com dados fictícios, consultas gerenciais e verificações de integridade referencial.
