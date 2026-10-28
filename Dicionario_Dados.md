@@ -185,3 +185,30 @@ As descrições e os tipos de dados apresentados neste documento seguem a estrut
 Conforme a RN22, o produto do lote deve corresponder ao produto do item de compra, e o recebimento deve pertencer ao mesmo pedido de compra. Essas correspondências foram verificadas por consultas SQL de auditoria com dados fictícios, mas não são garantidas integralmente pelas chaves estrangeiras individuais.
 
 A seleção automática de lotes pelo método FEFO e o bloqueio universal de movimentações com lotes vencidos não foram implementados integralmente nesta entrega acadêmica.
+
+#### 3.9 PERDA
+
+**Finalidade:** armazenar os registros de perdas de mercadorias do Hortifruti União, identificando o lote afetado, a quantidade perdida, a data, o motivo e o funcionário responsável. Essa tabela apoia o problema P1 — Controle de validade e rastreabilidade dos lotes.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_perda` | INT | PK | Não | Identificador único do registro de perda. |
+| `data_perda` | DATE | — | Sim | Data em que a perda foi registrada. |
+| `motivo_perda` | VARCHAR(100) | — | Sim | Motivo da perda, como vencimento, dano ou deterioração. |
+| `quantidade_perdida` | DECIMAL(12,3) | — | Sim | Quantidade de mercadoria perdida. |
+| `codigo_lote` | INT | FK | Sim | Identifica o lote ao qual a perda está associada. |
+| `codigo_funcionario` | INT | FK | Sim | Identifica o funcionário responsável pelo registro da perda. |
+
+**Relacionamentos:**
+- `codigo_lote` referencia `LOTE.codigo_lote`.
+- `codigo_funcionario` referencia `FUNCIONARIO.codigo_funcionario`.
+
+**Restrições verificadas:** chave primária em `codigo_perda` e duas chaves estrangeiras, ambas com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais ou `CHECK`.
+
+**Limitações:** os campos `data_perda`, `motivo_perda`, `quantidade_perdida`, `codigo_lote` e `codigo_funcionario` permitem `NULL`. Portanto, o banco não impede automaticamente registros de perda sem motivo, quantidade, lote ou funcionário. Também não existem restrições `CHECK` que garantam quantidades positivas.
+
+A atualização do saldo disponível do lote após uma perda foi demonstrada por operações SQL com dados fictícios, mas não é realizada automaticamente em todas as situações. Essa limitação está relacionada às regras RN07, RN17 e RNF06.
+
+**Relação com os indicadores:** os dados da tabela PERDA, associados ao custo unitário armazenado em LOTE, permitem calcular o valor financeiro das perdas por meio da consulta gerencial G03.
+
+
