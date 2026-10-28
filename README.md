@@ -93,7 +93,8 @@ Na implementação acadêmica, o banco armazena os dados da venda, seus itens, v
 
 A emissão e o registro oficial dos documentos fiscais são realizados pelo sistema utilizado pelo estabelecimento e não foram implementados neste banco acadêmico.
 
-**Dados envolvidos:** identificação do pagamento, venda associada, forma de pagamento, valor pago e data e horário do pagamento. A implementação acadêmica não possui um campo específico para a situação do pagamento; a situação geral da operação é registrada na tabela VENDA.
+Dados envolvidos: identificação da venda, data e horário, funcionário responsável, produtos vendidos, quantidades, preços unitários, valor total, formas de pagamento e situação da venda. A identificação do caixa físico faz parte do processo operacional do estabelecimento, mas não foi implementada como atributo no banco de dados acadêmico.
+
 ##### 2. Processo de pedido e recebimento de mercadorias
 
 Atualmente, os pedidos aos fornecedores são realizados por e-mail, conforme informado no levantamento. Na solução proposta, cada pedido de compra deverá ser registrado no sistema e vinculado a um fornecedor previamente cadastrado.
