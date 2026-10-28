@@ -419,36 +419,6 @@ Não usamos generalização/especialização: no escopo não apareceu hierarquia
 
 Em resumo: separamos as listas (1FN) e os dados dos itens dos cadastros. Ter PK própria ajuda a identificar cada item, mas não basta para provar a 2FN. Também evitamos repetir dados de fornecedor e categoria em cada movimento. **Não fechamos 3FN em tudo.** A redundância do lote ainda precisa ser resolvida ou justificada no dicionário, mostrando no SQL como os dados ficam consistentes. Conferir os valores por uma consulta, por si só, não elimina essa redundância.
 
-### 1.5 Justificativas Técnicas das Decisões
-
-**Chaves primárias:** cada uma das 13 tabelas do modelo possui uma chave primária simples, formada por um único atributo identificador. Foram utilizados códigos como `codigo_produto`, `codigo_lote`, `codigo_venda` e `codigo_item_pedido`, permitindo identificar individualmente cada registro. As tabelas ITEM_PEDIDO_COMPRA, ITEM_VENDA e SAIDA_LOTE também possuem identificadores próprios e utilizam chaves estrangeiras para estabelecer os relacionamentos com as demais tabelas. Essa estrutura facilita a identificação dos registros e a aplicação das restrições de integridade referencial no MySQL.
-
-**Chaves estrangeiras e relacionamentos:** As chaves estrangeiras representam as ligações entre as tabelas e ajudam a manter a integridade dos dados. Por exemplo, `PEDIDO_COMPRA` utiliza `codigo_fornecedor` para identificar o fornecedor responsável, enquanto `ITEM_PEDIDO_COMPRA` utiliza `codigo_pedido` e `codigo_produto` para relacionar cada item ao pedido e ao produto solicitado. Já `SAIDA_LOTE` utiliza `codigo_item_venda` e `codigo_lote` para registrar de quais lotes saíram as quantidades vendidas.
-
-**O que está no `docs/script.sql` (arquivo de entrega):**
-
-| Regra SQL | O que garante | Limitação |
-|---|---|---|
-| 13 chaves primárias (`PRIMARY KEY`) | Identificação única pela PK | Não torna obrigatório o resto dos campos |
-| 17 FKs, com `ON DELETE RESTRICT`; 16 delas `NOT NULL` | Impedem referência a registro inexistente; travam exclusão de quem ainda é usado; as FKs obrigatórias não ficam vazias | `codigo_funcionario_cancelamento` continua nulo quando a venda não foi cancelada. A FK não garante “pelo menos um item” nem “pelo menos um pagamento” |
-| `UNIQUE` em `FORNECEDOR.cnpj` | Não cadastra dois fornecedores com o mesmo CNPJ | Não valida os dígitos do CNPJ. Os CNPJs da massa são fictícios |
-| `CHECK` em saldo do lote, quantidade perdida, quantidade vendida e quantidade retirada | Impede valor negativo nesses campos quando o valor é informado | Ainda aceita `NULL` nessas colunas (`IS NULL OR quantidade >= 0`). Não exige quantidade > 0 |
-| Tipos `INT`, `VARCHAR`, `DECIMAL`, `DATE`, `DATETIME` | Cabem no conteúdo | O tipo, sozinho, não fecha forma de pagamento nem preço positivo |
-| Índices em código de barras, validade e situação da venda | Apoiam as consultas G01, G02 e G05 | Sem teste de concorrência dos 7 caixas. Meta de resposta < 3 s **não comprovada** |
-
-| Restrição necessária | Situação no SQL publicado | Requisito/regra |
-|---|---|---|
-| Fornecedor no pedido e categoria no produto | Já tem `NOT NULL` nas FKs | RN03, RN16 |
-| FKs essenciais de item, recebimento, lote, venda, pagamento e saída | Já são `NOT NULL`, salvo o funcionário do cancelamento | RN02, RN13, RN14, RN22 |
-| Unicidade de CNPJ | Já tem `UNIQUE` em `FORNECEDOR.cnpj` | RN04 |
-| Unicidade de código de barras | Só tem índice, **não** tem `UNIQUE` (política de peso variável ainda em aberto) | RF01 |
-| Positividade e domínio de valores | `CHECK` só impede negativo; **não** há `CHECK` de `forma_pagamento` nem de preço > 0 | RN15, RN18 |
-| Dados da NF de entrada | Campos existem; **ainda aceitam `NULL`** | RN02 |
-| Pedido/venda com itens e pagamentos correspondentes | Não dá para garantir só com FK | RN13, RN15 |
-| Venda com saídas por lote e saldo coerente | Auditorias A03/A04 conferem a massa; não há procedimento atômico | RN01, RN14, RN18, RN19 |
-
-**Decisões arquiteturais gerais:** O grupo optou por um banco de dados relacional em MySQL, utilizando tabelas separadas para produtos, fornecedores, compras, vendas, lotes, pagamentos e perdas. Essa estrutura permite organizar as informações, reduzir duplicações e relacionar as movimentações de estoque às operações realizadas. O controle por lote foi proposto como melhoria para acompanhar a validade das mercadorias e reduzir desperdícios. O modelo também prevê rastreabilidade das saídas e histórico das perdas, apoiando futuras consultas e análises gerenciais.
-
 ### 1.6 Proposta de Arquitetura Analítica para BI e IA
 
 **Informações estratégicas que podem ser extraídas dos dados:** O banco de dados proposto permitirá acompanhar o volume de vendas, os produtos mais vendidos, as perdas por vencimento, os lotes próximos da validade, os níveis de estoque e os pagamentos por forma de recebimento. Essas informações poderão ajudar o Hortifruti União a identificar desperdícios e planejar melhor suas compras.
