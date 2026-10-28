@@ -1,5 +1,3 @@
-| PRODUTO | VENDIDO | ITEM_VENDA | (0,N) / (1,1) |# Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
-
 ### Modelagem de um sistema de gestão de informações para uma organização de médio porte
 
 ---
