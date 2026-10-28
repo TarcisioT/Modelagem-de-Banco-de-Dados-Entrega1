@@ -527,7 +527,7 @@ As auditorias A01 a A05 foram executadas no MySQL 8.0, utilizando o banco de dem
 
 **Conclusão das auditorias:** os resultados indicam que os registros fictícios analisados não apresentaram as inconsistências pesquisadas nas auditorias A01 a A04. O teste A05 demonstrou que a restrição de chave estrangeira impede a referência a um funcionário inexistente. Essas verificações não garantem que todas as regras de negócio estejam automatizadas para operações futuras.
 
-**Observação:** os valores apresentados correspondem exclusivamente aos dados fictícios utilizados na demonstração acadêmica e não representam indicadores reais do Hortifruti União. Os resultados das consultas de validade dependem da data de execução, pois utilizam `CURDATE()`. A demonstração confirma o funcionamento das consultas nos cenários testados, sem implementar automaticamente alertas, bloqueios de venda ou reposição de estoque.
+**Observação:** os valores apresentados correspondem exclusivamente aos dados fictícios utilizados na demonstração acadêmica e não representam indicadores reais do Hortifruti União. Os resultados das consultas de validade foram obtidos utilizando a data fixa `DATE('2026-10-28')`, definida como referência para os testes acadêmicos. Dessa forma, os resultados apresentados correspondem ao cenário demonstrado nessa data e não se atualizam automaticamente conforme o dia em que o script é executado.
 
 **Potencial dos dados para BI:** Os dados poderão ser utilizados para construir painéis com gráficos de vendas, evolução das perdas, produtos mais vendidos e situação dos estoques. O gerente poderá consultar esses indicadores para acompanhar o desempenho do mercado e identificar produtos que precisam de maior atenção.
 
