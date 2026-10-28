@@ -78,17 +78,24 @@
 
 #### Relato da entrevista
 
-- **Quem:** o responsável entrevistado, um dos proprietários do Hortifruti União – Tatuapé, foi entrevistado por Tarcisio Santos de Oliveira. Tarcisio também foi responsável pela observação presencial do estabelecimento e pelo registro das evidências.
+- **Quem:** Guilherme Takemoto, um dos proprietários do Hortifruti União – Tatuapé. Quem entrevistou, visitou e tirou as fotos foi o Tarcisio Santos de Oliveira. Os outros integrantes não foram à entrevista nem à visita.
 
-- **Quando e onde:** a entrevista foi realizada por videochamada pelo WhatsApp em 22/09/2026, com duração aproximada de uma hora. Posteriormente, Tarcisio realizou uma visita presencial ao estabelecimento em 30/09/2026, na Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, para observar o local e sua rotina.
+- **Quando e onde:**
+  - Conversa de cerca de uma hora por videochamada (WhatsApp) em **22/09/2026**. Não foi no mercado.
+  - Observação no salão e no estoque em **30/09/2026**, Rua Filipe Camarão, 67, Tatuapé.
+  - Depois o grupo confirmou com o responsável: pedido por e-mail, NF na entrada, pagamento dividido e fechamento de caixa. **Ainda precisamos conferir a data e o canal dessa conversa no registro original.**
 
-- **Limitação do levantamento:** não foi possível realizar uma nova entrevista presencial com o responsável. Por esse motivo, o grupo separou as informações fornecidas durante a videochamada dos achados obtidos durante a observação presencial. Pontos complementares (pedidos por e-mail, nota fiscal nas entradas, pagamento dividido e fechamento de caixa) foram informados em contato posterior com o responsável. A data e o canal desse contato não constam no registro disponibilizado e precisam ser confirmados pelo grupo antes da entrega.
+- **O que ele nos disse:** volumes; uso do VR Software; validade existe no sistema, mas seu registro não é usado de forma sistemática; mesmo código de barras para lotes diferentes; pedido por e-mail; entrada com NF; pagamento em dinheiro, débito e crédito (sem Pix), podendo dividir; permissão por cargo; cancelamento de venda já fechada só com gerente ou fiscal; fechamento de caixa no fim do dia, conferindo o dinheiro.
 
-- **Comprovação da entrevista:** a entrevista foi registrada por captura de tela, mantida como evidência pelo grupo. A imagem não foi incorporada ao README público enquanto não houver confirmação da autorização de divulgação do entrevistado.
+- **O que Tarcisio observou no local:** movimento do salão e do estoque e organização das mercadorias. A visita levantou o risco de não priorizar o que vence primeiro. Ele também registrou as fotos da fachada, do interior e do estoque.
 
-- **Comprovação da visita:** a visita presencial foi documentada por meio das fotografias da fachada, do interior e do estoque apresentadas na seção de evidências da organização.
+- **Comprovação da visita:** fotos JPG/JPEG em `imagens/evidencias/`.
 
-**O que foi levantado:** [Levantamento completo](levantamento/levantamento.md)
+- **Visita e comprovação da entrevista:** o Tarcisio foi ao Hortifruti União em **30/09/2026** (Rua Filipe Camarão, 67). Esteve no local, observou o salão e o estoque e tirou as fotos da fachada, do interior e do estoque (`imagens/evidencias/`). **Não ficou foto junto com o responsável** — esqueceu de registrar. A conversa longa de levantamento foi por videochamada (WhatsApp) em **22/09/2026**. Combinamos com o professor que a comprovação da entrevista pode ser pelo telefone, sem exigir a foto dos dois no estabelecimento.
+
+**Levantamento completo:** [levantamento/levantamento.md](levantamento/levantamento.md)
+
+**Resumo:** o Hortifruti União usa o VR Software, tem 7 caixas e cerca de 2.400 transações por dia. Produto, fornecedor e preço já estão no ERP. O que falha na prática é o acompanhamento dos lotes e das validades: o código de barras não diferencia os lotes, e o registro da validade não é usado de forma sistemática. Compra vai por e-mail; entrada exige NF. Venda não cadastra cliente. Dá para pagar com mais de uma forma (dinheiro, débito, crédito); Pix não entra. Cancelamento e fechamento de caixa existem, com gerente ou fiscal. Contas a pagar, escala e ponto não foram explicados o bastante para virar tabela. Em relação à Entrega 1, retiramos a entidade CLIENTE (eles não cadastram cliente na venda), deixamos o problema declarado só no P1 e passamos a modelar lote, recebimento, perda e saída por lote.
 
 ---
 
