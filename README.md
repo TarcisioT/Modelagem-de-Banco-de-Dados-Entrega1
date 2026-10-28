@@ -507,6 +507,20 @@ As consultas G01 a G05 foram executadas no MySQL 8.0, utilizando a massa de 51 r
 | G04 | Produtos abaixo do estoque mínimo | 2 produtos: Arroz 5 kg (estoque 5,000; mínimo 10,000) e Cenoura (estoque 0,000; mínimo 10,000) |
 | G05 | Faturamento das vendas concluídas | R$ 19,47, referente a 1 venda concluída em 28/10/2026 |
 
+### Resultados das auditorias SQL — Validação em 28/10/2026
+
+As auditorias A01 a A05 foram executadas no MySQL 8.0, utilizando o banco de demonstração `hortifruti_uniao_entrega2`, com 13 tabelas e 51 registros fictícios.
+
+| Auditoria | Verificação realizada | Resultado obtido |
+|---|---|---|
+| A01 | Verificação de lotes sem referência válida a um produto | Nenhuma inconsistência encontrada (`Empty set`) |
+| A02 | Consistência entre produto do lote, item de pedido e recebimento | Nenhuma inconsistência encontrada (`Empty set`) |
+| A03 | Correspondência entre o produto vendido e o lote utilizado | Nenhuma inconsistência encontrada (`Empty set`) |
+| A04 | Comparação entre a quantidade vendida e a soma das quantidades retiradas dos lotes | Nenhuma inconsistência encontrada (`Empty set`) |
+| A05 | Teste de inserção de uma venda vinculada a funcionário inexistente | Inserção rejeitada pelo MySQL com erro `1452 (23000)`, confirmando a atuação da chave estrangeira |
+
+**Conclusão das auditorias:** os resultados indicam que os registros fictícios analisados não apresentaram as inconsistências pesquisadas nas auditorias A01 a A04. O teste A05 demonstrou que a restrição de chave estrangeira impede a referência a um funcionário inexistente. Essas verificações não garantem que todas as regras de negócio estejam automatizadas para operações futuras.
+
 **Observação:** os valores apresentados correspondem exclusivamente aos dados fictícios utilizados na demonstração acadêmica e não representam indicadores reais do Hortifruti União. Os resultados das consultas de validade dependem da data de execução, pois utilizam `CURDATE()`. A demonstração confirma o funcionamento das consultas nos cenários testados, sem implementar automaticamente alertas, bloqueios de venda ou reposição de estoque.
 
 **Potencial dos dados para BI:** Os dados poderão ser utilizados para construir painéis com gráficos de vendas, evolução das perdas, produtos mais vendidos e situação dos estoques. O gerente poderá consultar esses indicadores para acompanhar o desempenho do mercado e identificar produtos que precisam de maior atenção.
