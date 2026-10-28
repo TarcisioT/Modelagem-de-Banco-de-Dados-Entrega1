@@ -185,77 +185,75 @@ Também ficam de fora: cadastro de cliente e fidelidade (o mercado não cadastra
 
 #### Requisitos do Sistema
 
+**Sobre o que está implementado:** RFs e RNFs descrevem o sistema que propomos a partir do levantamento. A parte demonstrada até aqui é o banco MySQL, a massa fictícia e as consultas G01–G05 e A01–A05. Alerta, FEFO, permissão, baixa automática de saldo, tela e fiscal continuam como proposta (seção 1.5 e o [Dicionário de Dados](Dicionario_Dados.md)). As limitações do SQL descritas neste texto se referem à cópia usada na conferência; ainda falta alinhá-la com o arquivo final na `main`, como explicado nas seções 1.5 e 1.6.
+
 ##### Requisitos Funcionais
 
-**Nota sobre o escopo dos requisitos:** os requisitos apresentados nesta seção descrevem as necessidades identificadas no levantamento e os comportamentos desejados para uma solução completa. Sua inclusão não significa que todas as funcionalidades tenham sido implementadas integralmente nesta entrega acadêmica. A implementação realizada concentra-se na estrutura relacional do banco MySQL, nos registros fictícios e nas operações e consultas SQL demonstradas. Funcionalidades que dependem de validações adicionais, cálculos automáticos, controle de permissões, alertas ou integração com outros sistemas permanecem como propostas ou melhorias futuras, conforme as limitações descritas na seção 1.5 e no Dicionário de Dados.
+- **RF01 — Cadastro de produtos:** cadastrar produto com código identificador único, nome, código de barras, descrição de gôndola, descrição reduzida, categoria, unidade de medida, preço de venda e estoque mínimo (`PRODUTO`).
 
-- **RF01 — Cadastro de produtos (implementação simplificada):** o banco de dados deverá permitir cadastrar produtos com código identificador único, nome, código de barras, descrição de gôndola, descrição reduzida, categoria, unidade de medida, preço de venda e estoque mínimo, utilizando a tabela PRODUTO. A chave primária impede a duplicação do código identificador, e a chave estrangeira permite vincular cada produto a uma categoria existente. Entretanto, na implementação acadêmica, os demais campos permitem `NULL`, inclusive a referência à categoria, de modo que o preenchimento obrigatório de todos os dados cadastrais não é garantido automaticamente. A estrutura também não possui um campo específico para indicar a situação ativa ou inativa do produto. A validação completa do cadastro e a funcionalidade de inativação permanecem como melhorias futuras.
-  
-- **RF02 — Cadastro de categorias (implementação simplificada):** o sistema deve permitir cadastrar categorias de produto com nome (por exemplo, fruta, verdura, laticínios). A categoria deve ser cadastrada antes dos produtos que a utilizam (RN16).
+- **RF02 — Cadastro de categorias:** cadastrar categoria (ex.: frutas, verduras, mercearia, legumes) antes dos produtos que a utilizam (RN16).
 
-- **RF03 — Cadastro de fornecedores (implementação simplificada):** o banco de dados deverá permitir cadastrar fornecedores com código identificador, razão social, CNPJ, telefone e e-mail, utilizando a tabela FORNECEDOR. Conforme a RN04, o cadastro completo deverá exigir CNPJ válido e único, além do preenchimento dos dados obrigatórios. Entretanto, na implementação acadêmica, apenas o código identificador é obrigatório pela estrutura SQL. Os demais campos permitem `NULL`, e não foram implementadas restrições específicas para validar os dígitos do CNPJ ou impedir sua duplicidade. Essas validações permanecem como melhorias futuras.
-  
-- **RF04 — Consulta de produtos por fornecedor (implementação simplificada):** o banco de dados deverá permitir identificar os produtos associados ao histórico de pedidos de cada fornecedor, utilizando as tabelas FORNECEDOR, PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Dessa forma, será possível consultar quais produtos foram solicitados a cada fornecedor cadastrado. Nesta implementação acadêmica, não haverá um cadastro independente de produtos fornecidos por cada fornecedor, nem uma tabela associativa FORNECEDOR_PRODUTO. Portanto, fornecedores sem pedidos registrados não terão uma lista de produtos vinculados no banco.
+- **RF03 — Cadastro de fornecedores:** cadastrar fornecedor com código, razão social, CNPJ, telefone e e-mail (`FORNECEDOR`). RN04 exige CNPJ válido e único e dados obrigatórios; a validação de dígitos do CNPJ não está no DDL.
 
-- **RF05 — Pedido de compra (implementação simplificada):** o banco de dados permite registrar pedidos vinculados a fornecedores cadastrados, com data, situação e itens de compra, utilizando PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Conforme a RN13, um pedido completo deve possuir pelo menos um item; entretanto, a estrutura SQL não impede automaticamente a existência de pedidos sem itens. Segundo o levantamento, os pedidos são enviados ao fornecedor por e-mail. Embora esse contato seja necessário ao processo operacional, o campo de e-mail na tabela FORNECEDOR admite `NULL` na implementação acadêmica, conforme a RF03.
+- **RF04 — Consulta de produtos por fornecedor:** identificar produtos já pedidos a cada fornecedor via `FORNECEDOR`, `PEDIDO_COMPRA` e `ITEM_PEDIDO_COMPRA`. Não há tabela `FORNECEDOR_PRODUTO`; fornecedor sem pedido não tem lista de produtos.
 
-- **RF06 — Recebimento de mercadorias (implementação simplificada):** o sistema deve permitir registrar a entrada de mercadorias com número da nota fiscal, produto, lote, quantidade recebida e data de validade, vinculando o recebimento ao pedido de compra e registrando divergências encontradas na conferência (RN02).
+- **RF05 — Pedido de compra:** registrar pedido vinculado a fornecedor cadastrado, com data, situação e itens (`PEDIDO_COMPRA`, `ITEM_PEDIDO_COMPRA`). Pela RN13, um pedido completo tem ao menos um item; a FK sozinha não garante isso.
 
-- **RF07 — Consulta de estoque (implementação simplificada):** o sistema deve permitir consultar a quantidade disponível por produto e por lote, a partir do código, do nome ou do código de barras, e indicar quando o estoque estiver abaixo do mínimo (RN06).
+- **RF06 — Recebimento de mercadorias:** registrar entrada com número da NF, produto, lote, quantidade recebida e validade, vinculado ao pedido, com divergência de conferência (RN02).
 
-- **RF08 — Registro de venda (implementação simplificada):** o banco de dados deverá permitir registrar vendas com um ou mais produtos, suas quantidades, preços praticados, data e horário, situação da venda e funcionário responsável. Os itens são armazenados em ITEM_VENDA e associados aos respectivos produtos. A identificação do caixa físico, a leitura automática de códigos de barras e o desenvolvimento de uma interface de operação de caixa não fazem parte da implementação acadêmica desta entrega. O registro de vendas não exige cadastro de clientes.
-  
-- **RF09 — Valor da venda (implementação simplificada):** o sistema completo deverá calcular o subtotal de cada item a partir da quantidade vendida multiplicada pelo preço unitário praticado, bem como calcular o valor total da venda pela soma dos subtotais. Na implementação acadêmica, os valores são armazenados nos campos `ITEM_VENDA.subtotal` e `VENDA.valor_total`. Os cálculos podem ser realizados por comandos e consultas SQL, mas não foram implementadas colunas calculadas, gatilhos (*triggers*) ou mecanismos que garantam automaticamente o recálculo desses valores a cada alteração dos itens. Essa automatização permanece como melhoria futura.
-  
-- **RF10 — Retirada de item antes da conclusão da venda (fora da implementação prática):** o sistema completo deverá permitir retirar produtos de uma venda ainda em andamento, sem contabilizá-los no total ou provocar baixa definitiva de estoque. A implementação acadêmica armazena os itens confirmados em ITEM_VENDA, mas não inclui interface de caixa nem demonstra uma operação específica de exclusão de item durante uma venda em andamento. O procedimento permanece como requisito proposto para uma aplicação futura.
+- **RF07 — Consulta de estoque:** consultar quantidade disponível por produto e por lote (código, nome ou código de barras) e indicar estoque abaixo do mínimo (RN06, G04).
 
-- **RF11 — Cancelamento de venda (implementação simplificada):** o banco de dados deverá permitir registrar informações sobre o cancelamento de uma venda concluída, preservando seu histórico. A tabela VENDA contém campos para situação da venda, motivo do cancelamento, data e horário e identificação do funcionário responsável. Conforme a RN10, a autorização operacional deve ser restrita ao gerente ou fiscal de caixa. Entretanto, a implementação acadêmica não possui controle automático de permissões e o script SQL entregue não demonstra uma operação de cancelamento ou uma consulta específica ao histórico de cancelamentos. O tratamento da devolução ao estoque e a prevenção de devoluções duplicadas permanecem como funcionalidades futuras.
-  
-- **RF12 — Pagamento (implementação simplificada):** o banco de dados deverá permitir registrar pagamentos associados às vendas, utilizando a tabela PAGAMENTO, com identificação da forma de pagamento, valor pago, data e horário. Uma mesma venda poderá possuir vários pagamentos, permitindo a combinação de dinheiro, cartão de débito e cartão de crédito, conforme a RN15. No sistema completo, a soma dos pagamentos deverá corresponder ao valor total da venda. Entretanto, na implementação acadêmica, essa igualdade não é garantida automaticamente por restrições ou procedimentos do banco de dados. A conferência dos valores poderá ser realizada por consultas SQL, permanecendo a validação automática como melhoria futura.
-    
-- **RF13 — Informações fiscais das vendas (fora da implementação prática):** o Hortifruti União deve registrar e emitir os documentos fiscais exigidos para suas operações de venda, conforme a legislação aplicável. Essa necessidade foi identificada no levantamento, mas o banco de dados acadêmico desenvolvido nesta entrega não contempla campos específicos para número de nota fiscal, data de emissão ou autorização fiscal na tabela VENDA. O registro e a emissão desses documentos permanecem sob responsabilidade do sistema fiscal utilizado pelo estabelecimento. A integração dessas informações ao banco proposto poderá ser considerada em uma evolução futura.
-  
-- **RF14 — Registro de saída por lote (implementação simplificada):** o banco de dados deverá permitir registrar, por meio da tabela SAIDA_LOTE, quais lotes foram utilizados para atender os itens de uma venda e as quantidades retiradas. A massa de dados fictícia demonstra a associação entre venda, produto e lote, permitindo rastrear a origem dos produtos vendidos. Os saldos disponíveis são armazenados na tabela LOTE, mas o script de demonstração não implementa a baixa automática nem apresenta uma operação específica de atualização do saldo após o registro da venda. A seleção automática dos lotes conforme o método FEFO e a atualização automática do estoque permanecem como melhorias futuras.
-      
-- **RF15 — Controle de lotes vencidos e quantidade disponível (implementação simplificada):** o banco permitirá consultar a validade e a quantidade disponível dos lotes para identificar mercadorias vencidas e situações de estoque insuficiente. As consultas SQL demonstradas apoiam essa verificação, mas não implementam um bloqueio automático e universal de vendas com lotes vencidos ou saldo insuficiente. Essas validações deverão ser incorporadas à lógica transacional de uma aplicação ou a procedimentos específicos do banco.
-  
-- **RF16 — Consulta de validade (implementação simplificada):** o sistema deve permitir consultar lotes vencidos e próximos do vencimento, com produto, lote, quantidade disponível e data de validade.
+- **RF08 — Registro de venda:** registrar venda com um ou mais produtos, quantidades, preços praticados, data e horário, situação e funcionário. Sem cadastro de cliente. Sem identificação do caixa físico nesta entrega.
 
-- **RF17 — Identificação de lotes próximos do vencimento (implementação simplificada):** o banco permitirá identificar, por consulta SQL, os lotes que possuem saldo positivo e estão próximos da data de validade. A consulta gerencial G01 foi testada utilizando um intervalo de sete dias como parâmetro acadêmico. Não foram implementadas notificações automáticas nem a configuração individual de prazos de alerta por produto ou categoria.
-  
-- **RF18 — Registro de perdas (implementação simplificada):** o banco de dados deverá permitir registrar perdas de mercadorias por vencimento, dano, deterioração ou outros motivos, utilizando a tabela PERDA, com identificação do lote, quantidade perdida, data, motivo e funcionário responsável. Conforme as regras RN07 e RN17, a quantidade perdida deverá ser descontada do saldo disponível do lote correspondente. Na implementação acadêmica, a massa de dados fictícia apresenta um registro de perda associado a um lote, permitindo consultar sua quantidade, seu motivo e seu impacto financeiro. Entretanto, o script SQL não demonstra uma operação específica de atualização do saldo do lote após o registro da perda, nem implementa mecanismos automáticos que garantam essa atualização. A baixa automática do estoque permanece como melhoria futura.
-  
-- **RF19 — Alteração de preços (implementação simplificada):** conforme informado pelo responsável pelo Hortifruti União, o sistema atualmente utilizado já permite registrar alterações de preços, identificando o horário e o login do funcionário responsável. No banco de dados proposto, será mantido o preço de venda atualizado de cada produto. O processo de alteração de preços será documentado no levantamento, mas a implementação de um módulo próprio de histórico de alterações e controle de permissões ficará fora do escopo prático desta entrega.
-    
-- **RF20 — Consulta de produtos e informações para etiquetas (implementação limitada):** o banco de dados deverá permitir consultar o código do produto, código de barras, nome utilizado na gôndola e preço de venda atualizado. Essas informações poderão ser utilizadas futuramente para gerar etiquetas. A criação de interfaces de impressão e a comunicação com impressoras não fazem parte da implementação prática desta entrega.
-  
-- **RF21 — Cadastro de funcionários (implementação simplificada):** o banco de dados deverá permitir cadastrar funcionários com código identificador, nome, cargo e data de admissão, possibilitando associá-los às operações registradas, como vendas e perdas de mercadorias. O controle de login, senhas, perfis de acesso e autenticação continuará sendo uma responsabilidade do sistema utilizado atualmente pela empresa e não será implementado no banco de dados acadêmico desta entrega. O projeto manterá a identificação do funcionário responsável pelas operações que forem efetivamente modeladas.
-  
-- **RF22 — Fechamento de caixa (fora da implementação prática):** conforme informado pelo responsável pelo Hortifruti União, o fechamento de caixa é realizado ao final do período, com conferência inicial do operador e validação pelo fiscal de caixa ou gerente. O processo envolve a verificação dos valores recebidos em dinheiro, considerando o fundo inicial e as movimentações do período. Nesta entrega, o fechamento de caixa será documentado como um processo existente na organização, mas não será desenvolvido um módulo próprio de abertura, conferência e validação de caixa. O banco de dados proposto manterá os registros de vendas e pagamentos necessários para consultas gerenciais, sem substituir o controle de caixa realizado pelo sistema atual.
+- **RF09 — Valor da venda:** subtotal = quantidade × preço praticado; total = soma dos subtotais. Valores gravados em `ITEM_VENDA.subtotal` e `VENDA.valor_total`. Sem coluna calculada nem trigger nesta entrega.
+
+- **RF10 — Retirada de item antes da conclusão:** requisito de aplicação de caixa; não demonstrado no script.
+
+- **RF11 — Cancelamento de venda:** preservar histórico da venda concluída cancelada (situação, motivo, data/hora, funcionário). Autorização operacional: RN10. Devolução ao estoque: evolução futura. Script atual **não demonstra** cancelamento.
+
+- **RF12 — Pagamento:** registrar pagamentos da venda (`PAGAMENTO`: forma, valor, data/hora). Vários pagamentos por venda (RN15). O SQL usado na conferência não garante que a soma dos pagamentos seja igual ao total da venda.
+
+- **RF13 — Informações fiscais das vendas:** necessidade legal do estabelecimento; **fora da implementação**. Sem campos de NF de saída em `VENDA`. Emissão permanece no sistema fiscal da empresa.
+
+- **RF14 — Registro de saída por lote:** `SAIDA_LOTE` associa item vendido ao lote e à quantidade retirada. FEFO automático e baixa automática do saldo: evolução futura.
+
+- **RF15 — Lotes vencidos e saldo:** consultar validade e quantidade para achar vencidos e saldo insuficiente. Sem bloqueio automático universal de venda.
+
+- **RF16 — Consulta de validade:** listar lotes vencidos e próximos do vencimento, com produto, lote, quantidade e validade.
+
+- **RF17 — Lotes próximos do vencimento:** G01 lista os lotes com saldo positivo e validade no intervalo acadêmico de 7 dias a partir de `2026-10-28`. O script usa data fixa para o teste dar o mesmo resultado sempre; em produção o período seria configurável. Sem notificação automática.
+
+- **RF18 — Registro de perdas:** `PERDA` com lote, quantidade, data, motivo e funcionário (RN07, RN17). Baixa automática do saldo: não demonstrada no script.
+
+- **RF19 — Alteração de preços:** processo do ERP (histórico e login). Neste banco: apenas preço atual.
+
+- **RF20 — Dados para etiquetas:** consultar código, código de barras, nome de gôndola e preço. Impressão fora do escopo.
+
+- **RF21 — Cadastro de funcionários:** código, nome, cargo e data de admissão, para associar a vendas e perdas. Sem login/senha neste banco.
+
+- **RF22 — Fechamento de caixa:** processo real do Hortifruti União; **sem módulo** nesta entrega.
 
 ##### Requisitos Não Funcionais
 
-- **RNF01 — Desempenho (implementação limitada):** considerando que o Hortifruti União possui 7 caixas e realiza aproximadamente 2.400 transações por dia, o banco de dados deverá ser estruturado para permitir consultas eficientes de produtos, vendas, lotes e estoque. Nesta entrega, serão considerados tipos de dados adequados, chaves primárias, chaves estrangeiras e índices para apoiar o desempenho das consultas SQL. A meta de resposta inferior a 3 segundos e o funcionamento simultâneo dos 7 caixas não serão validados nesta etapa, pois dependem de testes de carga e de uma aplicação integrada.
-  
-- **RNF02 — Disponibilidade (implementação limitada):** o sistema proposto deverá buscar disponibilidade durante o horário de funcionamento do Hortifruti União. Nesta entrega, o grupo desenvolverá e testará a estrutura do banco de dados em MySQL, sem implementar mecanismos de alta disponibilidade, funcionamento dos caixas sem internet ou sincronização automática após quedas de conexão. Essas funcionalidades ficam previstas como melhorias futuras.
-  
-- **RNF03 — Segurança e proteção dos dados (implementação limitada):** o banco de dados deverá preservar a integridade e a proteção das informações registradas, utilizando chaves primárias, chaves estrangeiras e restrições adequadas para evitar registros inconsistentes. O acesso ao banco deverá ser limitado a usuários autorizados no ambiente MySQL. A implementação de telas de login, armazenamento de senhas de funcionários e gerenciamento de perfis e permissões não faz parte do escopo prático desta entrega. As regras de acesso utilizadas pelo sistema atual do Hortifruti União permanecerão documentadas no levantamento.
-    
-- **RNF04 — Usabilidade e organização dos dados (implementação limitada):** o banco de dados deverá utilizar nomes claros e padronizados para tabelas e colunas, facilitando a compreensão, a manutenção e a elaboração de consultas SQL. O projeto também deverá apresentar um dicionário de dados com a descrição das estruturas implementadas. A criação e a avaliação de uma interface gráfica para operadores de caixa não fazem parte do escopo prático desta entrega, podendo ser realizadas em uma evolução futura do sistema.
-  
-- **RNF05 — Recuperação de dados (implementação limitada):** o projeto deverá considerar a importância de realizar cópias de segurança para evitar a perda de informações sobre produtos, vendas, lotes, estoque e operações registradas. Nesta entrega, o grupo poderá demonstrar o procedimento de exportação e restauração do banco de dados MySQL como medida básica de recuperação. A configuração de backups automáticos diários, armazenamento externo e planos de recuperação em ambiente de produção ficará como evolução futura do sistema.
-  
-- **RNF06 — Integridade das movimentações (implementação simplificada):** o banco deverá preservar a consistência entre os registros de venda, as saídas por lote e os saldos disponíveis. Na implementação acadêmica, foram realizadas consultas de auditoria com dados fictícios para verificar determinados relacionamentos e quantidades. Entretanto, o script entregue não implementa uma transação completa de venda com baixa automática do estoque, nem garante em todas as operações o bloqueio de saldos negativos. Essas garantias dependerão de validações transacionais adicionais.
-    
-- **RNF07 — Rastreabilidade e verificação da integridade dos dados (implementação simplificada):** o banco de dados deverá permitir rastrear os produtos desde o recebimento até as movimentações de estoque, vendas e perdas, identificando os lotes envolvidos, suas quantidades e datas de validade. Também deverão ser elaboradas consultas SQL de auditoria para verificar a consistência dos registros, como quantidades negativas, lotes vencidos com estoque disponível e movimentações incompatíveis com as regras de negócio.
+- **RNF01 — Desempenho:** estrutura com PK/FK para consultas de produto, venda, lote e estoque. Sem índices extras (código de barras, validade, situação) e sem teste de concorrência dos 7 caixas. Meta de resposta &lt; 3 s **não comprovada**.
 
-  O histórico de alterações de preços e o controle de permissões de usuários, já existentes no sistema utilizado pela organização, serão documentados no levantamento, mas não terão um módulo próprio de auditoria implementado neste projeto acadêmico.
-  
-- **RNF08 — Conformidade legal (implementação limitada):** o projeto reconhece a necessidade de proteção dos dados pessoais de funcionários e contatos de fornecedores, conforme os princípios aplicáveis da Lei Geral de Proteção de Dados (LGPD). O grupo deverá utilizar dados fictícios para os testes e limitar o acesso ao ambiente de banco de dados. O cumprimento das obrigações fiscais continua sendo responsabilidade da organização e de seu sistema fiscal. O banco acadêmico não implementa emissão, autorização, transmissão ou armazenamento específico de notas fiscais de saída na tabela VENDA.
-  
-- **RNF09 — Integração e centralização dos dados (implementação limitada):** o banco de dados proposto deverá organizar de forma centralizada as informações de produtos, fornecedores, compras, lotes, estoque, vendas e pagamentos, mantendo os relacionamentos necessários para garantir a integridade dos registros. Embora o Hortifruti União utilize atualmente o ERP VR Software, a integração automática com esse sistema não será desenvolvida nesta entrega. A possibilidade de comunicação entre os sistemas ficará prevista como evolução futura, dependendo de análise técnica e disponibilidade de mecanismos de integração.
+- **RNF02 — Disponibilidade:** testes em MySQL de laboratório. Sem alta disponibilidade nem caixa offline.
 
-**Requisitos típicos não incluídos:** cadastro de clientes e programa de fidelidade (não utilizados no registro das vendas conforme o levantamento), além de pagamento por Pix (não aceito pelo estabelecimento). Contas a pagar, elaboração de escalas e controle de ponto não foram detalhados suficientemente para implementação nesta entrega e não integram o problema principal P1. Permanecem como possibilidades de evolução futura, conforme novo levantamento.
+- **RNF03 — Segurança:** integridade por PK/FK; acesso limitado ao ambiente MySQL. Sem tela de login de funcionário.
+
+- **RNF04 — Usabilidade dos dados:** nomes padronizados e dicionário de dados. Sem avaliação de interface gráfica.
+
+- **RNF05 — Recuperação:** o script recria estrutura e massa fictícia; isso **não** substitui backup. Sem teste documentado de dump/restore.
+
+- **RNF06 — Integridade das movimentações:** auditorias A01–A04 na massa fictícia. Sem transação completa de venda com baixa automática de estoque.
+
+- **RNF07 — Rastreabilidade:** caminho recebimento → lote → saída por item de venda. As perdas também ficam ligadas ao lote. Sem módulo de auditoria de usuários nem histórico de preços.
+
+- **RNF08 — Conformidade (LGPD e fiscal):** testes só com dados fictícios. Fiscal de saída permanece no sistema da empresa.
+
+- **RNF09 — Integração:** dados centralizados no modelo relacional. Sem integração automática com o VR Software.
+
+**Requisitos típicos não incluídos:** cadastro de cliente e fidelidade (não usados na venda); Pix (não aceito); contas a pagar, escala e ponto (levantamento insuficiente). Ver seção 6 (IA para requisitos típicos).
 
 ---
 
