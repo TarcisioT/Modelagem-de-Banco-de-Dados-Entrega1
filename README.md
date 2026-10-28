@@ -612,7 +612,7 @@ A massa de dados foi preparada para representar situações de compras, recebime
 
 ## 5. Repositório GitHub
 
-O projeto da Entrega 2 do Hortifruti União está sendo organizado no GitHub, na branch `main`, para reunir a documentação, os diagramas e os arquivos necessários à implementação do banco de dados.
+O repositório GitHub do projeto Hortifruti União reúne a documentação técnica da Entrega 2, incluindo o relatório README, o Dicionário de Dados, os diagramas conceitual e lógico e o script SQL utilizado nos testes. O projeto está organizado na branch `main`, permitindo o acesso aos arquivos e o acompanhamento das contribuições dos integrantes por meio do histórico de commits. A apresentação final permanece em preparação.
 
 **Organização prevista dos arquivos:**
 
