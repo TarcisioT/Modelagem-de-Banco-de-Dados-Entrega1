@@ -71,6 +71,27 @@ As descrições e os tipos de dados apresentados neste documento seguem a estrut
 
 **Relacionamentos:** a tabela FUNCIONARIO é referenciada pelas tabelas VENDA e PERDA. Em VENDA, o campo `codigo_funcionario` identifica o funcionário responsável pela venda, enquanto `codigo_funcionario_cancelamento` identifica o responsável por seu eventual cancelamento. Em PERDA, o campo `codigo_funcionario` identifica quem registrou a perda.
 
+#### 3.4 PRODUTO
+
+**Finalidade:** armazenar os dados cadastrais dos produtos comercializados pelo Hortifruti União, incluindo informações de identificação, preço de venda, unidade de medida, estoque mínimo e categoria. O controle da validade e das quantidades disponíveis é realizado por meio da tabela LOTE.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_produto` | INT | PK | Não | Identificador único do produto. |
+| `nome_produto` | VARCHAR(150) | — | Sim | Nome cadastral do produto. |
+| `codigo_barras` | VARCHAR(30) | — | Sim | Código de barras utilizado para identificar o produto. |
+| `descricao_gondola` | VARCHAR(150) | — | Sim | Descrição utilizada na identificação do produto na gôndola. |
+| `descricao_reduzida` | VARCHAR(80) | — | Sim | Descrição resumida do produto. |
+| `unidade_medida` | VARCHAR(10) | — | Sim | Unidade de comercialização, como unidade ou quilograma. |
+| `preco_venda` | DECIMAL(12,2) | — | Sim | Preço de venda cadastrado para o produto. |
+| `estoque_minimo` | DECIMAL(12,3) | — | Sim | Quantidade mínima de estoque definida para o produto. |
+| `codigo_categoria` | INT | FK | Sim | Referência à categoria à qual o produto pertence. |
+
+**Relacionamentos:** `codigo_categoria` referencia `CATEGORIA_PRODUTO.codigo_categoria`. A tabela PRODUTO também é referenciada por ITEM_PEDIDO_COMPRA, LOTE e ITEM_VENDA, permitindo relacionar os produtos aos pedidos, lotes recebidos e itens vendidos.
+
+**Restrições verificadas:** chave primária em `codigo_produto` e chave estrangeira em `codigo_categoria`, com `ON DELETE RESTRICT`. Não existem restrições `UNIQUE` adicionais ou `CHECK` na tabela.
+
+**Limitações:** o banco permite `NULL` nos campos cadastrais e em `codigo_categoria`, embora a RN16 estabeleça que todo produto deve pertencer a uma categoria. O campo `codigo_barras` não possui unicidade garant
 **Restrições verificadas:** chave primária em `codigo_funcionario`. Os demais campos permitem `NULL`.
 
 **Limitações:** o banco acadêmico permite cadastrar funcionários sem nome, cargo ou data de admissão. Não foram implementados campos de login, senha ou perfis de acesso, conforme a delimitação do escopo da Entrega 2.
