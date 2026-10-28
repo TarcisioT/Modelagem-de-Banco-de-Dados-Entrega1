@@ -33,9 +33,9 @@
 
 - **Problemas e necessidades identificados:**
 
-  - **P1 — Controle de validade e rastreabilidade dos lotes:** durante o levantamento realizado no Hortifruti União, foi identificado que o sistema utilizado pela empresa permite registrar datas de validade, mas essa funcionalidade não é utilizada sistematicamente. Segundo o responsável consultado, diferentes lotes de um mesmo produto utilizam o mesmo código de barras, dificultando sua identificação individual. Além disso, a organização física das mercadorias pode prejudicar a prioridade de venda dos produtos próximos do vencimento.
+  - **P1 — Controle de validade e rastreabilidade dos lotes:** no VR Software dá para cadastrar validade, mas esse registro não é usado de forma sistemática no dia a dia. Lotes diferentes do mesmo produto compartilham o mesmo código de barras, então esse código, sozinho, não distingue um lote do outro. A organização da gôndola e do estoque também pode dificultar que o que vence primeiro saia antes.
 
-  - **Como o modelo resolve:** registra cada lote com identificação própria, produto, data de validade e quantidade disponível. Permite consultar os lotes próximos do vencimento e registrar perdas, apoiando decisões de reposição e redução de desperdícios. A solução complementa os procedimentos físicos de organização das mercadorias.
+  - **O que o modelo faz com o P1:** cada lote tem código próprio, produto, validade e saldo (`LOTE`). A venda liga a quantidade ao lote em `SAIDA_LOTE`, e o descarte vai para `PERDA`. G01 e G02 mostram o que está para vencer ou já venceu; G03 mostra o custo da perda. **O que o banco sozinho não resolve:** o código de barras continua sendo do produto, não do lote. Sem um jeito de marcar o lote na hora de separar a mercadoria, a rastreabilidade no papel não vira prática no salão. Consulta também não substitui FEFO, bloqueio no caixa nem a organização física.
 
 - **Escopo do sistema:** o projeto propõe um banco de dados relacional para organizar as informações dos principais processos do Hortifruti União, incluindo cadastro de produtos, categorias, fornecedores e funcionários; pedidos de compra e recebimento de mercadorias; controle de lotes, datas de validade, quantidades em estoque e perdas; além do registro de vendas, itens vendidos e pagamentos.
 
