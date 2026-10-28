@@ -57,3 +57,20 @@ As descrições e os tipos de dados apresentados neste documento seguem a estrut
 **Restrições verificadas:** chave primária em `codigo_categoria`. O campo `nome_categoria` permite `NULL`.
 
 **Limitação:** o banco atual permite cadastrar uma categoria sem nome. A obrigatoriedade do preenchimento não foi implementada por uma restrição `NOT NULL`.
+
+#### 3.3 FUNCIONARIO
+
+**Finalidade:** armazenar os dados cadastrais dos funcionários do Hortifruti União, permitindo identificar os responsáveis por vendas, cancelamentos e registros de perdas.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_funcionario` | INT | PK | Não | Identificador único do funcionário. |
+| `cargo` | VARCHAR(80) | — | Sim | Cargo exercido pelo funcionário. |
+| `data_admissao` | DATE | — | Sim | Data de admissão do funcionário. |
+| `nome_funcionario` | VARCHAR(150) | — | Sim | Nome completo do funcionário. |
+
+**Relacionamentos:** a tabela FUNCIONARIO é referenciada pelas tabelas VENDA e PERDA. Em VENDA, o campo `codigo_funcionario` identifica o funcionário responsável pela venda, enquanto `codigo_funcionario_cancelamento` identifica o responsável por seu eventual cancelamento. Em PERDA, o campo `codigo_funcionario` identifica quem registrou a perda.
+
+**Restrições verificadas:** chave primária em `codigo_funcionario`. Os demais campos permitem `NULL`.
+
+**Limitações:** o banco acadêmico permite cadastrar funcionários sem nome, cargo ou data de admissão. Não foram implementados campos de login, senha ou perfis de acesso, conforme a delimitação do escopo da Entrega 2.
