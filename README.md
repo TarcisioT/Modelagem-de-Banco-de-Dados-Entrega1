@@ -22,7 +22,7 @@
 
 - **Nome e natureza da organização:** Hortifruti União – Tatuapé, empresa privada com fins lucrativos, pertencente ao ramo de comércio varejista alimentício.
 
-- **Contexto e porte:** o Hortifruti União – Tatuapé é uma empresa privada com fins lucrativos, pertencente ao comércio varejista alimentício e com funcionamento diário. Para fins deste trabalho acadêmico, o estabelecimento é caracterizado como uma organização de médio porte, considerando a complexidade de suas operações e as informações obtidas no levantamento. Essa caracterização não representa uma classificação formal de porte empresarial segundo critérios fiscais ou legais. Os dados operacionais abaixo foram informados pelo responsável, Guilherme Takemoto:
+- **Contexto e porte:** o Hortifruti União – Tatuapé é uma empresa privada com fins lucrativos, pertencente ao comércio varejista alimentício e com funcionamento diário. Para fins deste trabalho acadêmico, o estabelecimento é caracterizado como uma organização de médio porte, considerando a complexidade de suas operações e as informações obtidas no levantamento. Essa caracterização não representa uma classificação formal de porte empresarial segundo critérios fiscais ou legais. Os dados operacionais abaixo foram informados pelo responsável entrevistado:
 
   - **Pessoas:** aproximadamente 110 funcionários e 7 caixas.
   - **Vendas:** média de 2.400 transações por dia (cerca de 72.000 por mês), com ticket médio de R$ 70 e faturamento de aproximadamente R$ 5,04 milhões por mês.
@@ -41,19 +41,19 @@
 
   A prioridade da solução será melhorar a rastreabilidade dos lotes e apoiar a identificação de produtos próximos do vencimento, conforme o problema P1 identificado no levantamento.
 
-Os processos de alterações de preços, cancelamentos de vendas, fechamento de caixa, outros processos operacionais não detalhados no levantamento foram considerados durante a revisão do escopo. O projeto acadêmico contempla o registro simplificado de cancelamentos de vendas, enquanto os demais processos são apresentados como parte do levantamento ou como possibilidades de evolução futura, sem implementação de módulos específicos. Essa delimitação permite concentrar a solução no controle de validade e na rastreabilidade dos lotes, conforme o problema principal P1.
+Os processos de alterações de preços, cancelamentos de vendas, fechamento de caixa e outros processos operacionais não detalhados no levantamento foram considerados durante a revisão do escopo. O projeto acadêmico contempla o registro simplificado de cancelamentos de vendas, enquanto os demais processos são apresentados como parte do levantamento ou como possibilidades de evolução futura, sem implementação de módulos específicos. Essa delimitação permite concentrar a solução no controle de validade e na rastreabilidade dos lotes, conforme o problema principal P1.
 
   O projeto não prevê integração automática com o ERP existente, emissão fiscal oficial ou desenvolvimento de uma interface completa para os operadores.
 
-- **Justificativa da escolha:** o Hortifruti União foi selecionado por ser uma organização real, com processos de compras, recebimento de mercadorias, armazenamento, vendas e controle de estoque. O contato do integrante Tarcisio Santos de Oliveira com Guilherme Takemoto, um dos responsáveis pelo estabelecimento, possibilitou a realização do levantamento de informações e da visita ao local. Durante a pesquisa, foi identificada uma dificuldade relacionada ao uso do controle de validade e à identificação individual dos lotes, tornando esse processo o foco principal da proposta de modelagem do banco de dados.
+- **Justificativa da escolha:** o Hortifruti União foi selecionado por ser uma organização real, com processos de compras, recebimento de mercadorias, armazenamento, vendas e controle de estoque. O contato do integrante Tarcisio Santos de Oliveira com o responsável entrevistado, um dos responsáveis pelo estabelecimento, possibilitou a realização do levantamento de informações e da visita ao local. Durante a pesquisa, foi identificada uma dificuldade relacionada ao uso do controle de validade e à identificação individual dos lotes, tornando esse processo o foco principal da proposta de modelagem do banco de dados.
 
 - **Evidências da organização:**
 
-   - [Localização no Google Maps](https://www.google.com/maps/search/?api=1&query=Rua+Filipe+Camar%C3%A3o%2C+67%2C+Tatuap%C3%A9%2C+S%C3%A3o+Paulo)
+  - [Localização no Google Maps](https://www.google.com/maps/search/?api=1&query=Rua+Filipe+Camar%C3%A3o%2C+67%2C+Tatuap%C3%A9%2C+S%C3%A3o+Paulo)
   - **Perfil comercial no Google:** [Consultar perfil do Hortifruti União no Google](https://share.google/LWFseN2UxnhQwKsNh).
   - **Endereço:** Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, CEP 03065-000.
-  - **Número de contato:** (11) 99317-0906.
-  - **Responsável entrevistado:** Guilherme Takemoto, um dos proprietários.
+  - **Contato:** consultar o perfil comercial público do estabelecimento no Google; número pessoal não reproduzido neste relatório.
+  - **Responsável entrevistado:** um dos responsáveis pelo estabelecimento (identificação pessoal omitida da versão pública até confirmação de autorização).
 
 ![Fotografia da fachada](imagens/evidencias/fachada_mercado.jpeg)
 
@@ -63,15 +63,13 @@ Os processos de alterações de preços, cancelamentos de vendas, fechamento de 
 
 #### Relato da entrevista
 
-- **Quem:** Guilherme Takemoto, um dos proprietários do Hortifruti União – Tatuapé, foi entrevistado por Tarcisio Santos de Oliveira. Tarcisio também foi responsável pela observação presencial do estabelecimento e pelo registro das evidências.
+- **Quem:** o responsável entrevistado, um dos proprietários do Hortifruti União – Tatuapé, foi entrevistado por Tarcisio Santos de Oliveira. Tarcisio também foi responsável pela observação presencial do estabelecimento e pelo registro das evidências.
 
 - **Quando e onde:** a entrevista foi realizada por videochamada pelo WhatsApp em 22/09/2026, com duração aproximada de uma hora. Posteriormente, Tarcisio realizou uma visita presencial ao estabelecimento em 30/09/2026, na Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, para observar o local e sua rotina.
 
-- **Limitação do levantamento:** não foi possível realizar uma nova entrevista presencial com o responsável. Por esse motivo, o grupo separou as informações fornecidas durante a videochamada dos achados obtidos durante a observação presencial. Pontos complementares (pedidos por e-mail, nota fiscal nas entradas, pagamento dividido e fechamento de caixa) foram confirmados com o responsável em contato posterior.
+- **Limitação do levantamento:** não foi possível realizar uma nova entrevista presencial com o responsável. Por esse motivo, o grupo separou as informações fornecidas durante a videochamada dos achados obtidos durante a observação presencial. Pontos complementares (pedidos por e-mail, nota fiscal nas entradas, pagamento dividido e fechamento de caixa) foram informados em contato posterior com o responsável. A data e o canal desse contato não constam no registro disponibilizado e precisam ser confirmados pelo grupo antes da entrega.
 
-- **Comprovação da entrevista:** a entrevista por videochamada foi registrada por meio de uma captura de tela com o entrevistado.
-
-<img src="imagens/evidencias/entrevista_videochamada.jpeg" alt="Entrevista por videochamada com Guilherme Takemoto" width="400">
+- **Comprovação da entrevista:** a entrevista foi registrada por captura de tela, mantida como evidência pelo grupo. A imagem não foi incorporada ao README público enquanto não houver confirmação da autorização de divulgação do entrevistado.
 
 - **Comprovação da visita:** a visita presencial foi documentada por meio das fotografias da fachada, do interior e do estoque apresentadas na seção de evidências da organização.
 
@@ -107,7 +105,7 @@ Caso sejam identificadas divergências, como quantidades diferentes das solicita
 
 O tratamento detalhado de recebimentos parciais e mercadorias recusadas não foi especificado suficientemente durante o levantamento e, por isso, não integra as funcionalidades implementadas nesta entrega acadêmica. O modelo contempla o registro de recebimentos vinculados aos pedidos de compra, a identificação dos lotes e a documentação de divergências encontradas na conferência. Regras adicionais para aceitação parcial e devolução de mercadorias dependerão de levantamento complementar.
 
-**Dados envolvidos:** pedido de compra, fornecedor, razão social, CNPJ, e-mail, data e horário do pedido, produtos, quantidades solicitadas e recebidas, valores unitários, nota fiscal do fornecedor, lote, data de validade, divergências identificadas e situação do recebimento.
+**Dados envolvidos:** pedido de compra, fornecedor, razão social, CNPJ, e-mail, data do pedido, produtos, quantidades solicitadas e recebidas, valores unitários, nota fiscal do fornecedor, lote, data de validade, divergências identificadas (campo `RECEBIMENTO.observacao_divergencia`) e situação do recebimento.
 
 ##### 3. Processo de controle de estoque, lotes e validade
 
@@ -204,23 +202,23 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RF01 — Cadastro de produtos (implementação simplificada):** o banco de dados deverá permitir cadastrar produtos com código identificador único, nome, código de barras, descrição de gôndola, descrição reduzida, categoria, unidade de medida, preço de venda e estoque mínimo, utilizando a tabela PRODUTO. A chave primária impede a duplicação do código identificador, e a chave estrangeira permite vincular cada produto a uma categoria existente. Entretanto, na implementação acadêmica, os demais campos permitem `NULL`, inclusive a referência à categoria, de modo que o preenchimento obrigatório de todos os dados cadastrais não é garantido automaticamente. A estrutura também não possui um campo específico para indicar a situação ativa ou inativa do produto. A validação completa do cadastro e a funcionalidade de inativação permanecem como melhorias futuras.
   
-- **RF02 — Cadastro de categorias:** o sistema deve permitir cadastrar categorias de produto com nome (por exemplo, fruta, verdura, laticínios). A categoria deve ser cadastrada antes dos produtos que a utilizam (RN16).
+- **RF02 — Cadastro de categorias (implementação simplificada):** o sistema deve permitir cadastrar categorias de produto com nome (por exemplo, fruta, verdura, laticínios). A categoria deve ser cadastrada antes dos produtos que a utilizam (RN16).
 
 - **RF03 — Cadastro de fornecedores (implementação simplificada):** o banco de dados deverá permitir cadastrar fornecedores com código identificador, razão social, CNPJ, telefone e e-mail, utilizando a tabela FORNECEDOR. Conforme a RN04, o cadastro completo deverá exigir CNPJ válido e único, além do preenchimento dos dados obrigatórios. Entretanto, na implementação acadêmica, apenas o código identificador é obrigatório pela estrutura SQL. Os demais campos permitem `NULL`, e não foram implementadas restrições específicas para validar os dígitos do CNPJ ou impedir sua duplicidade. Essas validações permanecem como melhorias futuras.
   
 - **RF04 — Consulta de produtos por fornecedor (implementação simplificada):** o banco de dados deverá permitir identificar os produtos associados ao histórico de pedidos de cada fornecedor, utilizando as tabelas FORNECEDOR, PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Dessa forma, será possível consultar quais produtos foram solicitados a cada fornecedor cadastrado. Nesta implementação acadêmica, não haverá um cadastro independente de produtos fornecidos por cada fornecedor, nem uma tabela associativa FORNECEDOR_PRODUTO. Portanto, fornecedores sem pedidos registrados não terão uma lista de produtos vinculados no banco.
 
-- **RF05 — Pedido de compra:** o sistema deve permitir registrar pedidos a um fornecedor cadastrado (RN03), com um ou mais itens (produto, quantidade e preço de compra), data e situação do pedido (RN13). O pedido é enviado ao fornecedor por e-mail, por isso o e-mail é obrigatório no cadastro do fornecedor (RF03).
+- **RF05 — Pedido de compra (implementação simplificada):** o banco de dados permite registrar pedidos vinculados a fornecedores cadastrados, com data, situação e itens de compra, utilizando PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Conforme a RN13, um pedido completo deve possuir pelo menos um item; entretanto, a estrutura SQL não impede automaticamente a existência de pedidos sem itens. Segundo o levantamento, os pedidos são enviados ao fornecedor por e-mail. Embora esse contato seja necessário ao processo operacional, o campo de e-mail na tabela FORNECEDOR admite `NULL` na implementação acadêmica, conforme a RF03.
 
-- **RF06 — Recebimento de mercadorias:** o sistema deve permitir registrar a entrada de mercadorias com número da nota fiscal, produto, lote, quantidade recebida e data de validade, vinculando o recebimento ao pedido de compra e registrando divergências encontradas na conferência (RN02).
+- **RF06 — Recebimento de mercadorias (implementação simplificada):** o sistema deve permitir registrar a entrada de mercadorias com número da nota fiscal, produto, lote, quantidade recebida e data de validade, vinculando o recebimento ao pedido de compra e registrando divergências encontradas na conferência (RN02).
 
-- **RF07 — Consulta de estoque:** o sistema deve permitir consultar a quantidade disponível por produto e por lote, a partir do código, do nome ou do código de barras, e indicar quando o estoque estiver abaixo do mínimo (RN06).
+- **RF07 — Consulta de estoque (implementação simplificada):** o sistema deve permitir consultar a quantidade disponível por produto e por lote, a partir do código, do nome ou do código de barras, e indicar quando o estoque estiver abaixo do mínimo (RN06).
 
 - **RF08 — Registro de venda (implementação simplificada):** o banco de dados deverá permitir registrar vendas com um ou mais produtos, suas quantidades, preços praticados, data e horário, situação da venda e funcionário responsável. Os itens são armazenados em ITEM_VENDA e associados aos respectivos produtos. A identificação do caixa físico, a leitura automática de códigos de barras e o desenvolvimento de uma interface de operação de caixa não fazem parte da implementação acadêmica desta entrega. O registro de vendas não exige cadastro de clientes.
   
 - **RF09 — Valor da venda (implementação simplificada):** o sistema completo deverá calcular o subtotal de cada item a partir da quantidade vendida multiplicada pelo preço unitário praticado, bem como calcular o valor total da venda pela soma dos subtotais. Na implementação acadêmica, os valores são armazenados nos campos `ITEM_VENDA.subtotal` e `VENDA.valor_total`. Os cálculos podem ser realizados por comandos e consultas SQL, mas não foram implementadas colunas calculadas, gatilhos (*triggers*) ou mecanismos que garantam automaticamente o recálculo desses valores a cada alteração dos itens. Essa automatização permanece como melhoria futura.
   
-- **RF10 — Retirada de item antes da conclusão da venda:** o sistema proposto deverá permitir retirar um produto da operação enquanto a venda ainda estiver em andamento. O item removido não deverá compor o valor total da venda nem provocar baixa definitiva no estoque. Na implementação SQL desta entrega, serão demonstrados o registro dos itens efetivamente confirmados e o cálculo do valor total da venda, sem desenvolvimento de uma interface de caixa.
+- **RF10 — Retirada de item antes da conclusão da venda (fora da implementação prática):** o sistema completo deverá permitir retirar produtos de uma venda ainda em andamento, sem contabilizá-los no total ou provocar baixa definitiva de estoque. A implementação acadêmica armazena os itens confirmados em ITEM_VENDA, mas não inclui interface de caixa nem demonstra uma operação específica de exclusão de item durante uma venda em andamento. O procedimento permanece como requisito proposto para uma aplicação futura.
 
 - **RF11 — Cancelamento de venda (implementação simplificada):** o banco de dados deverá permitir registrar informações sobre o cancelamento de uma venda concluída, preservando seu histórico. A tabela VENDA contém campos para situação da venda, motivo do cancelamento, data e horário e identificação do funcionário responsável. Conforme a RN10, a autorização operacional deve ser restrita ao gerente ou fiscal de caixa. Entretanto, a implementação acadêmica não possui controle automático de permissões e o script SQL entregue não demonstra uma operação de cancelamento ou uma consulta específica ao histórico de cancelamentos. O tratamento da devolução ao estoque e a prevenção de devoluções duplicadas permanecem como funcionalidades futuras.
   
@@ -232,7 +230,7 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
       
 - **RF15 — Controle de lotes vencidos e quantidade disponível (implementação simplificada):** o banco permitirá consultar a validade e a quantidade disponível dos lotes para identificar mercadorias vencidas e situações de estoque insuficiente. As consultas SQL demonstradas apoiam essa verificação, mas não implementam um bloqueio automático e universal de vendas com lotes vencidos ou saldo insuficiente. Essas validações deverão ser incorporadas à lógica transacional de uma aplicação ou a procedimentos específicos do banco.
   
-- **RF16 — Consulta de validade:** o sistema deve permitir consultar lotes vencidos e próximos do vencimento, com produto, lote, quantidade disponível e data de validade.
+- **RF16 — Consulta de validade (implementação simplificada):** o sistema deve permitir consultar lotes vencidos e próximos do vencimento, com produto, lote, quantidade disponível e data de validade.
 
 - **RF17 — Identificação de lotes próximos do vencimento (implementação simplificada):** o banco permitirá identificar, por consulta SQL, os lotes que possuem saldo positivo e estão próximos da data de validade. A consulta gerencial G01 foi testada utilizando um intervalo de sete dias como parâmetro acadêmico. Não foram implementadas notificações automáticas nem a configuração individual de prazos de alerta por produto ou categoria.
   
@@ -274,7 +272,7 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 #### Regras de Negócio
 
-**Origem das regras:** as marcadas com **[Entrevista]** foram informadas pelo responsável, Guilherme Takemoto. As marcadas com **[Proposta]** foram elaboradas pelo grupo a partir dos processos mapeados e de regras típicas de supermercados e hortifrutis, levantadas com apoio de IA (ver a seção 6, Uso de Inteligência Artificial), e ainda não foram validadas individualmente com o responsável.
+**Origem das regras:** as marcadas com **[Entrevista]** foram informadas pelo responsável entrevistado. As marcadas com **[Proposta]** foram elaboradas pelo grupo a partir dos processos mapeados e de regras típicas de supermercados e hortifrutis, levantadas com apoio de IA (ver a seção 6, Uso de Inteligência Artificial), e ainda não foram validadas individualmente com o responsável.
 
 **Nota sobre a implementação das regras:** as regras descrevem comportamentos observados no estabelecimento ou desejados para a solução completa. Sua inclusão não significa que sejam automaticamente garantidas pelo banco acadêmico. Em especial, a validação de CNPJ (RN04), a exigência de pelo menos um item por pedido (RN13) e a igualdade entre pagamentos e total da venda (RN15) não possuem validação automática integral na implementação SQL. As restrições efetivamente aplicadas estão documentadas na seção 1.5 e no Dicionário de Dados.
 
@@ -380,7 +378,7 @@ O modelo conceitual foi revisado para representar os principais processos inclu�
 
 Essas funcionalidades poderão ser consideradas em evoluções futuras do projeto. A emissão fiscal continuará sendo reconhecida como uma necessidade operacional e legal do estabelecimento, mas sua integração técnica não será desenvolvida nesta entrega.
 
-**Limites da implementação:** o projeto será demonstrado por meio do modelo lógico relacional, scripts SQL, dados fictícios e consultas realizadas no MySQL. As regras de autorização, a estratégia FEFO e as operações de estoque serão representadas e testadas na medida em que forem implementadas no banco de dados, sem pressupor a existência de uma aplicação completa.
+**Limites da implementação:** o projeto foi demonstrado por meio do modelo lógico relacional, do script SQL, de dados fictícios e de consultas realizadas no MySQL. As regras de autorização, a estratégia FEFO e determinadas operações de estoque foram representadas na modelagem ou documentadas como requisitos, mas não foram integralmente automatizadas ou testadas. Os testes realizados se restringem aos cenários expressamente descritos, sem pressupor a existência de uma aplicação completa.
 
 A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — Controle de validade e rastreabilidade dos lotes, mantendo o registro dos dados essenciais dos demais processos da organização. Dessa forma, o grupo pretende garantir a coerência entre o levantamento de requisitos, o DER conceitual, o modelo lógico e a implementação SQL, sem acrescentar funcionalidades desnecessárias.
 
@@ -506,7 +504,7 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 
 **Resultados das consultas gerenciais — Validação em 28/10/2026**
 
-As consultas G01 a G05 foram executadas no MySQL 8.0, utilizando a massa de 51 registros fictícios do banco `hortifruti_uniao_entrega2`.
+Após a correção do saldo do lote TOM-001 para 69,000, o script foi executado novamente no MySQL 8.0. No banco de testes `hortifruti_uniao_entrega2`, foram confirmadas 13 tabelas, 17 chaves estrangeiras e 51 registros fictícios. As cinco consultas gerenciais G01 a G05 foram novamente executadas e apresentaram os resultados abaixo, considerando a data de referência fixa de 28/10/2026.
 
 | Consulta | Indicador | Resultado obtido |
 |---|---|---|
@@ -518,7 +516,7 @@ As consultas G01 a G05 foram executadas no MySQL 8.0, utilizando a massa de 51 r
 
 **Resultados das auditorias SQL — Validação em 28/10/2026**
 
-As auditorias A01 a A05 foram executadas no MySQL 8.0, utilizando o banco de demonstração `hortifruti_uniao_entrega2`, com 13 tabelas e 51 registros fictícios.
+Após a reexecução do script corrigido, as auditorias A01 a A04 foram repetidas e retornaram `Empty set` nos cenários analisados. O teste A05 foi executado pelo script e apresentou a mensagem de confirmação de que a chave estrangeira rejeitou a referência a um funcionário inexistente; em teste direto anterior, o MySQL havia exibido o erro `1452 (23000)`.
 
 | Auditoria | Verificação realizada | Resultado obtido |
 |---|---|---|
@@ -526,7 +524,7 @@ As auditorias A01 a A05 foram executadas no MySQL 8.0, utilizando o banco de dem
 | A02 | Consistência entre produto do lote, item de pedido e recebimento | Nenhuma inconsistência encontrada (`Empty set`) |
 | A03 | Correspondência entre o produto vendido e o lote utilizado | Nenhuma inconsistência encontrada (`Empty set`) |
 | A04 | Comparação entre a quantidade vendida e a soma das quantidades retiradas dos lotes | Nenhuma inconsistência encontrada (`Empty set`) |
-| A05 | Teste de inserção de uma venda vinculada a funcionário inexistente | Em teste direto no MySQL, a inserção foi rejeitada com erro `1452 (23000)`; o script analisado pelo Claude também trata essa rejeição em procedimento próprio |
+| A05 | Teste de inserção de uma venda vinculada a funcionário inexistente | Inserção com funcionário inexistente rejeitada pela chave estrangeira; o script apresentou mensagem de confirmação da rejeição (erro `1452 (23000)` observado também em teste direto) |
 
 **Conclusão das auditorias:** os resultados indicam que os registros fictícios analisados não apresentaram as inconsistências pesquisadas nas auditorias A01 a A04. O teste A05 demonstrou que a restrição de chave estrangeira impede a referência a um funcionário inexistente. Essas verificações não garantem que todas as regras de negócio estejam automatizadas para operações futuras.
 
@@ -576,13 +574,15 @@ As limitações relacionadas à seleção automática de lotes pelo método FEFO
 
 O banco de dados do Hortifruti União foi implementado em ambiente de testes MySQL, com 13 tabelas e 17 chaves estrangeiras, utilizando dados fictícios.
 
-Foram executados comandos `CREATE DATABASE`, `CREATE TABLE`, `INSERT`, `SELECT`, `JOIN`, `UPDATE` e `DELETE`, além de cinco consultas gerenciais (G01 a G05), quatro consultas de auditoria (A01 a A04) e um teste de integridade referencial (A05).
+O script contém comandos `CREATE DATABASE`, `CREATE TABLE`, `INSERT`, `SELECT` e consultas com `JOIN`, além de operações demonstrativas `UPDATE` em PRODUTO e `DELETE` em PAGAMENTO executadas dentro de uma transação revertida (`ROLLBACK`). Não há demonstração de `UPDATE` em LOTE nem de cancelamento de venda. Também foram incluídas cinco consultas gerenciais (G01 a G05), quatro auditorias (A01 a A04) e um teste de integridade referencial (A05) com tratamento do erro por procedimento SQL.
 
 Os testes demonstraram consultas sobre lotes próximos do vencimento, lotes vencidos, valor financeiro das perdas, estoque mínimo e faturamento por período.
 
 **Situação da implementação SQL:** o arquivo `docs/script.sql` foi consolidado e executado no MySQL 8.0, utilizando o banco de demonstração independente `hortifruti_uniao_entrega2`. A execução permitiu criar as 13 tabelas, confirmar as 17 chaves estrangeiras e inserir os 51 registros fictícios. As consultas gerenciais G01 a G05 foram executadas e apresentaram resultados compatíveis com os cenários de demonstração. As auditorias A01 a A04 não identificaram inconsistências nos registros analisados, e o teste A05 confirmou que uma chave estrangeira impede o registro de uma venda associada a um funcionário inexistente. Esses resultados validam os cenários testados, sem representar uma garantia de implementação integral de todas as regras de negócio.
 
 **Limitações:** a escolha automática do lote pelo método FEFO, a autorização por perfil de funcionário e todas as validações transacionais de estoque não foram implementadas integralmente. Essas funcionalidades permanecem identificadas como limitações ou melhorias futuras.
+
+**Revalidação da versão corrigida:** o script atualizado foi executado novamente em banco de testes em 28/10/2026. Foram confirmados 13 tabelas, 17 chaves estrangeiras, 51 registros, o saldo de 69,000 do lote TOM-001, os resultados G01 a G05 e as auditorias A01 a A05. As consultas de auditoria verificam os cenários fictícios apresentados e não asseguram a automatização de todas as regras de negócio.
 
 ---
 
@@ -639,11 +639,7 @@ O repositório GitHub do projeto Hortifruti União reúne a documentação técn
 
 Cada integrante deverá utilizar sua própria conta do GitHub para registrar as alterações realizadas.
 
-Os arquivos principais da implementação acadêmica já foram disponibilizados no repositório, incluindo o DER conceitual, o modelo lógico relacional, o Dicionário de Dados e o script SQL. Os diagramas estão organizados na pasta `diagramas/`, enquanto o script de criação, inserção de dados fictícios e consultas encontra-se em `docs/script.sql`. A apresentação final ainda será acrescentada após sua elaboração. A conferência final dos links e das evidências permanece como etapa de validação antes da entrega.
-
-**Situação dos arquivos:** o relatório técnico da Entrega 2 está em revisão final. O Dicionário de Dados foi concluído e revisado, documentando as 13 tabelas e 74 colunas. Os diagramas conceitual e lógico foram elaborados no brModelo 3.2.0 e enviados à pasta `diagramas/` do repositório. O arquivo `docs/script.sql` foi disponibilizado no GitHub e executado no MySQL 8.0, com confirmação das 13 tabelas, 17 chaves estrangeiras e 51 registros fictícios. As consultas gerenciais G01 a G05 e as auditorias A01 a A05 foram testadas. Permanecem pendentes a conferência final dos links e arquivos do repositório e a elaboração da apresentação final.
-
-**Observação:** a tabela apresenta a organização dos arquivos do projeto no GitHub. O relatório técnico, o Dicionário de Dados, os diagramas conceitual e lógico e o script SQL já foram produzidos e disponibilizados no repositório. A apresentação final permanece em elaboração. Os demais arquivos e links indicados deverão ser conferidos individualmente antes da entrega, para garantir que estejam acessíveis e correspondam às evidências descritas no relatório.
+**Situação dos arquivos:** o relatório técnico da Entrega 2 foi consolidado para revisão final. O Dicionário de Dados foi concluído e revisado, documentando as 13 tabelas e 74 colunas. Os diagramas conceitual e lógico foram elaborados no brModelo 3.2.0 e enviados à pasta `diagramas/` do repositório. O arquivo `docs/script.sql` foi disponibilizado no GitHub e executado no MySQL 8.0, com confirmação das 13 tabelas, 17 chaves estrangeiras e 51 registros fictícios. As consultas gerenciais G01 a G05 e as auditorias A01 a A05 foram testadas. A conferência final dos links, a autorização para publicação das evidências pessoais e a finalização da apresentação dependem de verificação pelo grupo.
 
 ---
 
@@ -724,7 +720,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 |---|---|
 | **Ferramenta e etapa** | ChatGPT — apoio à organização e à execução do script SQL, preparação dos dados fictícios e interpretação dos resultados no MySQL 8.0. |
 | **Motivação** | Compreender a implementação do modelo lógico e conferir os resultados do banco de dados. |
-| **Exemplos de mensagens reais** | "A pasta docs não existe ou está vazia. Vamos criar o script.sql." e "Se eu terminar o modelo lógico, ele gera o SQL automático?". A segunda mensagem também aparece no histórico de apoio à modelagem (Registro 5). |
+| **Exemplos de mensagens reais** | "A pasta docs não existe ou está vazia. Vamos criar o script.sql." Este é um exemplo literal do histórico de trabalho. Os demais pedidos dessa etapa foram relacionados à execução do script e à interpretação dos resultados, sem apresentá-los como citações literais. |
 | **Orientações recebidas** | Instruções para organizar o arquivo SQL, executar comandos no MySQL e interpretar consultas gerenciais e testes de integridade. |
 | **Verificações realizadas** | No ambiente de testes foram conferidas 13 tabelas, 17 chaves estrangeiras, 51 registros fictícios, consultas gerenciais G01 a G05 e testes A01 a A05. |
 | **Sugestões corrigidas ou limitadas** | Durante a revisão com apoio do Claude, o grupo identificou descrições do README que atribuíam ao script atualizações automáticas de estoque e testes de cancelamento não presentes no código analisado. As descrições foram corrigidas com apoio do ChatGPT, diferenciando operações demonstradas de funcionalidades propostas. |
@@ -739,16 +735,27 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 | **Prompts reais utilizados** | 1) "Vou descrever os passos dos meus fluxogramas de venda e de estoque. Compare com os processos 1 e 3 do meu README e me diga se falta algum passo importante (lotes, validade, perda, saída por lote). Só não invente etapas que o mercado não confirmou na entrevista." 2) "Vou colar o meu script.sql e depois o dicionário de dados. Compare os dois e liste, colunas que aparecem em um e não no outro, tipos de dados que não batem, o total de colunas de verdade. Só aponte as diferenças, não reescreva nada." |
 | **Respostas recebidas** | O Claude identificou divergências entre afirmações do README e as operações do script, apontando, por exemplo, o uso de data fixa nas consultas de validade, a necessidade de conferir o saldo do lote de tomate e a ausência de certas operações demonstrativas de estoque e cancelamento. Na análise apresentada, também confirmou 13 tabelas, 74 colunas e 17 chaves estrangeiras. |
 | **Sugestão da IA identificada e corrigida** | O Claude apontou que o README mencionava `CURDATE()`, mas o script analisado utilizava a referência fixa `DATE('2026-10-28')`. O README foi corrigido para descrever a data fixa. Também foi apontada a inconsistência do saldo do lote TOM-001; o grupo confirmou o saldo no MySQL e corrigiu o valor informado de 70 para 69 unidades no ambiente de testes e no script, conforme registro da revisão. |
-| **Verificação e decisão do grupo** | O grupo utilizou os apontamentos do Claude como base para revisar o README com apoio do ChatGPT e corrigir os trechos sobre operações SQL não demonstradas. As correções não substituem a necessidade de executar novamente a versão final do script e conferir seus resultados. |
+| **Verificação e decisão do grupo** | O grupo utilizou os apontamentos do Claude como base para revisar o README com apoio do ChatGPT e corrigir os trechos sobre operações SQL não demonstradas. A versão corrigida do script foi executada novamente, e seus resultados foram conferidos no MySQL em 28/10/2026. |
 | **Reflexão crítica** | A IA ajudou a identificar erros que não eram visíveis pela simples contagem de tabelas e colunas. O grupo preservou a distinção entre regras de negócio desejadas e funcionalidades efetivamente implementadas. |
 
-As atividades de apoio das ferramentas de IA estão detalhadas nos Registros 1 a 7. Os apontamentos foram analisados pelo grupo à luz do levantamento, do modelo lógico, do Dicionário de Dados e dos testes realizados no MySQL. A revisão permitiu corrigir descrições técnicas que não correspondiam integralmente ao script apresentado.
+### Registro 8 — ChatGPT: Consolidação da revisão final do README
+
+| Item | Descrição |
+|---|---|
+| **Ferramenta e etapa** | ChatGPT — consolidação das revisões finais da Entrega 2 e atualização do arquivo README. |
+| **Motivação** | Incorporar ao relatório os apontamentos críticos já identificados, corrigindo contradições entre requisitos, documentos e operações SQL, sem inventar verificações adicionais. |
+| **Prompt real utilizado** | "crie o doc com tudo isso arrumado e me mande". A solicitação foi acompanhada de uma lista de 13 apontamentos de revisão, incluindo ajustes nas auditorias, na seção SQL e na documentação do uso de IA. |
+| **Orientação recebida** | Preparação de versão consolidada do README, distinção entre funcionalidades implementadas e propostas, correção da descrição do teste A05 e ajustes de formatação e consistência. |
+| **Decisões e limites** | Foram incorporadas correções textuais suportadas pelas informações disponíveis. Não foi atribuída à IA a execução de testes novos no MySQL, nem tratada como concluída a autorização de divulgação de dados ou a apresentação. A revalidação posterior do script foi realizada pelo grupo no MySQL em 28/10/2026. |
+| **Reflexão crítica** | A revisão por IA auxiliou a localizar contradições, mas sua aplicação exigiu verificar o que era demonstrado no código e separar fatos já testados de verificações ainda pendentes. |
+
+As atividades de apoio das ferramentas de IA estão detalhadas nos Registros 1 a 8. Os apontamentos foram analisados pelo grupo à luz do levantamento, do modelo lógico, do Dicionário de Dados e dos testes realizados no MySQL. A revisão permitiu corrigir descrições técnicas que não correspondiam integralmente ao script apresentado.
 
 ---
 
 ## 7. Apresentação Corporativa Final
 
-**Situação:** apresentação em preparação.
+**Situação:** roteiro e divisão de falas propostos; slides e aprovação da distribuição pelos integrantes ainda pendentes.
 
 **Slides:** o arquivo da apresentação será adicionado à pasta `apresentacao/` do repositório após sua conclusão.
 
@@ -765,6 +772,6 @@ As atividades de apoio das ferramentas de IA estão detalhadas nos Registros 1 a
 
 **Demonstração prática:** o grupo deverá selecionar consultas SQL já testadas, como G01, G02, G03, G04 e G05, apresentando seus resultados fictícios, os relacionamentos utilizados e as limitações da implementação. A demonstração do script completo desde um banco vazio deverá ser ensaiada antes da apresentação.
 
-**Divisão entre os integrantes:** será definida pelo grupo antes da apresentação.
+**Divisão proposta para os integrantes (a confirmar pelo grupo):** Tarcisio — organização e problema P1 (1min30s); Gabriela — DER e regras de negócio (1min30s); Henrique — modelo lógico e relacionamentos (1min30s); Victor Hugo — MySQL e consultas SQL (2min); Guilherme — indicadores, uso de IA e conclusão (1min30s). Total: 8 minutos. Esta distribuição não representa confirmação individual de participação.
 
-O roteiro poderá ser ajustado conforme a conclusão do modelo lógico, dos scripts SQL e dos testes.
+O roteiro deverá ser ensaiado e confirmado pelo grupo antes da apresentação, juntamente com a conferência dos resultados da versão final do script SQL.
