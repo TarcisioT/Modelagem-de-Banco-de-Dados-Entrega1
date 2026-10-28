@@ -628,7 +628,7 @@ O repositório também permitirá acompanhar as contribuições do grupo por mei
 
 Os diagramas, scripts e demais arquivos serão adicionados conforme sua conclusão. Antes da entrega, o grupo deverá conferir se todos os links do README funcionam e se os arquivos estão acessíveis diretamente pelo repositório.
 
-**Situação dos arquivos:** o README está em processo de atualização. O DER conceitual, o modelo lógico, o dicionário de dados, os scripts SQL e os materiais da apresentação serão conferidos e atualizados conforme a conclusão de cada etapa.
+**Situação dos arquivos:** o relatório técnico da Entrega 2 está em revisão final. O Dicionário de Dados foi concluído e revisado, documentando as 13 tabelas e 74 colunas. Os diagramas conceitual e lógico foram elaborados no brModelo 3.2.0 e enviados à pasta `diagramas/` do repositório. O arquivo `docs/script.sql` foi disponibilizado no GitHub e executado no MySQL 8.0, com confirmação das 13 tabelas, 17 chaves estrangeiras e 51 registros fictícios. As consultas gerenciais G01 a G05 e as auditorias A01 a A05 foram testadas. Permanecem pendentes a conferência final dos links e arquivos do repositório e a elaboração da apresentação final.
 
 **Observação:** a estrutura apresentada na tabela representa a organização planejada do repositório. A existência dos arquivos e o funcionamento dos links deverão ser verificados antes da entrega final.
 
