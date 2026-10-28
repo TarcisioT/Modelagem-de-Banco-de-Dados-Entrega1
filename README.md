@@ -427,7 +427,27 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 
 **Chaves estrangeiras e relacionamentos:** As chaves estrangeiras representam as ligações entre as tabelas e ajudam a manter a integridade dos dados. Por exemplo, `PEDIDO_COMPRA` utiliza `codigo_fornecedor` para identificar o fornecedor responsável, enquanto `ITEM_PEDIDO_COMPRA` utiliza `codigo_pedido` e `codigo_produto` para relacionar cada item ao pedido e ao produto solicitado. Já `SAIDA_LOTE` utiliza `codigo_item_venda` e `codigo_lote` para registrar de quais lotes saíram as quantidades vendidas.
 
-**Restrições aplicadas e limitações:** o banco implementado possui chaves primárias e 17 chaves estrangeiras, que permitem identificar registros e impedir determinadas referências a registros inexistentes. Algumas regras previstas nos requisitos, como validar os dígitos do CNPJ, exigir ao menos um item por pedido, proibir qualquer venda de lote vencido, garantir o método FEFO, impedir saldo negativo em todas as operações e conferir automaticamente a soma dos pagamentos, exigem restrições adicionais, procedimentos ou lógica de aplicação. Os testes com dados fictícios demonstraram operações e verificações pontuais; não comprovam automatização integral dessas regras. Na estrutura SQL implementada, os campos identificadores das 13 tabelas são obrigatórios por constituírem suas chaves primárias. Os demais campos permitem `NULL`, inclusive as chaves estrangeiras. Não foram implementadas restrições `UNIQUE` adicionais às chaves primárias nem restrições `CHECK` específicas para validar as regras de negócio. Essas características e limitações estão detalhadas no arquivo `Dicionario_Dados.md`.
+**O que está no `docs/script.sql` (arquivo de entrega):**
+
+| Regra SQL | O que garante | Limitação |
+|---|---|---|
+| 13 chaves primárias (`PRIMARY KEY`) | Identificação única pela PK | Não torna obrigatório o resto dos campos |
+| 17 FKs, com `ON DELETE RESTRICT`; 16 delas `NOT NULL` | Impedem referência a registro inexistente; travam exclusão de quem ainda é usado; as FKs obrigatórias não ficam vazias | `codigo_funcionario_cancelamento` continua nulo quando a venda não foi cancelada. A FK não garante “pelo menos um item” nem “pelo menos um pagamento” |
+| `UNIQUE` em `FORNECEDOR.cnpj` | Não cadastra dois fornecedores com o mesmo CNPJ | Não valida os dígitos do CNPJ. Os CNPJs da massa são fictícios |
+| `CHECK` em saldo do lote, quantidade perdida, quantidade vendida e quantidade retirada | Impede valor negativo nesses campos quando o valor é informado | Ainda aceita `NULL` nessas colunas (`IS NULL OR quantidade >= 0`). Não exige quantidade > 0 |
+| Tipos `INT`, `VARCHAR`, `DECIMAL`, `DATE`, `DATETIME` | Cabem no conteúdo | O tipo, sozinho, não fecha forma de pagamento nem preço positivo |
+| Índices em código de barras, validade e situação da venda | Apoiam as consultas G01, G02 e G05 | Sem teste de concorrência dos 7 caixas. Meta de resposta < 3 s **não comprovada** |
+
+| Restrição necessária | Situação no SQL publicado | Requisito/regra |
+|---|---|---|
+| Fornecedor no pedido e categoria no produto | Já tem `NOT NULL` nas FKs | RN03, RN16 |
+| FKs essenciais de item, recebimento, lote, venda, pagamento e saída | Já são `NOT NULL`, salvo o funcionário do cancelamento | RN02, RN13, RN14, RN22 |
+| Unicidade de CNPJ | Já tem `UNIQUE` em `FORNECEDOR.cnpj` | RN04 |
+| Unicidade de código de barras | Só tem índice, **não** tem `UNIQUE` (política de peso variável ainda em aberto) | RF01 |
+| Positividade e domínio de valores | `CHECK` só impede negativo; **não** há `CHECK` de `forma_pagamento` nem de preço > 0 | RN15, RN18 |
+| Dados da NF de entrada | Campos existem; **ainda aceitam `NULL`** | RN02 |
+| Pedido/venda com itens e pagamentos correspondentes | Não dá para garantir só com FK | RN13, RN15 |
+| Venda com saídas por lote e saldo coerente | Auditorias A03/A04 conferem a massa; não há procedimento atômico | RN01, RN14, RN18, RN19 |
 
 **Decisões arquiteturais gerais:** O grupo optou por um banco de dados relacional em MySQL, utilizando tabelas separadas para produtos, fornecedores, compras, vendas, lotes, pagamentos e perdas. Essa estrutura permite organizar as informações, reduzir duplicações e relacionar as movimentações de estoque às operações realizadas. O controle por lote foi proposto como melhoria para acompanhar a validade das mercadorias e reduzir desperdícios. O modelo também prevê rastreabilidade das saídas e histórico das perdas, apoiando futuras consultas e análises gerenciais.
 
