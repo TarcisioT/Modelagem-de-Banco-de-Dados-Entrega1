@@ -582,157 +582,197 @@ O uso de IA na massa está na seção 6. A descrição dessa ajuda ainda precisa
 
 ## 5. Repositório GitHub
 
-O repositório GitHub do projeto Hortifruti União reúne a documentação técnica da Entrega 2, incluindo o relatório README, o Dicionário de Dados, os diagramas conceitual e lógico e o script SQL utilizado nos testes. O projeto está organizado na branch `main`, permitindo o acesso aos arquivos e o acompanhamento das contribuições dos integrantes por meio do histórico de commits. A apresentação final permanece em preparação.
+Turma **GTI:** o Dicionário de Dados vai em **um único Markdown separado do README**, no formato da disciplina, com PK, FK, obrigatoriedade, unicidade, domínio e valor-padrão de cada coluna quando se aplicar. Relatório no `README.md` da raiz da branch `main`; arquivo em outra branch não é corrigido.
 
-**Organização dos arquivos do projeto:**
+Correção **somente da branch `main`**.
 
 | Arquivo ou pasta | Conteúdo |
 |---|---|
-| `README.md` | Relatório técnico da Entrega 2 |
-| `Dicionario_Dados.md` | Definição das tabelas, colunas, tipos de dados, chaves e restrições |
-| `diagramas/` | DER conceitual revisado e modelo lógico relacional |
-| `imagens/evidencias/` | Fotografias e outras evidências do levantamento |
-| `docs/script.sql` | Script único com criação das 13 tabelas, inserção dos dados fictícios, operações SQL, consultas gerenciais e testes de auditoria |
+| `README.md` | Este relatório (Entrega 2) |
+| `Dicionario_Dados.md` | 13 tabelas, 74 colunas, PK/FK, tipos e as restrições realmente implementadas |
+| `diagramas/` | DER conceitual e modelo lógico (brModelo 3.2.0) |
+| `imagens/evidencias/` | Fotos JPG/JPEG da organização (e da entrevista, quando incluída) |
+| `docs/script.sql` | DDL, massa, G01–G05, A01–A05, UPDATE/DELETE com ROLLBACK |
 | `apresentacao/` | Slides da apresentação final |
-| `levantamento/levantamento.md` | Levantamento de informações, entrevista e processos do Hortifruti União |
-| `fluxograma_vendas.png` | Fluxograma do processo de venda |
-| `fluxograma_estoque.png` | Fluxograma do processo de controle de estoque |
+| `levantamento/levantamento.md` | Levantamento escrito pelo grupo |
+| `fluxograma_vendas.png` | Fluxo de venda |
+| `fluxograma_estoque.png` | Fluxo de estoque |
 
-Cada integrante deverá utilizar sua própria conta do GitHub para registrar as alterações realizadas.
+Cada um commita na **própria conta** GitHub, com o usuário da tabela de Integrantes. Evitar um único commit no final.
 
-**Situação dos arquivos:** o relatório técnico da Entrega 2 foi consolidado para revisão final. O Dicionário de Dados foi concluído e revisado, documentando as 13 tabelas e 74 colunas. Os diagramas conceitual e lógico foram elaborados no brModelo 3.2.0 e enviados à pasta `diagramas/` do repositório. O arquivo `docs/script.sql` foi disponibilizado no GitHub e executado no MySQL 8.0, com confirmação das 13 tabelas, 17 chaves estrangeiras e 51 registros fictícios. As consultas gerenciais G01 a G05 e as auditorias A01 a A05 foram testadas. A conferência final dos links, a autorização para publicação das evidências pessoais e a finalização da apresentação dependem de verificação pelo grupo.
+Antes de mandar o link: fotos da visita na `main`; comprovação da entrevista pelo telefone, conforme combinado com o professor (não há foto do Tarcisio com o responsável); dados do responsável; slides em `apresentacao/`; dicionário em um `.md` só; nome do banco igual ao do SQL; cada um commitando na própria conta.
 
 ---
 
 ## 6. Uso de Inteligência Artificial
 
-**Registros históricos da Entrega 1:** os Registros 1 a 4 documentam usos de inteligência artificial realizados durante a preparação da primeira entrega e as revisões iniciais do modelo conceitual. Por essa razão, podem mencionar entidades e relacionamentos de versões anteriores, como CLIENTE e associações diretas N:N. Essas referências foram preservadas como histórico do processo de aprendizagem e não representam a estrutura final da Entrega 2.
+Uso de IA **não declarado é penalizado**. Abaixo, os usos relevantes. Entrega 1 (Registros 1–4) ficou como histórico e pode citar entidade que depois saiu (ex.: CLIENTE).
 
 ### Registro 1 — Claude: Aprendizado do GitHub
 
 | Item | Descrição |
 |------|------------------|
-| **Ferramenta e etapa** |  Claude - Auxílio no aprendizado do GitHub.  |
-| **Motivação** | Como ninguém do grupo era familiarizado com a rede social/ferramenta, optamos usar o Claude por saber que ele poderia ser mais técnico e direto ao mesmo tempo. |
-| **Prompt(s) utilizados** | "Preciso criar um arquivo readme dentro do github, aprender a editar e adicionar colaboradores para que o meu grupo também tenha acesso, como eu faço isso?" 2) "Aparentemente você está passando informações da versão anterior do github, fale as informações da versão atual" |
-| **Resposta recebida** | Resposta do segundo prompt: Resumo de 7 tópicos na sequência de como usar o GitHub -  1) Crie (ou acesse) o repositório, 2) Crie o arquivo README, 3) Escreva e formate o conteúdo, 4) Salve as alterações (commit), 5) Edite o README depois de criado, 6) Adicione colaboradores ao grupo, 7) Defina permissões (opcional). |
-| **Fontes consultadas e verificadas** | O Claude apenas mandou o conhecimento que ele sabia sobre o GitHub no momento. |
-| **Trechos rejeitados ou corrigidos** | Primeira sugestão da IA corrigida, pois os passos da primeira versão eram da versão anterior do GitHub. Avisamos a IA, que atualizou as instruções para a versão atual.|
-| **Justificativa da escolha final** | Decidimos manter o uso do Claude nessa etapa por atender todas as nossas dúvidas sobre o github. |
-| **Reflexão crítica** | Um pequeno erro foi identificado por algumas informações estarem desatualizadas, na primeira vez o claude estava ensinando a usar o github na versão anterior, mas depois de explicarmos que o GitHub poderia estar numa versão mais atual no momento, a IA atualizou as informações. |
+| **Ferramenta e etapa** | Claude — auxílio no aprendizado do GitHub. |
+| **Motivação** | Ninguém do grupo era familiarizado com a ferramenta. |
+| **Prompt(s) utilizados** | "Preciso criar um arquivo readme dentro do github, aprender a editar e adicionar colaboradores para que o meu grupo também tenha acesso, como eu faço isso?" / "Aparentemente você está passando informações da versão anterior do github, fale as informações da versão atual" |
+| **Resposta recebida** | Sequência: criar repositório, README, formatação, commit, edição, colaboradores, permissões. |
+| **Fontes consultadas e verificadas** | Conhecimento geral da ferramenta; conferido na prática pelo grupo. |
+| **Trechos rejeitados ou corrigidos** | Primeira resposta parecia da interface antiga; o grupo pediu a versão atual. |
+| **Justificativa da escolha final** | Resolveu as dúvidas de publicação. |
+| **Reflexão crítica** | Foi preciso exigir atualização; a IA pode descrever tela antiga. |
 
 ### Registro 2 — Claude: Revisão ortográfica do README
 
 | Item | Descrição |
 |------|------------------|
-| **Ferramenta e etapa** | Claude - Revisão ortográfica no documento README.|
-| **Motivação** | Preferência geral do grupo ao uso do Claude.|
-| **Prompt(s) utilizados** | 1) "Revise pra mim todos os erros de ortográfia dentro desse arquivo README e me passe para eu corrigir manualmente." 2) "Se existem erros de menor impacto, me informe todos que estão presentes. |
-| **Resposta recebida** | 1) 2 pequenos erros de inconsistência no trabalho apresentado, e alguns erros de digitação. 2) Lista com todos os 21 erros de digitação presentes no documento. |
-| **Fontes consultadas e verificadas** |  A IA não citou fontes. O grupo conferiu a inconsistência apontada comparando com a documentação do trabalho. |
-| **Trechos rejeitados ou corrigidos** | Não houve trechos rejeitados ou corrigidos. |
-| **Justificativa da escolha final** | O grupo decidiu manter as correções do Claude porque ele identificou a inconsistência principal: o título dizia "informação de uma empresa de pequeno porte", mas a documentação deixa claro que é uma empresa de médio porte. Os erros de ortografia também foram aceitos, pois eram apenas erros de digitação. |
-| **Reflexão crítica** | A IA trouxe apenas os erros mais relevantes inicialmente, sendo necessário pedir novamente para que ela listasse todos os erros encontrados no documento, incluindo os de menor destaque. |
+| **Ferramenta e etapa** | Claude — revisão ortográfica do README. |
+| **Motivação** | Preferência do grupo. |
+| **Prompt(s) utilizados** | Revisar erros de ortografia; listar também os de menor impacto. |
+| **Resposta recebida** | Inconsistência de porte (título “pequeno” × texto “médio”) e lista de digitação. |
+| **Fontes consultadas e verificadas** | Comparação com o próprio relatório. |
+| **Trechos rejeitados ou corrigidos** | Nenhum trecho da lista foi descartado sem leitura. |
+| **Justificativa da escolha final** | Correção do porte e da digitação. |
+| **Reflexão crítica** | A primeira passagem só destacou o principal; foi preciso pedir a lista completa. |
 
 ### Registro 3 — Claude: Organização da documentação
 
 | Item | Descrição |
 |------|------------------|
-| **Ferramenta e etapa** | Claude - Auxílio na organização e redação da documentação do modelo conceitual (item 6 do esqueleto de entrega). |
+| **Ferramenta e etapa** | Claude — organização do item 6 do esqueleto da Entrega 1. |
 | **Motivação** | Preferência do grupo. |
-| **Prompt(s) utilizados** | [Enviamos um print mostrando os 4 tópicos do item 6 que o esqueleto pedia e enviei a imagem do nosso DER] - "de acordo com essas instruções do esqueleto de entrega, como eu posso colocar as informações de uma maneira organizada?" |
-| **Resposta recebida** | Dicas de como estruturar os 4 tópicos do que o item 6 do esqueleto pedia, exemplo: 1. Entidades reconhecidas — não basta listar o nome, tem que justificar por que ela existe no modelo. Para cada entidade (Fornecedor, Pedido_Compra, Categoria_Produto, Produto, Cliente, Venda, Funcionário), explique em 1-2 frases: o que ela representa no negócio e por que era necessário capturar esses dados. Você já tem isso relativamente bem no README — o ponto de atenção é sempre conectar com a necessidade real levantada na entrevista, não só descrever o óbvio. |
-| **Fontes consultadas e verificadas** | Não houve fontes citadas pela IA. |
-| **Trechos rejeitados ou corrigidos** | Foi corrigida apenas a ordem da estrutura sugerida pela IA, mantendo a sequência que estava dentro do esqueleto de entrega. |
-| **Justificativa da escolha final** | Mantivemos a estrutura sugerida pela IA porque batia com o que estava presente nos slides fornecidos na matéria. |
-| **Reflexão crítica** | Observamos apenas um erro de ordem: a IA sugeriu os tópicos numa sequência diferente da que pedimos, e ajustamos manualmente. |
+| **Prompt(s) utilizados** | Print dos tópicos do esqueleto + imagem do DER: como organizar. |
+| **Resposta recebida** | Justificar cada entidade com o negócio, não só listar nomes. |
+| **Fontes consultadas e verificadas** | Esqueleto e slides da disciplina. |
+| **Trechos rejeitados ou corrigidos** | Ordem dos tópicos ajustada à ordem do esqueleto. |
+| **Justificativa da escolha final** | Estrutura útil depois de reordenada. |
+| **Reflexão crítica** | A IA invertia a ordem pedida. |
 
 ### Registro 4 — Claude: Revisão do DER conceitual
 
 | Item | Descrição |
 |------|------------------|
-| **Ferramenta e etapa** | Claude - Revisão geral do DER criado. |
-| **Motivação** | Preferência geral do grupo no uso do Claude para revisar cardinalidades antes da entrega. |
-| **Prompt(s) utilizados** | 1) "Revise para mim as informações dentro desse DER, e veja se está coerente com tudo que apresentei, e dê uma atenção maior às cardinalidades." 2) Sequência de perguntas referente ao DER, como por exemplo "por que a relação de produtos - contém - vendas é de N:N?". |
-| **Resposta recebida** | Texto explicando as correções sugeridas nas cardinalidades do DER (a IA não alterou o DER diretamente). |
-| **Fontes consultadas e verificadas** | A IA não consultou fontes. |
-| **Trechos rejeitados ou corrigidos** | Nenhum trecho da resposta foi descartado. O grupo aplicou manualmente no DER as correções de cardinalidade sugeridas: Categoria_Produto (1) – Cadastra – (N) Produto, Produto (N) – Contém – (N) Venda, Pedido_Compra (N) – Cadastra – (N) Produto. |
-| **Justificativa da escolha final** | A IA apenas enviou as informações por texto, a nosso pedido, e o grupo fez as alterações no DER manualmente, adaptando as sugestões ao nosso modelo. Aceitamos as correções porque identificamos coerência na resposta. |
-| **Reflexão crítica** | Não identificamos erros nas sugestões da IA. Precisamos fazer uma série de perguntas para esclarecer as dúvidas do grupo, e aprendemos que quanto mais específico e detalhado o prompt, maior a probabilidade de a IA devolver o que realmente buscamos.  |
-
-**Observação:** Os relacionamentos citados neste registro correspondem a uma versão anterior do DER. Posteriormente, o modelo foi revisado para utilizar as entidades ITEM_VENDA e ITEM_PEDIDO_COMPRA, em lugar de relacionamentos diretos N:N entre VENDA/PRODUTO e PEDIDO_COMPRA/PRODUTO.
+| **Ferramenta e etapa** | Claude — revisão de cardinalidades do DER (Entrega 1). |
+| **Motivação** | Revisar antes da entrega. |
+| **Prompt(s) utilizados** | Revisar o DER com ênfase em cardinalidade; perguntas do tipo “por que produto–venda é N:N?”. |
+| **Resposta recebida** | Sugestões textuais de cardinalidade (a IA não editou o arquivo do brModelo). |
+| **Fontes consultadas e verificadas** | Nenhuma fonte externa citada pela IA. |
+| **Trechos rejeitados ou corrigidos** | Aplicação manual no DER; depois o modelo foi de novo revisado com ITEM_VENDA e ITEM_PEDIDO_COMPRA. |
+| **Justificativa da escolha final** | Ajuda para discutir N:N. |
+| **Reflexão crítica** | Relacionamentos deste registro são de **versão antiga** do DER. |
 
 ### Registro 5 — ChatGPT: Revisão da documentação e apoio à modelagem
 
 | Item | Descrição |
 |---|---|
-| **Ferramenta e etapa** | ChatGPT — revisão do README, regras de negócio, DER conceitual e modelo lógico da Entrega 2. |
-| **Motivação** | O grupo utilizou a ferramenta como apoio para compreender os conceitos de modelagem de banco de dados, organizar a documentação e identificar possíveis inconsistências entre os requisitos e os diagramas. |
-| **Prompts utilizados** | Exemplos: "O que é uma chave primária?", "Estamos fazendo com base nas regras?", "Me mande uma tabela para eu fazer sozinha o DER" e "Se eu terminar o modelo lógico, ele gera o SQL automático?". |
-| **Respostas recebidas** | Explicações sobre entidades, atributos, chaves primárias e estrangeiras, cardinalidades e relacionamentos. A ferramenta também sugeriu ajustes nas regras de negócio e textos para organizar as seções do README. |
-| **Fontes consultadas e verificadas** | As sugestões foram comparadas com as informações levantadas sobre o Hortifruti União, as regras de negócio registradas no README e as observações feitas pelo professor na correção da Entrega 1. |
-| **Trechos rejeitados ou corrigidos** | Algumas sugestões precisaram ser revistas após novas informações do estabelecimento. Também foram identificadas dúvidas e inconsistências na orientação sobre cardinalidades e no posicionamento das chaves estrangeiras geradas pelo brModelo. |
-| **Justificativa da escolha final** | O grupo aproveitou as explicações e sugestões consideradas coerentes com o projeto, realizando as alterações manualmente no README e nos diagramas. |
-| **Reflexão crítica** | O uso do ChatGPT ajudou na compreensão dos conceitos e na organização da Entrega 2, mas mostrou a importância de conferir as respostas. Nem todas as sugestões estavam corretas inicialmente, sendo necessário comparar as orientações com as regras do projeto e revisar algumas decisões. |
+| **Ferramenta e etapa** | ChatGPT — README, regras, DER e modelo lógico da Entrega 2. |
+| **Motivação** | Organizar conceitos e achar inconsistência entre requisito e diagrama. |
+| **Prompts utilizados** | "O que é uma chave primária?"; "Estamos fazendo com base nas regras?"; "Me mande uma tabela para eu fazer sozinha o DER"; "Se eu terminar o modelo lógico, ele gera o SQL automático?" |
+| **Respostas recebidas** | Explicações de entidade, PK/FK, cardinalidade; sugestões de texto. |
+| **Fontes consultadas e verificadas** | Levantamento, RNs e correção da Entrega 1. |
+| **Trechos rejeitados ou corrigidos** | Orientações de cardinalidade e de FK gerada pelo brModelo que não batiam com o projeto. |
+| **Justificativa da escolha final** | Alterações feitas à mão no README e nos diagramas. |
+| **Reflexão crítica** | Nem toda sugestão estava correta na primeira resposta. |
 
-### Registro 6 — ChatGPT: Apoio à implementação e validação SQL
-
-| Item | Descrição |
-|---|---|
-| **Ferramenta e etapa** | ChatGPT — apoio à organização e à execução do script SQL, preparação dos dados fictícios e interpretação dos resultados no MySQL 8.0. |
-| **Motivação** | Compreender a implementação do modelo lógico e conferir os resultados do banco de dados. |
-| **Exemplos de mensagens reais** | "A pasta docs não existe ou está vazia. Vamos criar o script.sql." Este é um exemplo literal do histórico de trabalho. Os demais pedidos dessa etapa foram relacionados à execução do script e à interpretação dos resultados, sem apresentá-los como citações literais. |
-| **Orientações recebidas** | Instruções para organizar o arquivo SQL, executar comandos no MySQL e interpretar consultas gerenciais e testes de integridade. |
-| **Verificações realizadas** | No ambiente de testes foram conferidas 13 tabelas, 17 chaves estrangeiras, 51 registros fictícios, consultas gerenciais G01 a G05 e testes A01 a A05. |
-| **Sugestões corrigidas ou limitadas** | Durante a revisão com apoio do Claude, o grupo identificou descrições do README que atribuíam ao script atualizações automáticas de estoque e testes de cancelamento não presentes no código analisado. As descrições foram corrigidas com apoio do ChatGPT, diferenciando operações demonstradas de funcionalidades propostas. |
-| **Reflexão crítica** | As sugestões de IA foram confrontadas com o script e com o comportamento observado no MySQL. A revisão mostrou que uma estrutura relacional válida não comprova, por si só, a automatização de todas as regras de negócio. |
-
-### Registro 7 — Claude: Revisão dos fluxogramas e consistência da documentação SQL
+### Registro 6 — ChatGPT: Apoio à implementação SQL
 
 | Item | Descrição |
 |---|---|
-| **Ferramenta e etapa** | Claude — revisão dos fluxogramas e comparação entre o script SQL, o README e o Dicionário de Dados da Entrega 2. |
-| **Motivação** | Verificar a coerência dos processos descritos e identificar divergências sem acrescentar etapas não confirmadas na entrevista. |
-| **Prompts reais utilizados** | 1) "Vou descrever os passos dos meus fluxogramas de venda e de estoque. Compare com os processos 1 e 3 do meu README e me diga se falta algum passo importante (lotes, validade, perda, saída por lote). Só não invente etapas que o mercado não confirmou na entrevista." 2) "Vou colar o meu script.sql e depois o dicionário de dados. Compare os dois e liste, colunas que aparecem em um e não no outro, tipos de dados que não batem, o total de colunas de verdade. Só aponte as diferenças, não reescreva nada." |
-| **Respostas recebidas** | O Claude identificou divergências entre afirmações do README e as operações do script, apontando, por exemplo, o uso de data fixa nas consultas de validade, a necessidade de conferir o saldo do lote de tomate e a ausência de certas operações demonstrativas de estoque e cancelamento. Na análise apresentada, também confirmou 13 tabelas, 74 colunas e 17 chaves estrangeiras. |
-| **Sugestão da IA identificada e corrigida** | O Claude apontou que o README mencionava `CURDATE()`, mas o script analisado utilizava a referência fixa `DATE('2026-10-28')`. O README foi corrigido para descrever a data fixa. Também foi apontada a inconsistência do saldo do lote TOM-001; o grupo confirmou o saldo no MySQL e corrigiu o valor informado de 70 para 69 unidades no ambiente de testes e no script, conforme registro da revisão. |
-| **Verificação e decisão do grupo** | O grupo utilizou os apontamentos do Claude como base para revisar o README com apoio do ChatGPT e corrigir os trechos sobre operações SQL não demonstradas. A versão corrigida do script foi executada novamente, e seus resultados foram conferidos no MySQL em 28/10/2026. |
-| **Reflexão crítica** | A IA ajudou a identificar erros que não eram visíveis pela simples contagem de tabelas e colunas. O grupo preservou a distinção entre regras de negócio desejadas e funcionalidades efetivamente implementadas. |
+| **Ferramenta e etapa** | ChatGPT — organização do `script.sql`, massa e interpretação dos testes MySQL. |
+| **Motivação** | Entender a criação das tabelas, a execução das consultas e se os dados batiam. |
+| **Prompt(s) utilizados — resumo dos pedidos** | Pedimos ajuda para montar o `docs/script.sql` (criar a pasta `docs` se não existisse), entender o `CREATE TABLE` e ler o resultado de G01–G05 e A01–A05. Não foi um único prompt do tipo “gere o banco inteiro”. |
+| **Resposta recebida** | Orientações sobre estrutura do SQL, inserções fictícias e interpretação de G01–G05 e A01–A05. |
+| **Fontes consultadas e verificadas** | O `script.sql` do grupo e os testes que relatamos no MySQL 8.0; nesta versão do texto não rodamos o MySQL de novo. |
+| **Trechos rejeitados ou corrigidos** | Falas de baixa automática e de cancelamento demonstrado que não estão no SQL. |
+| **Justificativa da escolha final** | Deixar no relatório só o que o esquema, a massa e as consultas deixam conferir. |
+| **Reflexão crítica** | Ter PK, FK e insert que roda não significa que venda, saldo e validade estejam travados como no caixa real. |
+
+### Registro 7 — Claude: Fluxogramas e consistência SQL × documentação
+
+| Item | Descrição |
+|---|---|
+| **Ferramenta e etapa** | Claude — revisão de fluxogramas e comparação de script, README e dicionário. |
+| **Motivação** | Achar divergência sem inventar passo que a entrevista não confirmou. |
+| **Prompt(s) utilizados — resumo dos pedidos** | Pedimos: (1) comparar o fluxograma com os processos de venda e estoque; (2) comparar colunas, tipos e contagens de SQL e dicionário. |
+| **Resposta recebida** | Sugestão de data fixa nos testes; conferir `TOM-001`; contagem de 13 tabelas, 74 colunas e 17 FKs. |
+| **Fontes consultadas e verificadas** | Fluxogramas, SQL, README, Dicionário de Dados e resultados que o grupo relatou. |
+| **Trechos rejeitados ou corrigidos** | O grupo relatou ter mudado o saldo de 70,000 para 69,000, mas a cópia usada na conferência ainda tinha 70,000. A comparação com o arquivo final na `main` continua pendente. |
+| **Justificativa da escolha final** | Manter a data fixa no teste para todo mundo reproduzir, e deixar o saldo bater com o movimento. |
+| **Reflexão crítica** | Dá para acertar o número de tabelas e ainda assim deixar o saldo do tomate ou o custo da alface errados. O que vale é conferir o `SELECT`. |
 
 ### Registro 8 — ChatGPT: Consolidação da revisão final do README
 
 | Item | Descrição |
 |---|---|
-| **Ferramenta e etapa** | ChatGPT — consolidação das revisões finais da Entrega 2 e atualização do arquivo README. |
-| **Motivação** | Incorporar ao relatório os apontamentos críticos já identificados, corrigindo contradições entre requisitos, documentos e operações SQL, sem inventar verificações adicionais. |
-| **Prompt real utilizado** | "crie o doc com tudo isso arrumado e me mande". A solicitação foi acompanhada de uma lista de 13 apontamentos de revisão, incluindo ajustes nas auditorias, na seção SQL e na documentação do uso de IA. |
-| **Orientação recebida** | Preparação de versão consolidada do README, distinção entre funcionalidades implementadas e propostas, correção da descrição do teste A05 e ajustes de formatação e consistência. |
-| **Decisões e limites** | Foram incorporadas correções textuais suportadas pelas informações disponíveis. Não foi atribuída à IA a execução de testes novos no MySQL, nem tratada como concluída a autorização de divulgação de dados ou a apresentação. A revalidação posterior do script foi realizada pelo grupo no MySQL em 28/10/2026. |
-| **Reflexão crítica** | A revisão por IA auxiliou a localizar contradições, mas sua aplicação exigiu verificar o que era demonstrado no código e separar fatos já testados de verificações ainda pendentes. |
+| **Ferramenta e etapa** | ChatGPT — redação e consolidação da documentação da Entrega 2. |
+| **Motivação** | Organizar apontamentos da Entrega 1 e alinhar escopo com o que o banco faz. |
+| **Prompt(s) utilizados — resumo do pedido** | Pedimos para organizar os apontamentos e devolver o documento completo com as correções. |
+| **Resposta recebida** | Separar o que está implementado, o que é proposta e o que foi testado, e organizar evidências. |
+| **Fontes consultadas e verificadas** | Esqueleto da disciplina, correção da Entrega 1, script e dicionário do grupo. |
+| **Trechos rejeitados ou corrigidos** | Texto que misturava recurso proposto com comando SQL que de fato roda. |
+| **Justificativa da escolha final** | Deixar claro o limite do projeto e manter o foco no P1. |
+| **Reflexão crítica** | Texto bem escrito não prova que o MySQL rodou, que a regra está no DDL ou que a foto da entrevista existe. |
 
-As atividades de apoio das ferramentas de IA estão detalhadas nos Registros 1 a 8. Os apontamentos foram analisados pelo grupo à luz do levantamento, do modelo lógico, do Dicionário de Dados e dos testes realizados no MySQL. A revisão permitiu corrigir descrições técnicas que não correspondiam integralmente ao script apresentado.
+### Registro 9 — IA: KPIs típicos de hortifruti (esqueleto seção 1.6)
+
+| Item | Descrição |
+|---|---|
+| **Ferramenta e etapa** | ChatGPT / Claude — indicadores típicos de varejo alimentar / hortifruti. |
+| **Motivação** | Atender o esqueleto: levantar KPIs do tipo de organização e filtrar pelo que o banco calcula. |
+| **Prompt(s) utilizados — resumo do pedido** | Pedimos sugestões dos principais KPIs de um hortifruti ou supermercado de perecíveis, com foco em validade, perda, ruptura e faturamento. |
+| **Resposta recebida** | Lista ampla (giro, margem, ruptura, validade, ticket, perda %). |
+| **Fontes consultadas e verificadas** | Confrontado com o levantamento (perdas ≈ 1,5% do faturamento) e com as tabelas existentes. |
+| **Trechos rejeitados** | Preferimos não incluir ticket médio nesta massa de uma venda só. Margem e giro também ficaram de fora porque não detalhamos os dados necessários para essas análises. Tempo de fila e NPS: não há dados. |
+| **Justificativa da escolha final** | Mantivemos G01–G05 como consultas gerenciais. As contagens e somas que ainda faltam para os KPIs estão indicadas na seção 1.6. |
+| **Reflexão crítica** | KPI sem consulta no SQL não entra. |
+
+### Registro 10 — Massa de dados e LLM (esqueleto seção 4)
+
+| Item | Descrição |
+|---|---|
+| **Ferramenta e etapa** | ChatGPT — apoio na interpretação da massa e das consultas. A participação na escrita dos `INSERTs` ainda precisa ser conferida no histórico do grupo. |
+| **Motivação** | Esqueleto exige declarar se LLM gerou a massa. |
+| **Prompt(s) utilizados — resumo dos pedidos** | Pedimos ajuda para entender os resultados de G01–G05 e o saldo de `TOM-001`. Esse resumo não esclarece toda a participação da IA na elaboração da massa; essa parte ainda precisa ser conferida. |
+| **Resposta recebida** | Leituras de consulta; alerta de inconsistência de saldo. |
+| **Fontes consultadas e verificadas** | Testes que o grupo relatou no MySQL 8.0 em 28/10/2026. Não houve nova execução nesta revisão do texto; a diferença entre as cópias do SQL está explicada na seção 1.6. |
+| **Trechos rejeitados ou corrigidos** | Foi apontada a diferença entre saldo 70,000 e 69,000 no tomate. O grupo relatou a correção, mas ainda falta confirmar que ela está na mesma versão publicada do SQL. |
+| **Justificativa da escolha final** | Massa pequena, controlada, fictícia, alinhada a P1. |
+| **Reflexão crítica** | LLM não substitui rodar o script do zero. |
+
+### Registro 11 — ChatGPT: Conferência do README e revisão da escrita (28/10/2026)
+
+| Item | Descrição |
+|---|---|
+| **Ferramenta e etapa** | ChatGPT — comparação do README com o arquivo `00-d_Esqueleto_Entrega_2.md` e revisão dos trechos incompletos ou contraditórios. Depois, ajustes na escrita sem trocar o jeito do grupo de explicar. |
+| **Motivação** | Conferir os itens do esqueleto e corrigir as imprecisões sem deixar o texto com cara de resposta pronta de IA. |
+| **Prompt(s) utilizados** | Resumo dos pedidos anteriores: comparar o relatório com o esqueleto, apontar inconsistências e devolver o README corrigido. Pedido desta revisão: “corrija, mas sem mudar meu tom de fala, você deixa muito IA sabe muito robotico e tem partes q tem q ficar mais humano entender”. |
+| **Resposta recebida** | Correções pontuais nas frases sobre validade, observação presencial, normalização, KPIs e uso de IA. A diferença entre as versões do SQL foi mantida como pendência de conferência, não como um teste novo. |
+| **Fontes consultadas e verificadas** | Na comparação anterior, o esqueleto, o README, o dicionário e as cópias do SQL descritas no trabalho. Nesta revisão da escrita, a versão completa do README e as informações já fornecidas na conversa; sem nova consulta ao repositório ou execução do MySQL. |
+| **Trechos rejeitados ou corrigidos** | Não mantivemos a ideia de que uma lista gerencial é inválida só por não trazer uma contagem. Separamos a utilidade da lista do cálculo do KPI. Também retiramos a afirmação de que esta revisão comprovava a versão publicada do SQL, porque o texto trazia informações diferentes sobre o saldo do tomate. |
+| **Justificativa da escolha final** | Manter a nossa forma de escrever, os dados do levantamento e os limites do trabalho. O que depende de conferir o arquivo final ou de rodar o SQL continua indicado como pendência. |
+| **Reflexão crítica** | Uma resposta sobre uma cópia antiga não comprova o que está no arquivo publicado. Precisamos conferir a mesma versão do SQL que vai junto com o README. Deixar a escrita mais natural também não pode mudar o sentido do que foi levantado ou testado. |
 
 ---
 
 ## 7. Apresentação Corporativa Final
 
-**Situação:** roteiro e divisão de falas propostos; slides e aprovação da distribuição pelos integrantes ainda pendentes.
+O roteiro está pronto. **Falta confirmar na `main` os slides e a evidência do SQL rodando.** São 8 minutos, slide limpo, sem ler parágrafo.
 
-**Slides:** o arquivo da apresentação será adicionado à pasta `apresentacao/` do repositório após sua conclusão.
+**Pitch de 8 minutos (ordem obrigatória):**
 
-**Roteiro previsto para a apresentação de 8 minutos:**
-
-| Etapa | Tempo | Conteúdo |
+| # | Tempo | Conteúdo do esqueleto |
 |---|---|---|
-| 1. Apresentação da organização | 1 minuto | Caracterização do Hortifruti União e problemas identificados |
-| 2. Solução proposta | 1 minuto | Controle de validade por lote, rastreabilidade das saídas e apoio à redução de perdas, com explicitação das limitações de automação. |
-| 3. Modelagem do banco de dados | 2 minutos | DER conceitual, modelo lógico, entidades, chaves e relacionamentos |
-| 4. Implementação SQL | 2 minutos | Demonstração do banco de dados e das consultas no MySQL |
-| 5. BI e Inteligência Artificial | 1 minuto | Indicadores gerenciais e possibilidades de análise |
-| 6. Conclusão | 1 minuto | Benefícios esperados e considerações finais |
+| 1 | 1 min | Contextualização do problema P1 (validade/lote) no Hortifruti União |
+| 2 | 1 min | Solução: `LOTE`, `SAIDA_LOTE`, `PERDA`; dizer o que **não** está automatizado (FEFO, baixa de saldo) |
+| 3 | 1 min 30 s | Modelo lógico (13 tabelas, chaves, rastreio do lote) |
+| 4 | 1 min | Demonstração do SQL rodando (criar/usar a base) |
+| 5 | 1 min 30 s | Consultas G01–G05 e uma auditoria (A02 ou A05) |
+| 6 | 1 min | Potencial de BI/IA e KPIs |
+| 7 | 30 s | Benefícios para decisão: menos perda, reposição, o que o gerente passa a ver |
 
-**Demonstração prática:** o grupo deverá selecionar consultas SQL já testadas, como G01, G02, G03, G04 e G05, apresentando seus resultados fictícios, os relacionamentos utilizados e as limitações da implementação. A demonstração do script completo desde um banco vazio deverá ser ensaiada antes da apresentação.
+**Defesa:** depois do pitch, fora dos 8 minutos. **Só responde quem foi perguntado.**
 
-**Divisão proposta para os integrantes (a confirmar pelo grupo):** Tarcisio — organização e problema P1 (1min30s); Gabriela — DER e regras de negócio (1min30s); Henrique — modelo lógico e relacionamentos (1min30s); Victor Hugo — MySQL e consultas SQL (2min); Guilherme — indicadores, uso de IA e conclusão (1min30s). Total: 8 minutos. Esta distribuição não representa confirmação individual de participação.
+**Participação:** não precisa todo mundo falar no pitch; **é obrigatório** todo mundo estar na defesa. Falta reduz nota, salvo justificativa legal.
 
-O roteiro deverá ser ensaiado e confirmado pelo grupo antes da apresentação, juntamente com a conferência dos resultados da versão final do script SQL.
+**Proposta de falas (confirmar no grupo):** Tarcisio — itens 1 e 2; Gabriela e Henrique — item 3; Victor Hugo — itens 4 e 5; Guilherme — itens 6 e 7.
+
+**Ensaio:** usar uma base de testes separada e vazia, rodar `docs/script.sql` do zero e anotar G01–G05 e A01–A05. Cada um tem que saber responder, sozinho, sobre a redundância em `LOTE`, FK nula, FEFO, soma dos pagamentos e o tamanho pequeno da massa. Roupa de apresentação: sem boné, bermuda, chinelo ou camisa de time.
