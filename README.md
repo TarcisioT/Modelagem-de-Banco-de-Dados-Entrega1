@@ -93,10 +93,9 @@ Para cada item da venda, devem ser registrados o produto, a quantidade e o preç
 
 Na implementação acadêmica, o banco armazena os dados da venda, seus itens, valores e funcionário responsável. A tabela SAIDA_LOTE permite registrar as quantidades retiradas dos lotes utilizados. A baixa correspondente no estoque foi demonstrada em operações SQL com dados fictícios; a automatização integral dessas operações e a integração com o sistema fiscal do estabelecimento não fazem parte do escopo prático.
 
+A emissão e o registro oficial dos documentos fiscais são realizados pelo sistema utilizado pelo estabelecimento e não foram implementados neste banco acadêmico.
 
-A emissão e o registro da nota fiscal deverão seguir o procedimento fiscal utilizado pela organização, cuja operação atual deverá ser confirmada durante o levantamento.
-
-**Dados envolvidos:** identificação da venda, caixa, data e horário, funcionário responsável, produtos vendidos, quantidades, preços unitários, valor total, informações da nota fiscal, formas de pagamento e situação da venda.
+**Dados envolvidos:** identificação da venda, caixa, data e horário, funcionário responsável, produtos vendidos, quantidades, preços unitários, valor total, formas de pagamento e situação da venda.
 
 ##### 2. Processo de pedido e recebimento de mercadorias
 
@@ -148,7 +147,7 @@ Quando os produtos cancelados forem devolvidos e estiverem em condições de com
 
 Conforme informado pelo entrevistado, a alteração do preço de um produto é permitida somente aos líderes de setor, ao gerente e aos proprietários.
 
-Na solução proposta, cada alteração deverá registrar o produto, o preço anterior, o novo preço, a data, o horário e o funcionário responsável. O histórico deverá ser preservado para permitir a consulta das alterações realizadas e a identificação dos responsáveis.
+Conforme o levantamento, o sistema atualmente utilizado pelo Hortifruti União já mantém o histórico de alterações de preços, com identificação de horário e usuário responsável. No banco acadêmico será mantido apenas o preço de venda atual do produto, sem tabela própria de histórico de alterações, emissão de etiquetas ou validação automática de permissões. Esses procedimentos são documentados como processos reais do estabelecimento, mas não compõem a implementação prática.
 
 A consulta dos códigos dos produtos e a emissão de novas etiquetas poderão ser disponibilizadas aos funcionários autorizados a utilizar os computadores destinados a essa atividade, respeitando as permissões definidas pela organização.
 
@@ -156,7 +155,7 @@ A consulta dos códigos dos produtos e a emissão de novas etiquetas poderão se
 
 ##### 7. Processo de controle de acesso
 
-O sistema proposto deverá permitir a identificação dos usuários por meio de login e senha, associando cada funcionário a um perfil de acesso compatível com suas responsabilidades.
+O sistema atual do estabelecimento aplica permissões conforme a função do funcionário. No projeto acadêmico, a tabela FUNCIONARIO identifica os responsáveis por operações modeladas, como vendas e perdas. O banco não implementa credenciais de login, armazenamento de senhas, perfis de acesso nem autenticação. A relação de um funcionário com uma operação não comprova, por si só, que ele tinha permissão para realizá-la.
 
 As alterações de preços serão permitidas aos líderes de setor, ao gerente e aos proprietários. As informações financeiras ficarão disponíveis somente ao setor administrativo, ao gerente e aos proprietários. O cancelamento de vendas e a validação do fechamento de caixa serão permitidos ao gerente e ao fiscal de caixa, conforme as permissões informadas no levantamento.
 
@@ -170,7 +169,7 @@ Ao final do dia, é realizado o fechamento do caixa. O operador faz a conferênc
 
 A conferência deverá considerar somente as movimentações em dinheiro, e não o total geral das vendas, pois parte dos pagamentos é realizada com cartão de débito ou crédito.
 
-Na solução proposta, cada caixa começará o período com um fundo de caixa, correspondente ao valor inicial em dinheiro destinado principalmente ao troco. Esse valor não será contabilizado como receita de vendas.
+O fechamento de caixa foi documentado como processo existente no Hortifruti União, porém não foi implementado um módulo próprio de abertura, fundo de caixa, contagem, diferença e validação. O banco acadêmico contém informações de vendas e pagamentos para consultas gerenciais, sem substituir o controle de caixa do sistema já utilizado pela organização.
 
 O saldo esperado em dinheiro será calculado a partir do fundo inicial e das entradas e saídas em dinheiro registradas durante o período. A diferença de caixa será calculada pela subtração do saldo esperado do valor efetivamente contado. O fechamento deverá registrar o resultado da conferência e a validação realizada pelo responsável autorizado.
 
