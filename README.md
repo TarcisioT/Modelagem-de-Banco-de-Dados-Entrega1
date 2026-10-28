@@ -715,16 +715,16 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 
 ### Registro 6 — ChatGPT: Apoio à implementação e validação SQL
 
+### Registro 7 — Claude: Revisão dos fluxogramas e consistência da documentação SQL
+
 | Item | Descrição |
 |---|---|
-| **Ferramenta e etapa** | ChatGPT — apoio à organização do script SQL, criação da massa de dados fictícia, elaboração de consultas e interpretação dos testes no MySQL 8.0, durante a Entrega 2. |
-| **Motivação** | O grupo precisava transformar o modelo lógico em uma estrutura relacional executável, compreender os comandos SQL e conferir se os resultados correspondiam aos requisitos e relacionamentos definidos. |
-| **Exemplos de solicitações realizadas** | Orientações para criar e executar o arquivo `script.sql`; conferir as tabelas criadas no MySQL; interpretar erros de execução; validar consultas gerenciais e conferir a integridade dos relacionamentos. |
-| **Respostas recebidas** | Explicações sobre os comandos SQL, sugestões de estruturação do script, orientações de execução no MySQL e apoio à interpretação das consultas gerenciais G01 a G05 e dos testes de auditoria A01 a A05. |
-| **Verificações realizadas pelo grupo** | O script foi executado no MySQL 8.0. Foram confirmadas 13 tabelas, 17 chaves estrangeiras e 51 registros fictícios. As consultas G01 a G05 retornaram resultados compatíveis com os cenários preparados; as auditorias A01 a A04 não identificaram inconsistências nos registros analisados, e o teste A05 demonstrou a rejeição de uma referência a funcionário inexistente. |
-| **Sugestões aceitas e limitações identificadas** | Foram aproveitadas as orientações compatíveis com o modelo lógico e confirmadas pela execução dos comandos. O grupo também identificou que a existência de chaves estrangeiras não garante automaticamente todas as regras de negócio, como a seleção FEFO, a validação de pagamentos e o bloqueio de vendas de lotes vencidos. Por isso, essas funcionalidades foram descritas como limitações ou melhorias futuras. |
-| **Justificativa das decisões** | As decisões finais foram fundamentadas na estrutura efetivamente criada no MySQL, no Dicionário de Dados e nos resultados dos testes, e não apenas nas respostas da IA. |
-| **Reflexão crítica** | O ChatGPT auxiliou no aprendizado e na revisão técnica, mas suas sugestões exigiram conferência prática. A execução do SQL permitiu distinguir funcionalidades demonstradas de regras que ainda dependem de automatização adicional. |
+| **Ferramenta e etapa** | Claude — revisão dos fluxogramas e comparação entre o script SQL e o Dicionário de Dados da Entrega 2. |
+| **Motivação** | Verificar a coerência entre os processos descritos no README, os fluxogramas e a estrutura do banco de dados, evitando acrescentar informações não confirmadas durante a entrevista. |
+| **Prompts reais utilizados** | 1) "Vou descrever os passos dos meus fluxogramas de venda e de estoque. Compare com os processos 1 e 3 do meu README e me diga se falta algum passo importante (lotes, validade, perda, saída por lote). Só não invente etapas que o mercado não confirmou na entrevista." 2) "Vou colar o meu script.sql e depois o dicionário de dados. Compare os dois e liste, colunas que aparecem em um e não no outro, tipos de dados que não batem, o total de colunas de verdade. Só aponte as diferenças, não reescreva nada." |
+| **Respostas recebidas** | A ferramenta foi solicitada a identificar possíveis lacunas nos fluxogramas e divergências entre o script SQL e o Dicionário de Dados. |
+| **Verificação e decisão do grupo** | As orientações precisam ser confrontadas com os processos efetivamente levantados, os arquivos do projeto e os testes realizados no MySQL. Não devem ser incorporadas etapas não confirmadas na entrevista. |
+| **Reflexão crítica** | Os prompts foram formulados com restrições explícitas para evitar alterações indevidas e incentivar a conferência dos resultados. A análise da IA deve servir como apoio, não como substituição da validação realizada pelo grupo. |
 
 As atividades de apoio do ChatGPT à implementação do banco de dados, à organização da massa de dados fictícia, à elaboração das consultas SQL e à interpretação dos testes no MySQL estão documentadas no Registro 6. As orientações fornecidas pela ferramenta foram confrontadas com o modelo lógico, o Dicionário de Dados e os resultados das execuções, permitindo identificar limitações da implementação e realizar correções na documentação.
 
