@@ -206,8 +206,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RF02 — Cadastro de categorias:** o sistema deve permitir cadastrar categorias de produto com nome (por exemplo, fruta, verdura, laticínios). A categoria deve ser cadastrada antes dos produtos que a utilizam (RN16).
 
-- **RF03 — Cadastro de fornecedores:** o sistema deve permitir cadastrar fornecedores com razão social, CNPJ, telefone e e-mail (obrigatório). O CNPJ deve ser único e ter os dígitos validados (RN04).
-
+- **RF03 — Cadastro de fornecedores (implementação simplificada):** o banco de dados deverá permitir cadastrar fornecedores com código identificador, razão social, CNPJ, telefone e e-mail, utilizando a tabela FORNECEDOR. Conforme a RN04, o cadastro completo deverá exigir CNPJ válido e único, além do preenchimento dos dados obrigatórios. Entretanto, na implementação acadêmica, apenas o código identificador é obrigatório pela estrutura SQL. Os demais campos permitem `NULL`, e não foram implementadas restrições específicas para validar os dígitos do CNPJ ou impedir sua duplicidade. Essas validações permanecem como melhorias futuras.
+  
 - **RF04 — Consulta de produtos por fornecedor (implementação simplificada):** o banco de dados deverá permitir identificar os produtos associados ao histórico de pedidos de cada fornecedor, utilizando as tabelas FORNECEDOR, PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Dessa forma, será possível consultar quais produtos foram solicitados a cada fornecedor cadastrado. Nesta implementação acadêmica, não haverá um cadastro independente de produtos fornecidos por cada fornecedor, nem uma tabela associativa FORNECEDOR_PRODUTO. Portanto, fornecedores sem pedidos registrados não terão uma lista de produtos vinculados no banco.
 
 - **RF05 — Pedido de compra:** o sistema deve permitir registrar pedidos a um fornecedor cadastrado (RN03), com um ou mais itens (produto, quantidade e preço de compra), data e situação do pedido (RN13). O pedido é enviado ao fornecedor por e-mail, por isso o e-mail é obrigatório no cadastro do fornecedor (RF03).
