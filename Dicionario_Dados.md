@@ -265,3 +265,26 @@ A associação de um item vendido às saídas de lote é prevista pelas regras R
 A estrutura não possui campo para identificar o caixa físico, conforme a delimitação da RF08. A autorização de cancelamentos por função e a devolução automática de produtos aos lotes de origem não foram implementadas integralmente.
 
 **Relação com os indicadores:** VENDA, associada a PAGAMENTO, permite realizar consultas gerenciais de faturamento por período, conforme a consulta G05.
+
+#### 3.12 PAGAMENTO
+
+**Finalidade:** armazenar os pagamentos associados às vendas do Hortifruti União, registrando a forma de pagamento, o valor pago e a data e horário da operação. A estrutura permite vincular vários pagamentos a uma mesma venda, possibilitando o pagamento dividido entre diferentes formas.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_pagamento` | INT | PK | Não | Identificador único do pagamento. |
+| `forma_pagamento` | VARCHAR(30) | — | Sim | Forma utilizada no pagamento, como dinheiro, cartão de débito ou cartão de crédito. |
+| `valor_pagamento` | DECIMAL(12,2) | — | Sim | Valor registrado para o pagamento. |
+| `data_hora_pagamento` | DATETIME | — | Sim | Data e horário do registro do pagamento. |
+| `codigo_venda` | INT | FK | Sim | Identifica a venda à qual o pagamento está associado. |
+
+**Relacionamento:**
+- `codigo_venda` referencia `VENDA.codigo_venda`, permitindo que uma venda possua vários registros de pagamento.
+
+**Restrições verificadas:** chave primária em `codigo_pagamento` e chave estrangeira em `codigo_venda`, com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais nem `CHECK`.
+
+**Limitações:** os campos de forma de pagamento, valor, data e referência à venda permitem `NULL`. Embora a RN15 estabeleça que o Hortifruti União aceite dinheiro, cartão de débito e cartão de crédito, sem aceitar Pix, o banco acadêmico não possui uma restrição automática que limite os valores permitidos em `forma_pagamento`.
+
+Também não existe uma validação automática que garanta que a soma dos pagamentos corresponda exatamente ao valor total da venda. Essa consistência deverá ser controlada por consultas, procedimentos ou lógica de aplicação em uma implementação mais completa.
+
+**Relação com os indicadores:** a tabela PAGAMENTO, associada à tabela VENDA, permite calcular o faturamento por período por meio da consulta gerencial G05.
