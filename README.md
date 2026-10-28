@@ -461,7 +461,7 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 | PAGAMENTO | `codigo_pagamento` | `codigo_venda` → VENDA |
 | SAIDA_LOTE | `codigo_saida_lote` | `codigo_lote` → LOTE; `codigo_item_venda` → ITEM_VENDA |
 
-**Observação:** o relacionamento direto entre FORNECEDOR e PRODUTO não foi implementado como uma tabela associativa nesta versão. A identificação do fornecedor ocorre por meio do pedido de compra. Essa simplificação deverá ser refletida também na descrição do DER conceitual.
+**Observação:** o modelo implementado não possui uma tabela associativa direta entre FORNECEDOR e PRODUTO. A identificação dos produtos solicitados a cada fornecedor é realizada por meio das tabelas PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Essa simplificação foi adotada para manter o foco nos processos de compra e recebimento incluídos no escopo acadêmico. A correspondência dessa decisão com o desenho final do DER conceitual ainda precisa ser conferida antes da exportação do diagrama.
 
 ### 1.4 Processo de Normalização (1FN, 2FN e 3FN)
 
