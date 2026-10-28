@@ -523,7 +523,7 @@ A estrutura foi implementada no MySQL 8.0, onde foram verificadas **17 restriç�
 
 As regras de negócio que exigem validações adicionais, como a aplicação automática do método FEFO, o controle de permissões e a consistência das movimentações de estoque, serão documentadas com suas limitações. A existência das chaves estrangeiras não garante, isoladamente, todas essas regras.
 
-**Situação dos arquivos do modelo lógico:** o modelo lógico relacional foi elaborado e revisado no brModelo 3.2.0, contemplando 13 tabelas e seus relacionamentos. A estrutura correspondente foi implementada e verificada no MySQL 8.0, contendo 13 chaves primárias e 17 chaves estrangeiras. O arquivo `Dicionario_Dados.md` foi concluído e revisado, documentando as 74 colunas, seus tipos de dados, chaves e limitações. A imagem final do modelo lógico deverá estar disponível no repositório no caminho `diagramas/modelo_logico.png`.
+**Situação dos arquivos:** o relatório técnico da Entrega 2 está em revisão final. O Dicionário de Dados (`Dicionario_Dados.md`) foi concluído e revisado, contendo a documentação das 13 tabelas, 74 colunas e 17 chaves estrangeiras do banco implementado. Os modelos conceitual e lógico foram elaborados e revisados no brModelo 3.2.0, restando confirmar a disponibilidade das imagens finais no repositório. O script SQL consolidado, os testes de execução desde um banco vazio e os materiais da apresentação ainda precisam de validação antes da entrega.
 
 ---
 
