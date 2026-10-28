@@ -406,7 +406,7 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 | VENDA | POSSUI | PAGAMENTO | (1,N) / (1,1) |
 | LOTE | REGISTRA | PERDA | (0,N) / (1,1) |
 | FUNCIONARIO | REGISTRA | PERDA | (0,N) / (1,1) |
-| ITEM_VENDA | POSSUI | SAIDA_LOTE | (1,N) / (1,1) |
+| ITEM_VENDA | UTILIZA | SAIDA_LOTE | (1,N) / (1,1) |
 | LOTE | ORIGINA | SAIDA_LOTE | (0,N) / (1,1) |
 | PEDIDO_COMPRA | GERA | RECEBIMENTO | (0,N) / (1,1) |
 | RECEBIMENTO | REGISTRA | LOTE | (0,N) / (1,1) |
