@@ -385,8 +385,6 @@ Não usamos generalização/especialização: no escopo não apareceu hierarquia
 
 ### 1.3 Definição de Chaves Primárias e Estrangeiras
 
-**Definição das chaves:** o modelo lógico do Hortifruti União possui 13 tabelas, com chaves primárias para identificação dos registros e 17 chaves estrangeiras para representar os relacionamentos. A estrutura foi implementada e testada no MySQL 8.0.
-
 | Tabela | Chave primária (PK) | Chaves estrangeiras (FK) |
 |---|---|---|
 | FORNECEDOR | `codigo_fornecedor` | Não possui |
@@ -403,7 +401,7 @@ Não usamos generalização/especialização: no escopo não apareceu hierarquia
 | PAGAMENTO | `codigo_pagamento` | `codigo_venda` → VENDA |
 | SAIDA_LOTE | `codigo_saida_lote` | `codigo_lote` → LOTE; `codigo_item_venda` → ITEM_VENDA |
 
-**Cardinalidade conceitual × SQL:** as mínimas (1,1) e (1,N) são regra de negócio. No `docs/script.sql` publicado, **16 das 17 FKs são `NOT NULL`**. A única FK que aceita nulo é `VENDA.codigo_funcionario_cancelamento`, porque só entra quando a venda é cancelada. A FK, sozinha, ainda **não** exige que cada pedido ou venda tenha pelo menos um item, nem que cada venda tenha um pagamento. Quando a FK está preenchida, ela impede referência a registro inexistente (teste A05).
+**Cardinalidade conceitual × SQL:** as mínimas (1,1) e (1,N) são regra de negócio. Na cópia usada na conferência (`script(2).sql`), as 17 FKs **aceitam NULL**. A FK, sozinha, também não exige que cada pedido ou venda tenha pelo menos um item, nem que cada venda tenha um pagamento. Quando a FK está preenchida, ela impede uma referência a registro inexistente (teste A05).
 
 **Observação:** o modelo implementado não possui uma tabela associativa direta entre FORNECEDOR e PRODUTO. A identificação dos produtos solicitados a cada fornecedor é realizada por meio das tabelas PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Essa simplificação foi adotada para manter o foco nos processos de compra e recebimento incluídos no escopo acadêmico. O DER conceitual foi revisado e exportado, e sua representação contempla os relacionamentos definidos para as 13 entidades do projeto. As diferenças entre a obrigatoriedade indicada pelas cardinalidades conceituais e as restrições efetivamente aplicadas no MySQL estão documentadas como limitações da implementação.
 
