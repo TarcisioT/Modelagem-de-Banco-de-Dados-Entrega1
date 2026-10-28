@@ -1,5 +1,4 @@
-### Modelagem de um sistema de gestão de informações para uma organização de médio porte
-
+# Modelagem de um Sistema de Gestão de Informações para uma Organização de Médio Porte
 ---
 
 ## 1. Relatório Técnico Final
