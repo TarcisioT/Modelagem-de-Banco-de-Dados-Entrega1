@@ -95,3 +95,20 @@ As descrições e os tipos de dados apresentados neste documento seguem a estrut
 **Restrições verificadas:** chave primária em `codigo_funcionario`. Os demais campos permitem `NULL`.
 
 **Limitações:** o banco acadêmico permite cadastrar funcionários sem nome, cargo ou data de admissão. Não foram implementados campos de login, senha ou perfis de acesso, conforme a delimitação do escopo da Entrega 2.
+
+#### 3.5 PEDIDO_COMPRA
+
+**Finalidade:** armazenar os pedidos de compra realizados pelo Hortifruti União aos fornecedores cadastrados, registrando a data, a situação do pedido e o fornecedor responsável pelo fornecimento das mercadorias.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_pedido` | INT | PK | Não | Identificador único do pedido de compra. |
+| `data_pedido` | DATE | — | Sim | Data em que o pedido de compra foi realizado. |
+| `situacao_pedido` | VARCHAR(30) | — | Sim | Situação do pedido, como pendente, recebido ou cancelado. |
+| `codigo_fornecedor` | INT | FK | Sim | Identificador do fornecedor ao qual o pedido está associado. |
+
+**Relacionamentos:** `codigo_fornecedor` referencia `FORNECEDOR.codigo_fornecedor`. A tabela PEDIDO_COMPRA também é referenciada por ITEM_PEDIDO_COMPRA, que registra os produtos e quantidades solicitados, e por RECEBIMENTO, que registra as entradas de mercadorias vinculadas ao pedido.
+
+**Restrições verificadas:** chave primária em `codigo_pedido` e chave estrangeira em `codigo_fornecedor`, com `ON DELETE RESTRICT`. Não existem restrições `UNIQUE` adicionais ou `CHECK` na tabela.
+
+**Limitações:** o banco permite `NULL` nos campos `data_pedido`, `situacao_pedido` e `codigo_fornecedor`. Embora a RN03 determine que todo pedido pertença a um fornecedor cadastrado, a estrutura atual não impede pedidos com a referência ao fornecedor vazia. A obrigatoriedade de pelo menos um item por pedido, prevista na RN13, também não é garantida automaticamente apenas pelas chaves estrangeiras.
