@@ -630,7 +630,7 @@ O repositório GitHub do projeto Hortifruti União reúne a documentação técn
 
 O repositório também permitirá acompanhar as contribuições do grupo por meio do histórico de commits. Cada integrante deverá utilizar sua própria conta do GitHub para registrar as alterações realizadas.
 
-Os diagramas, scripts e demais arquivos serão adicionados conforme sua conclusão. Antes da entrega, o grupo deverá conferir se todos os links do README funcionam e se os arquivos estão acessíveis diretamente pelo repositório.
+Os arquivos principais da implementação acadêmica já foram disponibilizados no repositório, incluindo o DER conceitual, o modelo lógico relacional, o Dicionário de Dados e o script SQL. Os diagramas estão organizados na pasta `diagramas/`, enquanto o script de criação, inserção de dados fictícios e consultas encontra-se em `docs/script.sql`. A apresentação final ainda será acrescentada após sua elaboração. A conferência final dos links e das evidências permanece como etapa de validação antes da entrega.
 
 **Situação dos arquivos:** o relatório técnico da Entrega 2 está em revisão final. O Dicionário de Dados foi concluído e revisado, documentando as 13 tabelas e 74 colunas. Os diagramas conceitual e lógico foram elaborados no brModelo 3.2.0 e enviados à pasta `diagramas/` do repositório. O arquivo `docs/script.sql` foi disponibilizado no GitHub e executado no MySQL 8.0, com confirmação das 13 tabelas, 17 chaves estrangeiras e 51 registros fictícios. As consultas gerenciais G01 a G05 e as auditorias A01 a A05 foram testadas. Permanecem pendentes a conferência final dos links e arquivos do repositório e a elaboração da apresentação final.
 
