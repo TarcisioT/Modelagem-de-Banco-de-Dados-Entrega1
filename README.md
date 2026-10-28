@@ -363,7 +363,7 @@ O modelo conceitual foi revisado para representar os principais processos inclu�
 - Registro do recebimento de mercadorias e das informações da nota fiscal de entrada.
 - Controle de lotes, datas de validade, quantidades disponíveis e perdas.
 - Registro de vendas, itens vendidos e pagamentos.
-- Registro das saídas de produtos por lote, considerando a estratégia FEFO.
+- Registro das saídas de produtos por lote, permitindo identificar as quantidades retiradas e seus lotes de origem. A seleção automática de lotes pelo método FEFO permanece como melhoria futura.
 - Consultas SQL para identificar lotes próximos do vencimento, produtos abaixo do estoque mínimo e perdas registradas.
 - Consultas gerenciais para apoiar o acompanhamento do estoque e das vendas.
 
