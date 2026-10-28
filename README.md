@@ -330,8 +330,8 @@ Neste projeto acadêmico, o fechamento de caixa será documentado como um proces
     
 - **RN11 — Produtos a granel [Proposta]:** produtos vendidos por peso têm a quantidade registrada em quilos e o valor calculado pelo preço por quilo. As balanças devem atender às exigências do Inmetro.
 
-- **RN12 — Proteção de dados pessoais, LGPD [Proposta]:** o sistema deve proteger os dados pessoais de funcionários e de contatos de fornecedores, como nome, CPF e telefone. Só funcionários autorizados podem acessá-los, e o armazenamento deve seguir a Lei Geral de Proteção de Dados.
-
+- **RN12 — Proteção de dados pessoais, LGPD [Proposta / Implementação limitada]:** o sistema deverá proteger os dados pessoais de funcionários e os dados de contato dos fornecedores, respeitando os princípios aplicáveis da Lei Geral de Proteção de Dados (LGPD). Na implementação acadêmica, a tabela FUNCIONARIO armazena código identificador, nome, cargo e data de admissão, enquanto a tabela FORNECEDOR contém informações cadastrais e de contato. Não foi implementado um campo de CPF nem mecanismos próprios de autenticação, controle de permissões ou gerenciamento de acesso por perfil de usuário. Essas funcionalidades permanecem fora do escopo prático desta entrega. Os testes do banco de dados utilizam exclusivamente informações fictícias.
+  
 **Regras comuns não incluídas**
 
 - Cadastro de clientes e programa de fidelidade: o mercado não cadastra clientes.
