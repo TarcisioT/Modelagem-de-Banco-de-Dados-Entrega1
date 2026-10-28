@@ -216,8 +216,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RF07 — Consulta de estoque:** o sistema deve permitir consultar a quantidade disponível por produto e por lote, a partir do código, do nome ou do código de barras, e indicar quando o estoque estiver abaixo do mínimo (RN06).
 
-- **RF08 — Registro de venda:** o sistema deve permitir registrar uma venda com um ou mais produtos, identificados por leitura de código de barras, com quantidade (em quilos para produtos a granel, RN11), caixa utilizado, funcionário responsável, data e hora. A venda não exige cadastro de cliente.
-
+- **RF08 — Registro de venda (implementação simplificada):** o banco de dados deverá permitir registrar vendas com um ou mais produtos, suas quantidades, preços praticados, data e horário, situação da venda e funcionário responsável. Os itens são armazenados em ITEM_VENDA e associados aos respectivos produtos. A identificação do caixa físico, a leitura automática de códigos de barras e o desenvolvimento de uma interface de operação de caixa não fazem parte da implementação acadêmica desta entrega. O registro de vendas não exige cadastro de clientes.
+  
 - **RF09 — Valor da venda:** o sistema deve calcular automaticamente o subtotal de cada item (quantidade × preço praticado) e o valor total da venda, recalculando a cada alteração dos itens.
 
 - **RF10 — Retirada de item antes da conclusão da venda:** o sistema proposto deverá permitir retirar um produto da operação enquanto a venda ainda estiver em andamento. O item removido não deverá compor o valor total da venda nem provocar baixa definitiva no estoque. Na implementação SQL desta entrega, serão demonstrados o registro dos itens efetivamente confirmados e o cálculo do valor total da venda, sem desenvolvimento de uma interface de caixa.
