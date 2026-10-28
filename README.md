@@ -21,7 +21,7 @@
 
 - **Nome e natureza da organização:** Hortifruti União – Tatuapé, empresa privada com fins lucrativos, pertencente ao ramo de comércio varejista alimentício.
 
-- **Contexto e porte:** o Hortifruti União – Tatuapé é uma empresa privada com fins lucrativos, de médio porte, que funciona todos os dias. Os números abaixo foram informados pelo responsável, Guilherme Takemoto:
+- **Contexto e porte:** o Hortifruti União – Tatuapé é uma empresa privada com fins lucrativos, pertencente ao comércio varejista alimentício e com funcionamento diário. Para fins deste trabalho acadêmico, o estabelecimento é caracterizado como uma organização de médio porte, considerando a complexidade de suas operações e as informações obtidas no levantamento. Essa caracterização não representa uma classificação formal de porte empresarial segundo critérios fiscais ou legais. Os dados operacionais abaixo foram informados pelo responsável, Guilherme Takemoto:
 
   - **Pessoas:** aproximadamente 110 funcionários e 7 caixas.
   - **Vendas:** média de 2.400 transações por dia (cerca de 72.000 por mês), com ticket médio de R$ 70 e faturamento de aproximadamente R$ 5,04 milhões por mês.
