@@ -91,7 +91,8 @@ O processo de venda começa quando o cliente apresenta os produtos no caixa. O f
 
 Para cada item da venda, devem ser registrados o produto, a quantidade e o preço unitário praticado. Após a inclusão dos itens, é calculado o valor total da compra e registrada a forma de pagamento utilizada pelo cliente.
 
-Na solução proposta, os dados da venda serão armazenados no banco de dados, incluindo seus itens, valores, responsável e informações fiscais. A integração com o controle de estoque permitirá que as quantidades correspondentes aos produtos vendidos sejam baixadas após a conclusão da venda, evitando divergências entre as vendas registradas e o estoque disponível.
+Na implementação acadêmica, o banco armazena os dados da venda, seus itens, valores e funcionário responsável. A tabela SAIDA_LOTE permite registrar as quantidades retiradas dos lotes utilizados. A baixa correspondente no estoque foi demonstrada em operações SQL com dados fictícios; a automatização integral dessas operações e a integração com o sistema fiscal do estabelecimento não fazem parte do escopo prático.
+
 
 A emissão e o registro da nota fiscal deverão seguir o procedimento fiscal utilizado pela organização, cuja operação atual deverá ser confirmada durante o levantamento.
 
