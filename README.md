@@ -471,6 +471,8 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 
 **3FN — Terceira Forma Normal:** As tabelas foram organizadas para evitar dependências transitivas entre atributos não-chave. Por exemplo, PEDIDO_COMPRA armazena codigo_fornecedor como chave estrangeira, enquanto a razão social, o CNPJ e o telefone permanecem na tabela FORNECEDOR. Da mesma forma, PRODUTO guarda codigo_categoria, e o nome da categoria permanece em CATEGORIA_PRODUTO.
 
+**Observação sobre a tabela LOTE:** a tabela LOTE armazena `codigo_produto` e `codigo_item_pedido` para facilitar a identificação direta do produto e a rastreabilidade até o item de compra. Entretanto, como ITEM_PEDIDO_COMPRA também identifica o produto solicitado, existe uma redundância potencial entre essas referências. A regra RN22 determina que ambas correspondam ao mesmo produto. Na implementação acadêmica, essa consistência foi verificada por consultas SQL de auditoria, mas não é garantida exclusivamente pelas chaves estrangeiras individuais. Essa decisão representa uma limitação de normalização e integridade que deverá ser considerada em uma evolução do modelo.
+
 **Justificativa do processo:** A normalização foi considerada para reduzir a repetição de informações, evitar inconsistências durante cadastros e atualizações e facilitar a manutenção do banco de dados. No Hortifruti União, essa organização permite relacionar produtos, fornecedores, compras, vendas e lotes sem duplicar desnecessariamente seus dados. O atendimento às três formas normais será confirmado na revisão final do modelo lógico e do script SQL.
 
 ### 1.5 Justificativas Técnicas das Decisões
@@ -609,6 +611,7 @@ Os diagramas, scripts e demais arquivos serão adicionados conforme sua conclus�
 ## 6. Uso de Inteligência Artificial
 
 Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc.) em qualquer parte do trabalho, registre **para cada uso relevante**:
+**Registros históricos da Entrega 1:** os Registros 1 a 4 documentam usos de inteligência artificial realizados durante a preparação da primeira entrega e as revisões iniciais do modelo conceitual. Por essa razão, podem mencionar entidades e relacionamentos de versões anteriores, como CLIENTE e associações diretas N:N. Essas referências foram preservadas como histórico do processo de aprendizagem e não representam a estrutura final da Entrega 2.
 
 - Registro 1
 
@@ -662,7 +665,7 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | **Justificativa da escolha final** | A IA apenas enviou as informações por texto, a nosso pedido, e o grupo fez as alterações no DER manualmente, adaptando as sugestões ao nosso modelo. Aceitamos as correções porque identificamos coerência na resposta. |
 | **Reflexão crítica** | Não identificamos erros nas sugestões da IA. Precisamos fazer uma série de perguntas para esclarecer as dúvidas do grupo, e aprendemos que quanto mais específico e detalhado o prompt, maior a probabilidade de a IA devolver o que realmente buscamos.  |
 
-**Observação:** Os relacionamentos citados neste registro correspondem a uma versão anterior do DER. Posteriormente, o modelo foi revisado para utilizar as entidades ITEM_VENDA e ITEM_PEDIDO_COMPRA, em lugar de relacionamentos diretos N:N entre VENDA/PRODUTO e PEDIDO_COMPRA/PRODUTO.o
+**Observação:** Os relacionamentos citados neste registro correspondem a uma versão anterior do DER. Posteriormente, o modelo foi revisado para utilizar as entidades ITEM_VENDA e ITEM_PEDIDO_COMPRA, em lugar de relacionamentos diretos N:N entre VENDA/PRODUTO e PEDIDO_COMPRA/PRODUTO.
 
 ### Registro 5 — ChatGPT: Revisão da documentação e apoio à modelagem
 
