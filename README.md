@@ -325,11 +325,11 @@ Depois de falar de novo com o responsável, o grupo deixou o antigo “segundo p
 
 #### DER Conceitual Revisado
 
-**Software utilizado:** brModelo 3.2.0. O DER conceitual foi elaborado utilizando a notação de entidades, atributos, relacionamentos e cardinalidades mínimas e máximas do brModelo. As chaves estrangeiras estão representadas no modelo lógico relacional e documentadas no Dicionário de Dados.
+**Software utilizado:** brModelo 3.2.0. Notação de entidades, atributos, relacionamentos e cardinalidades (mín, máx). **Chaves estrangeiras não aparecem no DER conceitual**; estão no modelo lógico (seção 2) e no dicionário.
 
 ![DER conceitual revisado](diagramas/der_conceitual.png)
 
-**Situação do DER conceitual:** o Diagrama Entidade-Relacionamento (DER) conceitual do Hortifruti União foi elaborado e revisado no brModelo 3.2.0, contemplando as 13 entidades e os 17 relacionamentos definidos para o escopo acadêmico. O diagrama foi exportado em formato PNG e enviado ao repositório GitHub, no caminho `diagramas/der_conceitual.png`. As cardinalidades representam as regras conceituais do projeto, enquanto as diferenças entre essas regras e as restrições efetivamente implementadas no MySQL estão documentadas na seção 1.5 e no Dicionário de Dados.
+**Situação:** 13 entidades e 17 relacionamentos; exportado em PNG em `diagramas/der_conceitual.png`.
 
 **Resumo das entidades e relacionamentos do DER revisado:**
 
