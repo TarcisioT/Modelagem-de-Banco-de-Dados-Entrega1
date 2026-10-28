@@ -155,3 +155,33 @@ As descrições e os tipos de dados apresentados neste documento seguem a estrut
 **Restrições verificadas:** chave primária em `codigo_recebimento` e chave estrangeira em `codigo_pedido`, com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais nem `CHECK`.
 
 **Limitações:** os campos `data_recebimento`, `numero_nota_fiscal`, `serie_nota_fiscal`, `situacao_recebimento` e `codigo_pedido` permitem `NULL`. Portanto, embora a RN02 estabeleça a necessidade de nota fiscal e a vinculação dos recebimentos aos pedidos, o banco atual não impede automaticamente registros sem essas informações. O campo `observacao_divergencia` é opcional, pois nem todo recebimento apresenta divergências. A correspondência entre recebimento, item de compra e produto do lote depende das verificações adicionais descritas na RN22.
+
+#### 3.8 LOTE
+
+**Finalidade:** armazenar os lotes de mercadorias recebidas pelo Hortifruti União, permitindo identificar o produto, o recebimento de origem, o item do pedido de compra, a data de validade, o custo unitário e as quantidades recebidas e disponíveis. Essa tabela é central para o problema P1 — Controle de validade e rastreabilidade dos lotes.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_lote` | INT | PK | Não | Identificador único do registro de lote. |
+| `quantidade_recebida` | DECIMAL(12,3) | — | Sim | Quantidade inicialmente recebida do lote. |
+| `custo_unitario` | DECIMAL(12,2) | — | Sim | Custo unitário da mercadoria no lote, utilizado no cálculo financeiro das perdas. |
+| `data_validade` | DATE | — | Sim | Data de vencimento dos produtos pertencentes ao lote. |
+| `numero_lote` | VARCHAR(50) | — | Sim | Número ou identificação comercial do lote. |
+| `quantidade_disponivel` | DECIMAL(12,3) | — | Sim | Saldo disponível do lote após movimentações de estoque. |
+| `codigo_item_pedido` | INT | FK | Sim | Identifica o item de compra que originou o lote. |
+| `codigo_recebimento` | INT | FK | Sim | Identifica o recebimento em que o lote foi registrado. |
+| `codigo_produto` | INT | FK | Sim | Identifica o produto ao qual o lote pertence. |
+
+**Relacionamentos:**
+- `codigo_item_pedido` referencia `ITEM_PEDIDO_COMPRA.codigo_item_pedido`.
+- `codigo_recebimento` referencia `RECEBIMENTO.codigo_recebimento`.
+- `codigo_produto` referencia `PRODUTO.codigo_produto`.
+- A tabela LOTE é referenciada por PERDA e SAIDA_LOTE, permitindo identificar perdas e quantidades retiradas de cada lote.
+
+**Restrições verificadas:** chave primária em `codigo_lote` e três chaves estrangeiras, todas com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais ou `CHECK`.
+
+**Limitações:** os campos de validade, quantidades, custo e referências permitem `NULL`. O banco não impede automaticamente o registro de um lote sem validade nem garante que a quantidade disponível nunca seja negativa. A estrutura também mantém `codigo_produto` e `codigo_item_pedido`, criando uma redundância potencial, pois o item de compra já identifica um produto.
+
+Conforme a RN22, o produto do lote deve corresponder ao produto do item de compra, e o recebimento deve pertencer ao mesmo pedido de compra. Essas correspondências foram verificadas por consultas SQL de auditoria com dados fictícios, mas não são garantidas integralmente pelas chaves estrangeiras individuais.
+
+A seleção automática de lotes pelo método FEFO e o bloqueio universal de movimentações com lotes vencidos não foram implementados integralmente nesta entrega acadêmica.
