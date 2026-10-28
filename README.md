@@ -105,7 +105,7 @@ No recebimento, as mercadorias são acompanhadas de nota fiscal e devem ser conf
 
 Caso sejam identificadas divergências, como quantidades diferentes das solicitadas ou produtos em condições inadequadas, a ocorrência deverá ser registrada. Após a conferência e a validação das informações, os produtos aceitos poderão ser liberados para entrada no estoque.
 
-O tratamento de recebimentos parciais e de mercadorias recusadas deverá seguir as regras confirmadas com a organização.
+O tratamento detalhado de recebimentos parciais e mercadorias recusadas não foi especificado suficientemente durante o levantamento e, por isso, não integra as funcionalidades implementadas nesta entrega acadêmica. O modelo contempla o registro de recebimentos vinculados aos pedidos de compra, a identificação dos lotes e a documentação de divergências encontradas na conferência. Regras adicionais para aceitação parcial e devolução de mercadorias dependerão de levantamento complementar.
 
 **Dados envolvidos:** pedido de compra, fornecedor, razão social, CNPJ, e-mail, data e horário do pedido, produtos, quantidades solicitadas e recebidas, valores unitários, nota fiscal do fornecedor, lote, data de validade, divergências identificadas e situação do recebimento.
 
