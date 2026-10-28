@@ -331,7 +331,7 @@ Depois de falar de novo com o responsável, o grupo deixou o antigo “segundo p
 
 **Situação:** 13 entidades e 17 relacionamentos; exportado em PNG em `diagramas/der_conceitual.png`.
 
-**Resumo das entidades e relacionamentos do DER revisado:**
+**Resumo das entidades e relacionamentos:**
 
 | Entidade 1 | Relacionamento | Entidade 2 | Cardinalidade |
 |---|---|---|---|
@@ -353,35 +353,35 @@ Depois de falar de novo com o responsável, o grupo deixou o antigo “segundo p
 | RECEBIMENTO | REGISTRA | LOTE | (0,N) / (1,1) |
 | ITEM_PEDIDO_COMPRA | ORIGINA | LOTE | (0,N) / (1,1) |
 
-*As cardinalidades estão apresentadas na ordem das entidades indicadas em cada linha.*
+*Cardinalidades na ordem das entidades de cada linha. A participação mínima é regra do modelo conceitual, não garantia do SQL: no script que conferimos, as FKs aceitam `NULL` (até nas relações que no desenho são obrigatórias). A FK no item, por exemplo, não impede uma venda sem nenhum item. Ver seção 1.5.*
 
-**Apontamentos da correção da Entrega 1:**
+**Caso A — mesma organização da Entrega 1. Apontamentos da correção:**
 
 | Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
 |---|---|---|
-| Processos de negócio incompletos | Foram detalhados os processos de vendas, compras, recebimento, estoque, pagamentos, cancelamentos, alterações de preços, controle de acesso e fechamento de caixa. | Para apresentar melhor o funcionamento do mercado e as melhorias propostas. |
-| Fluxogramas apenas como anexos do GitHub | Os fluxogramas dos processos de venda e controle de estoque foram incorporados diretamente ao README, na seção de Processos de Negócio, por meio de imagens. | Para atender à observação da Entrega 1 e permitir que o professor visualize os fluxos no próprio relatório, sem precisar abrir arquivos separados. |
-| Regras de negócio incompletas | Foram acrescentadas regras sobre validade, estoque mínimo, FEFO, perdas, pagamentos, permissões, produtos a granel e LGPD. | Para deixar o modelo mais completo e coerente com os processos. |
-| Inconsistência no cadastro de clientes | A entidade CLIENTE foi retirada do modelo proposto. | O mercado não realiza cadastro de clientes para registrar as vendas. |
-| Cardinalidades e relacionamentos incorretos | Foram revisadas as cardinalidades e criadas entidades para representar itens de compra, itens de venda, lotes, pagamentos e perdas. | Para representar corretamente as relações entre os dados. |
-| Dicionário de dados incompleto | O arquivo `Dicionario_Dados.md` foi atualizado e revisado, documentando as 13 tabelas, 74 colunas, chaves primárias, chaves estrangeiras, tipos de dados e limitações da implementação. | Para corrigir as inconsistências da Entrega 1 e manter a documentação compatível com a estrutura verificada no MySQL. |
-| Justificativas técnicas superficiais | Foram acrescentadas explicações sobre entidades, relacionamentos, cardinalidades, normalização e decisões de implementação nas seções 1.2 a 1.5. | Para demonstrar o entendimento do grupo sobre o modelo desenvolvido. |
+| Processos de negócio incompletos | Detalhados vendas, compras, recebimento, estoque, pagamentos, cancelamentos, preços, acesso e fechamento de caixa | Mostrar o mercado e o que o banco cobre |
+| Fluxogramas só como anexo | Imagens no README, na seção de processos | O professor vê o fluxo sem abrir outro arquivo |
+| Regras de negócio incompletas | Incluídas validade, estoque mínimo, FEFO, perdas, pagamentos, permissões, granel e LGPD | Coerência com os processos |
+| Inconsistência no cadastro de clientes | Entidade CLIENTE retirada | O mercado não cadastra cliente para registrar a venda |
+| Cardinalidades e relacionamentos incorretos | Revisadas; criados itens de compra/venda, lote, pagamento e perda | Representar N:N com dados de quantidade e preço |
+| Dicionário incompleto | `Dicionario_Dados.md` com 13 tabelas e 74 colunas | Turma GTI: Markdown separado do README |
+| Justificativas técnicas superficiais | Seções 1.2 a 1.5 | Demonstrar conversão, chaves, normalização e restrições |
 
 ### 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
 
-**Entidades → Tabelas:** as entidades identificadas no DER conceitual foram convertidas em 13 tabelas no modelo lógico relacional: PRODUTO, CATEGORIA_PRODUTO, FORNECEDOR, PEDIDO_COMPRA, ITEM_PEDIDO_COMPRA, RECEBIMENTO, LOTE, FUNCIONARIO, VENDA, ITEM_VENDA, PAGAMENTO, PERDA e SAIDA_LOTE. A estrutura foi implementada e testada no MySQL 8.0, contendo 13 chaves primárias e 17 chaves estrangeiras. Cada tabela representa informações necessárias aos processos incluídos no escopo acadêmico, com prioridade para o controle de validade e a rastreabilidade dos lotes (P1).
+Passamos as 13 entidades para 13 tabelas no MySQL 8.0: `PRODUTO`, `CATEGORIA_PRODUTO`, `FORNECEDOR`, `PEDIDO_COMPRA`, `ITEM_PEDIDO_COMPRA`, `RECEBIMENTO`, `LOTE`, `FUNCIONARIO`, `VENDA`, `ITEM_VENDA`, `PAGAMENTO`, `PERDA` e `SAIDA_LOTE`. São 13 PKs e 17 FKs.
 
-**Atributos → Colunas:** os atributos de cada entidade foram transformados em colunas das respectivas tabelas. Por exemplo, os atributos `codigo_produto`, `nome_produto`, `preco_venda` e `unidade_medida` compõem a tabela PRODUTO. Os atributos identificadores deram origem às chaves primárias, enquanto os campos de referência às demais tabelas foram utilizados como chaves estrangeiras.
+Os atributos viraram colunas (`codigo_produto`, `nome_produto`, `preco_venda`, `unidade_medida` etc.). Identificador virou PK; referência virou FK.
 
-**Relacionamentos → Chaves:** Os relacionamentos entre as entidades foram analisados para definir as chaves estrangeiras. Por exemplo, cada lote pertence a um produto, por isso a tabela LOTE deve conter a chave estrangeira codigo_produto, referenciando a tabela PRODUTO.
+No 1:N a FK ficou no lado N (exemplo: `LOTE.codigo_produto` aponta para `PRODUTO`). Onde era N:N, criamos tabela no meio:
 
-**Cardinalidades:** nos relacionamentos 1:N, a chave estrangeira é inserida na tabela do lado N. Em relacionamentos N:N, normalmente é necessária uma tabela associativa para representar todas as combinações possíveis entre as entidades.
+- `ITEM_VENDA`: venda × produto (quantidade, preço praticado, subtotal);
+- `ITEM_PEDIDO_COMPRA`: pedido × produto (quantidade, preço de compra);
+- `SAIDA_LOTE`: item vendido × lote (quantidade retirada).
 
-**Resolução de relacionamentos por tabelas associativas:** na conversão do modelo conceitual para o modelo lógico, foram utilizadas três tabelas para representar associações entre entidades. A tabela `ITEM_VENDA` relaciona cada venda aos produtos comercializados, armazenando quantidade, preço unitário e subtotal. A tabela `ITEM_PEDIDO_COMPRA` relaciona os pedidos de compra aos produtos solicitados, registrando quantidade e preço de compra. Já a tabela `SAIDA_LOTE` relaciona os itens vendidos aos lotes de origem, permitindo identificar a quantidade retirada de cada lote. Essas estruturas substituem relacionamentos diretos de muitos para muitos por relacionamentos intermediados por tabelas com chaves próprias e referências às entidades envolvidas.
+Não fizemos tabela `FORNECEDOR_PRODUTO`. A lista de produtos por fornecedor sai do histórico de pedidos (RF04).
 
-Na implementação acadêmica desta entrega, a relação entre fornecedores e produtos é identificada indiretamente pelas tabelas PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Assim, é possível consultar quais produtos foram solicitados a cada fornecedor, sem criar uma tabela FORNECEDOR_PRODUTO. Essa decisão simplifica o modelo para os processos efetivamente implementados, mas não representa um cadastro independente de produtos fornecidos por cada fornecedor.
-
-**Generalização/especialização:** Não foram utilizados relacionamentos de generalização ou especialização no modelo conceitual, pois as entidades identificadas não exigiram esse tipo de estrutura para representar o escopo definido pelo grupo.
+Não usamos generalização/especialização: no escopo não apareceu hierarquia do tipo pessoa física/jurídica.
 
 ### 1.3 Definição de Chaves Primárias e Estrangeiras
 
