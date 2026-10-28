@@ -71,6 +71,10 @@ As descrições e os tipos de dados apresentados neste documento seguem a estrut
 
 **Relacionamentos:** a tabela FUNCIONARIO é referenciada pelas tabelas VENDA e PERDA. Em VENDA, o campo `codigo_funcionario` identifica o funcionário responsável pela venda, enquanto `codigo_funcionario_cancelamento` identifica o responsável por seu eventual cancelamento. Em PERDA, o campo `codigo_funcionario` identifica quem registrou a perda.
 
+**Restrições verificadas:** chave primária em `codigo_funcionario`. Os demais campos permitem `NULL`.
+
+**Limitações:** o banco acadêmico permite cadastrar funcionários sem nome, cargo ou data de admissão. Não foram implementados campos de login, senha ou perfis de acesso, conforme a delimitação do escopo da Entrega 2.
+
 #### 3.4 PRODUTO
 
 **Finalidade:** armazenar os dados cadastrais dos produtos comercializados pelo Hortifruti União, incluindo informações de identificação, preço de venda, unidade de medida, estoque mínimo e categoria. O controle da validade e das quantidades disponíveis é realizado por meio da tabela LOTE.
@@ -91,11 +95,7 @@ As descrições e os tipos de dados apresentados neste documento seguem a estrut
 
 **Restrições verificadas:** chave primária em `codigo_produto` e chave estrangeira em `codigo_categoria`, com `ON DELETE RESTRICT`. Não existem restrições `UNIQUE` adicionais ou `CHECK` na tabela.
 
-**Limitações:** o banco permite `NULL` nos campos cadastrais e em `codigo_categoria`, embora a RN16 estabeleça que todo produto deve pertencer a uma categoria. O campo `codigo_barras` não possui unicidade garant
-**Restrições verificadas:** chave primária em `codigo_funcionario`. Os demais campos permitem `NULL`.
-
-**Limitações:** o banco acadêmico permite cadastrar funcionários sem nome, cargo ou data de admissão. Não foram implementados campos de login, senha ou perfis de acesso, conforme a delimitação do escopo da Entrega 2.
-
+**Limitações:** o banco permite `NULL` nos campos cadastrais e em `codigo_categoria`, embora a RN16 estabeleça que todo produto deva pertencer a uma categoria. O campo `codigo_barras` não possui unicidade garantida por uma restrição `UNIQUE`. Também não foi implementado um campo específico de situação para inativação de produtos. A identificação de lotes vencidos e o acompanhamento do estoque são realizados por consultas SQL, sem bloqueio automático integral de todas as operações.
 #### 3.5 PEDIDO_COMPRA
 
 **Finalidade:** armazenar os pedidos de compra realizados pelo Hortifruti União aos fornecedores cadastrados, registrando a data, a situação do pedido e o fornecedor responsável pelo fornecimento das mercadorias.
@@ -235,6 +235,10 @@ A atualização do saldo disponível do lote após uma perda foi demonstrada por
 
 **Limitações:** os campos de data, valor, situação e funcionário responsável permitem `NULL`, embora uma venda concluída deva possuir essas informações. Os campos relacionados ao cancelamento também são opcionais, o que é adequado para vendas não canceladas; entretanto, o banco não exige automaticamente motivo, data e responsável quando a situação é alterada para cancelada.
 
+A estrutura não possui campo para identificar o caixa físico, conforme a delimitação da RF08. A autorização de cancelamentos por função e a devolução automática de produtos aos lotes de origem não foram implementadas integralmente.
+
+**Relação com os indicadores:** VENDA, associada a PAGAMENTO, permite realizar consultas gerenciais de faturamento por período, conforme a consulta G05.
+
 #### 3.11 ITEM_VENDA
 
 **Finalidade:** armazenar os produtos que compõem cada venda do Hortifruti União, registrando a quantidade vendida, o preço unitário praticado e o subtotal de cada item. Essa tabela permite representar vários produtos em uma mesma venda e preservar o preço praticado no momento da operação.
@@ -262,9 +266,6 @@ O subtotal é armazenado como `DECIMAL(12,2)`, mas não existe uma coluna calcul
 A associação de um item vendido às saídas de lote é prevista pelas regras RN14 e RN19. Entretanto, as chaves estrangeiras existentes não garantem, isoladamente, que todo item de uma venda concluída possua pelo menos uma saída de lote registrada.
 
 **Relação com o problema P1:** em conjunto com SAIDA_LOTE e LOTE, permite rastrear os lotes de origem das quantidades vendidas.
-A estrutura não possui campo para identificar o caixa físico, conforme a delimitação da RF08. A autorização de cancelamentos por função e a devolução automática de produtos aos lotes de origem não foram implementadas integralmente.
-
-**Relação com os indicadores:** VENDA, associada a PAGAMENTO, permite realizar consultas gerenciais de faturamento por período, conforme a consulta G05.
 
 #### 3.12 PAGAMENTO
 
