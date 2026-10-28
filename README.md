@@ -662,6 +662,8 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | **Justificativa da escolha final** | A IA apenas enviou as informações por texto, a nosso pedido, e o grupo fez as alterações no DER manualmente, adaptando as sugestões ao nosso modelo. Aceitamos as correções porque identificamos coerência na resposta. |
 | **Reflexão crítica** | Não identificamos erros nas sugestões da IA. Precisamos fazer uma série de perguntas para esclarecer as dúvidas do grupo, e aprendemos que quanto mais específico e detalhado o prompt, maior a probabilidade de a IA devolver o que realmente buscamos.  |
 
+**Observação:** Os relacionamentos citados neste registro correspondem a uma versão anterior do DER. Posteriormente, o modelo foi revisado para utilizar as entidades ITEM_VENDA e ITEM_PEDIDO_COMPRA, em lugar de relacionamentos diretos N:N entre VENDA/PRODUTO e PEDIDO_COMPRA/PRODUTO.o
+
 ### Registro 5 — ChatGPT: Revisão da documentação e apoio à modelagem
 
 | Item | Descrição |
@@ -677,7 +679,7 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 
 **Registro complementar de uso de IA:** As ferramentas de inteligência artificial também foram utilizadas como apoio à análise dos processos de negócio, à elaboração de propostas de regras para o Hortifruti União e à organização da documentação da Entrega 2. As sugestões não foram consideradas automaticamente corretas: foram comparadas com as informações obtidas no levantamento e com os requisitos definidos pelo grupo.
 
-Os usos posteriores de IA na elaboração da massa de dados, das consultas SQL e dos indicadores gerenciais deverão ser documentados conforme essas atividades forem realizadas, incluindo os prompts utilizados, os resultados aproveitados, as correções e as decisões do grupo.
+O grupo também utilizou o ChatGPT como apoio à organização da massa de dados fictícia, elaboração e revisão das consultas SQL G01 a G05 e A01 a A05, interpretação dos resultados no MySQL e revisão dos textos da documentação. As sugestões foram conferidas por meio de execuções e capturas de tela, com correções quando ocorreram divergências entre as orientações e as tabelas efetivamente criadas. Antes da entrega, o grupo deverá complementar o registro com exemplos reais dos prompts utilizados, das respostas aceitas e rejeitadas e das decisões tomadas, sem atribuir à IA testes que não foram executados.
 
 *Uso de IA observado e não declarado será penalizado.*
 
@@ -694,13 +696,13 @@ Os usos posteriores de IA na elaboração da massa de dados, das consultas SQL e
 | Etapa | Tempo | Conteúdo |
 |---|---|---|
 | 1. Apresentação da organização | 1 minuto | Caracterização do Hortifruti União e problemas identificados |
-| 2. Solução proposta | 1 minuto | Controle de validade por lote, redução de perdas e controle de acesso |
+| 2. Solução proposta | 1 minuto | Controle de validade por lote, rastreabilidade das saídas e apoio à redução de perdas, com explicitação das limitações de automação. |
 | 3. Modelagem do banco de dados | 2 minutos | DER conceitual, modelo lógico, entidades, chaves e relacionamentos |
 | 4. Implementação SQL | 2 minutos | Demonstração do banco de dados e das consultas no MySQL |
 | 5. BI e Inteligência Artificial | 1 minuto | Indicadores gerenciais e possibilidades de análise |
 | 6. Conclusão | 1 minuto | Benefícios esperados e considerações finais |
 
-**Demonstração prática:** após a implementação, o grupo deverá selecionar consultas SQL que demonstrem o controle de validade, as movimentações de estoque e outras funcionalidades efetivamente implementadas.
+**Demonstração prática:** o grupo deverá selecionar consultas SQL já testadas, como G01, G02, G03, G04 e G05, apresentando seus resultados fictícios, os relacionamentos utilizados e as limitações da implementação. A demonstração do script completo desde um banco vazio deverá ser ensaiada antes da apresentação.
 
 **Divisão entre os integrantes:** será definida pelo grupo antes da apresentação.
 
