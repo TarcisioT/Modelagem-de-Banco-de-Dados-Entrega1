@@ -315,45 +315,13 @@ O texto da regra fala do negócio ou do sistema inteiro. O que o MySQL realmente
 
 #### Delimitação do Escopo da Implementação
 
-A implementação do banco de dados do Hortifruti União terá como prioridade atender ao problema principal identificado durante o levantamento:
+Prioridade: **P1 — validade e rastreabilidade de lotes.** Também entram os dados essenciais de cadastro, compra, recebimento e venda.
 
-- **P1 — Controle de validade e rastreabilidade dos lotes:** registrar os lotes de produtos, suas datas de validade, quantidades disponíveis e perdas, permitindo identificar mercadorias vencidas ou próximas do vencimento e apoiar o controle de estoque.
+Depois de falar de novo com o responsável, o grupo deixou o antigo “segundo problema” (histórico de preço e acesso) como coisa do ERP, não como P2.
 
-A solução também contemplará os dados essenciais dos processos de cadastro de produtos, fornecedores, compras, recebimentos e vendas, mantendo a coerência com as operações da organização.
+**Incluído na implementação prática:** cadastros; pedidos e itens; recebimento e NF de entrada; lotes, validade, saldos e perdas; vendas, itens, pagamentos e saídas por lote; consultas G01–G05 e auditorias A01–A05.
 
-#### Revisão do Modelo Conceitual e Simplificação do Escopo
-
-Após novas informações fornecidas pelo responsável pelo Hortifruti União, o grupo decidiu concentrar a solução no problema P1 — Controle de validade e rastreabilidade dos lotes.
-
-Foi confirmado que o sistema atualmente utilizado pela empresa já registra alterações de preços, incluindo o horário e o login do responsável. Por esse motivo, o controle de acesso e o histórico de alterações de preços deixaram de ser tratados como um segundo problema principal.
-
-O modelo conceitual foi revisado para representar os principais processos incluídos na entrega, priorizando produtos, fornecedores, compras, recebimentos, lotes, perdas e vendas. As funcionalidades complementares foram delimitadas de acordo com os requisitos e informações levantados, evitando a criação de estruturas sem justificativa para o escopo acadêmico.
-
-**Funcionalidades incluídas no escopo:**
-
-- Cadastro de produtos, categorias, fornecedores e funcionários.
-- Registro de pedidos de compra e seus itens.
-- Registro do recebimento de mercadorias e das informações da nota fiscal de entrada.
-- Controle de lotes, datas de validade, quantidades disponíveis e perdas.
-- Registro de vendas, itens vendidos e pagamentos.
-- Registro das saídas de produtos por lote, permitindo identificar as quantidades retiradas e seus lotes de origem. A seleção automática de lotes pelo método FEFO permanece como melhoria futura.
-- Consultas SQL para identificar lotes próximos do vencimento, produtos abaixo do estoque mínimo e perdas registradas.
-- Consultas gerenciais para apoiar o acompanhamento do estoque e das vendas.
-
-**Funcionalidades fora do escopo da implementação prática:**
-
-- Emissão e autorização fiscal de notas fiscais junto aos órgãos competentes.
-- Impressão física de etiquetas de preços.
-- Integração automática com o ERP VR Software utilizado pelo estabelecimento.
-- Operação dos caixas sem internet e sincronização posterior.
-- Desenvolvimento de interfaces completas para operadores e gestores.
-- Implementação de modelos preditivos de inteligência artificial.
-
-Essas funcionalidades poderão ser consideradas em evoluções futuras do projeto. A emissão fiscal continuará sendo reconhecida como uma necessidade operacional e legal do estabelecimento, mas sua integração técnica não será desenvolvida nesta entrega.
-
-**Limites da implementação:** o projeto foi demonstrado por meio do modelo lógico relacional, do script SQL, de dados fictícios e de consultas realizadas no MySQL. As regras de autorização, a estratégia FEFO e determinadas operações de estoque foram representadas na modelagem ou documentadas como requisitos, mas não foram integralmente automatizadas ou testadas. Os testes realizados se restringem aos cenários expressamente descritos, sem pressupor a existência de uma aplicação completa.
-
-A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — Controle de validade e rastreabilidade dos lotes, mantendo o registro dos dados essenciais dos demais processos da organização. Dessa forma, o grupo pretende garantir a coerência entre o levantamento de requisitos, o DER conceitual, o modelo lógico e a implementação SQL, sem acrescentar funcionalidades desnecessárias.
+**Fora da implementação prática:** NF de saída junto ao Fisco; impressão de etiquetas; integração com VR Software; caixa offline; interfaces completas; modelos preditivos de IA; FEFO automático; permissão por perfil; baixa automática de estoque em todas as operações.
 
 #### DER Conceitual Revisado
 
