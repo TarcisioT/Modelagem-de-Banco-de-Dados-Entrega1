@@ -200,6 +200,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 ##### Requisitos Funcionais
 
+**Nota sobre o escopo dos requisitos:** os requisitos apresentados nesta seção descrevem as necessidades identificadas no levantamento e os comportamentos desejados para uma solução completa. Sua inclusão não significa que todas as funcionalidades tenham sido implementadas integralmente nesta entrega acadêmica. A implementação realizada concentra-se na estrutura relacional do banco MySQL, nos registros fictícios e nas operações e consultas SQL demonstradas. Funcionalidades que dependem de validações adicionais, cálculos automáticos, controle de permissões, alertas ou integração com outros sistemas permanecem como propostas ou melhorias futuras, conforme as limitações descritas na seção 1.5 e no Dicionário de Dados.
+
 - **RF01 — Cadastro de produtos:** o sistema deve permitir cadastrar produtos com código único, nome, código de barras, descrição de gôndola, descrição reduzida (nota fiscal), categoria, unidade de medida (unidade ou quilo), preço de venda e estoque mínimo. Deve impedir código duplicado e produto sem categoria, e permitir edição e inativação.
 
 - **RF02 — Cadastro de categorias:** o sistema deve permitir cadastrar categorias de produto com nome (por exemplo, fruta, verdura, laticínios). A categoria deve ser cadastrada antes dos produtos que a utilizam (RN16).
