@@ -1,4 +1,5 @@
 # Modelagem de um Sistema de Gestão de Informações para uma Organização de Médio Porte
+
 ---
 
 ## 1. Relatório Técnico Final
@@ -32,7 +33,7 @@
 
 - **Problemas e necessidades identificados:**
 
- - **P1 — Controle de validade e rastreabilidade dos lotes:** durante o levantamento realizado no Hortifruti União, foi identificado que o sistema utilizado pela empresa permite registrar datas de validade, mas essa funcionalidade não é utilizada sistematicamente. Segundo o responsável consultado, diferentes lotes de um mesmo produto utilizam o mesmo código de barras, dificultando sua identificação individual. Além disso, a organização física das mercadorias pode prejudicar a prioridade de venda dos produtos próximos do vencimento.
+  - **P1 — Controle de validade e rastreabilidade dos lotes:** durante o levantamento realizado no Hortifruti União, foi identificado que o sistema utilizado pela empresa permite registrar datas de validade, mas essa funcionalidade não é utilizada sistematicamente. Segundo o responsável consultado, diferentes lotes de um mesmo produto utilizam o mesmo código de barras, dificultando sua identificação individual. Além disso, a organização física das mercadorias pode prejudicar a prioridade de venda dos produtos próximos do vencimento.
 
   - **Como o modelo resolve:** registra cada lote com identificação própria, produto, data de validade e quantidade disponível. Permite consultar os lotes próximos do vencimento e registrar perdas, apoiando decisões de reposição e redução de desperdícios. A solução complementa os procedimentos físicos de organização das mercadorias.
 
@@ -40,7 +41,7 @@
 
   A prioridade da solução será melhorar a rastreabilidade dos lotes e apoiar a identificação de produtos próximos do vencimento, conforme o problema P1 identificado no levantamento.
 
-Os processos de alterações de preços, cancelamentos de vendas, fechamento de caixa, produção própria e atividades administrativas foram considerados durante a revisão do escopo. O projeto acadêmico contempla o registro simplificado de cancelamentos de vendas, enquanto os demais processos são apresentados como parte do levantamento ou como possibilidades de evolução futura, sem implementação de módulos específicos. Essa delimitação permite concentrar a solução no controle de validade e na rastreabilidade dos lotes, conforme o problema principal P1.
+Os processos de alterações de preços, cancelamentos de vendas, fechamento de caixa, outros processos operacionais não detalhados no levantamento foram considerados durante a revisão do escopo. O projeto acadêmico contempla o registro simplificado de cancelamentos de vendas, enquanto os demais processos são apresentados como parte do levantamento ou como possibilidades de evolução futura, sem implementação de módulos específicos. Essa delimitação permite concentrar a solução no controle de validade e na rastreabilidade dos lotes, conforme o problema principal P1.
 
   O projeto não prevê integração automática com o ERP existente, emissão fiscal oficial ou desenvolvimento de uma interface completa para os operadores.
 
@@ -275,6 +276,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 **Origem das regras:** as marcadas com **[Entrevista]** foram informadas pelo responsável, Guilherme Takemoto. As marcadas com **[Proposta]** foram elaboradas pelo grupo a partir dos processos mapeados e de regras típicas de supermercados e hortifrutis, levantadas com apoio de IA (ver a seção 6, Uso de Inteligência Artificial), e ainda não foram validadas individualmente com o responsável.
 
+**Nota sobre a implementação das regras:** as regras descrevem comportamentos observados no estabelecimento ou desejados para a solução completa. Sua inclusão não significa que sejam automaticamente garantidas pelo banco acadêmico. Em especial, a validação de CNPJ (RN04), a exigência de pelo menos um item por pedido (RN13) e a igualdade entre pagamentos e total da venda (RN15) não possuem validação automática integral na implementação SQL. As restrições efetivamente aplicadas estão documentadas na seção 1.5 e no Dicionário de Dados.
+
 **Regras operacionais**
 
 - **RN01 — Bloqueio de venda de produtos vencidos [Entrevista / Implementação simplificada]:** conforme informado pelo responsável pelo Hortifruti União, o sistema utilizado atualmente pelo estabelecimento possui regras para impedir a comercialização de produtos vencidos. No banco de dados acadêmico, a data de validade é registrada individualmente para cada lote, e consultas SQL permitem identificar lotes vencidos que ainda apresentam quantidade disponível. Entretanto, a implementação desenvolvida não garante automaticamente o bloqueio de todas as vendas envolvendo lotes vencidos. Essa proteção permanece como regra de negócio a ser implementada integralmente em uma evolução futura, conforme a RF15. 
@@ -287,9 +290,9 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN05 — Cancelamento de venda [Proposta / Implementação simplificada]:** uma venda concluída poderá ser cancelada mediante autorização operacional do gerente ou fiscal de caixa, conforme a RN10. O banco de dados deverá preservar o registro original da venda e armazenar sua situação, o motivo do cancelamento, a data, o horário e a identificação do funcionário responsável.
 
- Na implementação acadêmica, a tabela VENDA possui campos para armazenar a situação da venda, o motivo, a data e o horário do cancelamento e o funcionário responsável. Entretanto, o script SQL entregue não apresenta uma operação demonstrativa de cancelamento nem consultas específicas ao histórico de vendas canceladas. A estrutura permite armazenar essas informações, mas a execução desse processo não foi demonstrada nos testes apresentados.
+  Na implementação acadêmica, a tabela VENDA possui campos para armazenar a situação da venda, o motivo, a data e o horário do cancelamento e o funcionário responsável. Entretanto, o script SQL entregue não apresenta uma operação demonstrativa de cancelamento nem consultas específicas ao histórico de vendas canceladas. A estrutura permite armazenar essas informações, mas a execução desse processo não foi demonstrada nos testes apresentados.
 
-A implementação acadêmica permite armazenar as informações de cancelamento na tabela VENDA, mas não possui mecanismos automáticos de autorização por perfil de funcionário nem procedimentos que garantam a reposição correta do estoque após o cancelamento. Essas funcionalidades dependem de validações adicionais e não fazem parte da implementação prática desenvolvida nesta entrega.
+  A implementação acadêmica não possui mecanismos automáticos de autorização por perfil de funcionário nem procedimentos que garantam a reposição correta do estoque após um cancelamento. Essas funcionalidades dependem de validações adicionais e não fazem parte da implementação prática.
 
 - **RN06 — Estoque mínimo [Entrevista / Implementação simplificada]:** conforme informado pelo responsável pelo Hortifruti União, cada produto possui uma quantidade mínima de estoque definida principalmente pelo comprador, com apoio do ERP e supervisão do gerente de compras. Quando a quantidade disponível fica abaixo desse limite, o sistema utilizado pelo estabelecimento pode emitir alertas para apoiar a reposição. Na implementação acadêmica, a tabela PRODUTO armazena o campo `estoque_minimo`, e a consulta gerencial G04 permite identificar produtos cuja soma das quantidades disponíveis em seus lotes está abaixo desse valor. Entretanto, não foram implementadas notificações ou alertas automáticos. A geração automática desses avisos permanece como melhoria futura.
   
@@ -299,8 +302,6 @@ A implementação acadêmica permite armazenar as informações de cancelamento 
   
 - **RN13 — Pedido de compra com itens [Proposta]:** todo pedido de compra contém ao menos um item. Cada item representa um produto e pertence a um único pedido.
 
-- **RN22 — Consistência entre pedido, recebimento e lote [Proposta / Implementação simplificada]:** cada lote recebido deverá estar associado a um recebimento e a um item de pedido de compra. O recebimento e o item comprado deverão pertencer ao mesmo pedido, e o produto identificado no lote deverá corresponder ao produto registrado no item de compra. Na implementação acadêmica, essas correspondências foram verificadas por meio de consultas SQL de auditoria com dados fictícios. Entretanto, as chaves estrangeiras individuais não garantem automaticamente todas essas condições em novos registros, sendo necessárias restrições ou validações adicionais para assegurar integralmente essa regra.
-  
 - **RN14 — Saída por lote e estratégia FEFO [Proposta / Implementação simplificada]:** cada item vendido poderá ser associado a um ou mais lotes por meio da tabela SAIDA_LOTE, registrando a quantidade retirada de cada lote. A estratégia FEFO (*First Expire, First Out*) estabelece a prioridade de utilização dos lotes válidos com vencimento mais próximo. Nesta implementação acadêmica, a rastreabilidade das saídas foi demonstrada por meio de registros e consultas SQL, mas a seleção automática dos lotes conforme o FEFO não foi implementada integralmente.
   
 - **RN15 — Formas de pagamento [Entrevista]:** o mercado aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix. O pagamento de uma venda pode ser dividido entre essas formas, desde que a soma seja igual ao total da venda.
@@ -317,8 +318,10 @@ A implementação acadêmica permite armazenar as informações de cancelamento 
   
 - **RN21 — Fechamento de caixa [Entrevista / Fora da implementação prática]:** conforme informado pelo responsável pelo Hortifruti União, o fechamento do caixa é realizado ao final do período de operação. O operador confere inicialmente o dinheiro físico, e o fiscal de caixa ou gerente realiza a validação. A conferência considera o fundo inicial, os recebimentos em dinheiro e as demais movimentações em espécie, sem incluir os pagamentos realizados por cartão no saldo físico.
 
-Neste projeto acadêmico, o fechamento de caixa será documentado como um processo existente na organização, mas não será implementado um módulo próprio para abertura, fechamento, conferência e validação. O banco de dados proposto armazenará os registros de vendas e pagamentos, permitindo consultas aos valores recebidos por forma de pagamento, sem substituir o sistema de controle de caixa utilizado pelo estabelecimento.
+  Neste projeto acadêmico, o fechamento de caixa será documentado como um processo existente na organização, mas não será implementado um módulo próprio para abertura, fechamento, conferência e validação. O banco de dados proposto armazenará os registros de vendas e pagamentos, permitindo consultas aos valores recebidos por forma de pagamento, sem substituir o sistema de controle de caixa utilizado pelo estabelecimento.
 
+- **RN22 — Consistência entre pedido, recebimento e lote [Proposta / Implementação simplificada]:** cada lote recebido deverá estar associado a um recebimento e a um item de pedido de compra. O recebimento e o item comprado deverão pertencer ao mesmo pedido, e o produto identificado no lote deverá corresponder ao produto registrado no item de compra. Na implementação acadêmica, essas correspondências foram verificadas por meio de consultas SQL de auditoria com dados fictícios. Entretanto, as chaves estrangeiras individuais não garantem automaticamente todas essas condições em novos registros, sendo necessárias restrições ou validações adicionais para assegurar integralmente essa regra.
+  
 **Restrições organizacionais e legais**
 
 - **RN08 — Obrigatoriedade fiscal [Entrevista / Fora da implementação prática]:** conforme informado pelo responsável pelo Hortifruti União, o estabelecimento deve cumprir as obrigações fiscais aplicáveis às suas operações de venda. A emissão, a autorização e o registro oficial dos documentos fiscais continuam sendo realizados pelo sistema utilizado pela organização. Nesta entrega acadêmica, o banco de dados proposto não implementa emissão fiscal, integração com serviços fiscais externos nem armazenamento de dados específicos de notas fiscais de saída na tabela VENDA. Essa limitação não elimina a obrigação fiscal do estabelecimento; apenas delimita o escopo do banco desenvolvido pelo grupo. A integração fiscal poderá ser considerada em uma evolução futura do projeto.
@@ -383,7 +386,7 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 
 #### DER Conceitual Revisado
 
-**Software utilizado:** brModelo 3.2.0. O DER conceitual foi elaborado utilizando a notação de entidades, atributos, relacionamentos e cardinalidades mínimas e máximas do brModelo. As chaves estrangeiras serão representadas no modelo lógico.
+**Software utilizado:** brModelo 3.2.0. O DER conceitual foi elaborado utilizando a notação de entidades, atributos, relacionamentos e cardinalidades mínimas e máximas do brModelo. As chaves estrangeiras estão representadas no modelo lógico relacional e documentadas no Dicionário de Dados.
 
 ![DER conceitual revisado](diagramas/der_conceitual.png)
 
@@ -523,11 +526,13 @@ As auditorias A01 a A05 foram executadas no MySQL 8.0, utilizando o banco de dem
 | A02 | Consistência entre produto do lote, item de pedido e recebimento | Nenhuma inconsistência encontrada (`Empty set`) |
 | A03 | Correspondência entre o produto vendido e o lote utilizado | Nenhuma inconsistência encontrada (`Empty set`) |
 | A04 | Comparação entre a quantidade vendida e a soma das quantidades retiradas dos lotes | Nenhuma inconsistência encontrada (`Empty set`) |
-| A05 | Teste de inserção de uma venda vinculada a funcionário inexistente | Inserção rejeitada pelo MySQL com erro `1452 (23000)`, confirmando a atuação da chave estrangeira |
+| A05 | Teste de inserção de uma venda vinculada a funcionário inexistente | Em teste direto no MySQL, a inserção foi rejeitada com erro `1452 (23000)`; o script analisado pelo Claude também trata essa rejeição em procedimento próprio |
 
 **Conclusão das auditorias:** os resultados indicam que os registros fictícios analisados não apresentaram as inconsistências pesquisadas nas auditorias A01 a A04. O teste A05 demonstrou que a restrição de chave estrangeira impede a referência a um funcionário inexistente. Essas verificações não garantem que todas as regras de negócio estejam automatizadas para operações futuras.
 
 **Observação:** os valores apresentados correspondem exclusivamente aos dados fictícios utilizados na demonstração acadêmica e não representam indicadores reais do Hortifruti União. Os resultados das consultas de validade foram obtidos utilizando a data fixa `DATE('2026-10-28')`, definida como referência para os testes acadêmicos. Dessa forma, os resultados apresentados correspondem ao cenário demonstrado nessa data e não se atualizam automaticamente conforme o dia em que o script é executado.
+
+**Limitação adicional do indicador G04:** a consulta demonstrativa soma os saldos registrados por produto sem excluir automaticamente os lotes vencidos. Portanto, seus resultados devem ser interpretados como uma verificação sobre os saldos cadastrados, não como medida exclusiva de estoque próprio para venda.
 
 **Potencial dos dados para BI:** Os dados poderão ser utilizados para construir painéis com gráficos de vendas, evolução das perdas, produtos mais vendidos e situação dos estoques. O gerente poderá consultar esses indicadores para acompanhar o desempenho do mercado e identificar produtos que precisam de maior atenção.
 
@@ -557,7 +562,7 @@ O modelo lógico relacional do Hortifruti União foi desenvolvido no brModelo a 
 
 A estrutura foi implementada no MySQL 8.0, onde foram verificadas **17 restrições de chave estrangeira**. Também foram realizados testes com dados fictícios, consultas gerenciais e verificações de integridade referencial.
 
-As regras de negócio que exigem validações adicionais, como a aplicação automática do método FEFO, o controle de permissões e a consistência das movimentações de estoque, serão documentadas com suas limitações. A existência das chaves estrangeiras não garante, isoladamente, todas essas regras.
+As limitações relacionadas à seleção automática de lotes pelo método FEFO, ao controle de permissões, à atualização dos saldos de estoque e às demais validações das regras de negócio estão documentadas na seção 1.5 e no Dicionário de Dados. As chaves estrangeiras, isoladamente, não garantem a execução integral dessas regras.
 
 **Situação dos arquivos do modelo lógico:** o modelo lógico relacional foi elaborado e revisado no brModelo 3.2.0, contemplando as 13 tabelas do projeto. As imagens do DER conceitual e do modelo lógico foram enviadas à pasta `diagramas/` do repositório GitHub. O arquivo `Dicionario_Dados.md` foi concluído e revisado, documentando as 74 colunas e seus relacionamentos. O script `docs/script.sql` foi executado no MySQL 8.0, utilizando a base independente `hortifruti_uniao_entrega2`. Foram confirmadas as 13 tabelas, as 17 chaves estrangeiras e os 51 registros fictícios, além da execução das consultas gerenciais G01 a G05 e dos testes de auditoria A01 a A05. As verificações demonstram os cenários testados, sem garantir a automatização integral de todas as regras de negócio.
 
@@ -632,7 +637,7 @@ O repositório GitHub do projeto Hortifruti União reúne a documentação técn
 | `fluxograma_vendas.png` | Fluxograma do processo de venda |
 | `fluxograma_estoque.png` | Fluxograma do processo de controle de estoque |
 
-O repositório também permitirá acompanhar as contribuições do grupo por meio do histórico de commits. Cada integrante deverá utilizar sua própria conta do GitHub para registrar as alterações realizadas.
+Cada integrante deverá utilizar sua própria conta do GitHub para registrar as alterações realizadas.
 
 Os arquivos principais da implementação acadêmica já foram disponibilizados no repositório, incluindo o DER conceitual, o modelo lógico relacional, o Dicionário de Dados e o script SQL. Os diagramas estão organizados na pasta `diagramas/`, enquanto o script de criação, inserção de dados fictícios e consultas encontra-se em `docs/script.sql`. A apresentação final ainda será acrescentada após sua elaboração. A conferência final dos links e das evidências permanece como etapa de validação antes da entrega.
 
@@ -648,7 +653,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 
 ### Registro 1 — Claude: Aprendizado do GitHub
 
-| Item | O que registrar |
+| Item | Descrição |
 |------|------------------|
 | **Ferramenta e etapa** |  Claude - Auxílio no aprendizado do GitHub.  |
 | **Motivação** | Como ninguém do grupo era familiarizado com a rede social/ferramenta, optamos usar o Claude por saber que ele poderia ser mais técnico e direto ao mesmo tempo. |
@@ -661,7 +666,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 
 ### Registro 2 — Claude: Revisão ortográfica do README
 
-| Item | O que registrar |
+| Item | Descrição |
 |------|------------------|
 | **Ferramenta e etapa** | Claude - Revisão ortográfica no documento README.|
 | **Motivação** | Preferência geral do grupo ao uso do Claude.|
@@ -674,7 +679,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 
 ### Registro 3 — Claude: Organização da documentação
 
-| Item | O que registrar |
+| Item | Descrição |
 |------|------------------|
 | **Ferramenta e etapa** | Claude - Auxílio na organização e redação da documentação do modelo conceitual (item 6 do esqueleto de entrega). |
 | **Motivação** | Preferência do grupo. |
@@ -687,7 +692,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 
 ### Registro 4 — Claude: Revisão do DER conceitual
 
-| Item | O que registrar |
+| Item | Descrição |
 |------|------------------|
 | **Ferramenta e etapa** | Claude - Revisão geral do DER criado. |
 | **Motivação** | Preferência geral do grupo no uso do Claude para revisar cardinalidades antes da entrega. |
@@ -702,7 +707,7 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 
 ### Registro 5 — ChatGPT: Revisão da documentação e apoio à modelagem
 
-| Item | O que registrar |
+| Item | Descrição |
 |---|---|
 | **Ferramenta e etapa** | ChatGPT — revisão do README, regras de negócio, DER conceitual e modelo lógico da Entrega 2. |
 | **Motivação** | O grupo utilizou a ferramenta como apoio para compreender os conceitos de modelagem de banco de dados, organizar a documentação e identificar possíveis inconsistências entre os requisitos e os diagramas. |
@@ -715,20 +720,29 @@ Os arquivos principais da implementação acadêmica já foram disponibilizados 
 
 ### Registro 6 — ChatGPT: Apoio à implementação e validação SQL
 
-### Registro 7 — Claude: Revisão dos fluxogramas e consistência da documentação SQL
+| Item | Descrição |
+|---|---|
+| **Ferramenta e etapa** | ChatGPT — apoio à organização e à execução do script SQL, preparação dos dados fictícios e interpretação dos resultados no MySQL 8.0. |
+| **Motivação** | Compreender a implementação do modelo lógico e conferir os resultados do banco de dados. |
+| **Exemplos de mensagens reais** | "A pasta docs não existe ou está vazia. Vamos criar o script.sql." e "Se eu terminar o modelo lógico, ele gera o SQL automático?". A segunda mensagem também aparece no histórico de apoio à modelagem (Registro 5). |
+| **Orientações recebidas** | Instruções para organizar o arquivo SQL, executar comandos no MySQL e interpretar consultas gerenciais e testes de integridade. |
+| **Verificações realizadas** | No ambiente de testes foram conferidas 13 tabelas, 17 chaves estrangeiras, 51 registros fictícios, consultas gerenciais G01 a G05 e testes A01 a A05. |
+| **Sugestões corrigidas ou limitadas** | Durante a revisão com apoio do Claude, o grupo identificou descrições do README que atribuíam ao script atualizações automáticas de estoque e testes de cancelamento não presentes no código analisado. As descrições foram corrigidas com apoio do ChatGPT, diferenciando operações demonstradas de funcionalidades propostas. |
+| **Reflexão crítica** | As sugestões de IA foram confrontadas com o script e com o comportamento observado no MySQL. A revisão mostrou que uma estrutura relacional válida não comprova, por si só, a automatização de todas as regras de negócio. |
 
-| **Sugestão da IA identificada para correção** | Ao comparar o `script.sql` com o README, o Claude identificou uma divergência entre a documentação e o código: o relatório afirmava que as consultas de validade utilizavam `CURDATE()`, enquanto o script analisado utilizava a data fixa `DATE('2026-10-28')`. O grupo identificou a necessidade de corrigir essa descrição e também recebeu apontamentos sobre saldos de estoque e operações SQL não demonstradas. Esses apontamentos serão verificados na versão final do script antes de sua resolução. |
+### Registro 7 — Claude: Revisão dos fluxogramas e consistência da documentação SQL
 
 | Item | Descrição |
 |---|---|
-| **Ferramenta e etapa** | Claude — revisão dos fluxogramas e comparação entre o script SQL e o Dicionário de Dados da Entrega 2. |
-| **Motivação** | Verificar a coerência entre os processos descritos no README, os fluxogramas e a estrutura do banco de dados, evitando acrescentar informações não confirmadas durante a entrevista. |
+| **Ferramenta e etapa** | Claude — revisão dos fluxogramas e comparação entre o script SQL, o README e o Dicionário de Dados da Entrega 2. |
+| **Motivação** | Verificar a coerência dos processos descritos e identificar divergências sem acrescentar etapas não confirmadas na entrevista. |
 | **Prompts reais utilizados** | 1) "Vou descrever os passos dos meus fluxogramas de venda e de estoque. Compare com os processos 1 e 3 do meu README e me diga se falta algum passo importante (lotes, validade, perda, saída por lote). Só não invente etapas que o mercado não confirmou na entrevista." 2) "Vou colar o meu script.sql e depois o dicionário de dados. Compare os dois e liste, colunas que aparecem em um e não no outro, tipos de dados que não batem, o total de colunas de verdade. Só aponte as diferenças, não reescreva nada." |
-| **Respostas recebidas** | A ferramenta foi solicitada a identificar possíveis lacunas nos fluxogramas e divergências entre o script SQL e o Dicionário de Dados. |
-| **Verificação e decisão do grupo** | As orientações precisam ser confrontadas com os processos efetivamente levantados, os arquivos do projeto e os testes realizados no MySQL. Não devem ser incorporadas etapas não confirmadas na entrevista. |
-| **Reflexão crítica** | Os prompts foram formulados com restrições explícitas para evitar alterações indevidas e incentivar a conferência dos resultados. A análise da IA deve servir como apoio, não como substituição da validação realizada pelo grupo. |
+| **Respostas recebidas** | O Claude identificou divergências entre afirmações do README e as operações do script, apontando, por exemplo, o uso de data fixa nas consultas de validade, a necessidade de conferir o saldo do lote de tomate e a ausência de certas operações demonstrativas de estoque e cancelamento. Na análise apresentada, também confirmou 13 tabelas, 74 colunas e 17 chaves estrangeiras. |
+| **Sugestão da IA identificada e corrigida** | O Claude apontou que o README mencionava `CURDATE()`, mas o script analisado utilizava a referência fixa `DATE('2026-10-28')`. O README foi corrigido para descrever a data fixa. Também foi apontada a inconsistência do saldo do lote TOM-001; o grupo confirmou o saldo no MySQL e corrigiu o valor informado de 70 para 69 unidades no ambiente de testes e no script, conforme registro da revisão. |
+| **Verificação e decisão do grupo** | O grupo utilizou os apontamentos do Claude como base para revisar o README com apoio do ChatGPT e corrigir os trechos sobre operações SQL não demonstradas. As correções não substituem a necessidade de executar novamente a versão final do script e conferir seus resultados. |
+| **Reflexão crítica** | A IA ajudou a identificar erros que não eram visíveis pela simples contagem de tabelas e colunas. O grupo preservou a distinção entre regras de negócio desejadas e funcionalidades efetivamente implementadas. |
 
-As atividades de apoio do ChatGPT à implementação do banco de dados, à organização da massa de dados fictícia, à elaboração das consultas SQL e à interpretação dos testes no MySQL estão documentadas no Registro 6. As orientações fornecidas pela ferramenta foram confrontadas com o modelo lógico, o Dicionário de Dados e os resultados das execuções, permitindo identificar limitações da implementação e realizar correções na documentação.
+As atividades de apoio das ferramentas de IA estão detalhadas nos Registros 1 a 7. Os apontamentos foram analisados pelo grupo à luz do levantamento, do modelo lógico, do Dicionário de Dados e dos testes realizados no MySQL. A revisão permitiu corrigir descrições técnicas que não correspondiam integralmente ao script apresentado.
 
 ---
 
