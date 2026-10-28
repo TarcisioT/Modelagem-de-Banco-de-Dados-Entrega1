@@ -211,4 +211,30 @@ A atualização do saldo disponível do lote após uma perda foi demonstrada por
 
 **Relação com os indicadores:** os dados da tabela PERDA, associados ao custo unitário armazenado em LOTE, permitem calcular o valor financeiro das perdas por meio da consulta gerencial G03.
 
+#### 3.10 VENDA
 
+**Finalidade:** armazenar as informações das vendas realizadas pelo Hortifruti União, incluindo data e horário, valor total, situação da venda, funcionário responsável e dados relacionados a eventuais cancelamentos.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_venda` | INT | PK | Não | Identificador único da venda. |
+| `data_hora_venda` | DATETIME | — | Sim | Data e horário em que a venda foi registrada. |
+| `valor_total` | DECIMAL(12,2) | — | Sim | Valor total registrado para a venda. |
+| `situacao_venda` | VARCHAR(30) | — | Sim | Situação da venda, como concluída ou cancelada. |
+| `motivo_cancelamento` | VARCHAR(255) | — | Sim | Justificativa registrada quando ocorre o cancelamento da venda. |
+| `data_hora_cancelamento` | DATETIME | — | Sim | Data e horário do cancelamento, quando aplicável. |
+| `codigo_funcionario` | INT | FK | Sim | Identifica o funcionário responsável pelo registro da venda. |
+| `codigo_funcionario_cancelamento` | INT | FK | Sim | Identifica o funcionário responsável pelo cancelamento, quando houver. |
+
+**Relacionamentos:**
+- `codigo_funcionario` referencia `FUNCIONARIO.codigo_funcionario`.
+- `codigo_funcionario_cancelamento` também referencia `FUNCIONARIO.codigo_funcionario`.
+- A tabela VENDA é referenciada por ITEM_VENDA, que armazena os produtos e as quantidades vendidos, e por PAGAMENTO, que registra os valores e as formas de pagamento.
+
+**Restrições verificadas:** chave primária em `codigo_venda` e duas chaves estrangeiras, ambas com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais ou `CHECK`.
+
+**Limitações:** os campos de data, valor, situação e funcionário responsável permitem `NULL`, embora uma venda concluída deva possuir essas informações. Os campos relacionados ao cancelamento também são opcionais, o que é adequado para vendas não canceladas; entretanto, o banco não exige automaticamente motivo, data e responsável quando a situação é alterada para cancelada.
+
+A estrutura não possui campo para identificar o caixa físico, conforme a delimitação da RF08. A autorização de cancelamentos por função e a devolução automática de produtos aos lotes de origem não foram implementadas integralmente.
+
+**Relação com os indicadores:** VENDA, associada a PAGAMENTO, permite realizar consultas gerenciais de faturamento por período, conforme a consulta G05.
