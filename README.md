@@ -63,10 +63,12 @@
 - **Evidências da organização:**
 
   - [Localização no Google Maps](https://www.google.com/maps/search/?api=1&query=Rua+Filipe+Camar%C3%A3o%2C+67%2C+Tatuap%C3%A9%2C+S%C3%A3o+Paulo)
-  - **Perfil comercial no Google:** [Consultar perfil do Hortifruti União no Google](https://share.google/LWFseN2UxnhQwKsNh).
-  - **Endereço:** Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, CEP 03065-000.
-  - **Contato:** consultar o perfil comercial público do estabelecimento no Google; número pessoal não reproduzido neste relatório.
-  - **Responsável entrevistado:** um dos responsáveis pelo estabelecimento (identificação pessoal omitida da versão pública até confirmação de autorização).
+  - **Perfil comercial no Google:** [Consultar perfil do Hortifruti União no Google](https://share.google/LWFseN2UxnhQwKsNh)
+  - **Endereço:** Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, CEP 03065-000
+  - **Contato da organização:** perfil comercial público no Google
+  - **Responsável entrevistado:** Guilherme Takemoto
+  - **Função:** um dos proprietários do Hortifruti União – Tatuapé
+  - **Telefone de contato autorizado:** (11) 99317-0906
 
 ![Fotografia da fachada](imagens/evidencias/fachada_mercado.jpeg)
 
