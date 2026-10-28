@@ -1,4 +1,4 @@
-# Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
+| PRODUTO | VENDIDO | ITEM_VENDA | (0,N) / (1,1) |# Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 
 ### Modelagem de um sistema de gestão de informações para uma organização de médio porte
 
@@ -402,7 +402,7 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 | FUNCIONARIO | REGISTRA | VENDA | (0,N) / (1,1) |
 | FUNCIONARIO | CANCELA | VENDA | (0,N) / (0,1) |
 | VENDA | CONTÉM | ITEM_VENDA | (1,N) / (1,1) |
-| PRODUTO | VENDIDO | ITEM_VENDA | (0,N) / (1,1) |
+| PRODUTO | APARECE | ITEM_VENDA | (0,N) / (1,1) |
 | VENDA | POSSUI | PAGAMENTO | (1,N) / (1,1) |
 | LOTE | REGISTRA | PERDA | (0,N) / (1,1) |
 | FUNCIONARIO | REGISTRA | PERDA | (0,N) / (1,1) |
