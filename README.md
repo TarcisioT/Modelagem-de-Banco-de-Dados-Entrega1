@@ -451,63 +451,58 @@ Esse foi o nome da cópia usada na revisão. O arquivo de entrega é `docs/scrip
 
 O `docs/script.sql` e o `Dicionario_Dados.md` precisam descrever **a mesma estrutura**: mesmas tabelas, colunas, nome do banco e restrições. Não adianta prometer `NOT NULL`/`UNIQUE`/`CHECK` só no README.
 
+
 ### 1.6 Proposta de Arquitetura Analítica para BI e IA
 
-**Informações estratégicas que podem ser extraídas dos dados:** O banco de dados proposto permitirá acompanhar o volume de vendas, os produtos mais vendidos, as perdas por vencimento, os lotes próximos da validade, os níveis de estoque e os pagamentos por forma de recebimento. Essas informações poderão ajudar o Hortifruti União a identificar desperdícios e planejar melhor suas compras.
+Com esses dados o gerente consegue ver o que está para vencer, quanto já se perdeu, o que está abaixo do mínimo, como andam os recebimentos e o que entrou de pagamento. Só faz sentido no painel se o saldo do lote acompanhar a movimentação.
 
-| Indicador | Como calcular | Período | Consulta SQL |
+**KPIs e consultas — o que a gente quer medir e o que a cópia conferida do SQL já faz:**
+
+| Indicador | Fórmula para o KPI | Período | Referência/meta | SQL usado na conferência |
+|---|---|---|---|---|
+| Lotes a vencer | `COUNT(*)` de lotes válidos com saldo positivo e validade até 7 dias | Diário, data de referência fixa de 28/10/2026 na demonstração | Acompanhar diariamente; meta quantitativa a definir | G01 lista os lotes; ainda falta devolver a quantidade total no SQL |
+| Lotes vencidos com saldo | `COUNT(*)` de lotes vencidos com saldo positivo | Diário | Meta proposta: 0 | G02 lista os lotes; ainda falta a contagem no SQL |
+| Valor das perdas | `SUM(quantidade_perdida × custo_unitario)` | Por dia/mês, conforme `PERDA.data_perda` | Histórico informado ≈ 1,5% do faturamento; não é meta formal confirmada | G03 mostra o custo de cada perda; ainda falta somar os valores e filtrar pelo período definido |
+| Produtos abaixo do mínimo | `COUNT(*)` de produtos cuja soma dos saldos por lote é inferior ao mínimo | Diário | Meta proposta: 0 produtos | G04 lista os produtos; ainda falta devolver a quantidade total no SQL |
+| Pagamentos de vendas concluídas | `SUM(valor_pagamento)` associado às vendas concluídas | Por dia da venda | Monitoramento, sem meta de faturamento fixada | G05 soma os pagamentos por dia da venda; não confere se eles batem com `VENDA.valor_total` |
+
+**Resultados da massa nos testes já relatados pelo grupo, com data de referência `2026-10-28`:**
+
+| Consulta | Resultado registrado | Observação |
+|---|---|---|
+| G01 | 3 linhas: Maçã (MAC-001), Banana prata (BAN-001) e Tomate (TOM-001) | A consulta detalha os lotes; o indicador de quantidade ainda precisa de cálculo no SQL |
+| G02 | 1 linha: Alface crespa (ALF-001), saldo 30,000 | Lote propositalmente vencido com saldo para testar alerta |
+| G03 | 1 registro de perda, R$ 20,00 (10,000 × R$ 2,00, Alface crespa) | É resultado unitário; o custo de R$ 2,00 do lote difere do preço de compra de R$ 1,50 no pedido, sem justificativa documentada |
+| G04 | 2 linhas: Arroz 5 kg (5,000 / mínimo 10,000) e Cenoura (0,000 / mínimo 10,000) | Soma saldos de lotes vencidos: ao excluir o lote de alface, o resultado demonstrativo passaria de 2 para 3 produtos abaixo do mínimo (considerando a mesma massa) |
+| G05 | R$ 19,47 em uma venda concluída em 28/10/2026 | Valor de pagamento registrado, coincidente com o total da venda fictícia |
+
+O grupo já tinha relatado testes no MySQL 8.0 com 13 tabelas, 74 colunas, 17 FKs e 51 registros fictícios. **Nesta revisão do texto, não rodamos o MySQL de novo.** Há duas informações nos registros: a cópia `script(2).sql` usada na conferência ainda trazia `TOM-001` com saldo 70,000, e o grupo relatou ter corrigido esse saldo para 69,000. Pelos movimentos descritos — 70,000 recebidos e 1,000 vendido —, o esperado é 69,000. **Ainda falta confirmar que o `docs/script.sql` publicado na `main` é a mesma versão corrigida e registrar os resultados dessa versão.** Os resultados acima não são uma nova validação do arquivo publicado.
+
+**Auditorias e o que elas não cobrem:**
+
+| Auditoria | O que verifica | Limitação |
+|---|---|---|
+| A01 | Referência não nula de lote a produto inexistente | Não acha `LOTE.codigo_produto IS NULL`; a FK já impede referência preenchida inválida |
+| A02 | Divergência entre produto e pedido nas linhas vinculadas | `INNER JOIN` ignora registro com FK nula; não fecha a RN22 inteira |
+| A03 | Produto da saída diferente do produto do item vendido | `INNER JOIN` ignora associação incompleta |
+| A04 | Soma de retiradas diferente da quantidade de cada item | Não testa saldo negativo nem venda de lote vencido |
+| A05 | Rejeição de FK para funcionário inexistente | O procedimento trata o erro; não prova autorização por função |
+
+**Rastreabilidade: problemas e indicadores até a implementação SQL**
+
+| Problema ou indicador | Tabelas | Consulta | Situação da comprovação |
 |---|---|---|---|
-| Lotes próximos do vencimento | Listagem (e contagem das linhas) dos lotes com saldo positivo e validade entre a data de referência e os 7 dias seguintes | Diário | G01 |
-| Lotes vencidos com saldo | Listagem dos lotes cuja validade já passou e que ainda possuem quantidade disponível | Diário | G02 |
-| Valor financeiro das perdas | Soma da quantidade perdida multiplicada pelo custo unitário de cada lote | Conforme os registros de perda da massa; filtro por período não demonstrado | G03 |
-| Produtos abaixo do estoque mínimo | Comparação entre o estoque mínimo cadastrado e a soma das quantidades disponíveis por produto | Diário | G04 |
-| Faturamento por período | Soma dos pagamentos associados às vendas concluídas, agrupada pela data da venda | Diário | G05 |
-| Recebimento por forma de pagamento | Soma dos pagamentos das vendas concluídas, agrupada por forma | Diário | G06 |
+| P1 — risco de vencimento | `PRODUTO`, `LOTE` | G01 | Atendido como lista gerencial |
+| P1 — lote vencido ainda com saldo | `PRODUTO`, `LOTE` | G02 | Atendido como lista gerencial |
+| P1 — custo das perdas | `PERDA`, `LOTE`, `PRODUTO` | G03 | Custo por registro; agregação pendente |
+| KPI — produtos abaixo do mínimo | `PRODUTO`, `LOTE` | G04 | Lista de produtos; contagem agregada pendente |
+| KPI — valor de pagamentos por dia | `VENDA`, `PAGAMENTO` | G05 | Soma por dia disponível |
 
-**Resultados das consultas gerenciais — massa do `docs/script.sql`, data de referência 28/10/2026**
+**Custo da alface:** na cópia conferida, o item de compra tem `preco_compra = 1,50` e o lote tem `custo_unitario = 2,00`. Precisamos conferir de onde veio a diferença. Só vamos dizer que entrou despesa adicional se isso estiver previsto e explicado na massa de teste; não basta criar uma justificativa para os valores baterem. Se for erro de preenchimento, corrigimos o valor e recalculamos o G03.
 
-| Consulta | Resultado esperado | Observação |
-|---|---|---|
-| G01 | 3 linhas: Maçã (MAC-001), Banana prata (BAN-001) e Tomate (TOM-001) | Lista os lotes; o indicador de quantidade é a contagem dessas linhas |
-| G02 | 1 linha: Alface crespa (ALF-001), saldo 30,000 | Lote propositalmente vencido com saldo, para testar o alerta |
-| G03 | 1 registro de perda, R$ 20,00 (10,000 × R$ 2,00, Alface crespa) | O custo de R$ 2,00 do lote ainda diverge do preço de compra de R$ 1,50 no pedido |
-| G04 | 2 linhas: Arroz 5 kg (5,000 / mínimo 10,000) e Cenoura (0,000 / mínimo 10,000) | A soma inclui lote vencido. Se tirar a alface, passaria de 2 para 3 produtos abaixo do mínimo |
-| G05 | R$ 24,48 em uma venda concluída em 28/10/2026 | Dois pagamentos (dinheiro R$ 10,00 + débito R$ 14,48). Bate com o total dessa venda fictícia |
-| G06 | Dinheiro R$ 10,00 e Débito R$ 14,48 | Só aparece nesta massa; crédito ainda não foi demonstrado |
+**BI:** painéis de validade, perda, ruptura e recebimento. Giro e desempenho comercial pedem mais histórico e saldo estável. Para o % de perda, numerador e denominador têm que ser **do mesmo período**.
 
-**Resultados das auditorias SQL — Validação em 28/10/2026**
-
-Após a reexecução do script corrigido, as auditorias A01 a A04 foram repetidas e retornaram `Empty set` nos cenários analisados. O teste A05 foi executado pelo script e apresentou a mensagem de confirmação de que a chave estrangeira rejeitou a referência a um funcionário inexistente; em teste direto anterior, o MySQL havia exibido o erro `1452 (23000)`.
-
-| Auditoria | Verificação realizada | Resultado obtido |
-|---|---|---|
-| A01 | Verificação de lotes sem referência válida a um produto | Nenhuma inconsistência encontrada (`Empty set`) |
-| A02 | Consistência entre produto do lote, item de pedido e recebimento | Nenhuma inconsistência encontrada (`Empty set`) |
-| A03 | Correspondência entre o produto vendido e o lote utilizado | Nenhuma inconsistência encontrada (`Empty set`) |
-| A04 | Comparação entre a quantidade vendida e a soma das quantidades retiradas dos lotes | Nenhuma inconsistência encontrada (`Empty set`) |
-| A05 | Teste de inserção de uma venda vinculada a funcionário inexistente | Inserção com funcionário inexistente rejeitada pela chave estrangeira; o script apresentou mensagem de confirmação da rejeição (erro `1452 (23000)` observado também em teste direto) |
-
-**Conclusão das auditorias:** os resultados indicam que os registros fictícios analisados não apresentaram as inconsistências pesquisadas nas auditorias A01 a A04. O teste A05 demonstrou que a restrição de chave estrangeira impede a referência a um funcionário inexistente. Essas verificações não garantem que todas as regras de negócio estejam automatizadas para operações futuras.
-
-**Observação:** os valores apresentados correspondem exclusivamente aos dados fictícios utilizados na demonstração acadêmica e não representam indicadores reais do Hortifruti União. Os resultados das consultas de validade foram obtidos utilizando a data fixa `DATE('2026-10-28')`, definida como referência para os testes acadêmicos. Dessa forma, os resultados apresentados correspondem ao cenário demonstrado nessa data e não se atualizam automaticamente conforme o dia em que o script é executado.
-
-**Limitação adicional do indicador G04:** a consulta demonstrativa soma os saldos registrados por produto sem excluir automaticamente os lotes vencidos. Portanto, seus resultados devem ser interpretados como uma verificação sobre os saldos cadastrados, não como medida exclusiva de estoque próprio para venda.
-
-**Potencial dos dados para BI:** Os dados poderão ser utilizados para construir painéis com gráficos de vendas, evolução das perdas, produtos mais vendidos e situação dos estoques. O gerente poderá consultar esses indicadores para acompanhar o desempenho do mercado e identificar produtos que precisam de maior atenção.
-
-**Aplicações analíticas e de IA:** Futuramente, técnicas de inteligência artificial poderão ser utilizadas para prever a demanda de produtos, identificar mercadorias com maior risco de vencimento e sugerir quantidades de reposição. Essas análises dependerão da existência de dados históricos suficientes e de registros confiáveis de vendas, estoque e perdas.
-
-**Rastreabilidade:**
-
-| Problema ou indicador | Tabelas envolvidas | Consulta SQL testada |
-|---|---|---|
-| P1 — Lotes próximos do vencimento | PRODUTO, LOTE | G01 — Lotes próximos do vencimento |
-| P1 — Lotes vencidos com saldo | PRODUTO, LOTE | G02 — Lotes vencidos |
-| P1 — Valor financeiro das perdas | PERDA, LOTE, PRODUTO | G03 — Valor financeiro das perdas |
-| Produtos abaixo do estoque mínimo | PRODUTO, LOTE | G04 — Estoque abaixo do mínimo |
-| Faturamento por período | VENDA, PAGAMENTO | G05 — Faturamento por período |
-
-*As consultas gerenciais G01 a G05 foram executadas e verificadas no MySQL 8.0, utilizando dados fictícios do Hortifruti União. Elas permitem identificar lotes próximos do vencimento, lotes vencidos, valores financeiros de perdas, produtos abaixo do estoque mínimo e faturamento por período. Também foram realizadas consultas de auditoria para verificar a consistência dos relacionamentos e das movimentações registradas. Os resultados demonstram as funcionalidades testadas, sem representar dados reais ou garantir a automatização completa de todas as regras de negócio propostas.*
+**IA (não implementamos):** previsão de demanda, risco de vencimento e sugestão de compra. Isso pede lote bem cadastrado, histórico suficiente e conversa com o gestor. As 51 linhas fictícias servem para testar o banco e as consultas; essa massa não demonstra histórico suficiente para validar previsões úteis ao hortifruti.
 
 ---
 
