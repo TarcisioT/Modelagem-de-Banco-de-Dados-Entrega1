@@ -543,7 +543,7 @@ Foram executados comandos `CREATE DATABASE`, `CREATE TABLE`, `INSERT`, `SELECT`,
 
 Os testes demonstraram consultas sobre lotes próximos do vencimento, lotes vencidos, valor financeiro das perdas, estoque mínimo e faturamento por período.
 
-O arquivo consolidado será disponibilizado em `docs/script.sql` após a verificação de sua execução completa desde um banco vazio.
+**Situação da implementação SQL:** o banco de dados foi criado e testado no MySQL 8.0, com 13 tabelas, 17 chaves estrangeiras e dados fictícios. Foram executadas consultas gerenciais G01 a G05 e verificações de auditoria A01 a A05. A consolidação desses comandos no arquivo `docs/script.sql` e sua execução completa a partir de um banco vazio constituem a etapa final de validação do script de entrega. Até essa verificação, os testes realizados no ambiente MySQL não devem ser confundidos com a validação do arquivo consolidado.
 
 **Limitações:** a escolha automática do lote pelo método FEFO, a autorização por perfil de funcionário e todas as validações transacionais de estoque não foram implementadas integralmente. Essas funcionalidades permanecem identificadas como limitações ou melhorias futuras.
 
