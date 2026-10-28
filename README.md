@@ -37,15 +37,28 @@
 
   - **O que o modelo faz com o P1:** cada lote tem código próprio, produto, validade e saldo (`LOTE`). A venda liga a quantidade ao lote em `SAIDA_LOTE`, e o descarte vai para `PERDA`. G01 e G02 mostram o que está para vencer ou já venceu; G03 mostra o custo da perda. **O que o banco sozinho não resolve:** o código de barras continua sendo do produto, não do lote. Sem um jeito de marcar o lote na hora de separar a mercadoria, a rastreabilidade no papel não vira prática no salão. Consulta também não substitui FEFO, bloqueio no caixa nem a organização física.
 
-- **Escopo do sistema:** o projeto propõe um banco de dados relacional para organizar as informações dos principais processos do Hortifruti União, incluindo cadastro de produtos, categorias, fornecedores e funcionários; pedidos de compra e recebimento de mercadorias; controle de lotes, datas de validade, quantidades em estoque e perdas; além do registro de vendas, itens vendidos e pagamentos.
+- **Escopo do sistema:** o banco cobre o que de fato levantamos — não só estoque e também não “toda a administração” do hortifruti. O que ficou de fora está justificado mais abaixo.
 
-  A prioridade da solução será melhorar a rastreabilidade dos lotes e apoiar a identificação de produtos próximos do vencimento, conforme o problema P1 identificado no levantamento.
+  Entram:
+  - categorias, produtos, fornecedores e funcionários;
+  - pedidos de compra e itens;
+  - recebimento e dados da NF de entrada;
+  - lotes, validade, saldo, saída por lote e perda;
+  - vendas, itens, pagamentos e, em `VENDA`, campos para cancelamento.
 
-Os processos de alterações de preços, cancelamentos de vendas, fechamento de caixa e outros processos operacionais não detalhados no levantamento foram considerados durante a revisão do escopo. O projeto acadêmico contempla o registro simplificado de cancelamentos de vendas, enquanto os demais processos são apresentados como parte do levantamento ou como possibilidades de evolução futura, sem implementação de módulos específicos. Essa delimitação permite concentrar a solução no controle de validade e na rastreabilidade dos lotes, conforme o problema principal P1.
+  As consultas e a demonstração SQL giram em torno do **P1** (validade e lote). Compra, venda, pagamento e responsável entram para o modelo fazer sentido. FEFO automático, permissão por cargo, baixa automática do saldo e fechamento de caixa **não** têm módulo nesta entrega.
 
-  O projeto não prevê integração automática com o ERP existente, emissão fiscal oficial ou desenvolvimento de uma interface completa para os operadores.
+  **O que existe no mercado e o que fizemos com isso:**
 
-- **Justificativa da escolha:** o Hortifruti União foi selecionado por ser uma organização real, com processos de compras, recebimento de mercadorias, armazenamento, vendas e controle de estoque. O contato do integrante Tarcisio Santos de Oliveira com o responsável entrevistado, um dos responsáveis pelo estabelecimento, possibilitou a realização do levantamento de informações e da visita ao local. Durante a pesquisa, foi identificada uma dificuldade relacionada ao uso do controle de validade e à identificação individual dos lotes, tornando esse processo o foco principal da proposta de modelagem do banco de dados.
+  - **Cancelamento de venda:** campos em `VENDA` (`situacao_venda`, `motivo_cancelamento`, `data_hora_cancelamento`, `codigo_funcionario_cancelamento`). O script **não** mostra um `UPDATE` de cancelamento.
+  - **Preço e histórico:** o VR já guarda horário e usuário. Aqui só fica o preço atual em `PRODUTO.preco_venda`.
+  - **Fechamento de caixa:** o responsável confirmou o processo. Não criamos tabela de fundo, contagem e diferença. Dá para consultar venda e pagamento; não substitui o caixa do ERP.
+  - **NF de saída e integração com o VR:** fora do trabalho prático. A obrigação fiscal continua com eles.
+  - **Tela de caixa, etiqueta e senha:** fora desta entrega.
+
+  **Processos comuns de varejo que não modelamos porque o levantamento não deu base** (não estamos dizendo que não existem): contas a pagar, escala e ponto.
+
+- **Justificativa da escolha:** é um comércio real, com compra, recebimento, estoque e venda. O Tarcisio conhece um dos responsáveis, e por isso conseguimos a entrevista, a visita e os números. Isso **não** tira a obrigação de comprovar entrevista e visita. O caso serve para a disciplina porque a dificuldade no controle das informações de lote e validade aparece na operação e pode ser trabalhada num banco relacional.
 
 - **Evidências da organização:**
 
