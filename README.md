@@ -290,8 +290,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
   Na implementação SQL, será demonstrada a atualização da situação da venda e a consulta ao histórico de cancelamentos. A eventual devolução de produtos ao estoque deverá considerar os lotes originalmente utilizados, suas datas de validade e as condições de comercialização, impedindo a devolução duplicada de quantidades.
 
-  A verificação automática das permissões dos funcionários e a execução completa da reposição de estoque em cancelamentos não fazem parte da implementação prática desta entrega. Essas limitações serão identificadas na documentação, sem apresentar tais controles como funcionalidades implementadas.
-  
+A implementação acadêmica permite armazenar as informações de cancelamento na tabela VENDA, mas não possui mecanismos automáticos de autorização por perfil de funcionário nem procedimentos que garantam a reposição correta do estoque após o cancelamento. Essas funcionalidades dependem de validações adicionais e não fazem parte da implementação prática desenvolvida nesta entrega.
+
 - **RN06 — Estoque mínimo [Entrevista / Implementação simplificada]:** conforme informado pelo responsável pelo Hortifruti União, cada produto possui uma quantidade mínima de estoque definida principalmente pelo comprador, com apoio do ERP e supervisão do gerente de compras. Quando a quantidade disponível fica abaixo desse limite, o sistema utilizado pelo estabelecimento pode emitir alertas para apoiar a reposição. Na implementação acadêmica, a tabela PRODUTO armazena o campo `estoque_minimo`, e a consulta gerencial G04 permite identificar produtos cuja soma das quantidades disponíveis em seus lotes está abaixo desse valor. Entretanto, não foram implementadas notificações ou alertas automáticos. A geração automática desses avisos permanece como melhoria futura.
   
 - **RN07 — Perdas por vencimento [Proposta]:** quando um lote vence, ele não pode mais ser vendido. A perda é registrada com lote, quantidade, data, motivo "vencimento" e funcionário responsável, e descontada do estoque do lote.
