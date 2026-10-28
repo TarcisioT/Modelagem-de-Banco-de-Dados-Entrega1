@@ -112,3 +112,24 @@ As descrições e os tipos de dados apresentados neste documento seguem a estrut
 **Restrições verificadas:** chave primária em `codigo_pedido` e chave estrangeira em `codigo_fornecedor`, com `ON DELETE RESTRICT`. Não existem restrições `UNIQUE` adicionais ou `CHECK` na tabela.
 
 **Limitações:** o banco permite `NULL` nos campos `data_pedido`, `situacao_pedido` e `codigo_fornecedor`. Embora a RN03 determine que todo pedido pertença a um fornecedor cadastrado, a estrutura atual não impede pedidos com a referência ao fornecedor vazia. A obrigatoriedade de pelo menos um item por pedido, prevista na RN13, também não é garantida automaticamente apenas pelas chaves estrangeiras.
+
+#### 3.6 ITEM_PEDIDO_COMPRA
+
+**Finalidade:** armazenar os itens de cada pedido de compra do Hortifruti União, identificando os produtos solicitados, suas quantidades e os preços de compra praticados.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_item_pedido` | INT | PK | Não | Identificador único do item de pedido de compra. |
+| `quantidade_solicitada` | DECIMAL(12,3) | — | Sim | Quantidade do produto solicitada ao fornecedor, permitindo valores fracionários para mercadorias comercializadas por peso. |
+| `preco_compra` | DECIMAL(12,2) | — | Sim | Preço unitário de compra do produto solicitado. |
+| `codigo_pedido` | INT | FK | Sim | Identificador do pedido de compra ao qual o item pertence. |
+| `codigo_produto` | INT | FK | Sim | Identificador do produto solicitado. |
+
+**Relacionamentos:**
+- `codigo_pedido` referencia `PEDIDO_COMPRA.codigo_pedido`.
+- `codigo_produto` referencia `PRODUTO.codigo_produto`.
+- A tabela ITEM_PEDIDO_COMPRA também é referenciada por `LOTE.codigo_item_pedido`, permitindo identificar de qual item de compra cada lote recebido se originou.
+
+**Restrições verificadas:** chave primária em `codigo_item_pedido` e duas chaves estrangeiras, ambas com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais ou `CHECK`.
+
+**Limitações:** os campos `quantidade_solicitada`, `preco_compra`, `codigo_pedido` e `codigo_produto` permitem `NULL`. Portanto, o banco não impede automaticamente o cadastro de itens sem pedido, sem produto ou sem quantidade informada. Também não existem restrições `CHECK` para garantir quantidades e preços positivos. A obrigatoriedade prevista na RN13 não é integralmente garantida pela estrutura SQL atual.
