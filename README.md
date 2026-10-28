@@ -259,71 +259,57 @@ Também ficam de fora: cadastro de cliente e fidelidade (o mercado não cadastra
 
 #### Regras de Negócio
 
-**Origem das regras:** as marcadas com **[Entrevista]** foram informadas pelo responsável entrevistado. As marcadas com **[Proposta]** foram elaboradas pelo grupo a partir dos processos mapeados e de regras típicas de supermercados e hortifrutis, levantadas com apoio de IA (ver a seção 6, Uso de Inteligência Artificial), e ainda não foram validadas individualmente com o responsável.
+**De onde veio cada regra:** **[Entrevista]** = o responsável falou. **[Proposta]** = o grupo montou, em parte com IA (seção 6), e **ainda não passou regra por regra com ele**.
 
-**Nota sobre a implementação das regras:** as regras descrevem comportamentos observados no estabelecimento ou desejados para a solução completa. Sua inclusão não significa que sejam automaticamente garantidas pelo banco acadêmico. Em especial, a validação de CNPJ (RN04), a exigência de pelo menos um item por pedido (RN13) e a igualdade entre pagamentos e total da venda (RN15) não possuem validação automática integral na implementação SQL. As restrições efetivamente aplicadas estão documentadas na seção 1.5 e no Dicionário de Dados.
+O texto da regra fala do negócio ou do sistema inteiro. O que o MySQL realmente impede está na seção 1.5 e no dicionário.
 
 **Regras operacionais**
 
-- **RN01 — Bloqueio de venda de produtos vencidos [Entrevista / Implementação simplificada]:** conforme informado pelo responsável pelo Hortifruti União, o sistema utilizado atualmente pelo estabelecimento possui regras para impedir a comercialização de produtos vencidos. No banco de dados acadêmico, a data de validade é registrada individualmente para cada lote, e consultas SQL permitem identificar lotes vencidos que ainda apresentam quantidade disponível. Entretanto, a implementação desenvolvida não garante automaticamente o bloqueio de todas as vendas envolvendo lotes vencidos. Essa proteção permanece como regra de negócio a ser implementada integralmente em uma evolução futura, conforme a RF15. 
-  
-- **RN02 — Entrada de estoque com nota fiscal [Entrevista / Implementação simplificada]:** conforme informado pelo responsável pelo Hortifruti União, o recebimento de mercadorias deve estar acompanhado da nota fiscal do fornecedor, com identificação dos produtos, lotes, quantidades recebidas e respectivas datas de validade. Na implementação acadêmica, a tabela RECEBIMENTO permite registrar o número e a série da nota fiscal, enquanto a tabela LOTE armazena os dados das mercadorias recebidas. Entretanto, os campos fiscais permitem `NULL`, e não foram implementadas restrições que impeçam automaticamente o registro de recebimentos sem nota fiscal. A obrigatoriedade e a validação desses dados permanecem como regras operacionais a serem garantidas integralmente em uma implementação futura.
-  
-- **RN03 — Pedido só a fornecedor cadastrado [Proposta]:** um pedido de compra só pode ser feito a um fornecedor previamente cadastrado.
+- **RN01 — Bloqueio de venda de produtos vencidos [Entrevista / mecanismo a confirmar]:** o responsável falou de um bloqueio de produto vencido no ERP. Como lotes diferentes usam o mesmo código de barras e o registro da validade não é usado de forma sistemática, **não dá para afirmar que o ERP trava um lote específico no caixa**. No nosso banco, G02 lista vencido com saldo, mas não existe bloqueio na hora de vender. Precisamos confirmar com ele até onde vai o bloqueio de hoje.
 
-- **RN04 — Fornecedor com CNPJ válido [Proposta]:** o fornecedor só pode ser cadastrado com CNPJ válido e único, razão social, telefone e e-mail preenchidos.
+- **RN02 — Entrada de estoque com nota fiscal [Entrevista]:** segundo o responsável, a mercadoria deve chegar acompanhada de NF, com produtos, lotes, quantidades e validades. `RECEBIMENTO` tem campos para número e série da NF, mas o SQL usado na conferência ainda permite deixá-los vazios. A obrigação existe no processo; o que falta é o banco exigir o preenchimento desses campos (ver 1.5).
 
-- **RN05 — Cancelamento de venda [Proposta / Implementação simplificada]:** uma venda concluída poderá ser cancelada mediante autorização operacional do gerente ou fiscal de caixa, conforme a RN10. O banco de dados deverá preservar o registro original da venda e armazenar sua situação, o motivo do cancelamento, a data, o horário e a identificação do funcionário responsável.
+- **RN03 — Pedido só a fornecedor cadastrado [Proposta]:** pedido de compra somente para fornecedor já cadastrado.
 
-  Na implementação acadêmica, a tabela VENDA possui campos para armazenar a situação da venda, o motivo, a data e o horário do cancelamento e o funcionário responsável. Entretanto, o script SQL entregue não apresenta uma operação demonstrativa de cancelamento nem consultas específicas ao histórico de vendas canceladas. A estrutura permite armazenar essas informações, mas a execução desse processo não foi demonstrada nos testes apresentados.
+- **RN04 — Fornecedor com CNPJ válido [Proposta]:** cadastro com CNPJ válido e único, razão social, telefone e e-mail. No SQL que estávamos olhando, não há `NOT NULL`, `UNIQUE` nem checagem dos dígitos do CNPJ; os CNPJs da massa são fictícios.
 
-  A implementação acadêmica não possui mecanismos automáticos de autorização por perfil de funcionário nem procedimentos que garantam a reposição correta do estoque após um cancelamento. Essas funcionalidades dependem de validações adicionais e não fazem parte da implementação prática.
+- **RN05 — Cancelamento de venda [Proposta]:** venda concluída pode ser cancelada com autorização (RN10), preservando o registro (situação, motivo, data/hora, funcionário). Não demonstrado no script.
 
-- **RN06 — Estoque mínimo [Entrevista / Implementação simplificada]:** conforme informado pelo responsável pelo Hortifruti União, cada produto possui uma quantidade mínima de estoque definida principalmente pelo comprador, com apoio do ERP e supervisão do gerente de compras. Quando a quantidade disponível fica abaixo desse limite, o sistema utilizado pelo estabelecimento pode emitir alertas para apoiar a reposição. Na implementação acadêmica, a tabela PRODUTO armazena o campo `estoque_minimo`, e a consulta gerencial G04 permite identificar produtos cuja soma das quantidades disponíveis em seus lotes está abaixo desse valor. Entretanto, não foram implementadas notificações ou alertas automáticos. A geração automática desses avisos permanece como melhoria futura.
-  
-- **RN07 — Perdas por vencimento [Proposta / Implementação simplificada]:** quando um lote ultrapassa sua data de validade, suas mercadorias não devem ser comercializadas. As perdas por vencimento devem ser registradas com identificação do lote, quantidade, data, motivo e funcionário responsável, com a correspondente baixa no estoque. Na implementação acadêmica, a tabela PERDA permite armazenar essas informações e a massa fictícia contém um exemplo de perda por vencimento. Entretanto, o script não executa automaticamente a baixa do estoque após o registro da perda nem bloqueia todas as vendas envolvendo lotes vencidos.
-  
-- **RN09 — Identificação de lotes próximos do vencimento [Proposta / Implementação simplificada]:** o banco de dados permitirá identificar, por meio de consultas SQL, os lotes que estão próximos da data de validade e possuem quantidade disponível. Na implementação acadêmica, a consulta G01 foi testada utilizando um intervalo de sete dias como referência. Não foram implementadas notificações automáticas nem a configuração de prazos de alerta individuais por produto ou categoria. O prazo utilizado é um parâmetro de demonstração e ainda não foi confirmado pelo responsável pelo estabelecimento.
-  
-- **RN13 — Pedido de compra com itens [Proposta]:** todo pedido de compra contém ao menos um item. Cada item representa um produto e pertence a um único pedido.
+- **RN06 — Estoque mínimo [Entrevista]:** cada produto tem mínimo (comprador, com apoio do ERP e gerência). G04 lista produtos abaixo do mínimo. Sem alerta automático.
 
-- **RN14 — Saída por lote e estratégia FEFO [Proposta / Implementação simplificada]:** cada item vendido poderá ser associado a um ou mais lotes por meio da tabela SAIDA_LOTE, registrando a quantidade retirada de cada lote. A estratégia FEFO (*First Expire, First Out*) estabelece a prioridade de utilização dos lotes válidos com vencimento mais próximo. Nesta implementação acadêmica, a rastreabilidade das saídas foi demonstrada por meio de registros e consultas SQL, mas a seleção automática dos lotes conforme o FEFO não foi implementada integralmente.
-  
-- **RN15 — Formas de pagamento [Entrevista]:** o mercado aceita dinheiro, cartão de débito e cartão de crédito, mas não aceita Pix. O pagamento de uma venda pode ser dividido entre essas formas, desde que a soma seja igual ao total da venda.
+- **RN07 — Perdas por vencimento [Proposta]:** lote vencido não deve ser vendido; perda registrada com lote, quantidade, data, motivo e funcionário, com baixa de saldo. A massa tem um exemplo; o script não baixa o saldo sozinho.
 
-- **RN16 — Categoria do produto [Proposta]:** todo produto pertence a uma única categoria, que deve estar cadastrada antes do produto. Uma categoria pode ter vários produtos (por exemplo, a categoria fruta com banana e pera).
+- **RN08 — Obrigatoriedade fiscal [Entrevista]:** emissão e autorização fiscal continuam no sistema da organização. Fora desta implementação.
 
-- **RN17 — Perdas por outros motivos [Proposta / Implementação simplificada]:** perdas decorrentes de danos, deterioração ou outros motivos devem ser registradas com lote, quantidade, data, motivo e funcionário responsável. O saldo disponível do lote deverá ser atualizado para refletir essas perdas. Na implementação acadêmica, a estrutura da tabela PERDA permite esse registro, mas o script não demonstra a atualização do saldo após cada perda nem implementa um mecanismo automático de baixa do estoque.
-  
-- **RN18 — Controle de quantidade vendida [Proposta / Implementação simplificada]:** as quantidades retiradas dos lotes devem respeitar o estoque disponível, evitando saldos negativos e a utilização de mercadorias vencidas. Na implementação acadêmica, a tabela SAIDA_LOTE registra as quantidades associadas aos itens vendidos, e as consultas de auditoria verificam determinadas inconsistências nos registros fictícios. O script apresentado não implementa a baixa automática dos saldos em LOTE nem garante o bloqueio de retiradas superiores à quantidade disponível ou de lotes vencidos. Essas validações dependem de mecanismos transacionais adicionais e permanecem como melhorias futuras.
-      
-- **RN19 — Baixa de estoque e rastreabilidade por lote [Entrevista / Proposta]:** conforme relatado na entrevista, o sistema atual do Hortifruti União realiza a baixa automática do estoque quando uma venda é concluída. Como melhoria proposta neste projeto acadêmico, cada quantidade vendida deverá ser associada ao lote de origem por meio da entidade SAIDA_LOTE, permitindo rastrear a validade e a quantidade retirada. A atualização da quantidade disponível de cada lote deverá ocorrer de forma consistente, sem permitir saldo negativo. A seleção do lote e a aplicação dessa regra dependerão das operações implementadas no SQL.
-  
-- **RN20 — Preservação dos registros [Proposta / Implementação simplificada]:** as vendas canceladas deverão permanecer registradas no banco de dados, com sua situação atualizada, motivo, data e horário do cancelamento e identificação do funcionário responsável. Os registros de pagamentos e perdas também deverão ser preservados para permitir consultas e verificações posteriores. Nesta entrega, não será implementado um histórico completo de todas as alterações realizadas nos dados, nem um módulo específico de auditoria de usuários.
-  
-- **RN21 — Fechamento de caixa [Entrevista / Fora da implementação prática]:** conforme informado pelo responsável pelo Hortifruti União, o fechamento do caixa é realizado ao final do período de operação. O operador confere inicialmente o dinheiro físico, e o fiscal de caixa ou gerente realiza a validação. A conferência considera o fundo inicial, os recebimentos em dinheiro e as demais movimentações em espécie, sem incluir os pagamentos realizados por cartão no saldo físico.
+- **RN09 — Lotes próximos do vencimento [Proposta]:** consulta G01 com intervalo de 7 dias e data fixa `2026-10-28`. Prazo acadêmico, não confirmado pelo responsável. Sem notificação.
 
-  Neste projeto acadêmico, o fechamento de caixa será documentado como um processo existente na organização, mas não será implementado um módulo próprio para abertura, fechamento, conferência e validação. O banco de dados proposto armazenará os registros de vendas e pagamentos, permitindo consultas aos valores recebidos por forma de pagamento, sem substituir o sistema de controle de caixa utilizado pelo estabelecimento.
+- **RN10 — Permissões por função [Entrevista]:** preço: líder de setor, gerente, proprietários. Cancelamento e fechamento de caixa: gerente ou fiscal. Financeiro: administração e gestão. Sem autenticação neste banco.
 
-- **RN22 — Consistência entre pedido, recebimento e lote [Proposta / Implementação simplificada]:** cada lote recebido deverá estar associado a um recebimento e a um item de pedido de compra. O recebimento e o item comprado deverão pertencer ao mesmo pedido, e o produto identificado no lote deverá corresponder ao produto registrado no item de compra. Na implementação acadêmica, essas correspondências foram verificadas por meio de consultas SQL de auditoria com dados fictícios. Entretanto, as chaves estrangeiras individuais não garantem automaticamente todas essas condições em novos registros, sendo necessárias restrições ou validações adicionais para assegurar integralmente essa regra.
-  
-**Restrições organizacionais e legais**
+- **RN11 — Produtos a granel [Proposta]:** quantidade em quilos e preço por quilo. Balanças devem atender ao Inmetro (exigência operacional, não modelada em tabela).
 
-- **RN08 — Obrigatoriedade fiscal [Entrevista / Fora da implementação prática]:** conforme informado pelo responsável pelo Hortifruti União, o estabelecimento deve cumprir as obrigações fiscais aplicáveis às suas operações de venda. A emissão, a autorização e o registro oficial dos documentos fiscais continuam sendo realizados pelo sistema utilizado pela organização. Nesta entrega acadêmica, o banco de dados proposto não implementa emissão fiscal, integração com serviços fiscais externos nem armazenamento de dados específicos de notas fiscais de saída na tabela VENDA. Essa limitação não elimina a obrigação fiscal do estabelecimento; apenas delimita o escopo do banco desenvolvido pelo grupo. A integração fiscal poderá ser considerada em uma evolução futura do projeto.
-  
-- **RN10 — Permissões por função [Entrevista / Implementação limitada]:** conforme informado pelo responsável pelo Hortifruti União, determinadas operações do sistema atual possuem restrições de acesso de acordo com a função exercida pelo funcionário. Alterações de preços são realizadas por líderes de setor, gerente e proprietários; cancelamentos de vendas e validações de fechamento de caixa são autorizados ao gerente ou fiscal de caixa; e informações financeiras são acessadas por funcionários autorizados da administração e gestão.
+- **RN12 — LGPD [Proposta]:** proteger dados de funcionários e contatos de fornecedores. Testes só fictícios. Sem CPF e sem autenticação neste banco.
 
-  No projeto acadêmico, essas restrições serão documentadas como regras existentes na organização. A implementação de login, autenticação e gerenciamento de perfis e permissões ficará fora do escopo prático. O banco de dados proposto registrará a identificação dos funcionários responsáveis pelas operações efetivamente modeladas, sem afirmar que essa identificação, isoladamente, garante a autorização de acesso.
-    
-- **RN11 — Produtos a granel [Proposta]:** produtos vendidos por peso têm a quantidade registrada em quilos e o valor calculado pelo preço por quilo. As balanças devem atender às exigências do Inmetro.
+- **RN13 — Pedido de compra com itens [Proposta]:** todo pedido tem ao menos um item; cada item é de um pedido.
 
-- **RN12 — Proteção de dados pessoais, LGPD [Proposta / Implementação limitada]:** o sistema deverá proteger os dados pessoais de funcionários e os dados de contato dos fornecedores, respeitando os princípios aplicáveis da Lei Geral de Proteção de Dados (LGPD). Na implementação acadêmica, a tabela FUNCIONARIO armazena código identificador, nome, cargo e data de admissão, enquanto a tabela FORNECEDOR contém informações cadastrais e de contato. Não foi implementado um campo de CPF nem mecanismos próprios de autenticação, controle de permissões ou gerenciamento de acesso por perfil de usuário. Essas funcionalidades permanecem fora do escopo prático desta entrega. Os testes do banco de dados utilizam exclusivamente informações fictícias.
-  
-**Regras comuns não incluídas**
+- **RN14 — Saída por lote e FEFO [Proposta]:** item vendido associado a um ou mais lotes (`SAIDA_LOTE`). FEFO prioriza o lote válido que vence primeiro. Rastreio demonstrado; FEFO automático não implementado.
 
-- Cadastro de clientes e programa de fidelidade: o mercado não cadastra clientes.
-- Pagamento por Pix: o mercado não o aceita.
-- Normas sanitárias, contas a pagar e escala de funcionários: não foram levantadas na entrevista e não estão ligadas ao problema principal (P1). Ficam como evolução futura, a confirmar com o responsável.
+- **RN15 — Formas de pagamento [Entrevista]:** dinheiro, débito e crédito; sem Pix. Pagamento pode ser dividido; a soma deve igualar o total. Massa atual: um pagamento.
+
+- **RN16 — Categoria do produto [Proposta]:** todo produto pertence a uma categoria já cadastrada; uma categoria pode ter vários produtos.
+
+- **RN17 — Perdas por outros motivos [Proposta]:** dano, deterioração etc. com lote, quantidade, data, motivo e funcionário, atualizando o saldo.
+
+- **RN18 — Quantidade vendida [Proposta]:** retiradas não podem gerar saldo negativo nem usar lote vencido. As auditorias conferem alguns pontos da massa; o script não bloqueia todas as operações futuras.
+
+- **RN19 — Baixa de estoque e rastreabilidade [Entrevista / Proposta]:** o ERP atual baixa estoque na venda concluída. A proposta acadêmica associa a quantidade ao lote via `SAIDA_LOTE`. Atualização consistente do saldo depende da aplicação ou de procedimentos ainda não automatizados.
+
+- **RN20 — Preservação dos registros [Proposta]:** vendas canceladas, pagamentos e perdas permanecem no banco. Sem histórico completo de todas as alterações.
+
+- **RN21 — Fechamento de caixa [Entrevista]:** conferência de dinheiro físico; validação por fiscal ou gerente. Sem módulo nesta entrega.
+
+- **RN22 — Consistência pedido, recebimento e lote [Proposta]:** lote associado a recebimento e a item de pedido do mesmo pedido; produto do lote = produto do item. A auditoria A02 compara essas referências nos registros vinculados da massa; FKs isoladas não garantem sozinhas todas as condições.
+
+**Regras comuns não incluídas:** cliente/fidelidade (não há cadastro na venda); Pix (não aceito); normas sanitárias detalhadas, contas a pagar e escala (não ligadas a P1 e sem levantamento suficiente).
 
 ---
 
