@@ -235,6 +235,33 @@ A atualização do saldo disponível do lote após uma perda foi demonstrada por
 
 **Limitações:** os campos de data, valor, situação e funcionário responsável permitem `NULL`, embora uma venda concluída deva possuir essas informações. Os campos relacionados ao cancelamento também são opcionais, o que é adequado para vendas não canceladas; entretanto, o banco não exige automaticamente motivo, data e responsável quando a situação é alterada para cancelada.
 
+#### 3.11 ITEM_VENDA
+
+**Finalidade:** armazenar os produtos que compõem cada venda do Hortifruti União, registrando a quantidade vendida, o preço unitário praticado e o subtotal de cada item. Essa tabela permite representar vários produtos em uma mesma venda e preservar o preço praticado no momento da operação.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_item_venda` | INT | PK | Não | Identificador único do item de venda. |
+| `quantidade_vendida` | DECIMAL(12,3) | — | Sim | Quantidade vendida do produto, permitindo valores fracionários para mercadorias comercializadas por peso. |
+| `preco_unitario_venda` | DECIMAL(12,2) | — | Sim | Preço unitário praticado no momento da venda. |
+| `subtotal` | DECIMAL(12,2) | — | Sim | Valor registrado para o item da venda. |
+| `codigo_produto` | INT | FK | Sim | Identifica o produto vendido. |
+| `codigo_venda` | INT | FK | Sim | Identifica a venda à qual o item pertence. |
+
+**Relacionamentos:**
+- `codigo_produto` referencia `PRODUTO.codigo_produto`.
+- `codigo_venda` referencia `VENDA.codigo_venda`.
+- A tabela ITEM_VENDA é referenciada por `SAIDA_LOTE.codigo_item_venda`, permitindo identificar quais lotes foram utilizados para atender à quantidade vendida.
+
+**Restrições verificadas:** chave primária em `codigo_item_venda` e duas chaves estrangeiras, ambas com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais nem `CHECK`.
+
+**Limitações:** os campos de quantidade, preço, subtotal e referências permitem `NULL`. Portanto, o banco atual não impede automaticamente o cadastro de um item sem produto, sem venda ou sem quantidade informada.
+
+O subtotal é armazenado como `DECIMAL(12,2)`, mas não existe uma coluna calculada ou restrição que garanta automaticamente a igualdade entre `subtotal` e `quantidade_vendida × preco_unitario_venda`. O cálculo foi demonstrado por operações SQL com dados fictícios, mas sua validação automática integral dependeria de lógica adicional.
+
+A associação de um item vendido às saídas de lote é prevista pelas regras RN14 e RN19. Entretanto, as chaves estrangeiras existentes não garantem, isoladamente, que todo item de uma venda concluída possua pelo menos uma saída de lote registrada.
+
+**Relação com o problema P1:** em conjunto com SAIDA_LOTE e LOTE, permite rastrear os lotes de origem das quantidades vendidas.
 A estrutura não possui campo para identificar o caixa físico, conforme a delimitação da RF08. A autorização de cancelamentos por função e a devolução automática de produtos aos lotes de origem não foram implementadas integralmente.
 
 **Relação com os indicadores:** VENDA, associada a PAGAMENTO, permite realizar consultas gerenciais de faturamento por período, conforme a consulta G05.
