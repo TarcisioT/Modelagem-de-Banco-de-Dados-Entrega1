@@ -288,3 +288,32 @@ A estrutura não possui campo para identificar o caixa físico, conforme a delim
 Também não existe uma validação automática que garanta que a soma dos pagamentos corresponda exatamente ao valor total da venda. Essa consistência deverá ser controlada por consultas, procedimentos ou lógica de aplicação em uma implementação mais completa.
 
 **Relação com os indicadores:** a tabela PAGAMENTO, associada à tabela VENDA, permite calcular o faturamento por período por meio da consulta gerencial G05.
+
+#### 3.13 SAIDA_LOTE
+
+**Finalidade:** armazenar as retiradas de mercadorias dos lotes para atender aos itens vendidos pelo Hortifruti União. Essa tabela permite identificar de qual lote saiu cada quantidade comercializada, contribuindo para a rastreabilidade dos produtos e para o controle de validade, foco do problema P1.
+
+| Coluna | Tipo de dado | Chave | Permite NULL | Descrição |
+|---|---|---|---|---|
+| `codigo_saida_lote` | INT | PK | Não | Identificador único do registro de saída de lote. |
+| `quantidade_retirada` | DECIMAL(12,3) | — | Sim | Quantidade retirada de determinado lote para atender a um item de venda. |
+| `codigo_lote` | INT | FK | Sim | Identifica o lote do qual a quantidade foi retirada. |
+| `codigo_item_venda` | INT | FK | Sim | Identifica o item de venda atendido pela retirada do lote. |
+
+**Relacionamentos:**
+- `codigo_lote` referencia `LOTE.codigo_lote`.
+- `codigo_item_venda` referencia `ITEM_VENDA.codigo_item_venda`.
+
+Esses relacionamentos permitem identificar os lotes utilizados em uma venda. Um mesmo item vendido pode ser atendido por retiradas de diferentes lotes, e um lote pode atender a diferentes itens de venda.
+
+**Restrições verificadas:** chave primária em `codigo_saida_lote` e duas chaves estrangeiras, ambas com `ON DELETE RESTRICT`. Não foram identificadas restrições `UNIQUE` adicionais nem `CHECK`.
+
+**Limitações:** os campos `quantidade_retirada`, `codigo_lote` e `codigo_item_venda` permitem `NULL`. Portanto, o banco atual não impede automaticamente o registro de uma saída sem quantidade, lote ou item de venda.
+
+Também não existe uma restrição `CHECK` que garanta quantidades positivas, nem uma validação automática que impeça retiradas superiores ao saldo disponível do lote.
+
+As chaves estrangeiras garantem a existência dos registros referenciados quando seus identificadores são informados, mas não asseguram, isoladamente, que o produto do lote corresponda ao produto do item vendido. Essa consistência foi avaliada por consultas SQL de auditoria com dados fictícios.
+
+A aplicação automática do método FEFO (Primeiro a Vencer, Primeiro a Sair), o bloqueio de saídas de lotes vencidos e a atualização automática dos saldos não foram implementados integralmente nesta entrega acadêmica.
+
+**Relação com o problema P1:** a associação entre SAIDA_LOTE, LOTE, ITEM_VENDA e VENDA possibilita consultar quais lotes foram utilizados nas vendas registradas, apoiando a rastreabilidade e a análise das movimentações de estoque.
