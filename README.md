@@ -296,8 +296,8 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN07 — Perdas por vencimento [Proposta]:** quando um lote vence, ele não pode mais ser vendido. A perda é registrada com lote, quantidade, data, motivo "vencimento" e funcionário responsável, e descontada do estoque do lote.
 
-- **RN09 — Alerta de vencimento [Proposta]:** o sistema avisa quando um lote está próximo do vencimento. O prazo de antecedência é um parâmetro configurável por produto ou categoria; o valor ainda não foi informado pelo responsável e deve ser confirmado.
-
+- **RN09 — Identificação de lotes próximos do vencimento [Proposta / Implementação simplificada]:** o banco de dados permitirá identificar, por meio de consultas SQL, os lotes que estão próximos da data de validade e possuem quantidade disponível. Na implementação acadêmica, a consulta G01 foi testada utilizando um intervalo de sete dias como referência. Não foram implementadas notificações automáticas nem a configuração de prazos de alerta individuais por produto ou categoria. O prazo utilizado é um parâmetro de demonstração e ainda não foi confirmado pelo responsável pelo estabelecimento.
+  
 - **RN13 — Pedido de compra com itens [Proposta]:** todo pedido de compra contém ao menos um item. Cada item representa um produto e pertence a um único pedido.
 
 - **RN22 — Consistência entre pedido, recebimento e lote [Proposta]:** cada lote recebido deverá estar associado a um recebimento e a um item de pedido de compra. O recebimento e o item comprado deverão pertencer ao mesmo pedido, e o produto associado ao lote deverá ser o mesmo produto registrado no item de compra. Essa consistência será verificada na implementação do modelo lógico e por meio de restrições ou consultas SQL de validação.
