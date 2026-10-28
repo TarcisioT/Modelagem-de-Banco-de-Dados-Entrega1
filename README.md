@@ -287,7 +287,7 @@ Esses processos poderão ser incorporados em uma etapa futura, caso sua existên
 
 - **RN05 — Cancelamento de venda [Proposta / Implementação simplificada]:** uma venda concluída poderá ser cancelada mediante autorização operacional do gerente ou fiscal de caixa, conforme a RN10. O banco de dados deverá preservar o registro original da venda e armazenar sua situação, o motivo do cancelamento, a data, o horário e a identificação do funcionário responsável.
 
-  Na implementação SQL, será demonstrada a atualização da situação da venda e a consulta ao histórico de cancelamentos. A eventual devolução de produtos ao estoque deverá considerar os lotes originalmente utilizados, suas datas de validade e as condições de comercialização, impedindo a devolução duplicada de quantidades.
+ Na implementação acadêmica, a tabela VENDA possui campos para armazenar a situação da venda, o motivo, a data e o horário do cancelamento e o funcionário responsável. Entretanto, o script SQL entregue não apresenta uma operação demonstrativa de cancelamento nem consultas específicas ao histórico de vendas canceladas. A estrutura permite armazenar essas informações, mas a execução desse processo não foi demonstrada nos testes apresentados.
 
 A implementação acadêmica permite armazenar as informações de cancelamento na tabela VENDA, mas não possui mecanismos automáticos de autorização por perfil de funcionário nem procedimentos que garantam a reposição correta do estoque após o cancelamento. Essas funcionalidades dependem de validações adicionais e não fazem parte da implementação prática desenvolvida nesta entrega.
 
