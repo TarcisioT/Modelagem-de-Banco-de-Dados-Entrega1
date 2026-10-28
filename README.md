@@ -581,7 +581,7 @@ A massa de dados foi preparada para representar situações de compras, recebime
 **Limitação da amostra:** os 51 registros representam uma massa de dados pequena e controlada para demonstrar os relacionamentos e as operações básicas. Eles não reproduzem o volume real de movimentações do Hortifruti União, nem comprovam desempenho em ambiente de produção.
 ---
 
-### 5. Repositório GitHub
+## 5. Repositório GitHub
 
 O projeto da Entrega 2 do Hortifruti União está sendo organizado no GitHub, na branch `main`, para reunir a documentação, os diagramas e os arquivos necessários à implementação do banco de dados.
 
@@ -685,7 +685,7 @@ O grupo também utilizou o ChatGPT como apoio à organização da massa de dados
 
 ---
 
-### 7. Apresentação Corporativa Final
+## 7. Apresentação Corporativa Final
 
 **Situação:** apresentação em preparação.
 
