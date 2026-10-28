@@ -88,7 +88,7 @@ O processo de venda começa quando o cliente apresenta os produtos no caixa. O f
 
 Para cada item da venda, devem ser registrados o produto, a quantidade e o preço unitário praticado. Após a inclusão dos itens, é calculado o valor total da compra e registrada a forma de pagamento utilizada pelo cliente.
 
-Na implementação acadêmica, o banco armazena os dados da venda, seus itens, valores e funcionário responsável. A tabela SAIDA_LOTE permite registrar as quantidades retiradas dos lotes utilizados. A baixa correspondente no estoque foi demonstrada em operações SQL com dados fictícios; a automatização integral dessas operações e a integração com o sistema fiscal do estabelecimento não fazem parte do escopo prático.
+Na implementação acadêmica, o banco armazena os dados da venda, seus itens, valores e funcionário responsável. A tabela SAIDA_LOTE registra quais lotes foram associados aos itens vendidos e as respectivas quantidades retiradas. Os saldos disponíveis são armazenados na tabela LOTE e foram definidos na massa de dados fictícia. O script apresentado não demonstra uma operação específica de atualização do saldo após a venda nem implementa a baixa automática do estoque. A integração com o sistema fiscal do estabelecimento também está fora do escopo prático.
 
 A emissão e o registro oficial dos documentos fiscais são realizados pelo sistema utilizado pelo estabelecimento e não foram implementados neste banco acadêmico.
 
@@ -110,7 +110,7 @@ O tratamento detalhado de recebimentos parciais e mercadorias recusadas não foi
 
 ##### 3. Processo de controle de estoque, lotes e validade
 
-O controle de estoque deverá manter as quantidades disponíveis de cada produto atualizadas conforme as entradas, vendas, perdas e demais movimentações registradas.
+O controle de estoque deve considerar as quantidades disponíveis de cada produto e as movimentações de entrada, venda e perda. Na implementação acadêmica, a tabela LOTE armazena a quantidade disponível informada para cada lote, enquanto SAIDA_LOTE e PERDA registram movimentações específicas. O script não garante automaticamente a atualização desses saldos a partir de todas as movimentações, sendo necessárias operações adicionais para manter a consistência do estoque.
 
 Na solução proposta, um mesmo produto poderá estar associado a diferentes lotes, cada um com identificação própria, data de entrada, data de validade e quantidade disponível. O sistema deverá permitir a consulta do estoque pelo código de barras ou pelo nome do produto, além de identificar produtos abaixo da quantidade mínima definida e lotes próximos do vencimento.
 
