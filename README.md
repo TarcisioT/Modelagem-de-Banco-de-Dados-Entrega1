@@ -551,7 +551,7 @@ Os testes demonstraram consultas sobre lotes próximos do vencimento, lotes venc
 
 ## 4. Massa de Dados
 
-**Arquivo de entrega:** `docs/script.sql`. Os comandos de inserção dos dados fictícios serão disponibilizados junto ao script de criação do banco.
+**Arquivo de entrega:** `docs/script.sql`. A massa de dados fictícia será incluída no mesmo script de criação e testes do banco de dados, por meio de comandos `INSERT`. Essa organização reúne a estrutura das 13 tabelas, os registros de demonstração e as consultas SQL em um único arquivo. A execução integral do script desde um banco vazio ainda deverá ser validada antes da entrega final.
 
 A massa de dados foi preparada para representar situações de compras, recebimento de mercadorias, controle de validade, perdas, vendas e pagamentos do Hortifruti União. Todos os registros utilizados nos testes são fictícios e foram criados exclusivamente para fins acadêmicos.
 
