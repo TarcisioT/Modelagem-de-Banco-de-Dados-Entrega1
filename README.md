@@ -547,7 +547,7 @@ Os testes demonstraram consultas sobre lotes próximos do vencimento, lotes venc
 
 ## 4. Massa de Dados
 
-**Arquivo de entrega:** `docs/script.sql`. A massa de dados fictícia será incluída no mesmo script de criação e testes do banco de dados, por meio de comandos `INSERT`. Essa organização reúne a estrutura das 13 tabelas, os registros de demonstração e as consultas SQL em um único arquivo. A execução integral do script desde um banco vazio ainda deverá ser validada antes da entrega final.
+**Arquivo de entrega:** `docs/script.sql`. A massa de dados fictícia foi incluída no mesmo script de criação e testes do banco de dados, por meio de comandos `INSERT`. O arquivo consolidado foi executado no MySQL 8.0, utilizando o banco independente `hortifruti_uniao_entrega2`. A execução confirmou a criação das 13 tabelas, das 17 chaves estrangeiras e a inserção dos 51 registros fictícios. As consultas gerenciais G01 a G05 e os testes de auditoria A01 a A05 também foram executados e verificados, considerando os cenários demonstrados.
 
 A massa de dados foi preparada para representar situações de compras, recebimento de mercadorias, controle de validade, perdas, vendas e pagamentos do Hortifruti União. Todos os registros utilizados nos testes são fictícios e foram criados exclusivamente para fins acadêmicos.
 
