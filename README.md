@@ -455,27 +455,25 @@ Na implementação acadêmica desta entrega, a relação entre fornecedores e pr
 
 **Informações estratégicas que podem ser extraídas dos dados:** O banco de dados proposto permitirá acompanhar o volume de vendas, os produtos mais vendidos, as perdas por vencimento, os lotes próximos da validade, os níveis de estoque e os pagamentos por forma de recebimento. Essas informações poderão ajudar o Hortifruti União a identificar desperdícios e planejar melhor suas compras.
 
-**Indicadores e métricas gerenciais (KPIs):**
-
 | Indicador | Como calcular | Período | Consulta SQL |
 |---|---|---|---|
-| Lotes próximos do vencimento | Contagem dos lotes com saldo positivo e validade dentro dos próximos 7 dias | Diário | G01 |
-| Lotes vencidos com saldo | Contagem dos lotes cuja validade já passou e que ainda possuem quantidade disponível | Diário | G02 |
-| Valor financeiro das perdas | Soma da quantidade perdida multiplicada pelo custo unitário de cada lote | Conforme os registros de perda da massa de testes; filtro por período não demonstrado. | G03 |
+| Lotes próximos do vencimento | Listagem (e contagem das linhas) dos lotes com saldo positivo e validade entre a data de referência e os 7 dias seguintes | Diário | G01 |
+| Lotes vencidos com saldo | Listagem dos lotes cuja validade já passou e que ainda possuem quantidade disponível | Diário | G02 |
+| Valor financeiro das perdas | Soma da quantidade perdida multiplicada pelo custo unitário de cada lote | Conforme os registros de perda da massa; filtro por período não demonstrado | G03 |
 | Produtos abaixo do estoque mínimo | Comparação entre o estoque mínimo cadastrado e a soma das quantidades disponíveis por produto | Diário | G04 |
 | Faturamento por período | Soma dos pagamentos associados às vendas concluídas, agrupada pela data da venda | Diário | G05 |
+| Recebimento por forma de pagamento | Soma dos pagamentos das vendas concluídas, agrupada por forma | Diário | G06 |
 
-**Resultados das consultas gerenciais — Validação em 28/10/2026**
+**Resultados das consultas gerenciais — massa do `docs/script.sql`, data de referência 28/10/2026**
 
-Após a correção do saldo do lote TOM-001 para 69,000, o script foi executado novamente no MySQL 8.0. No banco de testes `hortifruti_uniao_entrega2`, foram confirmadas 13 tabelas, 17 chaves estrangeiras e 51 registros fictícios. As cinco consultas gerenciais G01 a G05 foram novamente executadas e apresentaram os resultados abaixo, considerando a data de referência fixa de 28/10/2026.
-
-| Consulta | Indicador | Resultado obtido |
+| Consulta | Resultado esperado | Observação |
 |---|---|---|
-| G01 | Lotes próximos do vencimento, considerando os próximos 7 dias | 3 lotes: Maçã (MAC-001), Banana prata (BAN-001) e Tomate (TOM-001) |
-| G02 | Lotes vencidos com estoque disponível | 1 lote: Alface crespa (ALF-001), com saldo de 30,000 |
-| G03 | Valor financeiro das perdas registradas | R$ 20,00, referentes à perda de 10,000 unidades de Alface crespa |
-| G04 | Produtos abaixo do estoque mínimo | 2 produtos: Arroz 5 kg (estoque 5,000; mínimo 10,000) e Cenoura (estoque 0,000; mínimo 10,000) |
-| G05 | Faturamento das vendas concluídas | R$ 19,47, referente a 1 venda concluída em 28/10/2026 |
+| G01 | 3 linhas: Maçã (MAC-001), Banana prata (BAN-001) e Tomate (TOM-001) | Lista os lotes; o indicador de quantidade é a contagem dessas linhas |
+| G02 | 1 linha: Alface crespa (ALF-001), saldo 30,000 | Lote propositalmente vencido com saldo, para testar o alerta |
+| G03 | 1 registro de perda, R$ 20,00 (10,000 × R$ 2,00, Alface crespa) | O custo de R$ 2,00 do lote ainda diverge do preço de compra de R$ 1,50 no pedido |
+| G04 | 2 linhas: Arroz 5 kg (5,000 / mínimo 10,000) e Cenoura (0,000 / mínimo 10,000) | A soma inclui lote vencido. Se tirar a alface, passaria de 2 para 3 produtos abaixo do mínimo |
+| G05 | R$ 24,48 em uma venda concluída em 28/10/2026 | Dois pagamentos (dinheiro R$ 10,00 + débito R$ 14,48). Bate com o total dessa venda fictícia |
+| G06 | Dinheiro R$ 10,00 e Débito R$ 14,48 | Só aparece nesta massa; crédito ainda não foi demonstrado |
 
 **Resultados das auditorias SQL — Validação em 28/10/2026**
 
