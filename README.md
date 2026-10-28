@@ -421,8 +421,7 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 | Regras de negócio incompletas | Foram acrescentadas regras sobre validade, estoque mínimo, FEFO, perdas, pagamentos, permissões, produtos a granel e LGPD. | Para deixar o modelo mais completo e coerente com os processos. |
 | Inconsistência no cadastro de clientes | A entidade CLIENTE foi retirada do modelo proposto. | O mercado não realiza cadastro de clientes para registrar as vendas. |
 | Cardinalidades e relacionamentos incorretos | Foram revisadas as cardinalidades e criadas entidades para representar itens de compra, itens de venda, lotes, pagamentos e perdas. | Para representar corretamente as relações entre os dados. |
-| Dicionário de dados incompleto | A estrutura foi revisada para 13 tabelas e 17 chaves estrangeiras. A atualização do dicionário de dados deverá ser concluída com base no SQL implementado. | Para corrigir as inconsistências e completar a documentação técnica. |
-| Dicionário de dados incompleto | O dicionário será atualizado com base no modelo lógico revisado, incluindo chaves, tipos de dados, restrições e índices. | Para corrigir as inconsistências e completar a documentação técnica. |
+| Dicionário de dados incompleto | O arquivo `Dicionario_Dados.md` foi atualizado e revisado, documentando as 13 tabelas, 74 colunas, chaves primárias, chaves estrangeiras, tipos de dados e limitações da implementação. | Para corrigir as inconsistências da Entrega 1 e manter a documentação compatível com a estrutura verificada no MySQL. |
 | Justificativas técnicas superficiais | Foram acrescentadas explicações sobre entidades, relacionamentos, cardinalidades, normalização e decisões de implementação nas seções 1.2 a 1.5. | Para demonstrar o entendimento do grupo sobre o modelo desenvolvido. |
 
 ### 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
