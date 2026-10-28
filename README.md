@@ -436,6 +436,8 @@ A delimitação do escopo busca concentrar o desenvolvimento no problema P1 — 
 
 **Cardinalidades:** nos relacionamentos 1:N, a chave estrangeira é inserida na tabela do lado N. Em relacionamentos N:N, normalmente é necessária uma tabela associativa para representar todas as combinações possíveis entre as entidades.
 
+**Resolução de relacionamentos por tabelas associativas:** na conversão do modelo conceitual para o modelo lógico, foram utilizadas três tabelas para representar associações entre entidades. A tabela `ITEM_VENDA` relaciona cada venda aos produtos comercializados, armazenando quantidade, preço unitário e subtotal. A tabela `ITEM_PEDIDO_COMPRA` relaciona os pedidos de compra aos produtos solicitados, registrando quantidade e preço de compra. Já a tabela `SAIDA_LOTE` relaciona os itens vendidos aos lotes de origem, permitindo identificar a quantidade retirada de cada lote. Essas estruturas substituem relacionamentos diretos de muitos para muitos por relacionamentos intermediados por tabelas com chaves próprias e referências às entidades envolvidas.
+
 Na implementação acadêmica desta entrega, a relação entre fornecedores e produtos é identificada indiretamente pelas tabelas PEDIDO_COMPRA e ITEM_PEDIDO_COMPRA. Assim, é possível consultar quais produtos foram solicitados a cada fornecedor, sem criar uma tabela FORNECEDOR_PRODUTO. Essa decisão simplifica o modelo para os processos efetivamente implementados, mas não representa um cadastro independente de produtos fornecidos por cada fornecedor.
 
 **Generalização/especialização:** Não foram utilizados relacionamentos de generalização ou especialização no modelo conceitual, pois as entidades identificadas não exigiram esse tipo de estrutura para representar o escopo definido pelo grupo.
