@@ -87,7 +87,7 @@
 
 - **Quando e onde:** A entrevista foi no dia **22/09/2026**, por videochamada no WhatsApp, e durou cerca de uma hora. No dia **30/09/2026**, o Tarcisio foi até o mercado, na Rua Filipe Camarão, 67, no Tatuapé, para observar o funcionamento do local e tirar fotos.
 
-- **O que foi levantado:** Conversamos sobre como o mercado funciona, quantos funcionários e fornecedores tem, o que vende e quais são os principais problemas. Também falamos sobre o VR Software, o controle de estoque, a validade, as perdas, as compras, as vendas e os pagamentos. Depois, no dia 26/10, confirmamos com o responsável, por WhatsApp, alguns detalhes sobre pedidos, notas fiscais, formas de pagamento e fechamento de caixa.
+- **O que foi levantado:** Conversamos sobre como o mercado funciona, quantos funcionários e fornecedores tem, o que vende e quais são os principais problemas. Também falamos sobre o VR Software, o controle de estoque, a validade, as perdas, as compras, as vendas e os pagamentos. Depois, no dia 26/10, confirmamos com o responsável, por WhatsApp, alguns detalhes sobre pedidos, notas fiscais, formas de pagamento e fechamento de caixa. No dia 29/10, confirmamos também, por WhatsApp, como o mercado lida com cadastro de clientes, fidelidade, vendas online, entregas, devoluções a fornecedores e escala dos funcionários.
 
 - **O que o responsável contou:**
   - O mercado perde produtos frescos e de outros setores (padaria, frios e laticínios) por vencimento, por maturação excessiva ou por danos causados por clientes. Essas perdas não são registradas de forma organizada (P1).
@@ -108,7 +108,7 @@
 - **Comprovação:** As fotos tiradas na visita estão na pasta `imagens/evidencias/`. Como a entrevista foi por videochamada, não temos uma foto junto com o responsável. Conversamos sobre isso com o professor em aula, no dia 28/10, e ele aceitou que a entrevista seja comprovada por telefone, com o número do responsável informado acima.
 
 - **Resumo do levantamento:** Pelo que o responsável explicou, a rotina do mercado funciona assim:
-  - **De manhã (retaguarda):** cadastro dos produtos (código de barras, preço, setor, venda por quilo ou por unidade), conferência da nota do fornecedor e entrada no estoque quando a carga chega, e pedidos de compra feitos olhando o giro e os dias de estoque. O fiscal e o financeiro (notas e contas a pagar) também passam pelo sistema.
+  - **De manhã (retaguarda):** cadastro dos produtos (código de barras, preço, setor, venda por quilo ou por unidade), conferência da nota do fornecedor e entrada no estoque quando a carga chega, e pedidos de compra feitos olhando o giro e os dias de estoque. O fiscal e o financeiro (notas e contas a pagar) também passam pelo sistema.itens fora do padrão podem ser devolvidos ou trocados pelo fornecedor, ou gerar abatimento na próxima nota
   - **No caixa:** o operador abre o caixa com o fundo e passa os itens (os de peso vão pela balança). Existem consulta de preço, cancelamento e troca de operador. Cada venda baixa o estoque, na hora se o estoque online estiver ligado, ou depois que o escritório fecha a conferência do dia.
   - **Durante o dia:** repositores e gerência olham o que zerou ou está com pouco giro. Perdas poderiam ser baixadas no sistema, mas não são.
   - **No fim do dia:** fechamento do caixa, sangria e conferência. Depois o sistema junta as vendas do dia e alimenta o estoque, os relatórios e o fiscal.
@@ -117,77 +117,49 @@
 
 ---
 
-#### Processos de Negócio
+Processos de negócio
 
-Os processos abaixo saíram da entrevista, da visita e, quando estiver escrito, de melhoria que o **grupo** propôs. Processos típicos de hortifruti foram checados com o responsável ou justificados quando ficaram de fora. O uso de IA para listar o que é comum no ramo está na seção 6. **Proposta nossa não é a mesma coisa que o responsável confirmou.**
+Com base na entrevista com o responsável, na visita ao Hortifruti União e nas confirmações feitas por WhatsApp em 26/10 e 29/10, identificamos os principais processos que fazem parte da rotina do mercado. Como o estabelecimento trabalha com vários setores e uma grande quantidade de produtos, existem diferentes atividades que precisam ser organizadas e controladas diariamente. Os detalhes de cada processo estão no [levantamento completo](levantamento/levantamento.md).
 
-##### 1. Processo de venda no caixa
+Para conferir se a lista estava completa, comparamos os processos levantados com os processos típicos de mercados e hortifrutis, com apoio do ChatGPT e pesquisa. O uso de IA está registrado na seção 6.
 
-O cliente apresenta os produtos no caixa. O funcionário identifica cada produto pelo código de barras e consulta nome e preço.
+Os principais processos identificados foram:
 
-Para cada item registram-se produto, quantidade e preço unitário praticado. Calcula-se o total e registra-se a forma (ou as formas) de pagamento.
+- **Cadastro de produtos:** O mercado utiliza o VR Software para cadastrar os produtos, registrando informações como código de barras, preço, setor e forma de venda, que pode ser por quilo ou unidade.
 
-No banco acadêmico: `VENDA` (data/hora, funcionário, valor total, situação), `ITEM_VENDA` (produto, quantidade, preço praticado, subtotal), `PAGAMENTO` e `SAIDA_LOTE` (lotes e quantidades retiradas). O saldo disponível fica em `LOTE`. O script **não demonstra** `UPDATE` automático desse saldo após a venda. Identificação do caixa físico, leitura de código de barras em interface e documento fiscal oficial ficam no sistema do estabelecimento.
+- **Controle de fornecedores:** O mercado trabalha com aproximadamente 340 fornecedores, que abastecem os diferentes setores do estabelecimento. As informações desses fornecedores fazem parte dos dados que precisam ser organizados pelo sistema.
 
-**Dados:** identificação da venda, data e horário, funcionário, produtos, quantidades, preços unitários, subtotais, valor total, formas de pagamento e situação da venda.
+- **Pedidos de compra:** Os pedidos são realizados conforme a necessidade de reposição, considerando o giro dos produtos e a quantidade de dias de estoque disponível.
 
-##### 2. Processo de pedido e recebimento de mercadorias
+- **Recebimento de mercadorias:** Quando os produtos chegam ao mercado, é feita a conferência da nota fiscal do fornecedor e a entrada das mercadorias no estoque pelo sistema. Itens fora do padrão podem ser devolvidos ou trocados, conforme descrito a seguir.
 
-Pedidos aos fornecedores são feitos por e-mail. Na solução proposta, cada pedido é registrado e vinculado a um fornecedor cadastrado (`PEDIDO_COMPRA`, `ITEM_PEDIDO_COMPRA`: produto, quantidade solicitada, valor unitário previsto).
+- **Devolução e troca de mercadorias com fornecedores:** Quando chegam produtos fora do padrão, como caixas de tomate mole, bananas muito verdes, alface murcha ou embalados amassados, o mercado aciona o fornecedor. A situação costuma ser resolvida com a troca da mercadoria ou com um abatimento na próxima nota. Segundo o responsável, isso acontece quase toda semana. Esse processo está ligado ao controle de perdas, pois uma parte do que chega estragado não vira perda do mercado quando o fornecedor troca ou compensa a mercadoria.
 
-No recebimento, as mercadorias vêm com nota fiscal e são conferidas (produtos, quantidades, condições, lotes e validades). Divergências ficam em `RECEBIMENTO.observacao_divergencia`. Lotes aceitos entram em `LOTE`. Recebimento parcial e recusa detalhada não foram especificados o bastante na entrevista e não têm fluxo próprio nesta entrega.
+- **Controle de estoque:** Os produtos são organizados por setor, e os funcionários acompanham quais itens precisam ser repostos. As vendas também atualizam as quantidades em estoque, de forma imediata quando o controle online está ativado ou após a conferência do dia.
 
-**Dados:** pedido, fornecedor (razão social, CNPJ, e-mail), data, produtos, quantidades solicitadas e recebidas, valores unitários, número e série da NF, lote, validade, divergência e situação do recebimento.
+- **Vendas e operação de caixa:** O mercado possui 7 caixas e realiza aproximadamente 1.800 vendas por dia. O operador abre o caixa com o fundo, e os operadores registram os produtos vendidos, utilizam a balança para os itens comercializados por peso, recebem o pagamento dos clientes e podem realizar consultas de preço, cancelamentos de vendas e troca de operador. O mercado aceita todas as formas de pagamento, e as vendas são feitas de forma anônima, sem identificação do cliente.
 
-##### 3. Processo de controle de estoque, lotes e validade
+- **Controle financeiro e fiscal:** O VR Software também é utilizado para controlar notas fiscais, contas a pagar e pagamentos. No final do dia, são realizados o fechamento dos caixas, as sangrias e a conferência das vendas.
 
-O estoque considera quantidades por produto e movimentações de entrada, venda e perda. Um produto pode ter vários lotes, cada um com número, validade e quantidade disponível. A data de recebimento está em `RECEBIMENTO.data_recebimento`, não em coluna `data_entrada` de `LOTE`.
+- **Controle de validade e lote:** Os funcionários verificam as datas de validade diretamente nos produtos. Apesar de o sistema possuir recursos para registrar lote e validade, esse controle não é utilizado na prática, dificultando a identificação dos itens próximos do vencimento.
 
-Consulta-se estoque por código, nome ou código de barras; identificam-se produtos abaixo do mínimo (`PRODUTO.estoque_minimo`, consulta G04) e lotes próximos do vencimento (G01) ou vencidos (G02). A estratégia FEFO é regra proposta (RN14); a seleção automática do lote **não** está no script. Perdas (`PERDA`) registram lote, quantidade, data, motivo e funcionário; a baixa automática do saldo **não** é executada pelo script.
+- **Controle de perdas:** O mercado descarta produtos que estragam, vencem ou sofrem danos. Porém, essas perdas não são registradas de forma organizada, o que dificulta saber quais produtos foram perdidos, suas quantidades e os motivos.
 
-**Dados:** produto, código de barras, lote, número do lote, data de recebimento, validade, quantidade recebida, quantidade disponível, estoque mínimo, saídas, quantidade perdida, motivo e funcionário.
+- **Promoções de produtos próximos do vencimento:** Quando os funcionários encontram produtos próximos da validade, eles podem receber uma placa de promoção para incentivar a venda antes do vencimento. Esse processo é feito por meio da observação dos produtos, sem uma lista de vencimentos.
 
-##### 4. Processo de pagamento
+- **Gestão de funcionários e setores:** O mercado tem cerca de 110 funcionários e vários setores (hortifruti, padaria, frios, laticínios, alimentos embalados e produtos secos). O banco de dados deverá armazenar as informações sobre funcionários e setores, conforme o escopo definido para o sistema.
 
-Aceita-se dinheiro, débito e crédito; não se aceita Pix. Uma venda pode ter mais de um pagamento; a soma deve igualar o total (RN15). O banco não tem campo de situação do pagamento; a situação da operação está em `VENDA`. A massa atual tem **um** pagamento; pagamento dividido **não** foi demonstrado no script.
+#### Processos comuns que não foram incluídos no levantamento
 
-**Dados:** identificação do pagamento, venda, forma, valor, data e horário.
+Em mercados e hortifrutis costumam existir outros processos além dos listados acima. Em 29/10/2026, confirmamos com o responsável, por WhatsApp, como o Hortifruti União lida com cada um deles. Os que não foram incluídos no modelo e os motivos são:
 
-##### 5. Processo de cancelamento
-
-Retirada de item antes de concluir a venda não deve baixar estoque em definitivo. Cancelamento de venda já concluída depende de gerente ou fiscal de caixa (RN10). O banco tem campos para situação, motivo, data/hora e funcionário do cancelamento; o script **não executa** um cancelamento. Devolução ao lote de origem não foi demonstrada.
-
-**Dados:** venda, itens, produtos, lotes, quantidades, motivo, data/hora, funcionário e situação.
-
-##### 6. Processo de alteração de preços e emissão de etiquetas
-
-Alteração de preço: líderes de setor, gerente e proprietários. O ERP já guarda histórico (horário e usuário). O banco acadêmico mantém só o preço atual. Etiquetas e impressão ficam fora da implementação prática.
-
-**Dados consultáveis:** código do produto, código de barras, nome de gôndola e preço atual (`PRODUTO`).
-
-##### 7. Processo de controle de acesso
-
-O ERP aplica permissão por função. `FUNCIONARIO` identifica quem realizou venda ou perda. Não há login, senha, perfil nem auditoria de usuário neste banco. Identificar o funcionário na operação **não prova** que ele tinha permissão.
-
-**Dados (propostos para evolução, não implementados):** usuário, senha protegida, perfil, permissão e log de auditoria.
-
-##### 8. Processo de fechamento de caixa
-
-Ao final do dia, o operador confere o dinheiro físico com o saldo esperado em espécie (fundo + entradas − saídas em dinheiro). Fiscal de caixa ou gerente valida. Cartões não entram na contagem física.
-
-Não há módulo de abertura, fundo, contagem, diferença e validação. O banco guarda vendas e pagamentos para consulta, sem substituir o caixa do ERP.
-
-**Dados (processo real, sem tabelas próprias):** caixa, data, operador, validador, fundo, entradas e saídas em dinheiro, saldo esperado, valor contado, diferença e situação.
-
-##### Processos não incluídos no escopo atual
-
-- **Contas a pagar:** vencimentos, parcelas e situação financeira não foram levantados com segurança.
-- **Escala de funcionários:** não detalhada.
-- **Jornada e ponto:** não detalhados.
-
-Poderão entrar depois se o responsável confirmar regras e dados. Ficaram de fora por **falta de levantamento**, não porque o grupo diga que esses processos não existem.
-
-Também ficam de fora: cadastro de cliente e fidelidade (o mercado não cadastra cliente na venda) e Pix (não aceito).
+| Processo comum | Situação no Hortifruti União | Motivo de não entrar no modelo |
+| :---- | :---- | :---- |
+| Cadastro de clientes | Não realiza | As vendas são feitas de forma anônima no caixa, sem identificação do cliente. |
+| Programa de fidelidade | Não possui | Não há cadastro de clientes nem desconto para clientes identificados. |
+| Vendas pela internet ou aplicativo | Não realiza | O mercado vende apenas de forma presencial. |
+| Entregas em domicílio | Não realiza | O mercado não faz entregas, nem com equipe própria nem com terceiros. |
+| Escala dos funcionários | Realiza, fora do sistema | A escala é feita em planilha, sem uso do VR Software. Os funcionários continuam no banco de dados, mas a escala fica fora do escopo. |
 
 ##### Fluxogramas
 
