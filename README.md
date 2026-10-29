@@ -323,7 +323,7 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 ### Lotes e estoque
 
 - **RN14 [Proposta]** Todo lote estará relacionado a um produto recebido e terá quantidade positiva.
-- **RN15 [Confirmada + Proposta]** Frutas, legumes e verduras geralmente não possuem validade impressa e são avaliados visualmente. Produtos com validade impressa terão essa informação registrada no lote.
+- **RN15 [Confirmada + Proposta]** Frutas, legumes e verduras geralmente não possuem validade impressa e são avaliados visualmente. Produtos que possuem validade impressa terão essa informação registrada no lote. Os demais serão acompanhados pelo controle de estoque e perdas.
 - **RN16 [Proposta]** O saldo do produto será a soma dos saldos dos seus lotes.
 - **RN17 [Proposta]** Nenhuma saída poderá ultrapassar o saldo disponível do lote. Cancelamentos geram estorno, e não exclusão.
 - **RN18 [Proposta]** Nas vendas, o sistema poderá priorizar o lote que vence primeiro ou, quando não houver validade, o lote mais antigo.
@@ -356,7 +356,7 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 
 - **RN34 [Confirmada + Proposta]** Contas a pagar relacionadas às compras terão vencimento, valor e recebimento de origem.
 - **RN35 [Proposta]** Uma conta poderá estar aberta, paga ou cancelada.
-- **RN36 [Proposta]** A soma das contas relacionadas a uma nota deverá corresponder ao valor da nota.
+- **RN36 [Proposta]** As contas a pagar devem manter o valor original da nota, e eventuais abatimentos do fornecedor serão registrados separadamente.
 
 ### Devoluções e abatimentos
 
