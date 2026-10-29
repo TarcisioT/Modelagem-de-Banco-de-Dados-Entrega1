@@ -310,7 +310,7 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 - **RN05 [Proposta]** Produtos, fornecedores, funcionários e caixas com histórico não serão excluídos, apenas inativados.
 - **RN06 [Proposta]** O CNPJ do fornecedor não poderá se repetir.
 - **RN07 [Proposta]** O CPF do funcionário não poderá se repetir.
-- **RN08 [Confirmada + Proposta]** O mercado aceita diferentes formas de pagamento, que serão mantidas em um cadastro próprio.
+- **RN08 [Confirmada]** O mercado aceita pagamento em dinheiro, débito, crédito, Pix e vale-alimentação (VA). Essas formas serão registradas no cadastro de formas de pagamento do banco.
 
 ### Compras e recebimento
 
