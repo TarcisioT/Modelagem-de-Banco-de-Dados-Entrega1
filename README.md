@@ -2,7 +2,7 @@
 
 ### Modelagem de um sistema de gestão de informações — Hortifruti União (Tatuapé)
 
-### Integrantes
+## Integrantes
 
 | Nome completo do aluno | RGM | Usuário do GitHub |
 | :---- | :---- | :---- |
@@ -14,11 +14,9 @@
 
 &nbsp;
 
-### 1.1 Revisão do Modelo Conceitual
+## 1.1 Revisão do Modelo Conceitual
 
-**Caracterização da organização**
-
-#### Hortifruti União
+### Caracterização da organização
 
 - **Nome e natureza da organização:** O Hortifruti União é um mercado localizado no bairro do Tatuapé, em São Paulo. É uma empresa privada que atua no varejo alimentício, tendo como principal atividade a venda de frutas, legumes e verduras. Além disso, o estabelecimento também conta com setores de padaria, frios, laticínios, alimentos embalados e produtos secos. É a mesma organização real que usamos na Entrega 1, e seguimos com ela nesta etapa.
 
@@ -81,18 +79,24 @@
 
 ![Fotografia do estoque](imagens/evidencias/estoque_mercado.jpeg)
 
-#### Relato da entrevista
+### Relato da entrevista
 
 - **Quem:** Guilherme Takemoto, um dos proprietários do Hortifruti União – Tatuapé. A entrevista e a visita foram feitas pelo Tarcisio, que já trabalhou no mercado. Os outros integrantes do grupo não participaram.
 
 - **Quando e onde:** A entrevista foi no dia **22/09/2026**, por videochamada no WhatsApp, e durou cerca de uma hora. No dia **30/09/2026**, o Tarcisio foi até o mercado, na Rua Filipe Camarão, 67, no Tatuapé, para observar o funcionamento do local e tirar fotos.
 
-- **O que foi levantado:** Conversamos sobre como o mercado funciona, quantos funcionários e fornecedores tem, o que vende e quais são os principais problemas. Também falamos sobre o VR Software, o controle de estoque, a validade, as perdas, as compras, as vendas e os pagamentos. Depois, no dia 26/10, confirmamos com o responsável, por WhatsApp, alguns detalhes sobre pedidos, notas fiscais, formas de pagamento e fechamento de caixa. No dia 29/10, confirmamos também, por WhatsApp, como o mercado lida com cadastro de clientes, fidelidade, vendas online, entregas, devoluções a fornecedores e escala dos funcionários.
+- **O que foi levantado:** Conversamos sobre como o mercado funciona, quantos funcionários e fornecedores tem, o que vende e quais são os principais problemas. Também falamos sobre o VR Software, o controle de estoque, a validade, as perdas, as compras, as vendas e os pagamentos. Depois, no dia 26/10, confirmamos com o responsável, por WhatsApp, alguns detalhes sobre pedidos, notas fiscais, formas de pagamento e fechamento de caixa. No dia 29/10, confirmamos também, por WhatsApp, como o mercado lida com cadastro de clientes, fidelidade, vendas online, entregas, devoluções a fornecedores, escala dos funcionários, cancelamento de vendas, venda restrita por idade, validade dos produtos por setor, venda fiado e troca ou devolução feita pelo cliente.
 
 - **O que o responsável contou:**
   - O mercado perde produtos frescos e de outros setores (padaria, frios e laticínios) por vencimento, por maturação excessiva ou por danos causados por clientes. Essas perdas não são registradas de forma organizada (P1).
   - Acompanhar a validade de cerca de 6 mil itens por mês é difícil, e os funcionários costumam perceber que um produto venceu só quando o encontram na rotina (P2).
   - O VR Software é o sistema da loja e cuida de venda e nota. Ele é usado para cadastrar produtos, dar entrada nas mercadorias, fazer pedidos de compra, operar o caixa, controlar o fiscal e o financeiro e fechar o dia. O sistema tem tela para registrar lote, validade e perdas, mas, segundo o responsável, isso só funciona se alguém cadastrar e baixar tudo todos os dias, o que é difícil com tantos itens. Na prática, esse controle não é feito.
+  - Frutas, legumes e verduras geralmente não têm validade impressa e são avaliados visualmente pelos funcionários. Os produtos que têm validade impressa são os embalados e industrializados.
+  - O prazo para considerar um produto próximo do vencimento varia conforme o setor.
+  - O cancelamento de uma venda no caixa precisa da autorização de um supervisor.
+  - Alguns produtos têm venda restrita por idade, e o operador precisa ficar atento a isso no atendimento.
+  - O mercado não vende fiado. Todas as vendas são pagas no caixa.
+  - A troca ou devolução de produtos pelo cliente existe, mas é rara, e é tratada pela gerência ou pela retaguarda.
 
 - **O que observamos na visita (30/09/2026):**
   - A validade é conferida a olho nu pelos funcionários, sem etiqueta de controle, lista ou qualquer registro das datas (P2).
@@ -115,9 +119,7 @@
 
 - **Levantamento completo:** os processos e regras com mais detalhe estão em [levantamento/levantamento.md](levantamento/levantamento.md).
 
----
-
-Processos de negócio
+### Processos de negócio
 
 Com base na entrevista com o responsável, na visita ao Hortifruti União e nas confirmações feitas por WhatsApp em 26/10 e 29/10, identificamos os principais processos que fazem parte da rotina do mercado. Como o estabelecimento trabalha com vários setores e uma grande quantidade de produtos, existem diferentes atividades que precisam ser organizadas e controladas diariamente. Os detalhes de cada processo estão no [levantamento completo](levantamento/levantamento.md).
 
@@ -137,7 +139,7 @@ Os principais processos identificados foram:
 
 - **Controle de estoque:** Os produtos são organizados por setor, e os funcionários acompanham quais itens precisam ser repostos. As vendas também atualizam as quantidades em estoque, de forma imediata quando o controle online está ativado ou após a conferência do dia.
 
-- **Vendas e operação de caixa:** O mercado possui 7 caixas e realiza aproximadamente 1.800 vendas por dia. Os operadores abrem o caixa com o fundo, registram os produtos vendidos, usam a balança para os itens vendidos por peso, recebem o pagamento dos clientes e podem fazer consultas de preço, cancelamentos de venda e troca de operador. O mercado aceita todas as formas de pagamento, e as vendas são feitas de forma anônima, sem identificação do cliente.
+- **Vendas e operação de caixa:** O mercado possui 7 caixas e realiza aproximadamente 1.800 vendas por dia. Os operadores abrem o caixa com o fundo, registram os produtos vendidos, usam a balança para os itens vendidos por peso, recebem o pagamento dos clientes e podem fazer consultas de preço, cancelamentos de venda e troca de operador. O mercado aceita pagamento em dinheiro, débito, crédito, Pix e vale-alimentação (VA), e as vendas são feitas de forma anônima, sem identificação do cliente.
 
 - **Controle financeiro e fiscal:** O VR Software também é utilizado para controlar notas fiscais, contas a pagar e pagamentos. No final do dia, são realizados o fechamento dos caixas, as sangrias e a conferência das vendas.
 
@@ -161,10 +163,12 @@ Em mercados e hortifrutis costumam existir outros processos além dos listados a
 | Programa de fidelidade | Não possui | Não há cadastro de clientes nem desconto para clientes identificados. |
 | Vendas pela internet ou aplicativo | Não realiza | O mercado vende apenas de forma presencial. |
 | Entregas em domicílio | Não realiza | O mercado não faz entregas, nem com equipe própria nem com terceiros. |
+| Venda fiado e crediário | Não realiza | Todas as vendas são pagas no caixa. |
+| Troca ou devolução pelo cliente | Existe, mas é rara | É tratada pela gerência ou retaguarda, com os ajustes feitos no sistema utilizado pelo mercado. Por isso, não foi criado um fluxo próprio no caixa. |
 
 Essa mesma conversa também confirmou a devolução e troca com fornecedores e a escala dos funcionários. Como o mercado realiza os dois, eles entraram na lista principal de processos.
 
-##### Fluxogramas
+#### Fluxogramas
 
 **Fluxograma do processo de venda:**
 
@@ -176,8 +180,7 @@ Essa mesma conversa também confirmou a devolução e troca com fornecedores e a
 
 ---
 
-
-## Requisitos do Sistema
+## 1.2 Requisitos do Sistema
 
 Os requisitos abaixo foram definidos a partir da entrevista de 22/09/2026, da visita de 30/09/2026 e das confirmações por WhatsApp de 26/10 e 29/10/2026. O que foi informado pelo responsável ou observado na visita é tratado como **levantamento**. Já os campos, validações e controles definidos pelo grupo para organizar o banco são tratados como **proposta**.
 
@@ -185,19 +188,19 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 
 ### Requisitos Funcionais
 
-**Cadastros**
+#### Cadastros
 
 | Código | Requisito | Dados envolvidos |
 | :---- | :---- | :---- |
 | RF01 | Cadastrar e atualizar setores. | Nome, descrição e dias de antecedência do alerta de validade. |
-| RF02 | Cadastrar, atualizar e inativar produtos. | Código interno (PLU), código de barras quando existir, nome, setor, unidade de venda, preço, estoque mínimo, situação, validade impressa e restrição de venda por idade. |
+| RF02 | Cadastrar, atualizar e inativar produtos. | Código interno (PLU), código de barras quando existir, nome, setor, unidade de venda, preço, estoque mínimo, situação, indicador de validade impressa e restrição de venda por idade. |
 | RF03 | Cadastrar, atualizar e inativar fornecedores. | Razão social, CNPJ, telefone, e-mail, endereço e situação. |
 | RF04 | Relacionar produtos aos fornecedores. | Fornecedor, produto e código do produto no fornecedor. |
 | RF05 | Cadastrar formas de pagamento. | Descrição e situação. |
 | RF06 | Cadastrar e inativar caixas. | Número e situação. |
 | RF07 | Cadastrar motivos de perda. | Descrição e situação. |
 
-**Funcionários e escala**
+#### Funcionários e escala
 
 | Código | Requisito | Dados envolvidos |
 | :---- | :---- | :---- |
@@ -205,7 +208,7 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 | RF09 | Registrar a escala de trabalho. | Funcionário, data, tipo (trabalho ou folga) e horários, quando for dia de trabalho. |
 | RF10 | Consultar a escala por data, funcionário ou setor. | Funcionário, setor, data e horários. |
 
-**Compras e recebimento**
+#### Compras e recebimento
 
 | Código | Requisito | Dados envolvidos |
 | :---- | :---- | :---- |
@@ -217,7 +220,7 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 | RF16 | Registrar devolução, troca ou abatimento negociado com o fornecedor. | Fornecedor, recebimento, itens, quantidades, tipo, motivo, valor do abatimento, situação, funcionário e data. |
 | RF17 | Consultar pedidos, recebimentos e divergências por fornecedor e período. | Quantidades pedidas, aceitas e recusadas. |
 
-**Estoque**
+#### Estoque
 
 | Código | Requisito | Dados envolvidos |
 | :---- | :---- | :---- |
@@ -225,7 +228,7 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 | RF19 | Registrar saídas de lote e seus estornos. | Lote, quantidade, venda ou perda de origem, data e hora. |
 | RF20 | Consultar produtos com estoque baixo ou pouco giro. | Produto, setor, saldo, estoque mínimo e quantidade vendida no período. |
 
-**Vendas e caixa**
+#### Vendas e caixa
 
 | Código | Requisito | Dados envolvidos |
 | :---- | :---- | :---- |
@@ -242,7 +245,7 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 | RF31 | Registrar os dados do documento fiscal relacionado à venda. | Venda, tipo, número, série, chave de acesso, data e situação. |
 | RF32 | Consultar vendas por período, caixa, operador e forma de pagamento. | Totais de vendas concluídas e canceladas. |
 
-**Financeiro**
+#### Financeiro
 
 | Código | Requisito | Dados envolvidos |
 | :---- | :---- | :---- |
@@ -251,15 +254,15 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 | RF35 | Vincular abatimento do fornecedor à conta em que será descontado. | Devolução de origem, conta e valor abatido. |
 | RF36 | Consultar contas por vencimento, situação e fornecedor. | Fornecedor, vencimento, valor e situação. |
 
-**Perdas (P1)**
+#### Perdas (P1)
 
 | Código | Requisito | Dados envolvidos |
 | :---- | :---- | :---- |
-| RF37 | Registrar perdas de produtos. | Data, produto, lote ou situação “lote a confirmar”, quantidade, motivo, setor, funcionário, valor quando possível e observação. |
+| RF37 | Registrar perdas de produtos. | Data, produto, lote ou situação "lote a confirmar", quantidade, motivo, setor, funcionário, valor quando possível e observação. |
 | RF38 | Consultar perdas por setor, motivo, produto e período. | Quantidades, valores e perdas com lote ainda a confirmar. |
 | RF39 | Comparar perdas com mercadorias devolvidas, trocadas ou compensadas pelo fornecedor. | Período, fornecedor, setor, perdas e devoluções. |
 
-**Validade e promoções (P2)**
+#### Validade e promoções (P2)
 
 | Código | Requisito | Dados envolvidos |
 | :---- | :---- | :---- |
@@ -296,7 +299,9 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 | Venda fiado e crediário | Não realiza | Todas as vendas são pagas no caixa. |
 | Troca ou devolução pelo cliente | Existe, mas é rara | É tratada pela gerência ou retaguarda, com os ajustes feitos no sistema utilizado pelo mercado. Por isso, não foi criado um fluxo próprio no caixa. |
 
-## Regras de Negócio
+---
+
+## 1.3 Regras de Negócio
 
 **[Confirmada]** indica uma prática informada pelo responsável ou observada na visita.  
 **[Proposta]** indica uma regra definida pelo grupo para organizar o banco.
@@ -327,7 +332,7 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 - **RN16 [Proposta]** O saldo do produto será a soma dos saldos dos seus lotes.
 - **RN17 [Proposta]** Nenhuma saída poderá ultrapassar o saldo disponível do lote. Cancelamentos geram estorno, e não exclusão.
 - **RN18 [Proposta]** Nas vendas, o sistema poderá priorizar o lote que vence primeiro ou, quando não houver validade, o lote mais antigo.
-- **RN19 [Confirmada + Proposta]** Neste banco, a baixa de estoque será registrada quando a venda for concluída.
+- **RN19 [Proposta]** Neste banco, a baixa de estoque será registrada quando a venda for concluída. No mercado, a baixa pode ser imediata ou após a conferência do dia, conforme o controle online esteja ativado ou não.
 
 ### Vendas e pagamentos
 
@@ -366,9 +371,9 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 
 ### Perdas
 
-- **RN40 [Confirmada + Proposta]** O levantamento identificou perdas por vencimento, maturação excessiva e danos causados por clientes. Esses casos formarão a lista inicial de motivos, além da opção “Outros”.
+- **RN40 [Confirmada + Proposta]** O levantamento identificou perdas por vencimento, maturação excessiva e danos causados por clientes. Esses casos formarão a lista inicial de motivos, além da opção "Outros".
 - **RN41 [Proposta]** Toda perda terá produto, quantidade, motivo, setor, funcionário, data e situação do lote.
-- **RN42 [Proposta]** Quando o lote da perda for conhecido, a quantidade perdida será baixada desse lote. Se o lote não for conhecido, a perda ficará como “lote a confirmar” até que essa informação seja conferida.
+- **RN42 [Proposta]** Quando o lote da perda for conhecido, a quantidade perdida será baixada desse lote. Se o lote não for conhecido, a perda ficará como "lote a confirmar" até que essa informação seja conferida.
 - **RN43 [Proposta]** Uma perda registrada não será apagada. Correções manterão o registro original.
 - **RN44 [Proposta]** O valor da perda será calculado com base na quantidade e no custo do lote. Perdas sem lote confirmado ficarão sem valor até a identificação.
 
@@ -402,7 +407,10 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 | **P2 – Falta de controle de validade dos produtos** | RF01, RF02, RF15, RF18 e RF40 a RF43 | RN14 a RN16, RN18 e RN45 a RN48 | Permitem registrar a validade dos lotes, identificar produtos próximos do vencimento ou vencidos e acompanhar promoções antes do vencimento. |
 
 A relação entre os problemas, as tabelas do banco e as consultas SQL será detalhada posteriormente na seção 1.6.
-#### DER Conceitual Revisado
+
+---
+
+## 1.4 DER Conceitual Revisado
 
 **Software utilizado:** brModelo 3.2.0. Notação de entidades, atributos, relacionamentos e cardinalidades (mín, máx). **Chaves estrangeiras não aparecem no DER conceitual**; estão no modelo lógico (seção 2) e no dicionário.
 
