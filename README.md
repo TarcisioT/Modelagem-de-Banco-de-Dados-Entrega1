@@ -335,7 +335,7 @@ O banco será desenvolvido em MySQL e funcionará de forma independente do VR So
 - **RN21 [Confirmada]** As vendas são anônimas, sem cadastro de clientes.
 - **RN22 [Confirmada + Proposta]** Produtos vendidos por quilo aceitam quantidade decimal e produtos por unidade utilizam quantidade inteira.
 - **RN23 [Proposta]** O total da venda será a soma dos itens que não estiverem cancelados.
-- **RN24 [Confirmada + Proposta]** O mercado não vende fiado. Toda venda deve ser paga no caixa, podendo utilizar mais de uma forma de pagamento.
+- **RN24 [Confirmada]** O mercado não vende fiado e as vendas são pagas no caixa, podendo utilizar uma ou mais formas de pagamento na mesma venda.
 
 ### Cancelamentos e vendas restritas
 
