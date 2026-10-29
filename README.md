@@ -2,8 +2,6 @@
 
 ### Modelagem de um sistema de gestão de informações — Hortifruti União (Tatuapé)
 
-**Relatório Técnico Final — Entrega 2.** Continuamos com o Hortifruti União (Tatuapé), a mesma organização da Entrega 1. Os números de movimento vieram da entrevista; não conferimos porte jurídico nem fiscal. O esqueleto fala em “organização de medio porte”, mas o mercado tem cerca de 110 funcionários e um volume alto de vendas.
-
 ### Integrantes
 
 | Nome completo do aluno | RGM | Usuário do GitHub |
@@ -18,54 +16,61 @@
 
 ### 1.1 Revisão do Modelo Conceitual
 
-#### Caracterização da Organização
+**Caracterização da organização**
 
-- **Nome e natureza da organização:** Hortifruti União – Tatuapé, empresa privada com fins lucrativos, do comércio varejista alimentício.
+#### Hortifruti União
 
-- **Contexto e dimensão operacional:** o mercado abre todos os dias. Os números abaixo são o que o responsável nos passou na conversa; não saíram de relatório do ERP nem de auditoria:
+- **Nome e natureza da organização:** O Hortifruti União é um mercado localizado no bairro do Tatuapé, em São Paulo. É uma empresa privada que atua no varejo alimentício, tendo como principal atividade a venda de frutas, legumes e verduras. Além disso, o estabelecimento também conta com setores de padaria, frios, laticínios, alimentos embalados e produtos secos. É a mesma organização real que usamos na Entrega 1, e seguimos com ela nesta etapa.
 
-  - **Pessoas:** uns 110 funcionários e 7 caixas.
-  - **Vendas:** em média 2.400 transações por dia (cerca de 72.000 no mês), ticket médio de R$ 70 e faturamento perto de R$ 5,04 milhões por mês.
-  - **Produtos:** 28 mil SKUs no cadastro, entre ativos e inativos.
-  - **Fornecedores:** 650 cadastrados; uns 350 tiveram movimentação nos últimos 90 dias.
-  - **Recebimento:** cerca de 1.200 lotes por semana (lote = produto + fornecedor + identificação no recebimento).
-  - **Perdas:** cerca de R$ 75 mil por mês (em torno de 1,5% do faturamento), somando vencimento, avaria, quebra e produto estragado.
+  A organização foi escolhida pelo grupo para a realização do trabalho, sendo possível obter informações sobre seu funcionamento por meio de uma entrevista com um dos responsáveis pelo mercado.
+
+- **Contexto e porte:** O Hortifruti União é uma empresa de médio porte, com fins lucrativos, que funciona todos os dias da semana, incluindo domingos e feriados.
+
+  Durante a entrevista, o responsável compartilhou algumas informações sobre o tamanho e o funcionamento do estabelecimento. Como não tinha relatórios disponíveis no momento, os números foram informados de memória e devem ser considerados aproximados.
+
+  - Cerca de 110 funcionários;
+  - 7 caixas;
+  - Cerca de 1.800 vendas por dia;
+  - Aproximadamente 340 fornecedores;
+  - Faturamento mensal estimado em R$ 5 milhões;
+  - Cerca de 6 mil itens diferentes vendidos por mês.
+
+  Esses números ajudam a entender o tamanho da operação e a quantidade de informações que o mercado precisa controlar diariamente, principalmente em relação aos produtos, estoque, validade e perdas.
 
 - **Problemas e necessidades identificados:**
 
-  - **P1 — Controle de validade e rastreabilidade dos lotes:** no VR Software dá para cadastrar validade, mas esse registro não é usado de forma sistemática no dia a dia. Lotes diferentes do mesmo produto compartilham o mesmo código de barras, então esse código, sozinho, não distingue um lote do outro. A organização da gôndola e do estoque também pode dificultar que o que vence primeiro saia antes.
+  **P1 – Falta de controle sobre a perda de produtos**
 
-  - **O que o modelo faz com o P1:** cada lote tem código próprio, produto, validade e saldo (`LOTE`). A venda liga a quantidade ao lote em `SAIDA_LOTE`, e o descarte vai para `PERDA`. G01 e G02 mostram o que está para vencer ou já venceu; G03 mostra o custo da perda. **O que o banco sozinho não resolve:** o código de barras continua sendo do produto, não do lote. Sem um jeito de marcar o lote na hora de separar a mercadoria, a rastreabilidade no papel não vira prática no salão. Consulta também não substitui FEFO, bloqueio no caixa nem a organização física.
+  Esse foi o primeiro problema mencionado pelo responsável durante a entrevista. Como o mercado trabalha com muitos produtos frescos, parte deles acaba estragando quando não é vendida a tempo. Ele citou exemplos como frutas muito maduras, verduras murchas, tomates amassados e bananas que começam a escurecer.
 
-- **Escopo do sistema:** o banco cobre o que de fato levantamos — não só estoque e também não “toda a administração” do hortifruti. O que ficou de fora está justificado mais abaixo.
+  Essas perdas também acontecem em outros setores, como padaria, frios e laticínios. Além disso, existem situações em que os produtos são danificados pelos próprios clientes, como quando algum pote de vidro ou garrafa cai e quebra nos corredores.
 
-  Entram:
-  - categorias, produtos, fornecedores e funcionários;
-  - pedidos de compra e itens;
-  - recebimento e dados da NF de entrada;
-  - lotes, validade, saldo, saída por lote e perda;
-  - vendas, itens, pagamentos e, em `VENDA`, campos para cancelamento.
+  O principal problema identificado é a falta de um registro organizado dessas perdas. Atualmente, o mercado não consegue acompanhar com precisão quais produtos foram descartados, em que quantidade e por qual motivo. Sem essas informações, fica difícil identificar os setores com mais perdas e entender quanto isso representa de prejuízo.
 
-  As consultas e a demonstração SQL giram em torno do **P1** (validade e lote). Compra, venda, pagamento e responsável entram para o modelo fazer sentido. FEFO automático, permissão por cargo, baixa automática do saldo e fechamento de caixa **não** têm módulo nesta entrega.
+  Por isso, uma das necessidades do mercado é ter um controle que permita registrar os produtos perdidos, suas quantidades, os motivos do descarte e os setores envolvidos. Dessa forma, seria possível consultar essas informações e acompanhar melhor as perdas do estabelecimento.
 
-  **O que existe no mercado e o que fizemos com isso:**
+  **P2 – Falta de controle de validade dos produtos**
 
-  - **Cancelamento de venda:** campos em `VENDA` (`situacao_venda`, `motivo_cancelamento`, `data_hora_cancelamento`, `codigo_funcionario_cancelamento`). O script **não** mostra um `UPDATE` de cancelamento.
-  - **Preço e histórico:** o VR já guarda horário e usuário. Aqui só fica o preço atual em `PRODUTO.preco_venda`.
-  - **Fechamento de caixa:** o responsável confirmou o processo. Não criamos tabela de fundo, contagem e diferença. Dá para consultar venda e pagamento; não substitui o caixa do ERP.
-  - **NF de saída e integração com o VR:** fora do trabalho prático. A obrigação fiscal continua com eles.
-  - **Tela de caixa, etiqueta e senha:** fora desta entrega.
+  Outro problema relatado pelo responsável foi a dificuldade em acompanhar as datas de validade dos produtos. Como o mercado comercializa cerca de 6 mil itens diferentes por mês, controlar todos os vencimentos acaba sendo uma tarefa complicada para a equipe.
 
-  **Processos comuns de varejo que não modelamos porque o levantamento não deu base** (não estamos dizendo que não existem): contas a pagar, escala e ponto.
+  Segundo ele, alguns produtos acabam vencendo nas prateleiras ou no estoque, e muitas vezes os funcionários só percebem quando encontram algum item vencido durante a rotina de trabalho.
 
-- **Justificativa da escolha:** é um comércio real, com compra, recebimento, estoque e venda. O Tarcisio conhece um dos responsáveis, e por isso conseguimos a entrevista, a visita e os números. Isso **não** tira a obrigação de comprovar entrevista e visita. O caso serve para a disciplina porque a dificuldade no controle das informações de lote e validade aparece na operação e pode ser trabalhada num banco relacional.
+  O problema está na falta de um controle que permita consultar quais produtos estão próximos do vencimento. Sem essas informações organizadas, o mercado acaba perdendo a oportunidade de tomar alguma medida antes que os produtos vençam.
+
+  Dessa forma, o estabelecimento precisa de um controle que permita registrar e consultar as datas de validade dos produtos, facilitando a identificação daqueles que estão próximos de vencer. Com essas informações, a equipe poderia se organizar melhor para realizar promoções, reorganizar os produtos nas prateleiras ou retirá-los da exposição quando necessário.
+    
+- **Escopo do sistema:** O banco de dados do Hortifruti União será desenvolvido para organizar as informações do mercado como um todo, e não apenas dos problemas de perda e validade dos produtos. Ele deverá incluir dados sobre funcionários, fornecedores, produtos e setores, além de registros de compras, vendas, estoque e pagamentos. Também será possível registrar as perdas e acompanhar as datas de validade dos produtos. Com essas informações reunidas em um só lugar, o mercado poderá ter um controle melhor das suas atividades e consultar os dados com mais facilidade.
+
+  Vale lembrar que o VR Software, o sistema que o mercado já usa, tem recursos para registrar lote, validade e perdas, mas, segundo o responsável, eles não são usados no dia a dia. Por isso, o problema não é a falta de um sistema, e sim a falta de um registro organizado e fácil de consultar desses dados.
+
+- **Justificativa da escolha:** Escolhemos o Hortifruti União porque é um mercado de verdade, que lida todo dia com compras, recebimento de mercadorias, estoque e vendas. O Tarcisio, do nosso grupo, já trabalhou lá e conhece um dos proprietários, e foi isso que facilitou o contato com o mercado. Deixamos esse vínculo claro aqui, mas ele não substitui a comprovação da entrevista com o responsável, que apresentamos no relato abaixo. Também achamos que o mercado era um bom caso para o trabalho, porque os problemas de perdas, lotes e validade dos produtos podem ser organizados em um banco de dados relacional.
 
 - **Evidências da organização:**
 
   - [Localização no Google Maps](https://www.google.com/maps/search/?api=1&query=Rua+Filipe+Camar%C3%A3o%2C+67%2C+Tatuap%C3%A9%2C+S%C3%A3o+Paulo)
   - **Perfil comercial no Google:** [Consultar perfil do Hortifruti União no Google](https://share.google/LWFseN2UxnhQwKsNh)
   - **Endereço:** Rua Filipe Camarão, nº 67, Tatuapé, São Paulo, CEP 03065-000
-  - **Contato da organização:** perfil comercial público no Google
+  - **Contato da organização:** (11) 91856-3865
   - **Responsável entrevistado:** Guilherme Takemoto
   - **Função:** um dos proprietários do Hortifruti União – Tatuapé
   - **Telefone de contato autorizado:** (11) 99317-0906
@@ -78,24 +83,37 @@
 
 #### Relato da entrevista
 
-- **Quem:** Guilherme Takemoto, um dos proprietários do Hortifruti União – Tatuapé. Quem entrevistou, visitou e tirou as fotos foi o Tarcisio Santos de Oliveira. Os outros integrantes não foram à entrevista nem à visita.
+- **Quem:** Guilherme Takemoto, um dos proprietários do Hortifruti União – Tatuapé. A entrevista e a visita foram feitas pelo Tarcisio, que já trabalhou no mercado. Os outros integrantes do grupo não participaram.
 
-- **Quando e onde:**
-  - Conversa de cerca de uma hora por videochamada (WhatsApp) em **22/09/2026**. Não foi no mercado.
-  - Observação no salão e no estoque em **30/09/2026**, Rua Filipe Camarão, 67, Tatuapé.
-  - Depois o grupo confirmou com o responsável: pedido por e-mail, NF na entrada, pagamento dividido e fechamento de caixa. **Ainda precisamos conferir a data e o canal dessa conversa no registro original.**
+- **Quando e onde:** A entrevista foi no dia **22/09/2026**, por videochamada no WhatsApp, e durou cerca de uma hora. No dia **30/09/2026**, o Tarcisio foi até o mercado, na Rua Filipe Camarão, 67, no Tatuapé, para observar o funcionamento do local e tirar fotos.
 
-- **O que ele nos disse:** volumes; uso do VR Software; validade existe no sistema, mas seu registro não é usado de forma sistemática; mesmo código de barras para lotes diferentes; pedido por e-mail; entrada com NF; pagamento em dinheiro, débito e crédito (sem Pix), podendo dividir; permissão por cargo; cancelamento de venda já fechada só com gerente ou fiscal; fechamento de caixa no fim do dia, conferindo o dinheiro.
+- **O que foi levantado:** Conversamos sobre como o mercado funciona, quantos funcionários e fornecedores tem, o que vende e quais são os principais problemas. Também falamos sobre o VR Software, o controle de estoque, a validade, as perdas, as compras, as vendas e os pagamentos. Depois, no dia 26/10, confirmamos com o responsável, por WhatsApp, alguns detalhes sobre pedidos, notas fiscais, formas de pagamento e fechamento de caixa.
 
-- **O que Tarcisio observou no local:** movimento do salão e do estoque e organização das mercadorias. A visita levantou o risco de não priorizar o que vence primeiro. Ele também registrou as fotos da fachada, do interior e do estoque.
+- **O que o responsável contou:**
+  - O mercado perde produtos frescos e de outros setores (padaria, frios e laticínios) por vencimento, por maturação excessiva ou por danos causados por clientes. Essas perdas não são registradas de forma organizada (P1).
+  - Acompanhar a validade de cerca de 6 mil itens por mês é difícil, e os funcionários costumam perceber que um produto venceu só quando o encontram na rotina (P2).
+  - O VR Software é o sistema da loja e cuida de venda e nota. Ele é usado para cadastrar produtos, dar entrada nas mercadorias, fazer pedidos de compra, operar o caixa, controlar o fiscal e o financeiro e fechar o dia. O sistema tem tela para registrar lote, validade e perdas, mas, segundo o responsável, isso só funciona se alguém cadastrar e baixar tudo todos os dias, o que é difícil com tantos itens. Na prática, esse controle não é feito.
 
-- **Comprovação da visita:** fotos JPG/JPEG em `imagens/evidencias/`.
+- **O que observamos na visita (30/09/2026):**
+  - A validade é conferida a olho nu pelos funcionários, sem etiqueta de controle, lista ou qualquer registro das datas (P2).
+  - Os produtos perto de vencer recebem uma placa de promoção, sem consulta a uma lista de vencimentos (P2).
+  - Os produtos descartados são apenas jogados fora, sem anotação de produto, quantidade, motivo ou setor (P1).
+  - O estoque é organizado por setor.
+  - Vimos os caixas funcionando, mas não vimos ninguém registrando validade ou perdas no sistema.
 
-- **Visita e comprovação da entrevista:** o Tarcisio foi ao Hortifruti União em **30/09/2026** (Rua Filipe Camarão, 67). Esteve no local, observou o salão e o estoque e tirou as fotos da fachada, do interior e do estoque (`imagens/evidencias/`). **Não ficou foto junto com o responsável** — esqueceu de registrar. A conversa longa de levantamento foi por videochamada (WhatsApp) em **22/09/2026**. Combinamos com o professor que a comprovação da entrevista pode ser pelo telefone, sem exigir a foto dos dois no estabelecimento.
+- **Comparação entre entrevista e observação:** a visita confirmou o que o responsável contou: a validade é conferida no olho, as perdas não são anotadas e o estoque é separado por setor. Isso também combina com o que ele disse sobre o VR Software: o sistema tem lugar para registrar validade e perdas, mas, na prática, nada disso é registrado. Não percebemos nenhuma divergência.
 
-**Levantamento completo:** [levantamento/levantamento.md](levantamento/levantamento.md)
+- **O que mudou em relação à Entrega 1:** na Entrega 1, o único problema levantado era o controle de validade dos produtos. Com a entrevista e a visita desta etapa, encontramos um problema novo: a falta de controle sobre as perdas (P1). Os números e as demais informações sobre o mercado continuam os mesmos.
 
-**Resumo:** o Hortifruti União usa o VR Software, tem 7 caixas e cerca de 2.400 transações por dia. Produto, fornecedor e preço já estão no ERP. O que falha na prática é o acompanhamento dos lotes e das validades: o código de barras não diferencia os lotes, e o registro da validade não é usado de forma sistemática. Compra vai por e-mail; entrada exige NF. Venda não cadastra cliente. Dá para pagar com mais de uma forma (dinheiro, débito, crédito); Pix não entra. Cancelamento e fechamento de caixa existem, com gerente ou fiscal. Contas a pagar, escala e ponto não foram explicados o bastante para virar tabela. Em relação à Entrega 1, retiramos a entidade CLIENTE (eles não cadastram cliente na venda), deixamos o problema declarado só no P1 e passamos a modelar lote, recebimento, perda e saída por lote.
+- **Comprovação:** As fotos tiradas na visita estão na pasta `imagens/evidencias/`. Como a entrevista foi por videochamada, não temos uma foto junto com o responsável. Conversamos sobre isso com o professor em aula, no dia 28/10, e ele aceitou que a entrevista seja comprovada por telefone, com o número do responsável informado acima.
+
+- **Resumo do levantamento:** Pelo que o responsável explicou, a rotina do mercado funciona assim:
+  - **De manhã (retaguarda):** cadastro dos produtos (código de barras, preço, setor, venda por quilo ou por unidade), conferência da nota do fornecedor e entrada no estoque quando a carga chega, e pedidos de compra feitos olhando o giro e os dias de estoque. O fiscal e o financeiro (notas e contas a pagar) também passam pelo sistema.
+  - **No caixa:** o operador abre o caixa com o fundo e passa os itens (os de peso vão pela balança). Existem consulta de preço, cancelamento e troca de operador. Cada venda baixa o estoque, na hora se o estoque online estiver ligado, ou depois que o escritório fecha a conferência do dia.
+  - **Durante o dia:** repositores e gerência olham o que zerou ou está com pouco giro. Perdas poderiam ser baixadas no sistema, mas não são.
+  - **No fim do dia:** fechamento do caixa, sangria e conferência. Depois o sistema junta as vendas do dia e alimenta o estoque, os relatórios e o fiscal.
+
+- **Levantamento completo:** os processos e regras com mais detalhe estão em [levantamento/levantamento.md](levantamento/levantamento.md).
 
 ---
 
